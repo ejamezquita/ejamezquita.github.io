@@ -1,0 +1,477 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Erik Amézquita &mdash; A hodge-podge of math and plants</title>
+<meta name="description" content="Erik Amézquita webpage">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="../css/hawthorne_type1_color2.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <header>
+            <h1><a href="../index.html">Erik Amézquita</a></h1>
+            <h2><a href="../index.html">PFFFD Fellow</a></h2>
+            <h2><a href="../index.html">Plant Sciences and Mathematics @ University of Missouri</a></h2>
+            <!--
+            <div class="logo">
+                <a href="img/front_original.jpg"><img src="img/front_medium.jpg" alt="Erik_in_Chicago_2019" /></a>
+            </div>
+            -->
+        </header>
+    </div>
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <nav>
+            <ul class="inline-list-custom">
+                <li><a href="../index.html">Home [TL;DR]</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../teaching.html">Academic Resources</a></li>
+                <li><a href="../service.html">Other Resources</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../else.html">Else</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-7 large-7 columns">
+		<h2>The shape of things to come</h2>
+		<p style="text-align:right">
+            <em>(Taken from the introduction of my doctoral dissertation)</em>
+        </p>
+        <h3>Morphometrics background and motivation</h3>
+        <p>
+            Shape plays a fundamental role across all organisms at all observable levels. Molecules and proteins constantly fold and wrap into intricate designs inside our cells. Cells arrange into elaborate motifs to form sophisticated tissues. Layers of different tissues come together to form delicate vascular and nervous systems that sustain hands, wings, or fins. Each of these limbs evolved as part of a distinct branch of the ever-growing tree of life. From micro-biology to macro-evolutionary scales, shape and its patterns are foundational to biology. Measuring and understanding the shape is key to extracting valuable information from data, and push further our insights. 
+        </p>
+        <p>
+            Even if we limit our scope to plant biology, a simple glance outdoors reveals a large diversity of shape among flowers, leaves, fruits, and branches. A first attempt to characterize the shape of a plant could use traditional morphometrics, describing the shape of the plant in terms of height, stem thickness, or number of branches. 
+            With these measures at hand, we could look for allometry &mdash;the relative growth of parts of an organism to the whole&mdash; and thus linearly transform biological shapes between each other.
+            However, any given plant shape is too complex to measure it simply in terms of length, width, and branching angles.
+        </p>
+        <p>
+            We could use 
+            <a href="https://en.wikipedia.org/wiki/Morphometrics#Landmark-based_geometric_morphometrics">Geometric Modern Morphometrics (GMM)</a> instead, where we first define homologous landmark points on every sample and then measure shape similarity by overlapping all these landmarks and computing their Euclidean differences.
+            The computation of differences can be refined by rotating, translating, and scaling appropriately the landmark coordinates prior to the general overlap. This procedure, known as generalized Procrustes analysis, defines a morpho-space, or a space of all possible shapes based on all the possible landmark configurations, which allows us to define overall shape distance. The GMM approach can produce distorted results if there are not enough landmarks shared across all sampled individuals, which could occur if we attempt to compare tissues from different families.
+        </p>
+        <div class="row" style="text-align:center; font-size: 0.1em; color: Grey;">
+                <img src="../barley/figs/chitwood_2021_fig-004_1.jpg" alt="normal"  style="float: center; height: 300px; margin: 0 0"/>
+                <img src="../barley/figs/chitwood_sinha_2016_01_02.jpg" alt="original"  style="float: center; height: 300px; margin: 0 0"/>
+        </div>
+        <p style="text-align:center; font-size: 0.8em; color: Grey;">
+            Credits: <a href=" https://doi.org/10.1002/ppp3.10157">Chitwood  (2020)</a>
+            and
+            <a href="https://doi.org/10.1016/j.cub.2016.02.033">Chitwood and Sinha (2016)</a>
+        </p>
+        <p>
+            In the absence of corresponding sets of coordinates, we may attempt to describe the outline of the 
+            <a href="https://en.wikipedia.org/wiki/Morphometrics#Outline_analysis">shape using Fourier analysis</a>, by considering the outline as a harmonic series, or the sum of wave-like curves. All of the above strategies, based on either morphometrics or Fourier analysis, have proven to be extremely insightful to uncover hidden patterns that mold diverse organism shapes at genetic, developmental, evolutionary, and environmental levels. However, it is unclear how to extend this technique beyond 2D images.
+        </p>
+        <p>
+            Inspired by the inherent difficulties of working with 3D data, specifically <a href="https://www.youtube.com/@endlessforms6756">X-ray CT scan imaging data</a>,
+            we turn to Topological Data Analysis (TDA).
+        </p>
+        <p style="text-align:center">
+            <iframe width="512" height="300" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <h3>Topological Data Analysis (TDA)</h3>
+        <p>
+            Topological Data Analysis (TDA) is a combination of different mathematical and computational disciplines that seeks to describe concisely and comprehensively the shape of data in a general setting. 
+            In extremely succinct terms, TDA consists of two basic ingredients and a key idea. 
+        </p>
+        <div class="list">
+            <ul>
+                <li><strong>1st Ingredient</strong>: Think of the data as a collection of points, lines, faces, cubes, etc.</li>
+                <li><strong>2nd Ingredient</strong>: Define a notion of distance between every pair of points.</li>
+                <li><strong>Key Idea</strong>: Keep track of distinct shape features that form and disappear as we connect and merge several points: connected components, holes, and voids.</li>
+            </ul>
+        </div>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="https://anatomypubs.onlinelibrary.wiley.com/cms/asset/9e0d7fe5-2ede-41fa-8232-ccdb8d91017f/dvdy175-fig-0006-m.jpg" alt="Ellipsoid Projection" width="80%"/>
+        </p>
+        <p>
+            The points could be atoms, biomolecultes, cells' nuclei, image pixels, or an organism itself. Distances between points could be the Euclidean, geodesic, genetic, or correlation-based. Once we have data points and distances, known formally as a metric space, we can connect these points starting with those that are closer to each other first.
+            These ingredients and idea, albeit simple, are extremely versatile and can be adapted to a myriad of contexts and data collections. Moreover, the notion of shape presented by TDA is limited solely by the data itself, unleashing it from possible selection biases. This very adaptability and impartiality makes TDA a powerful data analysis tool that can further our insights in a variety of plant biology scenarios.
+        </p>
+        <h3>Plenty of TDA applications in the biology literature</h3>
+        <div class="row" style="text-align:center">
+            <div class="column" style="max-width:45%">
+                <p><strong>Histological image processing</strong></p>
+                <img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg">
+                <img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg">
+                <p style="font-size: 0.8em; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.media.2019.03.014">Qaiser <em>et al.</em> (2019)</a></p>
+            </div>
+            <div class="column" style="max-width:45%">
+                <p><strong>HIV phylogenetics</strong></p>
+                <img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/ce30e9df-d595-4520-a68a-74f3c6f151d1/assets/graphic/pnas.1313480110fig01.jpeg">
+                <img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/b733c3a3-00f2-43d5-b372-9da25f3d33c9/assets/graphic/pnas.1313480110fig02.jpeg">
+                <p style="font-size: 0.8em; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1073/pnas.1313480110">Chan <em>et al.</em> (2013)</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" style="width:50%;">
+                <p style="text-align: center;">Holes</p>
+                <p style="text-align: center;">&darr;</p>
+                <p style="text-align: center;">Cancerous tissue</p>
+            </div>
+            <div class="column" style="width:50%;">
+                <p style="text-align: center;">Holes</p>
+                <p style="text-align: center;">&darr;</p>
+                <p style="text-align: center;">Horizontal Reassortment</p>
+            </div>
+        </div>
+        <div class="row" style="text-align:center">
+            <div class="column" style="max-width:45%">
+                <p><strong>Protein structures</strong></p>
+                <img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_001.jpg">
+                <img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_012.jpg">
+                <img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_010.jpg">
+                <p style="font-size: 0.8em; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1515/sagmb-2015-0057">Kovacev-Nikolic <em>et al.</em> (2016)</a></p>
+            </div>
+            <div class="column" style="max-width:50%">
+                <p><strong>3D imaging of panicles</strong></p>
+                <img style="padding: 0 0 0 0;" src="https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-3-030-20867-7_7/MediaObjects/484957_1_En_7_Fig1_HTML.png">
+                <p style="font-size: 0.8em; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1007/978-3-030-20867-7_7">Chitwood <em>et al.</em> (2019)</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column" style="width:45%;">
+                <p style="text-align: center;">Holes</p>
+                <p style="text-align: center;">&darr;</p>
+                <p style="text-align: center;">Open/closed conformations</p>
+            </div>
+            <div class="column" style="width:50%;">
+                <p style="text-align: center;">Components</p>
+                <p style="text-align: center;">&darr;</p>
+                <p style="text-align: center;">Panicle structure</p>
+            </div>
+        </div>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+	</div>
+	<div class="small-12 medium-5 large-5 columns">
+		<p>
+            ¡<strong>Published review</strong>: Amézquita <em>et al.</em> (2020)!
+        </p>
+        <div class="thumbnail-img">
+            <div class="thumbnail-hover"><a href="https://doi.org/10.1002/dvdy.175"></a></div>
+            <a href="https://doi.org/10.1002/dvdy.175" target="_blank"><img src="figs/amezquita_etal_2020.png" alt="Amezquita et al 2020" style="vertical-align:bottom"/></a>
+        </div>
+        <p>
+            DOI: <a href="https://doi.org/10.1002/dvdy.175" target="_blank">10.1002/dvdy.175</a>
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <strong><a href="slides/cmse_brownbag_2022.html" target="_blank">As slides</a></strong>: 
+            Presented at <a href="https://cmse.msu.edu/news-events/brown-bag/" target="_blank">CMSE Brown Bag Seminar</a>. October 2022.
+        </p>
+        <p>
+            <strong><a href="poster/osu_2022.pdf" target="_blank">As a static poster</a></strong>: 
+            Presented at <a href="https://u.osu.edu/plantsciencessymposium/" target="_blank">OSUPSS</a>. April 2022.
+        </p>
+        <p>
+            <strong><a href="poster/osu_2022_dynamic.html" target="_blank">As a dynamic poster</a></strong>: 
+            Presented at <a href="https://u.osu.edu/plantsciencessymposium/" target="_blank">OSUPSS</a>. April 2022.
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <img src="crc_pics/crc_diversity.jpg" alt="Amezquita et al 2021" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            <img src="figs/citrus_diagnostic.gif" alt="Amezquita et al 2021" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+        </p>
+        <p style="font-size:1.5em">
+            <strong><a href="#additional_resources">Go to additional resources</a></strong>
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+        <h3>Other research projects</h3>
+        <div class="list">
+            <ul>
+                <li><a href="../journal_diversity/description.html">Global disparities in plant biology research</a></li>
+                <li><a href="../barley/description.html">Quantification of barley grain morphology</a></li>
+                <li><a href="../walnuts/description.html">The crackability of walnuts: all about shape, in a nutshell</a></li>
+                <li><a href="../tda/description.html">The intersection of Topological Data Analysis and Biology</a></li>
+                <li><a href="../demat/description.html">Archaeological artifact classification and the Euler Characteristic</a></li>
+                <li><a href="../nasrin/description.html">Mapper to unravel the shape of omics data</a></li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h2 id="additional_resources">Additional Resources</h2>
+        <h3>Ellipsoid approximations</h3>
+        <p>
+            <em>Given a pointcloud, a set of 3D x,y,z coordinates, what are the parameters
+            of the best-fit ellipsoid</em>? I was surprised there was not a 
+            straightforward, widely-accepted answer. I also realized how 
+            rusty my pre-calculus math is by now. There are a number of papers
+            out there. 
+        </p>
+        <p>    
+            I chose <a href="https://doi.org/10.1109/GMAP.2004.1290055">Li and
+            Griffiths (2004)</a> as it was both mathematically and computationally
+            the most straightforward answer I could find. They simply perform an
+            <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares" target="_blank">OLS</a>
+            to find the algebraic parameters that minimize the algebraic residuals
+            for the <em><a href="https://en.wikipedia.org/wiki/Quadric">general quadric surface</a></em>.
+            In principle, this approach could produce parameters that approximate
+            the points with a paraboloid or hyperboloid instead. You must know
+            that your point cloud indeed looks like an ellipsoid. Supposedly they
+            use Lagrange multipliers to guarantee that you'll always get
+            ellipsoid paramters, but I personally did not verify it.
+        </p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/9058/28744/1290055/1290055-fig-6-source-large.gif" alt="Ellipsoid Projection" width="80%"/>
+            <br>
+            Credits: <a href="https://doi.org/10.1016/10.1109/GMAP.2004.1290055">Li and Griffiths (2004)</a>
+        </p>
+        <p>
+            This approach will give you algebraic parameters of the general quadric surface
+            equation. To translate these into more intuitive geometric parameters
+            (semiaxes lengths, origin, rotation, etc.), you can follow Section 2.4 of
+            <a href="https://doi.org/10.1515/jogs-2020-0105" target="_blank">Panou <em>et al</em> (2020)</a>.
+        </p>
+        <div class="list">
+            <ul>
+                <li>I personally found 
+                <a href="https://doi.org/10.1109/34.888714" target="_blank">Chojnacki <em>et al</em> (2000)</a>
+                too convoluted. I admit stats and numerical analysis are not
+                exactly my strength.</li>
+                <li>I remember I had trouble fully following and implementing 
+                <a href="https://doi.org/10.1109/CAMSAP.2009.5413262" target="_blank">Yu <em>et al</em> (2009)</a>.</li>
+                <li>I tried my best to implement <a href="https://doi.org/10.1016/j.amc.2017.07.025" target="_blank">Reza
+                and Sengupta (2017)</a>. I was unable to get sensible results.</li>
+                <li>I was also a bit confused by
+                <a href="https://doi.org/10.1109/AVSS.2011.6027350" target="_blank">Sivapalan
+                <em>et al</em> (2011)</a>.</li>
+                <li><a href="https://doi.org/10.1515/jogs-2020-0105" target="_blank">Panou <em>et al</em> (2020)</a>
+                is a relative easy read for someone with a basic math
+                background. They propose a two-step approximation to obtain the ellipsoid.
+                The first step is an algebraic parameter approximation like
+                in <a href="https://doi.org/10.1109/GMAP.2004.1290055">Li and 
+                Griffiths (2004)</a>. The second is a geometric parameter 
+                approximation. However, I was unable to get significant results
+                from this second step. Maybe it only works with geoids, with 
+                very large ellipsoids the size of a planet, not for ellipsoids
+                the size of a lemon.</li>
+            </ul>
+        </div>
+        <h3>Ellipsoid coordinates</h3>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="https://ars.els-cdn.com/content/image/1-s2.0-S0098300420305410-gr1_lrg.jpg" alt="Ellipsoid Projection" width="50%"/>
+            <br>
+            Credits: <a href="https://doi.org/10.1016/j.cageo.2020.104551">Diaz-Toca <em>et al.</em> (2020)</a>
+        </p>
+        <p>
+            Once we have the ellipsoid parameters, we have to
+            project our original point cloud onto such ellipsoid. 
+            This projection can be either:
+        </p>
+        <div class="list">
+            <ul>
+                <li><strong>Geocentric</strong>: By drawing a ray from the
+                ellipsoid center to the point and noting where the ray 
+                intersects the ellipsoid surface.</li>
+                <li><strong>Geodetic</strong>: By projecting the point
+                perpendicularly to the ellipsoid surface, i.e., by minimizing
+                the distance from the point to the surface.</li>
+            </ul>
+        </div>
+        <p>
+            The former projection can be computed immediately. The latter
+            requires a much more ellaborate computation.
+            <a href="https://doi.org/10.1016/j.cageo.2020.104551">Diaz-Toca <em>et al.</em> (2020)</a>
+            Is a very well-written breakdown of the computations needed, and
+            they even provide a link to C code that works out of the box.
+        </p>
+        <p>
+            Regardless of the projection used, we can then reparameterize
+            the original point cloud in (latitude, longitude, height) coordinates.
+            We can then translate the (latitude, longitude) coordinates to
+            a unit sphere. These unit sphere will be the common ground that
+            will allow us to compare all citrus at once.
+        </p>
+        <h3>Directional statistics</h3>
+        <p>
+            Directional statistics is a relatively new branch of statistics which
+            focuses on statistics where the domain is not a Euclidean space
+            &mdash;as with regular statististics&mdash; but
+            a circle, sphere, torical or cylindrical.
+        </p>
+        <p>
+            The 1999 seminal textbook <a href="https://doi.org/10.1002/9780470316979"><em>Directional Statistics</em></a>
+            by Mardia and Jupp is pretty good. It is seminal for a reason.
+            It basically compiles everything
+            that was known on the subject until that point. The textbook is quite
+            comprehensive, the index is very fleshed out, and most of the 
+            chapters are self-contained. You can jump straight into the
+            the relevant content for the application you have in mind.
+            It also comes with plenty of citations so you can dive deeper
+            into the relevant literature.
+        </p>
+        <p>
+            More than 20 years later, Mardia and Jupp are still relevant.
+            Their textbook is still one of the best ways to get familiar with
+            the foundational ideas.
+            Naturally the discipline has grown, and there
+            have been plenty of advances since 1999.
+            <a href="https://doi.org/10.1201/9781315119472">Ley and Verdebout's
+            <em>Modern Directional Statistics</em> (2017)</a> aims to be an update.
+            They still provide some basic definitions and concepts, albeit
+            very succintly and refer the reader back to Mardia and Jupp 
+            plenty of times.
+            Ley and Verdebout are still a pretty good reference to know
+            where to start the google scholar search on how to do a particular
+            task in directional statistics.
+            Applications are fleshed out in their complement
+            <a href="https://doi.org/10.1201/9781315228570"><em>Applied
+            Directional Statistics</em>.</a>
+        </p>
+        <p>
+            A brief review, update, and historical overview of the discipline is
+            provided by <a href="https://doi.org/10.1007/s11749-021-00759-x">Pewsey
+            and García Portugués (2021)</a>. Their last section covers on
+            some of the available software to do actual computations. Fortunately,
+            most of the software comes as R packages, works out of the box, 
+            and it is easy to use.
+        </p>
+        <h3>Citrus are intrinsically linked to human history</h3>
+        <p>
+            I love the <a href="https://gastropod.com/" target="_blank">Gastropod
+            podcast</a>. The food that we consume is more than just food.
+            It is also a reflection of human culture and history. Food shaped
+            our society. Citrus are no exception. As <a href="http://www.cynthiagraber.com/home/Welcome.html" target="_blank">Cynthia Graber</a>
+            and <a href="http://www.ediblegeography.com/" target="_blank">Nicola Twilley</a> say,
+            &laquo;not only were these [citrus] fruits so precious that they inspired both museums and the Mafia, they are also under attack by an incurable immune disease that is decimating citrus harvests around the world.&raquo;
+            <a href="https://gastropod.com/museums-mafia-secret-history-citrus/" target="_blank">Listen to their whole citrus episode!</a>
+        </p>
+        <p>
+            <iframe frameBorder="0" height="200" scrolling="no" src="https://playlist.megaphone.fm/?e=VMP3074501891" width="100%"></iframe>
+        </p>
+        <p>
+            Also, I highly recommend you following and watching
+            <a href="https://www.youtube.com/@WeirdExplorer" target="_blank">@WeirdExplorer</a>
+            YouTube channel for a foodie insight into the wide, global
+            fruit variety. He
+            has a number of citrus-specific episodes. In particular, one of
+            his first episodes roughly explains how most citrus are hybrids.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/GgZ6H5yvp-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            And this one is pretty good as well. It also contains an important
+            message that fruit naming matters. There is a reason why the
+            <em>Makrut lime</em> should be always called <em>Makrut lime</em>
+            and not something else.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/2cyTYfD_3ZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            Citrus are quite fascinating. Their history is intrinsically
+            linked to ours. To name a few fun facts.
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://doi.org/10.1111/j.1753-4887.2009.00205.x" target="_blank">Citrus paved the way to the first modern medical trials
+                in Western medicine</a>. Scurvy was the <a href="https://doi.org/10.1111/j.1753-4887.1986.tb07575.x">biggest
+                scourge of the seas</a>. It is estimated than more sailors died
+                due to scurvy than the rest of diseases and sea battles combined.
+                One day, the British tested the anecdotes of sailors being scurvy-resistant due
+                to regular consumption of citrus. Several ships were sent for long
+                voyages. One was provided with citrus juice. Others were provided with no
+                fruits but fresh water, or various elixirs. This was the setup of
+                the first modern medical trial.</li>
+                <li>Very specific citrus are a key for various South and
+                South East Asian cuisines. 
+                There are
+                anecdotes of Thai immigrants <a href="https://doi.org/10.1215/01636545-2010-027">trespassing the Citrus Variety
+                Collection of UC Riverside to obtain key ingredients</a> back in the 60s.
+                Else, people would smuggle citrus from
+                Asia to California to complete important dishes.
+                Smuggling naturally comes with a high risk of importing 
+                diseases, which can be particularly catastrophic for comercial
+                fields of citrus as most of the commercially grown citrus fruits
+                are essentially clones. <a href="https://swfrec.ifas.ufl.edu/hlb/database/pdf/21_Karp_12.pdf">It
+                is important to develop citrus varieties that can grow in 
+                other climates to both supply people with fruits and eliminate
+                the need of dangerous smuggling</a>.</li>
+                <li>Qu Yuan, probably the most important classic Chinese
+                poet, depicted an orange tree as a symbol of steadfastness and
+                resilience in the beautiful poem <a href="https://doi.org/10.6420/DHJHS.199907.0069" target="_blank"><em>Ju song</em></a>. 
+                Although we <a href="https://archive.org/details/songsofsouthanci0000unse">do not know for certain if 
+                Qu Yuan is the actual author of the poem</a>, it is beautiful nonetheless.
+                For context, Qu Yuan was a renowned advisor of a king circa 200 BC.
+                Inner conflicts with other advisors and court members led to
+                rumor spreads and backstabbing, which forced Qu Yuan to be
+                exiled from the kingdom. According to the legend, Qu Yuan was
+                absolutely distraught, he was profoundly hurt that his king
+                believed others' words and not his. Qu Yuan was roaming when
+                he observed an orange tree. He was captivated, given the fact
+                that orange trees were not supposed to grow, let alone flourish,
+                in that region, where the climate was colder. If an orange
+                tree was able to grow against harsh climates, he as a poet
+                should be able to withstand the terrible setbacks.</li>
+                <li>Citrons, especially <a href="https://en.wikipedia.org/wiki/Etrog">etrogs</a> are key in some Jewish festivities. The relationship between etrogs and the Jewish community <a href="https://doi.org/10.1126/science.129.3343.179" target="_blank">goes back millenia</a>. In fact, modern evidence suggests that as the Jewish community moved westward towards modern Europe, <a href="https://doi.org/10.21273/HORTSCI11023-16">they brought citrus cultivation and citrus breeding with them</a>. It was thanks to their migration that Romans tasted citrus for the first time, and they made quite an impact, especially across Italy and Spain.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+	</div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <li>&copy; 2023 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
+                <li>Last updated: July 2023.</li>
+                <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
+
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/amezqui3/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/erik-amezquita/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                <a href="https://www.researchgate.net/profile/Erik-Amezquita-2" target="_blank"><img src="../img/researchgate.svg" width="30" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+                <a href="https://scholar.google.com/citations?user=JBCDR4cAAAAJ&hl=en" target="_blank"><img src="../img/googlescholar.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/hawthorne.js"></script>
+
+</body>
+</html>

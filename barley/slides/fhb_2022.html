@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Quantifying the shape of plants</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   -   Fitch H. Beach Award   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Quantifying the shape of plants
+]
+.subtitle[
+## using Topological Data Analysis
+]
+.author[
+### <strong>Erik Amézquita</strong> <br> - <br> Fitch H. Beach Award <br> -
+]
+.institute[
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+]
+.date[
+### 2022-12-10 <br> - <br> Fitch H. Beach Award Ceremony
+]
+
+---
+
+
+
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Check out more 3D X-ray CT scans at &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Topological Data Analysis (TDA)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Raw Data &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; X-ray CT &lt;/li&gt;
+      &lt;li&gt; Point clouds &lt;/li&gt;
+      &lt;li&gt; Time series &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 23px; text-align: center; color: DarkRed;"&gt; Topological Summary &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Euler Characteristic &lt;/li&gt;
+      &lt;li&gt; Persistence diagrams &lt;/li&gt;
+      &lt;li&gt; Mapper/Reeb graphs &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;img src="../figs/svm_mds_canberra_transp.png"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Analysis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Statistics &lt;/li&gt;
+      &lt;li&gt; Machine learning &lt;/li&gt;
+      &lt;li&gt; Classification/prediction &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../../cmse/figs/cmse logo file-01.svg")
+background-size: 150px
+background-position: 5% 60%
+
+class: center
+
+# My research: Crossing and merging bridges
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:15%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:20%"&gt;
+    &lt;p style="padding: 20px; font-size: 32px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; Cross-&lt;br&gt;disciplinary &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:15%"&gt;
+    &lt;a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/S017_L3_1.gif"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:19%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_exocarp.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:26%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:15%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:20%"&gt;
+    &lt;p style="margin: 0 30px; padding: 40px 0 0 0; font-size: 32px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; Cross-&lt;br&gt;cultural &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:37%"&gt;
+    &lt;a href="https://github.com/amezqui3/demeter" target="_blank"&gt;&lt;img style="padding: 10px 0 0 0;" src="../figs/github_demeter.png"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%"&gt;
+    &lt;!---
+    &lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg"&gt;&lt;/a&gt;
+    ---&gt;
+    &lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../tutorials/figs/plants_and_python_group_photo.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:15%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:20%"&gt;
+    &lt;p style="margin: 0 30px; font-size: 32px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; Data for&lt;br&gt;Social&lt;br&gt;Justice&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:13%"&gt;
+    &lt;a href="https://qsideinstitute.org/events/datathon4justice/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="https://i0.wp.com/qsideinstitute.org/wp-content/uploads/2021/07/QSIDE-Datathon-Flyer-Yellow.jpg?resize=663%2C1024&amp;ssl=1"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:15%"&gt;
+    &lt;a href="https://qsideinstitute.org/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="https://i0.wp.com/qsideinstitute.org/wp-content/uploads/2021/04/View-Book-cover.png?w=654&amp;ssl=1"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:32%"&gt;
+    &lt;a href="https://mje.mcgill.ca/article/download/9123/6947/28166" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../journal_diversity/figs/global_north_vs_global_south.png"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_norway.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_world.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://www.bloomberg.com/news/articles/2020-09-13/iraq-to-offer-first-ever-barley-exports-as-rains-yield-surplus" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_iraq.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"&gt;&lt;/a&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="column" style="max-width:46%"&gt;
+        &lt;img src="../figs/S019_L0_1.gif"&gt;
+      &lt;/div&gt;
+      &lt;div class="column" style="max-width:55%"&gt;
+        &lt;img src="../figs/S017_L0_seed_10_0.gif"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
+    &lt;p style="text-align: center; font-size: 30px; line-height: 1em;"&gt; &lt;strong&gt; Barley from across the world &lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;28 collected barley varieties&lt;/p&gt;
+    &lt;p&gt;Brought to California in 1929&lt;/p&gt;
+    &lt;p&gt;Artificial evolution experiment for 58 generations&lt;/p&gt;
+    &lt;p&gt;975 panicles scanned&lt;/p&gt;
+    &lt;p&gt;38,000 seeds isolated&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Topology: The Euler characteristic `\(\chi\)`
+
+`$$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$`
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Tetrahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Hexahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Octahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Dodecahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Icosahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; V - E + F = 2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+&lt;img src="../figs/ecc_ver2.gif" width="650" style="display: block; margin: auto;" /&gt;
+
+## The Euler Characteristic Transform (ECT)
+
+&lt;img src="../figs/ect_000.png" width="650" style="display: block; margin: auto;" /&gt;
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+&lt;img src="../figs/ecc_Z_32.png" width="650" style="display: block; margin: auto;" /&gt;
+
+## The Euler Characteristic Transform (ECT)
+
+&lt;img src="../figs/ect_ver2.gif" width="650" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Quantify the shape of barley
+
+**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Shape descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;No. of descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Traditional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Topological&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Combined&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;&lt;strong&gt;0.86 &amp;plusmn; 0.010&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+### What does topology actually measure?
+
+.pull-left[
+&lt;img src="../figs/discerning_directions.png" width="225" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Into semi-supervised territory
+
+- Train an SVM with 100% of the founders `\((F_0)\)`
+
+- Classify the progeny `\(F_{58}\)`: DNA (genotype) &amp;harr; shape (phenotype) enrichment
+
+.pull-left[
+![](../figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+---
+
+## A different crop: If life gives you lemons...
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg"&gt;
+    &lt;p style="text-align: center;"&gt; UCR Collaboration &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg"&gt;
+    &lt;p style="text-align: center;"&gt; 3D X-Ray CT scan &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Raw &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_spine.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Spine &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_endocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Endocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_rind.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Rind &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_exocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Exocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_oil_glands.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Oil glands&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+### Grand challenge: genotype (DNA) &amp;harr; phenotype (shape)
+
+Leaf development in Arabidopsis: the guinea pig of plant biology
+
+.pull-left[
+&lt;img src="../../arabidopsis/figs/Day7_110921_Col_0_X_pot3_leaf_X.gif" width="225" style="display: block; margin: auto;" /&gt;&lt;img src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif" width="225" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+![](../../arabidopsis/figs/ecc_axis_X.gif)
+![](../../arabidopsis/figs/ecc_axis_Y.gif)
+![](../../arabidopsis/figs/ecc_axis_Z.gif)
+]
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# Thank you!
+
+.left-column[
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Dr. Liz Munch&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Dr. Dan Chitwood&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+![](https://anatomypubs.onlinelibrary.wiley.com/cms/asset/e38a1c55-9620-4175-aea0-dfe569cd6b6a/dvdy216-toc-0001-m.jpg)
+
+&lt;p style="text-align: center; color: White"&gt;Our research is featured on the cover of &lt;em&gt;Developmental Dynamics&lt;/em&gt; &lt;strong&gt;249&lt;/strong&gt;(7) 2020&lt;/p&gt;
+
+]
+
+.right-column[
+
+* **E.J. Amézquita**, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch, D.H. Chitwood (2021) "Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform." *in Silico Plants* 4(1); diab033
+
+* **E.J. Amézquita**, M.Y. Quigley, T. Ophelders, E. Munch, D.H. Chitwood. (2020) "The shape of things to come: Topological Data Analysis and biology, from molecules to organisms". *Developmental Dynamics* 249(7); 816—833
+
+* R. VanBuren, A. Rougon-Cardoso, **E.J. Amézquita**, E. Coss-Navarrete, A. Espinosa-Jaime, O. Gonzalez-Iturbe, A. Luckie-Duque, E. Mendoza-Galindo, J. Pardo, G. Rodríguez-Guerrero, P. Rosiles-Loeza, M. Vásquez-Cruz, S. Fernandez-Valverde, T. Hernandez-Hernandez, S. Palande, and D.H. Chitwood. (2022) "Teaching Tools in Plant Biology. Plants and Python, Coding from Scratch in the Plant Sciences". *The Plant Cell*. Accepted
+
+* **E.J. Amézquita**, M.Y. Quigley, T. Ophelders, D. Seymour, E. Munch, D.H. Chitwood "The shape of aroma: measuring and modeling citrus oil gland distribution." Under review.
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,584 @@
+---
+title: Walking through barley
+author: Erik Amézquita
+output: 
+  html_document:
+    css: "styles2.css"
+    self_contained: False
+---
+
+Exploring asymmetries with 2-vs-6 row barley
+
+```{r setup, message=F, warning=F}
+library(shapes)
+library(ggplot2)
+library(cowplot)
+library(ggExtra)
+library(plotly)
+library(knitr)
+
+knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(out.width='100%')
+knitr::opts_chunk$set(echo=FALSE)
+
+src <- '/home/ejam/documents/barley_stacks/preproc/landmarks/results/'
+proj <- 'Y'
+```
+
+```{r}
+plot_eigseed <- function(gor, j, cc){
+  eigseed <- gor$mshape + cc*gor$pcar[,j]*gor$pcasd[j]
+  ggplot2::ggplot() +
+    geom_point(aes(x=eigseed[,1], y=eigseed[,2])) +
+    geom_path(aes(x=eigseed[,1], y=eigseed[,2])) +
+    geom_path(aes(x=c(eigseed[nrow(eigseed),1],eigseed[1,1]), y=c(eigseed[nrow(eigseed),2],eigseed[1,2]))) +
+    xlab(paste('avg ',formatC(cc, flag = '+'),' * sd', sep='')) +
+    ylab('') +
+    coord_fixed(ratio=1)
+}
+```
+## Planes of reference
+
+```{r}
+knitr::include_graphics(c('../figs/BarleySeed.svg','../figs/leaf_orientation.png'), auto_pdf = T)
+```
+We will work with 2D projections of the seeds rather than the 3D shape as a whole. All the seeds have been previously aligned according to their longitudinal, lateral, and dorsiventral axes. As shown in the figure above,
+
+- **X axis:** Proximal-distal [longitudinal]
+
+- **Y-axis:** Medial-lateral [lateral]
+
+- **Z-axis:** Adaxial-abaxial [dorsiventral]
+
+From each seed, we get three different projections
+
+- **X projection: magenta:** Projection to the transverse plane
+
+- **Y projection: blue:** Projection to the lateral plane
+
+- **Z projection: green:** Projection to the longitudinal plane [medial]
+
+```{r run, echo=F}
+g <- 30
+outlier <- 548
+
+data <- read.csv(paste(src,'landmarks_proj',proj,'_g',g,'.csv', sep=''))
+founders <- data[data$Generation == 0, ]
+founders <- founders[-outlier,]
+founders_idx <- which(data$Generation == 0)
+founders_names <- levels(unique(data$Founder[founders_idx]))[-1]
+traits <- colnames(data)[10:(2*g+9)]
+tworow2 <- c('Alpha', 'Golden Pheasant', 'Good Delta (104)', 'Hannchen', 'Horn', 'Orel', 'Palmella Blue (79B)', 'White Smyrna')
+sixrow6 <- setdiff(founders_names, tworow2)
+
+rownum <- vector('logical', length(founders$Founder))
+for(i in 1:length(founders$Founder)){
+  name <- founders$Founder[i]
+  if(is.element(name, tworow2)){
+    rownum[i] <- 'two'
+  }
+  else
+    rownum[i] <- 'six'
+}
+
+sixrow <- founders[which(rownum == 'six'), traits]
+tworow <- founders[which(rownum == 'two'), traits]
+
+```
+
+## All founder seeds
+
+Doing a procGPA of all the founders' seeds. The PC2 axis distinguishes the 2-vs-6 row families.
+
+```{r gpa-all}
+coords <- array(t(as.matrix(founders[traits])), dim = c(g,2,nrow(founders))) 
+
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder,
+  rownum = rownum
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=factor(sign(PC3)), color=rownum), alpha=0.35, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  #scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  #scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  labs(color='Row', shape = 'sign(PC3)',
+      x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+           y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p, tooltip=c('founder'))
+```
+
+Look at the eigenshapes
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            'All Founders', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 6-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. 6-row seems kind of uniformly distributed along the PC2 axis. `Han River` is all positive in the PC2 axis. `Trebi` is clearly split in two clusters. To some extent this is also seen in `Manchuria` and `Meloy`.
+
+```{r}
+coords <- array(t(as.matrix(sixrow[traits])), dim = c(g,2,nrow(sixrow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'six'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  #labs(color='Founder', shape = 'sign(PC3)',
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 6-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 6-row barley.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '6-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 2-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. 2-row seems split into two clusters along the PC2 axis. `Palmella` and `White Smyrna` are the ones that **do not** show this clustering behaviour.
+
+```{r}
+coords <- array(t(as.matrix(tworow[traits])), dim = c(g,2,nrow(tworow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'two'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  #labs(color='Founder', shape = 'sign(PC3)',
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 2-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 2-row barley. From PC1, we see that it is flipped compared to the 6-row case. This is most likely due to the fact that eigenvectors were computed with oppostite signs. There is no clear criteria on how R decides which sign to use for which computation.
+
+Looking at PC2, the vast majority of seeds have negative PC2. That is, they produce a rather unusual bump.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '2-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+# Using the X projection
+
+There is again some asymmetry along the PC2 axis.
+
+```{r, echo=F}
+proj <- 'X'
+g <- 40
+outlier <- 2299
+
+data <- read.csv(paste(src,'landmarks_proj',proj,'_g',g,'.csv', sep=''))
+founders <- data[data$Generation == 0, ]
+founders <- founders[-outlier,]
+traits <- colnames(data)[10:(2*g+9)]
+
+for(i in 1:length(founders$Founder)){
+  name <- founders$Founder[i]
+  if(is.element(name, tworow2)){
+    rownum[i] <- 'two'
+  }
+  else
+    rownum[i] <- 'six'
+}
+
+sixrow <- founders[which(rownum == 'six'), traits]
+tworow <- founders[which(rownum == 'two'), traits]
+
+```
+
+## All founder seeds
+
+Doing a procGPA of all the founders' seeds. The PC2 axis distinguishes the 2-vs-6 row families.
+
+```{r }
+coords <- array(t(as.matrix(founders[traits])), dim = c(g,2,nrow(founders))) 
+
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder,
+  rownum = rownum
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=factor(sign(PC3)), color=rownum), alpha=0.35, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(color='Row', shape = 'sign(PC3)',
+      x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+           y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p, tooltip=c('founder'))
+```
+
+Look at the eigenshapes. PC2 seems to capture how *cheeky* the seed is at the bottom.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            'All Founders', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 6-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. 6-row seems kind of uniformly distributed along the PC2 axis. `Han River` is quite scattered. `Multan` seems broken into two clusters.
+
+```{r}
+coords <- array(t(as.matrix(sixrow[traits])), dim = c(g,2,nrow(sixrow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'six'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  #labs(color='Founder', shape = 'sign(PC3)',
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 6-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 6-row barley. PC3 seems a bit more squished now.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '6-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 2-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. 2-row seems split into two clusters along the PC2 axis. `Palmella` and `Golden` are scattered. 
+
+```{r}
+coords <- array(t(as.matrix(tworow[traits])), dim = c(g,2,nrow(tworow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'two'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 2-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 2-row barley. From PC1, we see that it is flipped compared to the 6-row case. This is most likely due to the fact that eigenvectors were computed with oppostite signs. There is no clear criteria on how R decides which sign to use for which computation. 
+
+PC1 looks a bit rounder. PC3 is a bit more deformed.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '2-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+# Using the Z projection
+
+Asymmetry is not as strong here
+
+```{r, echo=F}
+proj <- 'Z'
+outlier <- 548
+g <- 30
+data <- read.csv(paste(src,'landmarks_proj',proj,'_g',g,'.csv', sep=''))
+founders <- data[data$Generation == 0, ]
+founders <- founders[-outlier,]
+traits <- colnames(data)[10:(2*g+9)]
+
+rownum <- vector('logical', length(founders$Founder))
+for(i in 1:length(founders$Founder)){
+  name <- founders$Founder[i]
+  if(is.element(name, tworow2)){
+    rownum[i] <- 'two'
+  }
+  else
+    rownum[i] <- 'six'
+}
+
+sixrow <- founders[which(rownum == 'six'), traits]
+tworow <- founders[which(rownum == 'two'), traits]
+
+```
+
+## All founder seeds
+
+Doing a procGPA of all the founders' seeds. The PC2 axis distinguishes the 2-vs-6 row families.
+
+```{r }
+coords <- array(t(as.matrix(founders[traits])), dim = c(g,2,nrow(founders))) 
+
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder,
+  rownum = rownum
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=factor(sign(PC3)), color=rownum), alpha=0.35, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  #scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  #scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  labs(color='Row', shape = 'sign(PC3)',
+      x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+           y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p, tooltip=c('founder'))
+```
+
+Look at the eigenshapes
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            'All Founders', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 6-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. 6-row seems kind of uniformly distributed along the PC2 axis. `Han River` is all positive in the PC2 axis. `Everest` is partitioned in two clusters. `Multan`, `Odenbrucker`, `Sandrel`, `Trebi` have mainly negative PC2 values.
+
+```{r}
+coords <- array(t(as.matrix(sixrow[traits])), dim = c(g,2,nrow(sixrow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'six'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  #labs(color='Founder', shape = 'sign(PC3)',
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 6-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 6-row barley.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '6-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+
+## Using only 2-rows
+
+We can repeat the GPA using **only** 6-row barley this time. There is a continuum along the PC1 axis. `Palmella` is split into two clusters.
+
+```{r}
+coords <- array(t(as.matrix(tworow[traits])), dim = c(g,2,nrow(tworow))) 
+gor <- shapes::procGPA(coords,scale = T, reflect = F)
+
+num <- 'two'
+pca_df <- data.frame(
+  PC1 = gor$scores[,1],
+  PC2 = gor$scores[,2],
+  PC3 = gor$scores[,3],
+  founder = founders$Founder[which(rownum == num)],
+  rownum = rownum[which(rownum == num)]
+)
+
+p <- ggplot2::ggplot(pca_df, aes(x=PC1, y=PC2))+
+  geom_point(aes(shape=founder, color=founder), alpha=0.8, size=1.4) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  #theme(legend.position=c(.95,.8)) +
+  scale_shape_manual(values=rep(0:8,5)[1:20]) +
+  #scale_fill_manual(values=rep(c('green','blue','red'),20)[1:20]) +
+  scale_color_manual(values=rep(c('slateblue2','forestgreen','firebrick1','peru', 'grey30'),5)[1:20]) +
+  #labs(color='Founder', shape = 'sign(PC3)',
+  labs(x = paste('PC1: ', round(gor$percent[1],2), '%', sep = ''),
+       y = paste('PC2: ', round(gor$percent[2],2), '%', sep = '')) +
+  ggtitle(paste('Only 2-row Founders GPA. ', proj, ' projection.', sep=''))
+
+plotly::ggplotly(p)
+```
+
+The respective eigenshapes of 2-row barley. From PC1, we see that it is flipped compared to the 6-row case. This is most likely due to the fact that eigenvectors were computed with oppostite signs. There is no clear criteria on how R decides which sign to use for which computation.
+
+Looking at PC2, the vast majority of seeds have negative PC2. That is, they produce a rather unusual bump.
+
+```{r}
+foo <- c(lapply(c(-3,0,3), plot_eigseed, gor=gor, j=1), 
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=2),
+           lapply(c(-3,0,3), plot_eigseed, gor=gor, j=3))
+  
+labels <- c(paste('PC1: ',round(gor$percent[1],2), '%', sep=''),
+            '2-row barley', '',
+            paste('PC2: ',round(gor$percent[2],2), '%', sep=''),
+            paste(proj,'-projection',sep=''), '', 
+            paste('PC3: ',round(gor$percent[3],2), '%', sep=''),
+            '', '')
+
+cowplot::plot_grid(plotlist = foo, nrow = 3, ncol=3, labels = labels, vjust=1, hjust=0, label_size = 10)
+```
+

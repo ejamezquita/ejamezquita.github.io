@@ -1,0 +1,344 @@
+---
+title: "A Robust Pipeline for Genomics Data Analysis"
+subtitle: " using Nonparametric Statistics and Topology"
+author: "**Erik Amézquita**, Farzana Nasrain <br> Hwayeon Ryu, Katie Storey <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "October 7th 2020"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(engine.path = list(
+  python = '/usr/bin/python3',
+  ruby = '/usr/bin/ruby'
+))
+```
+
+class: center, middle, inverse
+
+# 1. Biology: RNA-seq and FPKM
+
+---
+
+# All we are are proteins in the stream
+
+- Select regions of the DNA, known as genes, will eventually yield a bunch of proteins. 
+
+--
+- These proteins often act in a careful choreography that constitute us.
+
+--
+- Out of all the possible proteins that our DNA encodes, each cell just needs **to express** (to produce) a small subset of these products to perform a specific task. 
+
+--
+- Determining which genes are actives, determines which proteins are being expressed/produced. 
+
+--
+- The gene profile of a muscle cell is different from the gene profile of a liver cell. 
+
+--
+- The gene profile of a healthy lung cell must be different from the profile of a cancerous lung cell. 
+
+--
+- Humans have roughly 20,000 different genes, but we can produce roughly 100,000 different proteins. 
+
+--
+- Protein action is almost never straightforward in complex organisms like us: choreography with *activators, repressors, splicer, promotores*, and a whole zoo of *RNAs* oh my. 
+
+---
+class: bottom
+background-image: url("../../biology/figs/transcription_regulation_overview.jpg")
+background-size: 500px
+background-position: 50% 10%
+
+# Complex choreography
+
+- A multitude of proteins act together in intricate fashion. 
+- Deducing which dancers take place in the cancer choreography is still a daunting task, let alone understand the specific movements of each dancer.
+
+---
+
+background-image: url("../../biology/figs/central_dogma.png")
+background-size: 700px
+background-position: 50% 85%
+
+# RNA-seq
+
+- DNA encodes information. 
+--
+
+- A copy of the relevant tiny section (the gene) is made (**transcribed**) in the form of mRNA (messenger RNA [there are many kinds of RNA]) which essentially acts like a middle-man. 
+--
+
+- This mRNA is later **translated** into a protein by the ribosome: `C/C++`-like compilation
+--
+
+- The whole idea of RNA-seq is that by keeping track of the produced mRNAs, we can keep track of the proteins coded, which in turn will yield the cell's gene profile. 
+
+---
+
+# RNA-seq and FPKM
+
+- RNA-seq is a lab procedure which first aims to replicate $n$ times (depth, $n > 10^5$) all mRNA molecules in a sample/cell. 
+
+--
+- Then it breaks all the replicated molecules into fragments and identifies the original location (coordinates) of such fragment in the DNA via comparison with a reference genome. 
+
+--
+- We then deduce which gene produced that mRNA fragment in the first place. 
+
+--
+- By the end of the day, RNA-seq produces a $N\times M$ matrix, corresponding to $N$ genes expressed in $M$ samples/individuals/cells.  
+
+--
+- The $(i,j)$-entry tells us the number of mRNA (actually cDNA to be precise) fragments that correspond to the location of the $i$-th gene according to the mRNA extracted from the $j$-th individual.
+
+--
+- **FPKM** is when we normalize the matrix above
+    - First by depth (some reads are unlucky)
+    - Then by gene length (longer genes will naturally contain more fragments)
+    - Multiply by $10^6$ so numbers look nicer
+
+---
+
+background-image: url("../figs/fpkm_diversity_a.jpg")
+background-size: 300px
+background-position: 50% 95%
+
+# FPKM and TPM
+
+- An alternate way to normalize is to use **TPM** (transcripts per million)
+    - First by gene length
+    - Then by depth
+
+--
+- FPKM is favored when you want to compare genes for a **fixed** individual.
+- TPM is favored when you want to compare individuals for a **fixed** gene.
+- Problems to compare genes and individuals simultaneously
+
+--
+- In any case, a usual procedure is to compute correlation of everybody against everybody and go with max correlation.
+
+---
+
+class: center, middle, inverse
+
+# 2. Gaussian mixture scores
+
+---
+# Gaussian Mixture Models
+
+Let $y$ be a random $p$-dimensional vector generated by a GMM of $K$ components:
+
+$$f(y) = \sum_{k=1}^K \pi_k\varphi(y | \mu_k, \Sigma_k)$$
+
+- $\pi_k>0$ 
+- $\sum_k\pi_k=1$
+- $\varphi(\cdot | \mu_k, \Sigma_k)$ is the pdf of a $p$-dimensional Gaussian $\mathcal N(\mu_k, \Sigma_k)$.
+
+--
+
+We want to give each gene and individual a single numerical score based on a fitted GMM
+
+---
+
+# GMMs
+
+- Let $c\in\{1,\ldots,K\}$ mark the class from which $y$ is generated and let $s_k = \mathbf{1}(c=k)$.
+
+- According to Bayes' Theorem, the posterior probability $w_k=P(c=k|y)$ that $y$ belongs to the $k$-th class is given by
+
+$$w_k = \frac{\pi_k\varphi_k(y)}{\sum_{k=1}^K\pi_k\varphi_k(y)}$$
+
+---
+
+# T scores
+
+$T$-scores computation is based on [Li and Schwartzman (2018)](https://projecteuclid.org/euclid.aoas/1542078042).
+
+- For a fixed $y$, given the _responsibility_ $w_k$ of each component, we can recover the latent labels $s_k$'s via two kind of assignments:
+    - **Hard**: $\tilde s_k = 1$ if $k = \arg\max_{k'} w_{k'}$; otherwise $\tilde s_k = 0$.
+    - **Soft**: $\tilde s_k = w_k$.
+
+- We can then transform the values $y$ so that their resulting distribution will be close to a multivariate standard normal.
+
+--
+- Three possible transformations are posed:
+$$\tilde\mu = \sum_{k=1}^K\tilde s_k\mu_k $$
+
+---
+
+- then consider
+$$\begin{align} 
+T^{(1)}(y) &= \left(\sum_{k=1}^K\tilde s_k\Sigma_k^{-\frac12}\right)(y-\tilde\mu),\\
+T^{(2)}(y) &= \left(\sum_{k=1}^K\tilde s_k\Sigma_k\right)^{-\frac12}(y-\tilde\mu),\\
+T^{(3)}(y) &= \left(\sum_{k=1}^K\tilde s_k\left[\Sigma_k+(\mu_k-\tilde\mu)(\mu_k-\tilde\mu)^\top\right]\right)^{-\frac12}\left(y-\tilde\mu\right).
+\end{align}$$
+
+--
+- The three transformations are **identical** if $\tilde s_k$ follow a hard assignment, but they produce **different** values with soft assignment.
+- We'll use `T0` to consider the hard assingment case.
+
+---
+
+background-image: url("../figs/tsummary_FPKM-_-GTEX-11DXX-0626-SM-5Q5AG.png")
+background-size: 800px
+background-position: 50% 80%
+
+# Assigning normally distributed scores to FPKM
+
+---
+
+class: center, middle, inverse
+
+# 3. Mapper
+
+---
+
+background-image: url("../../tda/figs/mapper_gall.png")
+background-size: 900px
+background-position: 50% 50%
+
+# Mapper with a 3D gall and density filter
+
+---
+
+class: center, middle, inverse
+
+# 4. Scoring the position 
+
+---
+
+# Extract information from the mapper graph
+
+- Mapper can be sensitive to parameters
+- Do subjects remain placed roughly on the same spot when parameters are varied?
+
+.pull-left[
+![](../figs/lung_t0_meancorr_eps7.0e+02_r40_g30.png)
+]
+
+.pull-right[
+![](../figs/lung_t0_meancorr_eps7.0e+02_r40_g40.png)
+]
+
+---
+
+# Position matters
+
+- Experiments show that most of the times we get essentially a simple, linear, component
+- The lesser nodes are prunned
+- Find the 2 leaves
+- `Left` leaf is the leaf corresponding to the smallest filter value and viceversa
+
+--
+.pull-left[
+![](../figs/lung_tpm_meancorr_eps1.0e+05_r40_g40.png)
+]
+.pull-right[
+![](../figs/lung_tpm_maxcorr_eps7.0e+04_r40_g30.png)
+]
+
+---
+
+# Scoring the positon
+
+- Assume that subjects are aligned in a linear mapper graph
+- Subjects on the leftmost node get a score of `-1`
+- Subjects on the rightmost node get a score of `+1`
+
+--
+- Define a linear gradient to score every subject in between
+
+--
+- If a subject is in two nodes, the minimum is picked
+
+--
+- If a subject isn't part of the main linear component, it's given no score (`nan`)
+
+--
+- How significant is the score?
+- How much does the score varies with parameter selection?
+
+---
+
+background-image: url("../figs/t0_meancorr__1paramsx100boot_lin_gradient_q95.jpg")
+background-size: 800px
+background-position: 50% 80%
+
+# Bootstraping
+
+- Given $M$ subjects, pick randomly $M$ subjects with replacement.
+- In our case, we discarded the repeated subjects.
+
+--
+- Compute the mapper graph with the sample
+- Score the sampled subjects
+
+--
+- Repeat $N = 100$ times
+- Only including subjects such that they were assigned a score $90\%$ of the times they were chosen.
+
+---
+
+![](../figs/tpm_meancorr__1paramsx100boot_lin_gradient_q90.jpg)
+
+![](../figs/t0_meancorr__1paramsx100boot_lin_gradient_q95.jpg)
+
+---
+class: center, middle, inverse
+
+# 5. Get it done across multiple parameters
+
+---
+background-image: url("../figs/t0_meancorr_32params_100bootstrap_hist.jpg")
+background-size: 300px
+background-position: 50% 80%
+
+
+# Now consider a set of $C$ possible parameter combinations
+
+- For each combination, each subject gets up to 100 scores
+- Compute the min, q5, mean, q95, max scores
+- Adding the $C$ mins, q5s, means, q95s, maxs produce the final scores resp.
+
+---
+
+background-image: url("../figs/tpm_meancorr_32paramsx100boot_lin_gradient_q90.jpg")
+background-size: 900px
+background-position: 50% 50%
+
+# TPM and mean correlation
+
+---
+
+background-image: url("../figs/t0_meancorr_32paramsx100boot_lin_gradient_q90.jpg")
+background-size: 900px
+background-position: 50% 50%
+
+# $T_0$ and mean correlation
+
+---
+
+
+background-image: url("../figs/tpm_maxcorr_32paramsx100boot_lin_gradient_q90.jpg")
+background-size: 900px
+background-position: 50% 50%
+
+# TPM and max correlation

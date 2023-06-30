@@ -1,0 +1,825 @@
+---
+title: 'PLB 812 : Independent Project'
+author: "Erik Amézquita"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    highlight: pygments
+    self_contained: yes
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library("RColorBrewer")
+library("ggplot2")
+library('readODS')
+library("dplyr")
+library("reshape")
+library("cowplot")
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+Your data set will be from potato.
+
+- Potato genome assembly fasta file
+- Potato genome annotation gff file
+- 3 different potato DNA fastq files (unknown genotype)
+    - `AHP_1_2.fastq.gz`
+    - `BRG_1_2.fastq.gz`
+    - `TPG_1.fastq.gz`
+- 2 different RNA fastq files (unknown tissue)
+    - `RNA_SAMP1_R1.fastq.gz`
+    - `RNA_SAMP2_R1.fastq.gz`
+
+## Clean all the reads with cutadapt to remove adapters and do quality trimming with base quality minimum of 20 and minimum read length of 30. Match adapters up to 3 times.
+
+### Copy and paste your job script below for **one of the files**. Write a comment for each line, describing what it does. Include the #PBS lines. **(4 pt)**
+
+```{r, engine='bash'}
+$ cat rna2_cutadapt.sh 
+#!/bin/sh -login
+
+#PBS -l walltime=12:00:00,nodes=1:ppn=1         # Time allocated to the job; number of nodes assigned to job; number of processes per node
+#PBS -o standard_out.txt                        # Output file
+#PBS -e standard_error.txt                      # Error file
+#PBS -N cutadapt_rna2                           # Name of job
+
+# change to working directory
+cd ${PBS_O_WORKDIR}
+			
+# load the cutadapt module
+module load cutadapt/2.8.Py3
+
+# run cutadapt to clean single-end read files
+# -q trim bases with quality less than 20 from beginning and end of read
+# --trim-n trim "N" bases (bases without a A/T/C/G call)
+# -m minimum read length after trimming in 30 bp
+# -n remove up to 3 times the adapters from read ends
+# -a Illumina adapter forward read
+# -o Output name
+
+cutadapt \
+-q 20,20 \
+--trim-n \
+-m 30 \
+-n 3 \
+-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC \
+-o RNA_SAMP2_R1.cutadapt.fastq.gz \
+RNA_SAMP2_R1.fastq.gz
+```
+
+### For all five libraries, how many reads were in the original files and how many where in the cutadapt-cleaned files? Explain what you did to get these numbers. **(2 pt)**
+
+he following bash script unpacks each .gz file, counts the line, then divides the number of lines by four (because there are 4 lines per raw read in FASTQC files), and prints out the result.
+
+```{r, engine='bash'}
+$ for file in *.fastq.gz; do linenum=$(zcat $file | wc -l); bar=$((linenum/4)); echo "$bar"" reads in ""$file"; done
+
+20094392 reads in AHP_1_2.cutadapt.fastq.gz
+20164514 reads in AHP_1_2.fastq.gz
+20164466 reads in BRG_1_2.cutadapt.fastq.gz
+20164514 reads in BRG_1_2.fastq.gz
+9999687 reads in RNA_SAMP1_R1.cutadapt.fastq.gz
+10000000 reads in RNA_SAMP1_R1.fastq.gz
+9999688 reads in RNA_SAMP2_R1.cutadapt.fastq.gz
+10000000 reads in RNA_SAMP2_R1.fastq.gz
+40278339 reads in TPG_1.cutadapt.fastq.gz
+40329029 reads in TPG_1.fastq.gz
+```
+
+### Describe why there are fewer reads after running cutadapt. **(2 pt)**
+
+RNA-seq with Illumina involves the use of adapter sequences to handle the RNA fragments. The sequences of the adapters are known from beforehand and we're not interested in re-sequencing again. This is a source of noise, which is especially true whenever the RNA molecules are shorter than 51 bps (the read length in this experiment.), or whenever two adapter sequences attach to each other instead of surrounding an RNA fragment. `cutadapt` removes the adapters, primers, and other byproducts from the Illumina procedure. This includes removing spurious reads which consist solely of adapter sequences, with no RNA information in between. Thus, fewer reads are reported. 
+
+## Map the RNA-seq cleaned reads in single end mode to the reference genome with Hisat2 using the `–-rna-strandedness` setting R. To do this, you’ll need to first use hisat2-build to index the reference genome. Refer to homework 2 to see usage of hisat2-build.
+
+### Copy and paste your job script below for one of the files. Write a comment for each line, describing what it does. (You do not need to describe the PBS lines for the rest of the questions) **(2 pt)**
+
+```{r, engine='bash'}
+$ cat hisat/hisat2_rna2.sh
+#!/bin/sh -login
+
+#PBS -l walltime=10:00:00,nodes=1:ppn=5,mem=16gb
+#PBS -N hisat2_rna2  
+
+cd ${PBS_O_WORKDIR}
+
+# load hisat2 and samtools
+module load HISAT2/2.1.0
+module load SAMTools/1.5
+
+# Run single-end hisat2 alignment
+# --max-intronlen : Maximum intron length tolerated
+# --summary-file : where to write the final summary
+# -p : Number of threads to use in parallel
+# --rna-strandedness : What strand (transcript or opposite) are we working with
+# -x : Location and basename of the hisat indexing
+# -U : unpaired reads to be aligned
+#
+# The hisat2 output is a SAM file
+# The SAM output is piped to samtools, which sorts it and binarizes it 
+# into a BAM file
+
+hisat2 \
+--max-intronlen 30000 \
+--summary-file rna2_hisat2_summary.txt \
+-p 5 \
+--rna-strandness R \
+-x /data/run/amezqui3/independent_project/potato_v404 \
+-U RNA_SAMP2_R1.cutadapt.fastq.gz | samtools sort -O bam \
+-o RNA_SAMP2_R1_hisat2.bam
+
+qstat -f ${PBS_JOBID}
+```
+
+### What was the overall read mapping rate for each set of fastq files? **(2 pt)**
+
+```{r, engine='bash'}
+$ cat rna1_hisat2_summary.txt 
+9999687 reads; of these:
+  9999687 (100.00%) were unpaired; of these:
+    957086 (9.57%) aligned 0 times
+    7346418 (73.47%) aligned exactly 1 time
+    1696183 (16.96%) aligned >1 times
+90.43% overall alignment rate
+
+$ cat rna2_hisat2_summary.txt 
+9999688 reads; of these:
+  9999688 (100.00%) were unpaired; of these:
+    982941 (9.83%) aligned 0 times
+    8297331 (82.98%) aligned exactly 1 time
+    719416 (7.19%) aligned >1 times
+90.17% overall alignment rate
+
+```
+
+### Explain how the mapping settings might be changed to cause: **(1 pt)**
+- more reads to map
+- fewer reads to map
+
+With `--n-ceil` we determine our tolerance to ambiguous characters in a read. We could be more strict and filter every read but those of the highest quality. Or we could be more permissive and map every single read regardless of their quality.
+
+### Describe why we need to run hisat2-build on the genome first before we can map reads with hisat2 (see the program manuals online for more information). **(1 pt)**
+
+`hisat2-build` is based on the FM Index, in turn based on the Burrows-Wheeler transform. As stated in wikipedia regarding the [FM index](https://en.wikipedia.org/wiki/FM-index):
+
+> Using an index is a common strategy to efficiently search a large body of text. When the text is larger than what reasonably fits within a computer's main memory, there is a need to compress not only the text but also the index. 
+
+## Run Cufflinks and sort the FPKM results from largest to smallest according to the FPKM value (use the `sort` UNIX command).
+
+### Copy and paste your job script below for one of the files. Write a comment for each line, describing what it does. **(2 pt)**
+
+```{r, engine='bash'}
+$ cat cufflinks_rna2.sh 
+#!/bin/sh -login
+#PBS -l walltime=10:00:00,nodes=1:ppn=1,mem=8gb
+#PBS -q batch
+#PBS -o /dev/null/cufflinks_out.txt
+#PBS -N cufflinks_rna2
+
+# Load cufflinks
+module load cufflinks/2.2.1
+
+cd ${PBS_O_WORKDIR}
+
+# cufflinks [options] <hits.sam>
+# -G : Use the supplied reference annotation a GFF file
+# -b : fasta file to run our new bias detection and correction algorithm 
+# --library-type fr-firststrand: It is assumed that only the strand generated 
+#                                during first strand synthesis is sequenced.
+# -q : Quiet, suppress all messages but errors
+# -o : Output directory
+
+cufflinks \
+-G /data/run/amezqui3/independent_project/potato_dm_v4.04_all_pms_gene_anno_for_cufflinks.gffread_sort.gff3 \
+-b /data/run/amezqui3/independent_project/potato_dm_v404_all_pm_un.fasta \
+--library-type fr-firststrand \
+-q \
+-o cufflinks/rna2 \
+RNA_SAMP2_R1_hisat2.bam
+```
+
+### Write your UNIX commands to sort one of the FPKM files as described above and explain how it works. **(2 pt)**
+
+Step by step:
+
+1. Get the whole file with `cat`
+1. Use an `if` statement in `awk` to preserve the header
+    1. Print the 1st, 4th, and 10th entries of first row as it is
+    1. For the rest of rows, just keep the 1st, 4th, and 10th columns as well (tracking id, gene id, FPKM)
+    1. Pipe the columns kept
+1. In this case, the rest of the rows are sorted. Since we now only have three columns, we sort according to the 3rd column (FPKM)
+1. Just print the first 6 lines (the first line is the header).
+
+```{r, engine='bash'}
+$ cat genes.fpkm_tracking | awk 'NR<2{print $1,$4,$10;next}{print $1,$4,$10 | "sort -k3,3nr"}' | head -n 6
+tracking_id gene_id FPKM
+PGSC0003DMG400009513 PGSC0003DMG400009513 19557.6
+PGSC0003DMG400000678 PGSC0003DMG400000678 18271.5
+PGSC0003DMG400009511 PGSC0003DMG400009511 18061.6
+PGSC0003DMG400010146 PGSC0003DMG400010146 17231.6
+PGSC0003DMG400031877 PGSC0003DMG400031877 12817.3
+```
+
+### Paste the top 5 expressed genes below for each sample. What were the tissue types sampled? (Each sample is either leaf or tuber.) **(2 pt)**
+
+Running the same command for the second RNA sample we get 
+
+```{r, engine='bash'}
+$ cat ../rna2/genes.fpkm_tracking | awk 'NR<2{print $1,$4,$10;next}{print $1,$4,$10 | "sort -k3,3nr"}' | head -n 6
+tracking_id gene_id FPKM
+PGSC0003DMG400019584 PGSC0003DMG400019584 21241.2
+PGSC0003DMG400024182 PGSC0003DMG400024182 16476.7
+PGSC0003DMG400006149 PGSC0003DMG400006149 8323.63
+PGSC0003DMG400019149 PGSC0003DMG400019149 6793.14
+PGSC0003DMG400041620 PGSC0003DMG400041620 6770.34
+```
+
+From the first sample, we search for genes in [gramene](www.gramene.org) to deduce it is a **tuber**.
+
+- **PGSC0003DMG400009513** : aspartic protease inhibitor 5
+- **PGSC0003DMG400000678** : Metallocarboxypeptidase inhibitor
+- **PGSC0003DMG400009511** : aspartic protease inhibitor 8
+- **PGSC0003DMG400010146** : Kunitz-type invertase inhibitor
+- **PGSC0003DMG400031877** : Metallocarboxypeptidase inhibitor
+
+From the second sample, we know it is a **leaf**.
+
+- **PGSC0003DMG400019584** : Ribulose bisphosphate carboxylase small chain 1, chloroplastic
+- **PGSC0003DMG400024182** : Ribulose bisphosphate carboxylase small chain C, chloroplastic
+- **PGSC0003DMG400006149** : Chlorophyll a-b binding protein 4, chloroplastic
+- **PGSC0003DMG400019149** : Ribulose bisphosphate carboxylase/oxygenase activase, chloroplastic
+- **PGSC0003DMG400041620** : Plastocyanin, chloroplastic
+
+### How many genes had FPKM of at least 500 in each sample? Show your script below. **(2 pt)**
+
+We have to discard the header line. Thus we get 147 genes for the first sample, and 189 genes for the second sample. 
+
+```{r, engine='bash'}
+$ awk '$10 >= 500 {print $1,$10}' genes.fpkm_tracking | wc -l
+148
+$ awk '$10 >= 500 {print $1,$10}' ../rna2/genes.fpkm_tracking | wc -l
+190
+```
+
+## Using **one of the two cutadapt-processed RNA-seq** files, generate two read subsets containing 50,000 and 200,000 reads. Generate a trinity transcriptome assembly from the three read sets (50,000 reads, 200,000 reads, and the full read set).
+
+### Specify which cutadapt-processed library you selected. Write your UNIX commands to generate the read subsets below and explain what the commands did. **(2 pt)**
+
+The 2nd RNA sample library was selected. The top 50k reads make the first subset. The last 200k reads make the second subset. Keep in mind that each read consists of four lines each.
+
+```{r, engine='bash'}
+$ zcat RNA_SAMP2_R1.cutadapt.fastq.gz | head -n 200000 > rna2_head50k.fastq
+$ zcat RNA_SAMP2_R1.cutadapt.fastq.gz | tail -n 800000 > rna2_tail200k.fastq
+```
+
+### Copy and paste your transcriptome assembly script below for one of the files. Write a comment for each line, describing what it does. **(2 pt)**
+
+```{r, engine='bash'}
+$ cat trinity.sh
+#!/bin/sh -login
+#PBS -l walltime=5:00:00,nodes=1:ppn=1,mem=32gb
+#PBS -q batch
+#PBS -N trinity_rna2_full
+
+cd ${PBS_O_WORKDIR}
+
+# Load Trinity
+module load trinity/2.3.2
+
+# Transcription assembly
+# --seqType : Using FASTQ files
+# --CPU : cores to be used
+# --max_memory : Max RAM allocated
+# --output : output prefix and location
+# --single : single-end reads
+# --full_cleanup : remove all temporary files when done
+
+Trinity \
+--seqType fq \
+--CPU 1 \
+--max_memory 32G \
+--output trinity/rna2_full_trinityout \
+--single RNA_SAMP2_R1.cutadapt.fastq \
+--full_cleanup
+```
+
+### Create a graph showing the median contig length (use only the longest isoform per gene) for each transcriptome assembly and explain why the median contig length differs between assemblies. **(2 pt)**
+
+Running the `trinityStats.pl` summary with the raw Trinity output, we observe:
+
+```{r, eval=TRUE, echo=FALSE, fig.width=15}
+trinity = readODS::read_ods('trinity_raw.ods')
+measures <- trinity[,1]
+basenums <- c('full', '200k', '050k')
+trinity <- t(as.matrix(trinity[,-1]))
+base::colnames(trinity) <- measures
+df <- data.frame(trinity)
+df$BP <- basenums
+  
+dfm <- reshape::melt(df[,c(13:18,20)], id.var="BP", variable_name='Descriptor')
+dfm$BP <- factor(dfm$BP)
+
+p <- ggplot2::ggplot(dfm, aes(x=BP, y=value)) + 
+  geom_point(aes(color=Descriptor, shape=Descriptor), size=3) +
+  geom_line(aes(color=Descriptor, group=Descriptor), show.legend=TRUE) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = -1, size=20),
+        axis.text.x = element_text(size = 15, angle=0),
+        axis.text.y = element_text(size = 15),
+        axis.title = element_text(size=15),
+        legend.text = element_text(size=15),
+        legend.title = element_text(size=15)) +
+  ylab('No. of Base Pairs') +
+  ggtitle('Trinity summary (unfiltered)') +
+  xlab('Subset size (reads)')
+p
+```
+
+As expected, the contig length in general improves as we increase the number of reads. If we have more reads, then we have more building blocks with better coverage to build longer sequences. 
+
+If we first filter out the trinity calls shorter than 750bp, and then compute their stats, we observe:
+
+```{r, eval=TRUE, echo=FALSE, fig.width=15}
+trinity = readODS::read_ods('trinity_filtered.ods')
+measures <- trinity[,1]
+basenums <- c('full', '200k', '050k')
+trinity <- t(as.matrix(trinity[,-1]))
+base::colnames(trinity) <- measures
+df <- data.frame(trinity)
+df$BP <- basenums
+  
+dfm <- reshape::melt(df[,c(13:18,20)], id.var="BP", variable_name='Descriptor')
+dfm$BP <- factor(dfm$BP)
+
+p <- ggplot2::ggplot(dfm, aes(x=BP, y=value)) + 
+  geom_point(aes(color=Descriptor, shape=Descriptor), size=3) +
+  geom_line(aes(color=Descriptor, group=Descriptor), show.legend=TRUE) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = -1, size=20),
+        axis.text.x = element_text(size = 15, angle=0),
+        axis.text.y = element_text(size = 15),
+        axis.title = element_text(size=15),
+        legend.text = element_text(size=15),
+        legend.title = element_text(size=15)) +
+  ylab('No. of Base Pairs') +
+  ggtitle('Trinity summary (filtered 750bp)') +
+  xlab('Subset size (reads)')
+p
+```
+
+It's worth pointing out that the 750bp filter yielded only **one** contig.
+
+### What are two different ways you could check the quality of the assembly? Quality can include purity of the sample, length of transcripts, etc. **(2 pt)**
+
+Based on the [official documentation](https://github.com/trinityrnaseq/trinityrnaseq/wiki/Transcriptome-Assembly-Quality-Assessment).
+
+- **Representation of full-length reconstructed protein-coding genes.** Compare against a reference database of known protein sequences. If we're looking at a well-studied organism, we know exactly which proteins should be included in our assembly. If we don't have an organism specific proteome, we could look at all the known proteins (in a well-curated database such as SwissProt.) In any case, we can BLAST our way through and we would expect that most of the present proteins are matched with high accuracy to a Trinity transcript.
+
+- **RNA-Seq read representation of the assembly.** By design, we expect the vast majority of reads to map back to the Trinity assembly, and a good chunk of these fragment reads should be proper pairs. To this end we could use BowTie2 to align the reads to the transcriptome and then assess the alignments.
+
+### Map all three trinity assemblies to the potato genome using GMAP with 85% coverage and 85% identity. Create a summary graph showing the percent of transcripts aligning uniquely or to multiple locations and describe your assembly results with this information. **(3 pt)**
+
+With `grep -c "^>" gmap_rna2_full.[umnt]*`, we get the number of GMAP mapped genes for each set of Trinity reads, resulting in
+
+```
+     mult nomapping transloc  uniq
+full  644       147      284 10063
+200k   46         0        4   260
+50k    11         1        1    52
+```
+
+Using GMAP with the raw Trinity output we observe
+
+```{r, eval=TRUE, echo=FALSE, fig.width=15}
+trinity = readODS::read_ods('gmap_raw.ods')
+measures <- trinity[,1]
+basenums <- c('full', '200k', '050k')
+trinity <- t(as.matrix(trinity[,-1]))
+base::colnames(trinity) <- measures
+strinity <- trinity/rowSums(trinity)
+df <- data.frame(strinity)
+df$BP <- basenums
+  
+dfm <- reshape::melt(df, id.var="BP", variable_name='Descriptor')
+dfm$BP <- factor(dfm$BP)
+
+p <- ggplot2::ggplot(dfm, aes(y=BP,x=value)) + 
+  geom_col(aes(fill=Descriptor), position = position_stack(reverse = TRUE)) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = -1, size=20),
+        axis.text.x = element_text(size = 15, angle=0),
+        axis.text.y = element_text(size = 15),
+        axis.title = element_text(size=15),
+        legend.text = element_text(size=15),
+        legend.title = element_text(size=15)) +
+  xlab('Genes mapped (%)') +
+  ggtitle('GMAP summary (unfiltered)') +
+  ylab('Subset size (bps)')
+p
+```
+
+If we use the 750bp filtered Trinity reads, with GMAP get 
+```
+     mult nomapping transloc uniq
+full   83        17      120 2349
+200k    0         0        0   15
+50k     0         0        0    1
+```
+and
+```{r, eval=TRUE, echo=FALSE, fig.width=15}
+trinity = readODS::read_ods('gmap_750bp.ods')
+measures <- trinity[,1]
+basenums <- c('full', '200k', '050k')
+trinity <- t(as.matrix(trinity[,-1]))
+base::colnames(trinity) <- measures
+strinity <- trinity/rowSums(trinity)
+df <- data.frame(strinity)
+df$BP <- basenums
+  
+dfm <- reshape::melt(df, id.var="BP", variable_name='Descriptor')
+dfm$BP <- factor(dfm$BP)
+
+p <- ggplot2::ggplot(dfm, aes(y=BP,x=value)) + 
+  geom_col(aes(fill=Descriptor), position = position_stack(reverse = TRUE)) +
+  theme(plot.title = element_text(hjust = 0.5, vjust = -1, size=20),
+        axis.text.x = element_text(size = 15, angle=0),
+        axis.text.y = element_text(size = 15),
+        axis.title = element_text(size=15),
+        legend.text = element_text(size=15),
+        legend.title = element_text(size=15)) +
+  xlab('Genes mapped (%)') +
+  ggtitle('GMAP summary (750bp filtered)') +
+  ylab('Subset size (bps)')
+p
+```
+
+## Read the [bwa manual](http://bio-bwa.sourceforge.net/bwa.shtml) and prepare the potato genome file with bwa index. bwa requires its own indexing step, similar to other software we have used. Then map the cutadapt-processed DNA reads to the potato genome using bwa-mem. **Make sure to specify a read group header in the bwa mem command**. We haven’t done this together in class so you need to read the manual for information about how to run the software.
+
+### Write your commands to index the genome and map the reads below. Write a comment for each line, describing what it does. **(2 pt)**
+
+Create a BWA index
+
+```{r, engine='bash'}
+$ cat bwa_index.sh 
+#!/bin/sh -login
+#PBS -l walltime=5:00:00,nodes=1:ppn=1,mem=32gb
+#PBS -q batch
+#PBS -N bwa_index
+
+cd ${PBS_O_WORKDIR}
+
+# Load BWA
+module load bwa/0.7.16a
+
+# Create BWA index
+# -p prefix of the output database
+
+bwa index \
+-p bwa_potato \
+potato/potato_dm_v404_all_pm_un.fasta
+```
+
+Align
+
+```{r, engine='bash'}
+$ cat bwa_mem_ahp.sh 
+#!/bin/sh -login
+#PBS -l walltime=5:00:00,nodes=1:ppn=1,mem=32gb
+#PBS -q batch
+#PBS -N bwa_ahp
+
+cd ${PBS_O_WORKDIR}
+
+module load bwa/0.7.16a
+module load SAMTools/1.5
+
+# Align with BWA
+# -t : no. of threads
+# -R : read header
+# Pipe the alignment and write it in BAM format
+
+bwa mem \
+-t 4 \
+-R '@RG\tID:foo\tSM:bar' \
+bwa_potato \
+AHP_1_2.cutadapt.fastq.gz | samtools sort -O bam \
+-o aln_ahp_cutadapt.bam
+```
+
+### Use [SAMTools flagstat](http://www.htslib.org/doc/samtools.html) to get mapping statistics and copy and paste the results below for each BAM file. You need to use module load SAMTools similar to other tools before you can run flagstat. **(2 pt)**
+
+```{r, engine='bash'}
+$ cat flagstat_summary_ahp.txt 
+20273937 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+179545 + 0 supplementary
+0 + 0 duplicates
+19833003 + 0 mapped (97.83% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+$ cat flagstat_summary_brg.txt 
+20435188 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+270722 + 0 supplementary
+0 + 0 duplicates
+19590341 + 0 mapped (95.87% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+
+$ cat flagstat_summary_tpg.txt 
+40279143 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+804 + 0 supplementary
+0 + 0 duplicates
+39945817 + 0 mapped (99.17% : N/A)
+0 + 0 paired in sequencing
+0 + 0 read1
+0 + 0 read2
+0 + 0 properly paired (N/A : N/A)
+0 + 0 with itself and mate mapped
+0 + 0 singletons (N/A : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+## Call variants for chr01 with HaplotypeCaller, generating a single VCF file containing the three samples. To do this, you should first sort the BAM file, select alignments for chr01, and then re-index the sorted file using SAMTools. Then specify all three sorted BAM files within your HaplotypeCaller script. See [the manual](https://gatk.broadinstitute.org/hc/en-us/articles/360037059732-HaplotypeCaller) for information.
+
+To create single VCF file, we followed the [following pipeline](https://www.biostars.org/p/405702/#405703):
+
+1. Run [HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/360037059732-HaplotypeCaller) with `-ERC GVCF` individually for each BAM file to produce GVCF files. This step took several hours, but the time was considerably shortened by running the BAM files in parallel.
+1. Merge the GVCFs with [CombineGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360041416212-CombineGVCFs)
+1. Perform joint-genotyping on the merged file with [GenotypeGVCFs](https://gatk.broadinstitute.org/hc/en-us/articles/360041417092-GenotypeGVCFs)
+
+The last two steps were completed in less than 5 mins each.
+
+### Filter the VCF file to select for sites with QUAL > 200. How many sites passed? Write your UNIX commands below. **(2 pt)**
+
+Running [VariantFiltration](https://gatk.broadinstitute.org/hc/en-us/articles/360036863131-VariantFiltration) yields 1323 high quality sites:
+
+```{r, engine='bash'}
+$ cat gatk_variantfiltration.sh 
+#!/bin/sh -login
+#PBS -l walltime=72:00:00,nodes=1:ppn=1,mem=2gb
+#PBS -q batch
+#PBS -N variantFiltration
+
+cd ${PBS_O_WORKDIR}
+
+module load GATK/4.1.2.0
+
+gatk VariantFiltration \
+-R potato/potato_dm_v404_all_pm_un.fasta \
+-O combined_chr01.filtered.vcf \
+-V combined_chr01.vcf \
+--filter-name LOW_Q \
+--filter-expression "QUAL < 200.00"
+
+$ grep -v "^#" combined_chr01.filtered.vcf | awk '$7 == "PASS"' | wc -l
+85267
+```
+
+To confirm the number of sites, we can do `awk` directly on the original VCF file.
+
+```{r, engine='bash'}
+$ grep -v "^#" combined_chr01.vcf | awk '$6 > 200' | wc -l 
+85267
+```
+#### Zygosity setup
+
+For the next three questions, we'll focus on the genotype (GT) and its quality (GQ). Recall from the [VCF documentation](https://gatk.broadinstitute.org/hc/en-us/articles/360035531392) that the `QUAL` and `GQ` fields are different. Specifically,
+
+> - **QUAL** tells you how confident we are that there is **some kind of variation** at a given site. The variation may be present in one or more samples.
+>
+> - **GQ** tells you how confident we are that the **genotype** we assigned to a particular sample is correct. It is simply the second lowest PL, because it is the difference between the second lowest PL and the lowest PL (always 0).
+
+To that end, we first generate a table with [VariantsToTable](https://gatk.broadinstitute.org/hc/en-us/articles/360036711531-VariantsToTable) to ease data parsing. This table will only report those variant sites that passed the filter, namely, `QUAL > 200`.
+
+```{r, engine='bash'}
+$ cat gatk_vcfToTable.sh 
+#!/bin/sh -login
+#PBS -l walltime=72:00:00,nodes=1:ppn=1,mem=2gb
+#PBS -q batch
+#PBS -N variantFiltration
+
+cd ${PBS_O_WORKDIR}
+
+module load GATK/4.1.2.0
+
+gatk VariantsToTable \
+-O combined_chr01.filtered.table \
+-V combined_chr01.filtered.vcf \
+-F CHROM \
+-F REF \
+-F ALT \
+-F QUAL \
+-F POS \
+-GF GT \
+-GF DP \
+-GF GQ
+```
+
+Unfortunately, `VariantsToTable` replaces the zygosity values (`0/0, 0/1, 1/1, 1/2`) by the actual nucleotides. We thus extract the zygosity values straight from the filtered VCF file first:
+
+1. Do `grep` to ignore the header
+1. Select with `cut` all the genotype columns (columns 10,11,etc)
+1. Do `sed` to delete everything after the `:`
+1. Store the zygosity columns in a TSV
+
+```{r, engine='bash'}
+$ grep -v "^#" combined_chr01.filtered.vcf | cut -f10- | sed 's/:\S*//g' > zygosity.tsv
+```
+
+With vim we can then write a header for `zygosity.tsv`. Finally, concatenate _horizontally_ both tables with `paste`.
+
+```{r, engine='bash'}
+$ paste combined_chr01.filtered.table zygosity.tsv > combined_chr01.zygosity.filtered.tsv
+$ head -n 6 combined_chr01.zygosity.filtered.tsv 
+CHROM	REF	ALT	QUAL	POS	ahp.GT	ahp.DP	ahp.GQ	brg.GT	brg.DP	brg.GQ	tpg.GTtpg.DP	tpg.GQ	AHP	BRG	TPG
+chr01	A	G	424.01	9378	A/G	11	98	./.	0	NA	A|G	31	99	0/1	./.	0|1
+chr01	T	C	546.95	111521	T/C	9	3	T|C	16	21	T/T	412	0/1	0|1	0/0
+chr01	C	T	1774.76	120070	C/T	64	17	C/C	4	12	C/C	13	0/1	0/0	0/0
+chr01	G	T	217.77	120107	G|T	10	99	G/G	1	3	G/G	26	0|1	0/0	0/0
+chr01	C	T	217.77	120110	C|T	10	99	C/C	1	3	C/C	26	0|1	0/0	0/0
+```
+
+For every sample, we then count the number of zygosity values:
+- Equal homozygous: 0/0, 0|0
+- Heterozygous: 0/1, 0|1, 1/2
+- Different homozygous: 1/1, 1|1
+
+We use `awk` and `wc`. A fragment of the script is as follows. (It's sort of crude, but it's purely UNIX.)
+
+```{r, engine='bash'}
+#!bin/bash
+
+# define the file with both quality and zygosity values
+zyg="combined_chr01.zygosity.filtered.tsv"
+
+# The total number of variant calls
+len=$(cat $zyg | wc -l)
+
+echo "${len}"" variant calls in total"
+echo "-----"
+
+# The number of high quality variant calls for AHP
+bar=$(awk '$15 == "0|0" || $15 == "0/0"' $zyg | wc -l)
+
+printf 'AHP\tHomozygous equal\t%.3f%%\n' $(echo "$bar/$len*100" | bc -l)
+
+# The number of equal homozygous high quality variant calls
+bar=$(awk '$15 == "0|1" || $15 == "0/1" || $15=="1/2"' $zyg | wc -l)
+
+printf 'AHP\tHeterozygous    \t%.3f%%\n' $(echo "$bar/$len*100" | bc -l)
+
+# The number of heterozygous high quality variant calls
+bar=$(awk '$15 == "1|1" || $15 == "1/1"' $zyg | wc -l)
+
+printf 'AHP\tHomozygous diff \t%.3f%%\n' $(echo "$bar/$len*100" | bc -l)
+```
+
+```
+$ bash score_zygosity.sh 
+85268 variant calls in total
+-----
+AHP	Homozygous equal	26.133%
+AHP	Heterozygous    	18.070%
+AHP	Homozygous diff 	42.948%
+-----
+BRG	Homozygous equal	3.344%
+BRG	Heterozygous    	5.444%
+BRG	Homozygous diff 	85.119%
+-----
+TPG	Homozygous equal	82.057%
+TPG	Heterozygous    	0.808%
+TPG	Homozygous diff 	0.178%
+```
+
+We can also limit our counts to only those variant calls with high genotype quality (GQ) score.
+
+```{r, engine='bash'}
+#!bin/bash
+
+# define the file with both quality and zygosity values
+zyg="combined_chr01.zygosity.filtered.tsv"
+
+# The total number of variant call
+tot=$(cat $zyg | wc -l)
+
+echo "${tot}"" variant calls in total"
+echo "-----"
+
+# The number of high quality variant calls for AHP
+len=$(awk '$8 > 80 && $8 != "NA"' $zyg | wc -l)
+printf '%d high quality calls (%.2f%% of total)\n' $len $(echo "$len/$tot*100" | bc -l)
+
+# The number of equal homozygous high quality variant calls
+bar=$(awk '$15 == "0|0" || $15 == "0/0"' $zyg | \
+awk '$8 > 80 && $8 != "NA"' | wc -l)
+
+printf 'AHP\tHomozygous equal\t%d\t(%.3f%%)\n' \
+$bar $(echo "$bar/$len*100" | bc -l)
+
+# The number of heterozygous high quality variant calls
+bar=$(awk '$15 == "0|1" || $15 == "0/1" || $15=="1/2"' $zyg | \
+awk '$8 > 80 && $8 != "NA"' | wc -l)
+
+printf 'AHP\tHeterozygous    \t%d\t(%.3f%%)\n' \
+$bar $(echo "$bar/$len*100" | bc -l)
+
+# The number of different homozygous high quality variant calls
+bar=$(awk '$15 == "1|1" || $15 == "1/1"' $zyg | \
+awk '$8 > 80 && $8 != "NA"' | wc -l)
+
+printf 'AHP\tHomozygous diff \t%d\t(%.3f%%)\n' \
+$bar $(echo "$bar/$len*100" | bc -l)
+```
+
+```
+$ bash signif_zygosity.sh 
+85268 variant calls in total
+-----
+4213 high quality calls (4.94% of total)
+AHP	Homozygous equal	37	(0.878%)
+AHP	Heterozygous    	3934	(93.378%)
+AHP	Homozygous diff 	152	(3.608%)
+-----
+2813 high quality calls (3.30% of total)
+BRG	Homozygous equal	8	(0.284%)
+BRG	Heterozygous    	2239	(79.595%)
+BRG	Homozygous diff 	219	(7.785%)
+-----
+225 high quality calls (0.26% of total)
+TPG	Homozygous equal	31	(13.778%)
+TPG	Heterozygous    	123	(54.667%)
+TPG	Homozygous diff 	66	(29.333%)
+```
+
+### Which sample is likely the same genotype as the reference genome and why? Show several different lines from the filtered VCF that support your statement and explain why you chose these lines. **(2 pt)**
+
+TPG must be the same as the reference. The vast majority ($82.1\%$) of variant calls are reported as homozygous equal. Also, less that 225 $(0.26\%)$ variant quality calls correspond to TPG. 
+
+### Which sample is homozygous, inbred, and different from the reference genome? Show several different lines from the filtered VCF that support your statement and explain why you chose these lines. **(2 pt)**
+
+BRG is homozygous different. The vast majority ($85.1\%$) of variant calls are reported as homozygous different. Also, when restricted to high genotype quality, BRG has the most homozygous different calls ($219$) compared to AHP or TPG.  
+
+### Which sample is heterozygous? Show several different lines from the filtered VCF that support your statement and explain why you chose these lines. **(2 pt)**
+
+AHP is heterozygous. We can observe that it has considerable chunks of both homozygous equal ($26.1\%$), homozygous different ($42.9\%$), and heterzygous ($18.1\%$) variant calls. Also, if we restrict ourselves to high genotype quality, AHP has the most heterozygous calls ($3934$) compared to BRG or TPG.
+
+### Copy and paste a single line from the filtered VCF below that contains a SNP and passed the filter. Explain how we can evaluate genotype quality in individual samples using `GT:AD:DP:GQ:PL` fields for this single line. **(2 pt)**
+
+```
+chr01 137482 . G  A 387.17  QUAL200 AC=2;AF=0.333;AN=6;DP=15;ExcessHet=0.4576;FS=0.000;MLEAC=2;MLEAF=0.333;MQ=45.35;QD=29.20;SOR=0.85 GT:AD:DP:GQ:PL  0/0:3,0:3:9:0,9,103  1/1:0,11:11:33:433,33,0  0/0:1,0:1:3:0,3,41
+```
+
+We'll follow the [VCF file](https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format) documentation. For the AHP read
+
+     0/0:3,0:3:9:0,9,103
+
+- **Genotype**: `0/0`, homozygous equal, that is, G/G
+- **Allele Depth**: 3 reads support the hypothesis that the allele is indeed the reference G/G, while no reads support the alternate allele (A/A or A/G).
+- **Filtered Depth**: There was a total of 3 informative reads
+- **Genotype Quality**: `9` in the [Phred-scale](https://gatk.broadinstitute.org/hc/en-us/articles/360035531872) (which is capped at 99.)
+- **Phred-scaled likelihoods**: `0,9,103`. $P(0/0)=10^0=1,\, P(0/1)=10^{-0.9} = 0.13 ,\,P(1/1)=10^{-10.3}=5\times10^{-11}$. The lower the better, so the most likely genotype is indeed 0/0 or G/G
+- **Conclusion:** The QUAL is high, so it's very likely that there's a variant at the position 137482 of chromosome 1. However, the exact genotype could be wrong given the low genotype quality score. For instance, we cannot ignore the probability (`r 10**-0.9`) that the allele is actually heterozygous. This is unsurprising, given that we barely have 3 informative reads of the site overall.
+
+For the BRG read
+
+     1/1:0,11:11:33:433,33,0
+
+- **GT**: Homozygous different: A/A
+- **AD**: 11 reads support the alternate allele, while no read support the reference allele.
+- **DP**: A total of 11 informative reads were reported
+- **GQ**: `33`
+- **PL**: `433,33,0`: Most likely, the allele is homozygous different
+- **Conclusion**: GT is a bit better than before, and the PL is encouraging, so it is possible that we got the right genotype. This must be taken with a grain of salt, since there were only 11 informative reads for the site overall.
+
+For the TGP read
+
+     0/0:1,0:1:3:0,3,41
+
+- **GT**: Homozygous equal: G/G
+- **AD**: A single read supports the reference allele, while no reads support the alternate
+- **DP**: Only one informative read is reported
+- **GQ**: 3
+- **PL**: `0,3,41`. $P(0/0)=10^0=1,\, P(0/1)=10^{-0.3} = 0.5 ,\,P(1/1)=10^{-4.1}=8\times10^{-5}$
+- **Conclusion**: We cannot make any assertions about the allele with a single informative read. PL favors the homozygous equal, but the probability of actually being heterozygous is $\frac12$, the same as a coin flip.
+
+### For the single line you copy and pasted above, what is the genotype for each sample? **(3 pts)**
+
+Already answered above.

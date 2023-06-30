@@ -1,0 +1,125 @@
+---
+title: Euler meets plant science
+poster_height: "10in"
+poster_width: "16in"
+author:
+  - name: Erik Amézquita
+    affil: 1
+    email: amezqui3@msu.edu
+    orcid: 0000-0002-9837-0397
+    main: true
+  - name: Michelle Quigley
+    affil: 2
+  - name: Tim Ophelders
+    affil: 1
+  - name: Elizabeth Munch
+    affil: 1
+  - name: Daniel Chitwood
+    affil: 2
+  - name: Daniel Koenig
+    affil: 3
+  - name: Jacob Landis
+    affil: 3
+affiliation:
+  - num: 1
+    address: "Computational Math, Science & Engineering, Michigan State University"
+  - num: 2
+    address: Horticulture, Michigan State University
+  - num: 3
+    address: Botany and Plant Sciences, University of California, Riverside
+
+primary_colour: "#18453b" 
+secondary_colour: "#00ace6"
+accent_colour: "#bdbd0f"
+
+main_width: 0.5
+main_fontfamily: Overpass
+main_textcol: "#ffffff96"
+main_textsize: 66px
+main_findings:
+  - "Using **topology** to **analyze** the **shape** of barley"
+  - '![](https://www.egr.msu.edu/~amezqui3/barley/figs/S019_L0_1.gif){.main_pic}'
+main_picwidth: "30%"
+logoleft_name: '![](../figs/research.svg){.main-img-left}'
+logoright_name: '![](../figs/spartan_logo_transparent.png){.main-img-right}'
+
+body_bgcol: "#edf7f0"
+body_textsize: 17px
+body_textcol: "#000000"
+title_textsize: 42px
+authorextra_textsize: 12px
+affiliation_textsize: 9px
+affiliation_textcol: "#404040"
+reference_textsize: 7px
+column_padding: 1mm
+
+output: 
+  posterdown::posterdown_betterland:
+    self_contained: false
+    pandoc_args: --mathjax
+    highlight: tango
+    number_sections: false
+link-citations: true
+bibliography: "../biblio.bib"
+csl: "../csl/ieee.csl"
+---
+
+```{r, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(results = 'asis',
+                      echo = FALSE,
+                      warning = FALSE,
+                      tidy = FALSE,
+                      message = FALSE,
+                      include = TRUE,
+                      fig.align = 'center',
+                      out.width = "100%")
+options(knitr.table.format = "html") 
+```
+
+## Experimental Design
+
+
+```{r experimental_design, out.width='80%'}
+knitr::include_graphics(c('../figs/composite_cross_experiment.png'), dpi=5)
+```
+
+- Composite cross. 28 founders. 58 generations.
+
+## Image processing to measure seeds
+
+![](../figs/seeds_batch3b_transp.png){width=30%} ![](../figs/../figs/boxplot_all_Length_transp.png){width=31%} ![](../figs/../figs/boxplot_all_Vol_transp.png){width=31%}
+
+- 3D X-ray CT scan data: 875 barley spikes.
+- 38,000 seeds: generations F0, F18, and F58.
+- Distribution of length, height, width, volume, etc.
+
+<br>
+
+## Euler characteristic transform (ECT)
+
+$$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces})$$
+
+- ECT is the record of how the EC changes as we reconstruct a given object in all possible directions. 
+- The ECT summarizes all shape information [@Turner2014].
+
+```{r ect}
+knitr::include_graphics('../figs/ect_filter_48.png')
+```
+
+## Results: Traditional + ECT 
+
+```{r confusion}
+knitr::include_graphics('../figs/confusion_radial_founders_mixed_manhattan_32.png')
+```
+
+
+- SVM to classify the seeds from the 28 founders
+- (80% training vs 20% testing)$\times$50 times
+- **66% classification accuracy**
+
+#### Acknowledgements
+
+This work is supported in part by Michigan State University and the National Science Foundation Research Traineeship Program (DGE-1828149).
+
+#### References

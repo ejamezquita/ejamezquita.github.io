@@ -1,0 +1,269 @@
+---
+title: "Erik Amézquita's CV"
+author: "Erik Amézquita"
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+  cache_data:
+    value: true
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: false
+knit: pagedown::chrome_print
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+source("CV_printing_functions.R")
+
+# Read in all data and initialize a CV printer object
+#CV <- create_CV_object(
+#  data_location = "https://docs.google.com/spreadsheets/d/1xN_z2pujgGWfh20woktwwrt7vjaZhMy8MCdHCseoJqg/",  
+#  pdf_mode = params$pdf_mode,
+#  cache_data = params$cache_data
+#)
+
+CV <- readr::read_rds('cached_positions.rds')
+```
+
+```{css, echo=FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 0rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+```
+
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
+```
+
+```{css, echo=FALSE}
+.aside {
+  padding-top: 0;
+}
+
+.aside > p:first-of-type {
+  margin-top: 0;
+}
+```
+
+
+Aside
+================================================================================
+
+```{r}
+# Build interactive network of positions colored by section
+# and connected if they occurred in the same year
+source("build_network_logo.R")
+#build_network_logo(CV$entries_data)
+```
+
+
+![](https://www.egr.msu.edu/~amezqui3/barley/figs/S017_L3_1.gif){width=80%}
+
+```{r}
+if(params$pdf_mode){
+  cat("View this CV online at [`egr.msu.edu/~amezqui3/cv`](https://www.egr.msu.edu/~amezqui3/cv.html)")
+} else {
+  cat("[<i class='fas fa-download'></i> Download this CV](https://www.egr.msu.edu/~amezqui3/cv/cv.pdf)")
+}
+```
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %>% print_contact_info()
+```
+
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r}
+#CV %>% print_skill_bars()
+```
+
+- **Programming**: Python, R, C/C++, bash/unix
+
+- **Technologies**: $\LaTeX$, RMarkdown, jupyter, vim, html/css
+
+- **Languages**: Spanish (native), English (fluent), French (elementary)
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown). 
+
+Last updated on `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Erik Amézquita {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education')
+```
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+```{r}
+CV %<>% print_section('research_positions')
+```
+
+Peer-reviewed work {data-icon=book}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+#CV %<>% print_text_block('peer_reviewed_publications_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('peer_reviewed_publications')
+```
+
+Non peer-reviewed work {data-icon=newspaper}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+#CV %<>% print_text_block('peer_reviewed_publications_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('other_writing')
+```
+
+
+
+Teaching and Mentoring Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Experience at Michigan State University
+
+* Mentor for the [ACRES REU](https://icer-acres.msu.edu/). Conducted weekly professional development workshops and weekly social events for an undergraduate audience. Summer 2022.
+* TA for CMSE 201: Intro to Computational Modelling and Data Analysis. Fall 2019
+
+N/A
+
+Audience was mainly undergraduate students with no prior coding experience
+
+2022 - 2019
+
+### Teaching Assistant at other institutions in the US
+
+* [SGI 2022](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
+* [SGI 2021](https://sgi.mit.edu/). Summer Geometry Institute REU. Massachusetts Institute of Technology.
+* [Code In Place](https://codeinplace.stanford.edu/). Stanford University.
+
+N/A
+
+Conducted virtually
+
+2022 - 2021
+
+### Teaching Assistant at CIMAT/Universidad de Guanajuato
+
+* Precalculus and analytic geometry. Spring 2018
+* Topology I (Intro to point-set topology). Fall 2017
+* 14th Calculus Problem-solving Workshop. Summer 2017
+* Introduction to C++ and data structures (Online). Summer 2017
+* Introduction to probability. Fall 2016
+
+N/A
+
+Some courses involved leading tutorials on C++ or R
+
+2018 - 2016
+
+
+Selected talks delivered {data-icon=microphone}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('talks_delivered')
+```
+
+Selected workshops lead {data-icon=wrench}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('workshops')
+```
+
+Selected posters presented {data-icon=portrait}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('posters_presented')
+```
+
+Selected workshops and hackathons attended {data-icon=lightbulb}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('hackathons')
+```
+
+Outreach {data-icon=user-plus}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('outreach')
+```
+
+Service {data-icon=users}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('service')
+```
+
+Awards {data-icon=award}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('awards')
+```
+
+
+```{r}
+#CV %<>% print_links()
+```
+

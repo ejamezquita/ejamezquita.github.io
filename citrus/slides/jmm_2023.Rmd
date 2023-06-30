@@ -1,0 +1,573 @@
+---
+title: "The shape of the aroma"
+subtitle: "modeling the citrus oil gland distribution"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "`r Sys.Date()`<br> - <br> Published in [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# When life gives you lemons...
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/khRS5AuleIM?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/HAIaektvV3Q?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/Xo2HULkkm3s?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/EwTwSNrBuIo?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'">Check out more 3D X-ray CT scans at <a href="https://www.youtube.com/@endlessforms6756">youtube.com/@endlessforms6756</a></p>
+
+---
+
+## Think of citrus as lego blocks
+
+![](../figs/citrus_family_tree_1.jpg)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+---
+
+## Oil glands are closely linked to fruit development
+
+.pull-left[
+![](`r "https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg"`)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://www.boredpanda.com/life-cycles-pics/">BoredPanda</a></p>
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+<iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen></iframe>
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1073/pnas.1720809115">Smith <em>et al.</em> (2018)</a></p>
+
+- Cross-sectional view of a navel orange peel bending to the point of jetting. 
+
+- Huge perfume and food industry behind essential oils
+
+]
+
+---
+
+## Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
+    <p style="text-align: center;"> UCR Collaboration </p>
+  </div>
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
+    <p style="text-align: center;"> 3D X-Ray CT scan </p>
+  </div>
+  <div class="column" style="max-width:23%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif">
+    <p style="text-align: center;"> Raw </p>
+  </div>
+</div>
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_spine.gif">
+    <p style="text-align: center;"> Spine </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_endocarp.gif">
+    <p style="text-align: center;"> Endocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_rind.gif">
+    <p style="text-align: center;"> Rind </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_exocarp.gif">
+    <p style="text-align: center;"> Exocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_oil_glands.gif">
+    <p style="text-align: center;"> Oil glands</p>
+  </div>
+</div>
+
+---
+
+## The centers will be just fine
+
+.pull-left[
+![](../figs/SW02_L00_center_oil_glands.gif)
+
+- 58 species and 163 raw scans
+
+- About 6K&rarr;20K individual oil glands detected
+
+- Number in the right ballpark
+
+- We have a point cloud in $\mathbb{R}^3$.
+]
+
+.pull-right[
+![](../figs/oil_gland_number_vs_area.png)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1006/anbo.2001.1546">Knight <em>et al.</em> (2001)</a></p>
+]
+
+
+---
+
+class: inverse, center, middle
+
+# Looking to strike some oil
+
+## Phenotyping all the citrus
+
+---
+
+# Allometry
+
++ Linear relationship between size-related measurements.
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:49%; color: Navy; font-size: 15px;">
+    <img src="../figs/exocarp_vs_endocarp.jpg">
+    <img src="../figs/whole_vs_oil_glands.jpg">
+  </div>
+  <div class="column" style="max-width:49%; color: Navy; font-size: 15px;">
+    <img src="../figs/whole_vs_rind.jpg">
+    <img src="../figs/oil_glands_vs_num_glands.jpg">
+  </div>
+</div>
+
++ Total number of glands seems to be decoupled
+
+---
+
+## Average distance from each gland to its $k$-th nearest neighbor
+
+![](../figs/panel_knn25_growth.svg)
+
++ $\text{Avg.dist}(k) = \sqrt{Mk + B}$
++ Oil glands might be distributing themselves following **normal diffusion** mechanics
++ The **outliers** for citrus groups usually correspond to hybrids.
+
+---
+
+class: inverse, center, middle
+
+# Citrus are quite spherical
+
+## Ellipsoidal to be more precise
+
+## Directional statistics to compare fruit surfaces
+
+![](../figs/SR01_CRC3289_12B-19-9_L00_Geocentric.jpg)
+
+---
+
+background-image: url("../ellipsoids/Li_and_Griffiths_2004.png")
+background-size: 250px
+background-position: 95% 3%
+
+## Best ellipsoid fitting &mdash; least squares
+
+- A general quadratic surface is defined by the equation
+
+$$\eqalignno{ & ax^{2}+by^{2}+cz^{2}+2fxy+2gyz+2hzy\ \ \ \ \ \ \ \ \ &\hbox{(1)}\cr &+2px+2qy+2rz+d=0.}$$
+
+With our observations $\{(x_i,y_i,z_i)\}_i$, 
+
+$$
+\begin{pmatrix}
+x_1^2 & y_1^2 & z_1^2 & 2x_1y_1 & 2y_1z_1 & 2x_1z_1 & x_1 & y_1 & z_1 & 1\\
+x_2^2 & y_2^2 & z_2^2 & 2x_2y_2 & 2y_2z_2 & 2x_2z_2 & x_2 & y_2 & z_2 & 1\\
+\vdots& \vdots& \vdots& \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+x_n^2 & y_n^2 & z_n^2 & 2x_ny_n & 2y_nz_n & 2x_nz_n & x_n & y_n & z_n & 1
+\end{pmatrix}
+\begin{pmatrix}
+a \\ b \\ \vdots \\ d
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\ 0 \\ \vdots \\ 0
+\end{pmatrix}
+$$
+or
+$$
+\mathbf{D}\mathbf{v} = 0
+$$
+
+The solution to the system above can be obtained via Lagrange multipliers
+
+$$\min_{\mathbf{v}\in\mathbb{R}^{10}}\left\|\mathbf{D}\mathbf{v}\right\|^2, \quad \mathrm{s.t.}\; \text{ some ellipsoid-specific conditions hold}$$
+
+---
+
+## Model the whole fruit as an ellipsoid
+
+.pull-left[
+![](../figs/SW01_CRC3030_12B-8-5_L02_frontal_ell_projection.jpg)
+![](../figs/SR01_CRC3289_12B-19-9_L02_frontal_ell_projection.jpg)
+]
+
+.pull-right[
+![](../figs/C08C_CRC3546_18A-5-3_L00_frontal_ell_projection.jpg)
+![](../figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg)
+]
+
+---
+
+background-image: url("../figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Sour orange
+
+![](../../citrus/figs/SR01_CRC3289_12B-19-9_L00_Geocentric.jpg)
+
+```{r, out.width=550, fig.align='center'}
+knitr::include_graphics('../figs/SR01_CRC3289_12B-19-9_L00_geocentric_lazi.jpg')
+```
+
+---
+
+background-image: url("../figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Pummelo
+
+![](../../citrus/figs/P01A_CRC3781_12A-31-9_L00_Geocentric.jpg)
+
+```{r, out.width=550, fig.align='center'}
+knitr::include_graphics('../figs/P01A_CRC3781_12A-31-9_L00_geocentric_lazi.jpg')
+```
+
+---
+
+background-image: url("../figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Mandarin
+
+![](../figs/M01_CRC3226_12B-27-1_L00_Geocentric.jpg)
+
+```{r, out.width=550, fig.align='center'}
+knitr::include_graphics('../figs/M01_CRC3226_12B-27-1_L00_geocentric_lazi.jpg')
+```
+
+---
+
+background-image: url("../figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Kumquat
+
+![](../figs/WR02_CRC3877_12B-44-13_L00_Geocentric.jpg)
+
+```{r, out.width=550, fig.align='center'}
+knitr::include_graphics('../figs/WR02_CRC3877_12B-44-13_L00_geocentric_lazi.jpg')
+```
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+# Citrus modeling: Finger lime
+
+![](../figs/WR08_CRC3661_18B-16-5_L00_Geocentric.jpg)
+
+```{r, out.width=550, fig.align='center'}
+knitr::include_graphics('../figs/WR08_CRC3661_18B-16-5_L00_geocentric_lazi.jpg')
+```
+
+---
+
+background-image: url("../ellipsoids/GarciaPortugues_etal_2020a.png")
+background-size: 200px
+background-position: 95% 3%
+
+# Can we say something more?
+
+
+![](../figs/citrus_comparison_panel_alt.jpg)
+
+---
+
+# Uniform and rotationally symmetric spherical distributions
+
+![](../figs/rotasym_comparison_panel_alt.jpg)
+
+---
+
+class: inverse, center, middle
+
+# But then, what distribution do oil glands follow?
+
+## Spherical Kernel Density Estimates FTW
+
+---
+
+# Kernel Density Estimators
+
+![](https://www.statsmodels.org/dev/_images/examples_notebooks_generated_kernel_density_16_0.png)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://www.statsmodels.org/dev/examples/notebooks/generated/kernel_density.html">Statsmodels</a></p>
+
+- The choice of bandwidth is crucial
+- Large bandwidths tend to oversmooth
+- Small bandwidths tend to overfit
+- Plenty of literature on $\mathbb{R}$ on how to choose an adequate value
+
+---
+
+background-image: url("../ellipsoids/GarciaPortugues_2013.png")
+background-size: 300px
+background-position: 95% 3%
+
+# Spherical KDE
+
+![](../figs/WR19_CRC3842_18B-18-5_L00_emi_kde_N.jpg)
+
+- Oil glands of a papeda
+- Red arrows indicate the most significant gradient values for the density function
+- Concentration parameter $k$ is chosen to be optimal
+
+---
+
+background-image: url("../ellipsoids/Vuollo_and_Holmstrom_2018.png")
+background-size: 300px
+background-position: 95% 3%
+
+# More exploratory analysis
+
+## SphereSiZer: Pummelo
+
+![](../figs/P01C_L00_W.gif)
+
+---
+
+# Side view of a sweet orange
+
+![](../figs/SW01_L00_W.gif)
+
+---
+
+# Side view of a mandarin
+
+![](../figs/M01_L00_W.gif)
+
+---
+
+# Side view of a kumquat
+
+![](../figs/WR02_L00_W.gif)
+
+---
+
+# Side view of a finger lime
+
+![](../figs/WR08_L00_W.gif)
+
+---
+
+class: inverse, center, middle
+
+# Future topological directions
+
+## Obligatory TDA plugin
+
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+<div class="row">
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L00_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L00_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L01_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L02_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M04_CRC3752_12B-28-7_L02_phlifetime.jpg">
+  </div>
+</div>
+
+Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
+
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+<div class="row">
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L00_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L02_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L02_phlifetime.jpg">
+  </div>
+</div>
+
+Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+<div class="row">
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L00_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L00_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L01_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L02_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L02_phlifetime.jpg">
+  </div>
+</div>
+
+Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+<div class="row">
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L00_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L02_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L02_phlifetime.jpg">
+  </div>
+</div>
+
+Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+<div class="row">
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L00_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_phlifetime.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L02_frontpic.jpg">
+    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L02_phlifetime.jpg">
+  </div>
+</div>
+
+Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
+---
+
+# Future directions
+
+.left-column[
+![](../crc_pics/citrus_amblycarpa.jpg)
+![](../crc_pics/citrus_hystrix.jpg)
+![](../crc_pics/citrus_macrophylla.jpg)
+]
+
+.right-column[
+
+- Locate, segment, and phenotype seed tissue.
+
+- Explore more on normal diffusion mechanics and their possible relationship to oil gland distribution.
+
+- Define a measure of similarity of oil gland distributions and compute a pairwise distance matrix for all citrus fruits.
+
+- **My $H_1$ PD have ~5000 points, and computing bottleneck-like distances is far too consuming.** Alternatives must be explored (persistence images, heat kernels, etc)
+
+- Compare such distances between distributions to phylogenetic distances.
+
+- Explore alternative ellipsoid-to-sphere algorithms to minimize distortion.
+
+
+
+]
+
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# Thank you!
+
+<div class="row">
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <p style="text-align: center; color: White">Elizabeth Munch (MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center; color: White">Tim Ophelders (Utrecht)</p>
+  </div>
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
+  </div>
+  <div class="column" style="max-width:16%; font-size: 15px;">
+  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="../figs/SR01_L01_black_exocarp.gif">
+  </div>
+  <div class="column" style="width:10%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
+  <p style="text-align: center; color: White"><strong>Email</strong></p>
+  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
+  <p style="text-align: center; color: White"><strong>Website and slides</strong></p>
+  <p style="text-align: center; color: Yellow">egr.msu.edu/~amezqui3</p>
+  <img style="padding: 0 0 0 0;" src="../figs/ppp3.png">
+  </div>
+</div>

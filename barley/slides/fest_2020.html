@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Demeter y Euler van por una cerveza</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Michelle Quigley, Tim Ophelders   Elizabeth Munch, Dan Chitwood   Dan Koenig, Jacob Landis   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Demeter y Euler van por una cerveza
+]
+.subtitle[
+## Cuantificando la forma de la cebada con ATD
+]
+.author[
+### <strong>Erik Amézquita</strong>, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -
+]
+.institute[
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+]
+.date[
+### 2022-12-11 <br> - <br> Diapositivas: <code>https://bit.ly/cebada_fest</code>
+]
+
+---
+
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 150px
+background-position: 95% 5%
+
+# Cómo inició todo...
+
+- Fragmento de febrero 2016. (Énfasis propio)
+
+&gt; Estimados Estudiantes de Licenciaturas de Demat,
+&gt;
+&gt; Se les hace una cordial invitación a participar como estudiantes de verano (con posibilidad de comenzar a pensar en una tesis en el futuro), en el proyecto interdisciplinario de Análisis Topológico de Datos-ATD aplicado a objetos Arqueológicos en 3D. 
+&gt;
+&gt; Se anticipa que partes de este proyecto requerirán de elementos de **análisis funcional, análisis armónico, topología/geometría diferencial, probabilidad y estadística, homología y programación**. Algunos elementos se tendrán que aprender sobre cómo parte de la participación.
+
+--
+
+- Fui el único que manifestó interes
+
+--
+
+- Sabía prácticamente nada de los requisitos.
+
+---
+
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Ahora: Morfología botánica
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Mira más tomografías 3D en &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Análisis Topológico de Datos (ATD)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Datos &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Escanes rayos X &lt;/li&gt;
+      &lt;li&gt; Nubes de puntos &lt;/li&gt;
+      &lt;li&gt; Series de tiempo &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Resumen Topológico &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Característica de Euler &lt;/li&gt;
+      &lt;li&gt; Diagramas de persistencia &lt;/li&gt;
+      &lt;li&gt; Mapper &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;img src="../figs/svm_mds_ect.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Análisis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Estadística &lt;/li&gt;
+      &lt;li&gt; Aprendizaje de máquina &lt;/li&gt;
+      &lt;li&gt; Clasificación y predicción &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/seed.png")
+background-size: 400px
+background-position: 99% 99%
+
+# Resumen de hoy
+
+### La charla será muy modular
+
+1. Botánica: cebada
+
+1. ~~Genética: Zigosidad~~
+
+1. Procesamiento de imágenes
+
+1. Transformada de característica de Euler
+
+1. Aprendizaje de máquina y resultados
+
+1. Genética en el horizonte
+
+---
+
+class: center, middle, inverse
+
+# 1. Botánica: Cebada
+
+---
+
+class: inverse
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;!-- &lt;a href="https://www.thescottishfarmer.co.uk/arable/14364703.hybrid-barley-pays-off-for-mixed-farming-too/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_scotland.jpg"&gt;&lt;/a&gt; --&gt;
+    &lt;a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_norway.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://ipad.fas.usda.gov/highlights/2008/11/eth_25nov2008/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_ethiopia.gif"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://kizilvest.ru/20150827-v-kizilskom-rajone-nachalas-uborochnaya-strada/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_kizilskoye.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.bloomberg.com/news/articles/2020-09-13/iraq-to-offer-first-ever-barley-exports-as-rains-yield-surplus" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_iraq.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://thewire.in/agriculture/covid-19-lockdown-crop-harvest-farmers" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_rajasthan.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
+    &lt;p style="text-align: center; font-size: 25px; line-height: 1em;"&gt; &lt;strong&gt; Cebada en todo el mundo &lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;Tjøtta (Nordland, Noruega)&lt;/p&gt;
+    &lt;p&gt;Kiliskoye (Chelyabinsk, Rusia)&lt;/p&gt;
+    &lt;p&gt;Marchouch (Rabat, Marruecos)&lt;/p&gt;
+    &lt;p&gt;Bagdad (Bagdad, Irak) &lt;/p&gt;
+    &lt;p&gt;Aksum (Tigray, Etiopía) &lt;/p&gt;
+    &lt;p&gt;Hanumangarh (Rajasthan, India) &lt;/p&gt;
+    &lt;p style="font-size:9px;line-height: 1em;"&gt;Creditos y detalles al dar click en cada imagen&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# ¡Semillas con morfología diversa!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;a href="https://www.nationalgeographic.co.uk/travel/2020/05/photo-story-from-barley-fields-to-whisky-barrels-in-rural-scotland" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_seed_scotland.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:55%"&gt;
+    &lt;a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_historical_expansion.jpg"&gt;&lt;/a&gt;
+    &lt;p style="font-size: 15px; line-height: 1em"&gt; Cebada de Escocia y el Tibet. &lt;/p&gt;
+    &lt;p style="font-size: 15px; line-height: 1em"&gt; Expansión histórica de la cebada como cultivo. &lt;/p&gt;
+    &lt;p style="font-size:9px;line-height: 1em;"&gt;Créditos y detalles al dar click en cada imagen&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+---
+
+# Cebada: con nosotros desde el inicio
+
+&lt;p style="font-size: 15px; text-align: left; color: DimGrey;"&gt; Tabletas cuneiformes de Mesopotamia con espigas de cebada &lt;/p&gt;
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img src="../figs/Ancient-Mesopotamia-tablet.jpg"&gt;
+    &lt;img src="../figs/mesopotamian-tablet.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%"&gt;
+    &lt;img src="../figs/beerancientegypt.jpg"&gt;
+    &lt;p style="font-size: 15px; text-align: center; color: DimGrey;"&gt; Registro egipcio del consumo de cerveza &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%"&gt;
+    &lt;img src="../figs/yoram_cave_barley.webp"&gt;
+    &lt;p style="font-size: 15px; text-align: center; color: DimGrey;"&gt; Cebada y arqueobotánica (Cueva Yoram, Israel. &lt;a href="http://dx.doi.org/10.1038/ng.3611" target="_blank"&gt;Mascher et al 2016)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+--
+
+- La cebada es el 4to grano más cultivado, después del maíz, arroz y trigo. [(FAO 2020)](https://doi.org/10.4060/cb1993en)
+
+---
+
+background-image: url("../figs/composite_hybrid_mixture.jpg")
+background-size: 400px
+background-position: 95% 5%
+
+
+# Cruce Compuesto II (CC II)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;img src="../figs/composite_cross_people.jpg"&gt;
+    &lt;p style="font-size: 15px; color: DimGrey;"&gt; Esquina superior izquierda:  &lt;/p&gt;
+    &lt;p style="font-size: 15px; text-align: center; color: DimGrey;"&gt; Mary Martini, Harry Harlan, Coit Suneson, G.A. Wiebe, Robert Allard, Dan Koenig  &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;img src="../figs/barley_world.jpg"&gt;
+    &lt;p style="font-size: 15px; text-align: center; color: DimGrey;"&gt; 28 sepas fundadoras &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+- Experimento iniciado en 1929 en Aberdeen, Idaho
+- En búsqueda del mejor cruce posible para California
+- Enfoque y mantenimiento en UC Davis y UC Riverside
+
+---
+
+background-image: url("../figs/composite_cross_experiment.jpg")
+background-size: 450px
+background-position: 95% 50%
+
+# Diseño del experimento
+
+.pull-left[
+- 28 variedades fundadoras
+- Consideramos todos los posibles cruces de los fundadores ( `\(F_1\)` )
+- Autopolinizamos cada uno de los híbridos ( `\(F_2\)` )
+- Plantamos la progenie y les permitimos autopolinizarse
+- Vemos pasar casi 60 generaciones
+- Contamos con semillas de cada generación y linaje
+    - Cuantificar la morfología
+    - Secuenciar el ADN
+    - ¿Cuáles genes fueron favorecidos?
+    - ¿Cómo cambió la morfología?
+]
+
+---
+
+background-image: url("../figs/composite_cross_experiment.jpg")
+background-size: 450px
+background-position: 95% 50%
+
+# Diseño del experimento
+
+.pull-left[
+- **28 variedades** fundadoras
+- Consideramos todos los posibles cruces de los fundadores ( `\(F_1\)` )
+- Autopolinizamos cada uno de los híbridos ( `\(F_2\)` )
+- Plantamos la progenie y les permitimos autopolinizarse
+- Vemos pasar casi 60 generaciones
+- Contamos con semillas de cada generación y linaje
+    - **Cuantificar la morfología**
+    - Secuenciar el ADN
+    - ¿Cuáles genes fueron favorecidos?
+    - ¿Cómo cambió la morfología?
+]
+
+---
+
+class: center, middle, inverse
+
+# ~~2. Genética: Zigosidad~~
+
+---
+
+class: inverse, center, middle
+
+# 3. Procesamiento de imágenes
+
+## Escanes 3D de rayos X
+
+---
+
+background-image: url("../figs/barley_lab_composition.jpg")
+background-size: 750px
+background-position: 99% 99%
+
+# Tomografías 3D
+
+.pull-left[
+Imágenes voxelizadas
+
+Resolución de ~30 micras
+
+En tandas de 4
+
+¡2Gb+ por cada escán!
+]
+
+---
+
+class: inverse, right
+background-image: url("../figs/barley_hpcc.png")
+background-size: 1300px
+background-position: 0% 0%
+
+
+
+# Procesamiento de imágenes _ad-hoc_
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_0_original.gif"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; Original &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_1_normal.gif"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; Estándar &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_2_unair.gif"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; Limpio &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_3_denoise.gif"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; Podado &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:26%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S015_alignment.jpg"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; Etiquetado &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="text-align: center; background-color: #808080;"&gt; ¡Análisis! &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+--
+
+- 224 escanes
+
+---
+
+# Interés en la distribución de semillas
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:63%; padding: 0px 50px;"&gt;
+    &lt;img src="../figs/seeds_batch1.png"&gt;
+    &lt;img src="../figs/seeds_batch2.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; font-size: 15px; background-color: DarkRed; padding: 5px; border-radius: 15px 0px 0px 30px;"&gt;
+    &lt;img src="../figs/seed_outlier1.png"&gt;
+    &lt;img src="../figs/seed_outlier2.png"&gt;
+    &lt;p style="text-align: right;"&gt;&lt;strong&gt; Semillas&lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; text-align: center; font-size: 15px; background-color: DarkRed; padding: 5px;"&gt;
+    &lt;img src="../figs/seed_outlier4.png"&gt;
+    &lt;img src="../figs/seed_outlier6.png"&gt;
+    &lt;p&gt;&lt;strong&gt;atípicas&lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; color: Yellow; text-align: center; font-size: 15px; background-color: DarkRed; padding: 5px; border-radius: 0px 15px 30px 0px;"&gt;
+    &lt;img src="../figs/S102_1_44_0.png"&gt;
+    &lt;img src="../figs/S129_0_37_0.png"&gt;
+    &lt;p&gt;&lt;strong&gt; (Outliers) &lt;/strong&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+
+- `\(\sim38,000\)` semillas limpias.
+- Se vale descartar el 10% de la muestra.
+- Verificamos que las semillas atípicas no están concentradas.
+
+---
+
+background-image: url("../figs/seed_mesh.png")
+background-size: 250px
+background-position: 80% 60%
+
+# Medidas tradicionales
+
+Todas las semillas son elipsoides: alineamiento basado en componentes principales
+
+.pull-left[
+- Longitud
+- Altura
+- Ancho
+- Área superficial
+- Volumen
+- Superficie convexa
+- Volumen convexo
+
+![](../figs/seed_orientation3.png)
+]
+
+---
+
+# Evolución morfológica y alometría
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:16%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/boxplot_all_length_v_es.png"&gt;
+    &lt;img src="../figs/boxplot_all_height_v_es.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:16%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/boxplot_all_width_v_es.png"&gt;
+    &lt;img src="../figs/boxplot_all_area_v_es.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:16%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/boxplot_all_vol_v_es.png"&gt;
+    &lt;img src="../figs/boxplot_all_convexvol_v_es.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:16%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/boxplot_all_convexvolratio_v_es.png"&gt;
+    &lt;img src="../figs/boxplot_all_convexarea_v_es.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:41%; color: Yellow; font-size: 15px;"&gt;
+    &lt;img src="../figs/allometry_Length_vs_Vol.jpg"&gt;
+    &lt;img src="../figs/allometry_Width_vs_Vol.jpg"&gt;
+    &lt;img src="../figs/allometry_ConvexArea_vs_Vol.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse, middle, center
+
+# 4. Topología
+
+## La Transformada de Característica de Euler (ECT)
+
+---
+
+background-image: url("../../tda/figs/euler_characteristic_2.png")
+background-size: 450px
+background-position: 97% 50%
+
+# La característica de Euler
+
+.pull-left[
+Figuras en 3D compuestas por `\(V_0\)` vértices, `\(V_1\)` arístas, y `\(V_2\)` caras.
+
+`\(\chi = V_0 - V_1 + V_2\)`
+
+**Números de Betti:** número de "agujeros" homológicamente distintos.
+- `\(\beta_0\)`: Número de componentes conexas
+- `\(\beta_1\)`: Número de ciclos
+- `\(\beta_2\)`: Número de agujeros / vacíos
+
+`\(\chi = \beta_0 - \beta_1 + \beta_2\)`
+
+En general:
+
+`\(\chi = \sum_{i=0}^n (-1)^iV_i = \sum_{i=0}^n (-1)^i\beta_i\)`
+]
+
+---
+
+class: center
+background-image: url("../../tda/figs/euler_characteristic_variety.jpg")
+background-size: 900px
+background-position: 50% 80%
+
+# Característica de Euler para formas diferentes
+
+La característica de Euler es un invariante topológico: invariante ante transformaciones suaves
+
+.pull-left[
+Si la característica de Euler es **diferente**, los dos espacios/figuras son topológicamente distintos
+]
+
+.pull-right[
+Si los espacios son topológicamente distintos, la característica de Euler **puede ser igual.**
+]
+
+---
+
+# Complejos simpliciales
+
+- Vértices `\(\mathbf v_0, \ldots,\mathbf v_d\in\mathbb R^d\)` en posición general.
+
+--
+
+- El **d-simplejo** es la envolvente convexa de los vértices.
+
+`$$S_d:=\left\{\sum_{i=0}^d\lambda_i\mathbf v_i\,:\,\lambda_i\geq0,\;\sum_{i=0}^d\lambda=1\right\}$$`
+&lt;img src="../../tda/figs/simplices.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Un complejo simplicial es un conjunto de simplejos bien pegados
+
+--
+
+.pull-left[
+&lt;img src="../../tda/figs/complex-good.png" width="250px" style="display: block; margin: auto;" /&gt;
+- Bien pegados
+]
+
+.pull-right[
+&lt;img src="../../tda/figs/complex-bad.png" width="250px" style="display: block; margin: auto;" /&gt;
+- Mal pegados
+]
+
+
+---
+
+# Complejos cúbicos
+
+- Conjuntos bien pegados de vértices, artistas, cuadrados y cubos de longitud unitaria.
+
+--
+
+- Cubos de dimensión `\(0,1,2,3\)` respectivamente.
+
+--
+
+- Pixels/voxels como vértices y vecinos deben de compartir una cara.
+
+--
+
+&lt;img src="../../tda/figs/cubical_complex.jpg" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+background-image: url("../figs/ecc_X.gif")
+background-size: 300px
+background-position: 90% 60%
+
+# Curva de característica de Euler (ECC)
+
+.pull-left[
+- Un complejo simplicial/cúbico finito `\(M\subset\mathbb{R}^d\)`
+- Una dirección `\(\nu\in S^{d-1}\)`
+
+- La función de altura `\(f_{\nu}: M\to\mathbb R\)` 
+
+- Definida como `\(f_{\nu}: x\mapsto\langle x,\nu\rangle\)`.
+
+- La filtración asociada
+`\(f_{\nu}^{-1}(-\infty,r\rbrack\simeq\{\Delta \in M : \langle x, \nu\rangle\leq r\:\forall	\,x\in\Delta \}\)`
+
+- Definimos la curva de característica de Euler `\(\chi(M,\nu):\mathbb{R}\to\mathbb{Z}\)` 
+
+`\(\chi(M,\nu)(r) = \chi(f_\nu^{-1}((-\infty,r\rbrack)).\)`
+]
+
+---
+
+background-image: url("../figs/ect.gif")
+background-size: 700px
+background-position: 50% 90%
+
+## Transformada de característica de Euler (ECT)
+
+- Definimos `\(ECT(M): S^{d-1}\to\mathbb{Z}^{\mathbb{R}}\)` con `\(\nu\mapsto\chi(M,\nu)\)`
+- Concatenamos una cantidad infinita de ECCs.
+
+---
+
+# ¿Porqué la transformada ECT?
+
+--
+
+- Es fácil de calcular: una simple sucesión de sumas
+
+--
+
+[**Teorema _(Turner, Mukherjee, Boyer 2014)_**](https://doi.org/10.1093/imaiai/iau011): La ECT es inyectiva para complejos simpliciales finitos en 3D
+
+--
+
+[**Teorema _(ibid)_**](https://arxiv.org/abs/1310.1030): La ECT es una estadística suficiente para complejos simpliciales finitos en 3D
+
+--
+
+_Traducción:_ 
+
+- Dada todas las (infinitas) ECCs correspondientes a todas las direcciónes
+
+- Complejos simpliciales *distintos* corresponden a ECTs *distintas*
+
+- La ECT en efecto resume toda la información posible respecto a la forma de nuestro complejo
+
+--
+
+Avances en reconstrucción práctica: construir un complejo simplicial a partir de una colección finita de ECCs. ([Turner, Curry](https://arxiv.org/abs/1805.09782), [Fasy](https://arxiv.org/abs/1912.12759), [Ghrist](https://doi.org/10.1007/s41468-018-0017-1))
+
+---
+
+background-image: url("../../tda/figs/sphere_partition.png")
+background-size: 280px
+background-position: 50% 90%
+
+# Idea de inyectividad
+
+- La demostración es constructiva
+
+- Escrita para la Transformada de Homología Persistente, `\(PHT(M)\)`
+
+- La idea clave consiste en calcular cambios de `\(\chi\)` a lo largo de la filtración `\(f_{\nu}\)` 
+
+- Reconstruir `\(M\)` (con la cantidad mínima de vértices)
+
+- Vértices como puntos críticos de los diagramas de persistencia
+
+- Calcular los links de los vértices `\(x\)` para calcular las aristas y caras incidentes
+
+--
+
+- [Prueba dibujística aquí.](../../tda/slides/lab200330.pdf)
+
+---
+
+# Idea de inyectividad
+
+&lt;embed src="../../tda/slides/lab200330.pdf" width="775px" height="475px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+class: inverse, center, middle
+
+# 5. Aprendizaje de máquina
+
+## Resultados de ECT
+
+---
+
+background-image: url("../../tda/figs/pole_directions_102.png")
+background-size: 350px
+background-position: 90% 50%
+
+# Calculando la ECT de cada semilla
+
+.pull-left[
+- Con los ejes alineados, podemos asociar las mismas direcciónes a las mismas imágenes
+
+- 74 direcciones
+
+- 32 umbrales por dirección
+
+- Cada semilla es asociada a un vector `\(74\times32=2368\)` dimensional.
+
+![](../figs/ect.gif)
+]
+
+---
+
+# Maldición de la Dimensión # 1
+
+- Datos súper esparsos cuando la dimensión incrementa
+
+&lt;img src="../../demat/figs/curse_of_dimensionality.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Para cubrir el cubo unitario _d_-dimensional con `\(N\)` cubos sub-unitarios, éstos deben ser de longitud `\(d=\left(\frac1N\right)^{\frac1n}\)`
+
+--
+
+- Como `\(d\to1\)` cuando `\(n\to\infty\)`, ¡podemos meter infinitos cubos unitarios dentro de un cubo unitario en dimensión infinita!
+
+--
+
+- La intuición de _cercano_ y _lejano_ deja de funcionar.
+
+---
+
+# Maldición de la Dimensión # 2
+
+- Los puntos tienden a concentrarse en una esfera
+
+&lt;img src="../../demat/figs/concentration-circle.png" width="270px" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Si contamos con `\(N\)` puntos `\(n\)`-dimensionales distribuidos de manera uniforme en el disco unitario, la media de la distancia `\(d\)` del origen al punto más cercano es `\(d = \left(1-\frac12^{\frac1N}\right)^{\frac1n}\)`.
+
+--
+
+- Es más difícil hacer predicciones significativas cuando todos nuestros datos están en la frontera.
+
+
+---
+
+background-image: url("../../demat/figs/pca_figure.jpg")
+background-size: 290px
+background-position: 99% 90%
+
+## No supervisado: Principal Component Analysis (PCA)
+
+- Consideremos un datos `\(\mathbf x_1,\ldots,\mathbf x_n\in\mathbb R^d\)` (digamos `\(d=2368\)`)
+
+--
+
+- Sea `\(1\leq k \leq d\)` fijo. Supongamos `\(k=2\)`.
+
+--
+
+- Queremos hallar la _mejor_ aproximación afín `\(k\)`-dimensional `\(U\beta + \mu\)` tal que las columnas `\(U = [u_1, \ldots, u_k]\in\mathbb R^{d\times k}\)` forman una base ortonormal.
+
+--
+
+- Problema de optimización:
+`$$\min_{\beta,\mu, U} \sum_{i=1}^n\|x_i - (U\beta_i + \mu)\|^2$$` 
+tal que `\(U^\top U=I\)` y `\(\sum_i\beta_i=0\)`.
+
+--
+
+- **Reducción de dimensiones**
+
+---
+
+background-image: url("../../demat/figs/kernel_trick.png")
+background-size: 500px
+background-position: 50% 90%
+
+# Caso no lineal: Truco del kernel
+
+- Mapeamos nuestros datos a un espacio de dimensión alta donde su comportamiento sea lineal
+
+--
+
+- `\(\Phi:\mathbb R^d\to\mathcal H\)`, con `\(\mathcal H\)` espacio de Hilbert de dimensión mayor.
+- Pensamos en una función **kernel** `\(K:\mathbb R^d\times\mathbb R^d\to\mathbb R\)`.
+	
+	`$$K(\mathbf{x,y})=\langle\Phi(\mathbf x), \Phi(\mathbf y)\rangle_{\mathcal{H}}$$`
+--
+
+- El truco consiste en formular nuestro problema en términos de producto interno `\(K\)` y **nunca** lidiar directamente con `\(\mathcal H\)` ni `\(\Phi\)`.
+
+---
+
+background-image: url("../../demat/figs/separable-svm.jpg")
+background-size: 450px
+background-position: 50% 99%
+
+## Supervisado: Support Vector Machines (SVM)
+
+- `\(n\)` puntos etiquetados `\(\{\mathbf x_i,y_i\}_{i=1}^n \subset \mathbb R^d\)` con `\(y_i\in\{-1,+1\}\)`. 
+
+--
+
+- Debemos hallar el __hiperplano H__ que los separa _mejor_, con `\(\mathbf H = \{\mathbf x\,:\,\langle\mathbf{x,w}\rangle+b=0\}\)`.
+
+--
+
+- Problema de optimización
+`$$\begin{align}
+	\min_{(\mathbf w,b)\in\mathbb R^d\times\mathbb R}\;\; &amp;\frac12||\mathbf w||^2, \\
+	\textrm{tal que }\;\;&amp; y_i(\langle \mathbf x_i,\mathbf w\rangle + b)\geq 1 \textrm{ para todo } i=1,\ldots,n.
+\end{align}$$`
+
+---
+
+background-image: url("../figs/S012_L2_Blue_33.png")
+background-size: 150px
+background-position: 99% 50%
+
+# Metodología
+
+- **Meta:** Clasificar 28 variedades distintas de cebada basados únicamente en la morfología de sus granos
+
+- **3000** granos en total
+
+--
+
+- Comparamos **3** conjuntos de descriptores morfológicos
+
+Descriptor | No. de descriptores
+-----------|--------------------
+Tradicional | 11
+Topológico (ECT + KPCA) | 12
+Combinado (Trad + Topo) | 23
+
+--
+
+- Muestreamos sin remplazo 80% de semillas de cada sepa y entrenamos una SVM
+
+--
+
+- Verificamos nuestra SVM con el 20% restante
+
+--
+
+- Repetimos 50 veces y tomamos el promedio
+
+---
+
+# Tradicionales vs Topológico
+
+.pull-left[
+&lt;img src="../figs/accuracy_traditional_rbfdot_12_founders.png" width="500px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/confusion_matrix_traditional_crop.png" width="500px" style="display: block; margin: auto;" /&gt;
+]
+.pull-right[
+&lt;img src="../figs/accuracy_topological_rbfdot_12_founders.png" width="600px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/confusion_matrix_topological_crop.png" width="600px" style="display: block; margin: auto;" /&gt;
+]
+---
+
+# El tamaño sí importa
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Length.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Area.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Width.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Vol.png"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/confusion_matrix_combined_crop.png")
+background-size: 500px
+background-position: 99% 70%
+
+# Pero si combinamos...
+
+.pull-left[
+&lt;img src="../figs/accuracy_combined_rbfdot_12_founders.png" width="500px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/comparisonSVM_combined_vs_traditional_rbfdot_12_founders.png" width="500px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# ...algo mejora
+
+![](../figs/svm_line_accuracies_combined.png)
+
+--
+
+Descriptor | No. de descriptores | Precisión
+-----------|--------------------| -------
+Tradicional | `\(11\)` | `\(51.9\% - 54.2\%\)`
+Topológico (ECT + KPCA) | `\(12\)` | `\(43.2\% - 45.7\%\)`
+Combinado (Trad + Topo) | `\(23\)` | `\(69.2\% - 71.9\%\)`
+
+---
+
+class: inverse, center, middle
+
+# 6. Horizontes Genéticos
+
+## Trabajo a futuro
+
+---
+
+background-image: url("../figs/barley_domestication.jpg")
+background-size: 910px
+background-position: 50% 70%
+
+# Diversificación de la morfología floral
+
+---
+
+background-image: url("../figs/BarleyEars_2_vs_6.jpg")
+background-size: 420px
+background-position: 0% 99%
+
+# Cebada de 2 vs 6 hileras
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%; margin-left:auto; margin-right:0;"&gt;
+    &lt;p&gt; El evento evolutivo de 2 vs 6 hileras es de suma importancia &lt;/p&gt;
+    &lt;img src="../figs/barley_inflorescence.png"&gt;
+    &lt;p style="font-size: 15px; color: DimGrey;"&gt; &lt;a href="http://dx.doi.org/10.1094/TQ-50-1-0331-01"&gt;Hertrich J. 2013&lt;/a&gt;, &lt;a href="https://doi.org/10.1016/j.jas.2013.09.015"&gt;Ros et al 2014&lt;/a&gt; &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:10%; margin-left:auto; margin-right:-350px;"&gt;
+    &lt;img src="../figs/tworowbarley.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:10%; margin-left:auto; margin-right:50px;"&gt;
+    &lt;img src="../figs/sixrowbarley.png"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Genome Wide Association Study (GWAS)
+
+&lt;img src="../figs/awn_gwas_a.jpg" width="1349" style="display: block; margin: auto;" /&gt;
+
+- Ejemplo de [Milner et al 2019](https://doi.org/10.1038/s41588-018-0266-x)
+
+---
+
+# Genome Wide Association Study (GWAS)
+
+&lt;img src="../figs/awn_gwas_b.jpg" width="1368" style="display: block; margin: auto;" /&gt;
+
+- Hallar los SNPs (Single Nucleotide Polymorphism) relevantes al rasgo
+
+---
+
+# Genome Wide Association Study (GWAS)
+
+&lt;img src="../figs/awn_gwas_c.jpg" width="1392" style="display: block; margin: auto;" /&gt;
+
+--
+
+- En principio, buscamos hallar los SNPs correspondientes a la forma
+
+---
+
+class: inverse
+
+# Trabajo futuro
+
+- ¿Podemos usar la espiga entera?
+
+--
+
+- Bailar la macarena con genética poblacional
+
+--
+
+- Hallar un vínculo más concreto entre la variación morfológica y la variación genética
+
+--
+
+- Si algo nos sobra, son imágenes botánicas
+
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/ikhuvGpJbeA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/a7JCIJRpF8U?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: right, bottom
+
+background-image: url("../figs/acknowledgments.jpg")
+background-size: 1000px
+background-position: 50% 40%
+
+Diapositivas disponibles en `https://bit.ly/cebada_fest`
+
+---
+
+class: center, middle, inverse
+
+# 2. Genética: Zigosidad
+
+---
+
+background-image: url("../../biology/figs/focus_DNA.jpg")
+background-size: 610px
+background-position: 97% 55%
+
+# Al final del día, todos somos ADN
+
+.left-column[
+El ADN se compone de 4 nucleótidos:
+- Adenina(A)
+- Citosina(C)
+- Tiamina(T)
+- Guanina(G)
+
+Complementariedad
+- `\(A \leftrightarrow T\)`
+- `\(C \leftrightarrow G\)`
+
+Mecanismo natural de replicación
+]
+
+---
+
+background-image: url("../../biology/figs/mutant_phenotypes.jpg")
+background-size: 660px
+background-position: 97% 55%
+
+# Patrones hereditarios para un único gen
+
+.left-column[
+**caraterística** = **propiedad** = **rasgo**
+
+**Fenotipo:** Forma tomada por un rasgo
+
+**Cruce:** Apareamiento controlado
+
+**Tipo silvestre:** El que se halla en la naturaleza
+
+**Mutante:** Organismo individual con alguna propiedad alterada
+]
+
+---
+
+background-image: url("../../biology/figs/alleles.jpg")
+background-size: 800px
+background-position: 50% 60%
+
+# Base molecular de patrones mendelianos
+
+ **Alelo:** Variación de un gen conocido. Diferencia de uno o más nucléotidos
+
+ **Mutación:** Cambio de nucleótidos en un alelo.
+ 
+---
+
+background-image: url("../../biology/figs/mitosis_meiosis_d.jpg")
+background-size: 850px
+background-position: 50% 75%
+ 
+# Base cromática hereditaria de un único gen 
+
+**Zigoto:** Huevo/óvulo fertilizado
+
+**Homozigoto:** Organismo con un par de alelos idénticos (línea pura: A/A ó a/a)
+
+**Heterozigoto:** Con diferente par de alelos (A/a)
+
+**Genotipo:** Combinación alélica (A/A, A/a, a/a)
+
+En principio, cada cromosoma tiene **la misma probabilidad** de ser heredado.
+
+---
+
+background-image: url("../../biology/figs/mendel_single_gene_ratios.jpg")
+background-size: 790px
+background-position: 50% 75%
+
+# Combinatoria para un único alelo
+ 
+---
+
+background-image: url("../../biology/figs/punnett_2_alleles_a.jpg")
+background-size: 370px
+background-position: 95% 35%
+
+# Misma idea para 2 alelos
+
+.pull-left[
+- Razón fenotípica de 9:3:3:1 suponiendo independencia
+- La razón genotípica es mucho más distinta
+- *Recordatorio:* El ser dominante/recesivo no influencia la probabilidad de ser heredado
+- *Segunda Ley de Mendel:* Pares de genes distintos en **cromosomas distintos** se agrupan de manera independiente durante la formación de gametos.
+
+![](../../biology/figs/punnett_2_alleles_b.jpg)
+]
+
+---
+
+background-image: url("../../biology/figs/tomato_varieties.jpg")
+background-size: 350px
+background-position: 90% 85%
+
+# Sintentizando líneas puras
+
+.pull-left[
+- Si seguimos autopolinizando los heterozigotos, enventualmente tendremos progenie homozigótica.
+- Los homozigotos autopolinizados serán genotípicamente (y fenotípicamente) invariantes
+- Cada alelo tiene probabilidad `\(\frac12\)` de formar parte de una línea pura
+- No todos los homozigotos son viables
+]
+
+.pull-right[
+![](../../biology/figs/hetero2homozygote.jpg)
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

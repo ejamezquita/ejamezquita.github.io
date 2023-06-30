@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Making slides in xaringan</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   —   Computational Mathematics, Science, and Engineering   Michigan State University   —" />
+    <meta name="date" content="2023-03-29" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Making slides in xaringan
+]
+.subtitle[
+## The best of both worlds
+]
+.author[
+### <strong>Erik Amézquita</strong> <br> — <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> —
+]
+.date[
+### 2023-03-29
+]
+
+---
+
+
+
+
+# Xaringan: The best of both worlds
+
+.pull-left[
+**RMarkdown Based**
+
+- What you see is what you mean, just like beamer.
+
+- Markdown: Much easier to type basic text formatting and hyperlinks.
+
+- [remark](https://remarkjs.com/#1) with `\(\LaTeX\)` and R support.
+
+- It might take a while to make your first slide deck, but once you are done, you can easily copy/paste.
+
+- Adding new images won't throw everything awry*.
+]
+
+.pull-right[
+**HTML Powered**
+
+- Immediate to share with everyone
+
+- Add easily GIFs, videos, PDFs, other websites, etc.
+
+- Only one copy per image for all presentations
+
+- Or even refer to the online images/videos/etc 
+
+- You might need to learn some CSS/HTML hacks along the way
+
+- Forces you to have a nice website (now that I'm graduating, I'll have to find a nice webhost service.)
+]
+
+---
+
+# How I planned this tutorial
+
+- **Disclaimer**: I quickly put this together without prior notice.
+
+- I'll show a variety of my own slides and then the actual important bits of code behind them.
+
+- Formatting options are limited in xaringan, but with some creative thinking you can get around most of the limitations.
+
+- [Yihue Xie](https://yihui.org/) wrote xaringan because he found beamer too boring and powerpoint too painful.
+
+&lt;img src="https://64.media.tumblr.com/3a2e9098536ce810065e22879b71a049/tumblr_nqiz97ahPZ1tlb56zo1_400.gifv" width="250" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 24px; text-align: center; font-family: 'Yanone Kaffeesatz'"&gt;Me finding out about xaringan early during the pandemic&lt;/p&gt;
+
+---
+
+# Getting started
+
+- Make sure you have the most updated version of [R](https://cran.r-project.org/) and [RStudio](https://posit.co/products/open-source/rstudio/)
+
+- In principle you can use any IDE, but RStudio is fine-tuned to make RMarkdown writing much easier.
+
+- Install the [rmarkdown](https://rmarkdown.rstudio.com/), [pagedown](https://pagedown.rbind.io/), [bookdown](https://bookdown.org/), [knitr](https://yihui.org/knitr/), and [xaringan](https://github.com/yihui/xaringan) packages.
+
+- All of them can be easily installed through CRAN (highly recommended)
+
+- Disable the RStudio RMarkdown viewer (IMO it is more annoying than useful).
+
+- I rather have my slides open in a web browser and reload constantly to see changes.
+
+&lt;img src="../figs/rmarkdown_settings.png" width="350" style="display: block; margin: auto;" /&gt;
+
+---
+
+# MWE: Minimum Working Example
+
+.left-column[
+![](../figs/folder_structure.png)
+]
+
+.right-column[
+- Unpack the [zip with toy files](../xaringan_2023.zip), which includes the source code of this very slides.
+
+- &amp;larr; I keep my website files ordered like this
+
+- Feel free to use this [Rmd file](xaringan_2023.Rmd) as your template for future endeavors
+
+- From the zip, open `xaringan -&gt; slides -&gt; xaringan_2023.Rmd` with RStudio
+
+- Knit it with `Ctrl + K` and off you go!
+]
+
+---
+
+background-image: url("../../img/cat_error.webp")
+background-size: 100px
+background-position: 99% 1%
+
+class: inverse, middle, center
+
+# Just show us the code already!
+
+## Alright
+
+![](https://cdn.bleacherreport.net/images_root/article/media_slots/photos/000/779/676/SpartyDisagrees_original.gif?1364071239)
+
+---
+
+# The previous slide
+
+&lt;hr&gt;
+```
+background-image: url("../../img/cat_error.webp")
+background-size: 100px
+background-position: 99% 1%
+
+class: inverse, middle, center
+
+# Just show us the code already!
+
+## Alright
+
+![](https://cdn.bleacherreport.net/images_root/article/media_slots/photos/000/779/676/SpartyDisagrees_original.gif?1364071239)
+```
+&lt;hr&gt;
+
+- Include a background image (you can only have at most one per slide)
+
+- Define the `class` of the slide: 
+    - `left` (default), `center`, `right` for horizontal alignment
+    - `top` (default), `middle`, `bottom` for vertical alignment
+    - `inverse` for inverted color scheme
+
+---
+
+# The previous (previous) slide
+
+&lt;hr&gt;
+```
+background-image: url("../../img/cat_error.webp")
+background-size: 100px
+background-position: 99% 1%
+
+class: inverse, middle, center
+
+# Just show us the code already!
+
+## Alright
+
+![](https://cdn.bleacherreport.net/images_root/article/media_slots/photos/000/779/676/SpartyDisagrees_original.gif?1364071239)
+```
+&lt;hr&gt;
+
+- `#`, `##`, `###` for headings, subheadings, and subsubheadings as in markdown
+
+- Include images with `![](path/to/image)`
+
+- Use `-`, `+`, or `*` for unlisted bullet points
+
+- Use `1.`, `1.`, `1.` for numbered bullet points
+
+---
+
+background-image: url("../../barley/figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+## The Euler Characteristic Curve (ECC)
+
+- Consider a cubical complex `\(X\subset\mathbb{R}^d\)`
+- And a unit-length direction `\(\nu\in S^{d-1}\)`
+
+- And the subcomplex containing all cubical cells below height `\(h\)` in the direction `\(\nu\)`
+`$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$`
+
+- The Euler Characteristic Curve (ECC) of direction `\(\nu\)` is defined as the sequence `$$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$`
+
+---
+
+```
+background-image: url("../../barley/figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+## The Euler Characteristic Curve (ECC)
+
+- Consider a cubical complex $X\subset\mathbb{R}^d$
+- And a unit-length direction $\nu\in S^{d-1}$
+
+- And the subcomplex containing all cubical cells below height $h$ in the direction $\nu$
+$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$
+
+- The Euler Characteristic Curve (ECC) of direction $\nu$ is defined as the sequence $$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$
+```
+&lt;hr&gt;
+
+- Include `\(\LaTeX\)` code with either `$` (as usual) or `\(` and `\)`
+
+- Ignore the backticks in the verbatim above.
+
+- Include links with `[to show](actual/url/or/path/to/link)`
+
+---
+
+# More on the ECT
+
+--
+
+- Easy to compute: a quick alternating sum.
+
+--
+
+- *Different* simplicial complexes correspond to *different* ECTs.
+
+--
+
+- [**Theorem _(ibid)_**](https://arxiv.org/abs/1310.1030): The ECT effectively summarizes all possible information related to shape.
+
+---
+
+```
+---
+
+# More on the ECT
+
+--
+
+- Easy to compute: a quick alternating sum.
+
+--
+
+- *Different* simplicial complexes correspond to *different* ECTs.
+
+--
+
+- [**Theorem _(ibid)_**](https://arxiv.org/abs/1310.1030): The ECT effectively summarizes all possible information related to shape.
+---
+
+```
+&lt;hr&gt;
+
+- Define new slides with `---`
+
+- Make a slide pause with `--`
+
+- Beware of trailing blank spaces
+
+---
+
+# Summary
+
+.left-column[
+&lt;img src="../../barley/figs/S017_L3_1.gif" width="150" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/ecc_X.gif" width="150" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+- **TDA** captures **nuanced** morphological information that is not obvious to the naked eye.
+]
+
+---
+
+![](../figs/rmd_example_1.png)
+
+&lt;hr&gt;
+
+- Make a 25/75 split with `.left-column` and `.right-column`
+
+- You **cannot** control image width/height with `![]()`. Use an RMarkdown code chunk instead.
+
+- Start and close a chunk with `3` backticks
+
+- Curly braces to indicate `R` code and other format parameters
+
+- Include the image(s) with `knitr::include_graphics(c(path1,path2,...))`
+
+- Surround text with `*` for italics, `**` to bold
+
+---
+
+# Plants &amp; Python *a la* Mizzou
+
+.pull-left[
+![](https://plantsandpython.github.io/PlantsAndPython/_static/plants_python_logo.jpg)
+]
+
+.pull-right[
+- **Inspired by the current Plants &amp; Python course @ MSU**
+
+- Offered in hybrid format between &amp;rarr;MSU and UNAM&amp;larr;
+]
+
+---
+
+```
+# Plants &amp; Python *a la* Mizzou
+
+.pull-left[
+![](https://plantsandpython.github.io/PlantsAndPython/_static/plants_python_logo.jpg)
+]
+
+.pull-right[
+- **Inspired by the current Plants &amp; Python course @ MSU**
+
+- Offered in hybrid format between &amp;rarr;MSU and UNAM&amp;larr;
+]
+```
+&lt;hr&gt;
+
+- Make a 50/50 split with `.pull-left` and `.pull-right`
+
+- You can include images/elements as URLs
+
+- Add HTML symbols `&amp;symbol;`. [List here](https://www.w3schools.com/charsets/ref_utf_symbols.asp). Make sure your web browser supports it.
+
+- &amp;#9742;, &amp;#9736;, &amp;#9775;, &amp;#9781;, &amp;#9822;, &amp;#9851;, &amp;#9940;, &amp;#9978;
+
+- `&amp;#9742;, &amp;#9736;, &amp;#9775;, &amp;#9781;, &amp;#9822;, &amp;#9851;, &amp;#9940;, &amp;#9978;`
+
+---
+
+background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
+background-size: 180px
+background-position: 99% 1%
+
+## Python taught especifically for plant biologists
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="500" src="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" title="Plants and Python"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt;&lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html"&gt;Original link&lt;/a&gt;&lt;/p&gt;
+
+---
+
+```
+background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
+background-size: 180px
+background-position: 99% 1%
+
+## Python taught especifically for plant biologists
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="500" src="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" title="Plants and Python"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt;&lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html"&gt;Original link&lt;/a&gt;&lt;/p&gt;
+```
+&lt;hr&gt;
+
+- Include a website as an iframe
+- Keep in mind that not all websites allow iframe display
+
+---
+
+## Oil glands are closely linked to fruit development
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+&lt;iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1720809115"&gt;Smith &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+- Cross-sectional view of a navel orange peel bending to the point of jetting. 
+
+- Huge perfume and food industry behind essential oils
+
+]
+
+---
+
+```
+## Oil glands are closely linked to fruit development
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+&lt;iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1720809115"&gt;Smith &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+- Cross-sectional view of a navel orange peel bending to the point of jetting. 
+
+- Huge perfume and food industry behind essential oils
+
+]
+```
+&lt;hr&gt;
+
+- iframes can also be used to display online `mp4` and `webv` video files.
+
+---
+
+# Injectivity proof outline
+
+&lt;embed src="../../tda/slides/lab200330.pdf" width="775px" height="475px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+![](../figs/rmd_example_2.png)
+&lt;hr&gt;
+
+- Include PDFs with `knitr::include_graphics`
+
+---
+
+# The title slide
+
+```
+title: "Making slides in xaringan"
+subtitle: "The best of both worlds"
+author: "**Erik Amézquita** &lt;br&gt; &amp;mdash; &lt;br&gt; Computational Mathematics, Science, and Engineering &lt;br&gt; Michigan State University &lt;br&gt; &amp;mdash;"
+date: "2023-03-29"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+```
+&lt;hr&gt;
+
+- I don't remember what most of the options do exactly
+
+- You can add your own `css` file. The `msu.css` is a modification of another xaringan CSS with MSU colors.
+
+---
+
+## Include this right after your title slide
+
+![](../figs/rmd_example_3.png)
+
+&lt;hr&gt;
+
+- Load `knitr` (not necessary if you always do `knitr::`)
+
+- I don't remember what `htmltools.dir.version` does
+
+- `echo = FALSE` will make sure `knitr` doesn't print R console output into the slide by default.
+
+- You can set that all R chunk outputs will be centered by default.
+
+- Cheatsheet for [rmarkdown](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf) `R` chunk options
+
+---
+
+class: inverse, middle, center
+
+# My main gripe: arrays of images
+
+## Things are about to get dirty with HTML/CSS
+
+Look at the [`gallery.css`](../../css/gallery.css) (or don't and just use it)
+
+---
+
+background-image: url("../../barley/figs/S017_L0_seed_10_0.gif")
+background-size: 85px
+background-position: 90% 2%
+
+# Traditional shape descriptors
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:55%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_founders_Length.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_founders_Area.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_vol_h.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_length_h.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_area_h.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+```
+background-image: url("../figs/S017_L0_seed_10_0.gif")
+background-size: 85px
+background-position: 90% 2%
+
+# Traditional shape descriptors
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:55%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_founders_Length.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_founders_Area.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_vol_h.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_length_h.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../barley/figs/boxplot_all_area_h.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+```
+&lt;hr&gt;
+
+- Use `row` and `column` divs to get arbitary splits
+- I've spent a good chunk of my time fiddling with the right `max-width` values
+- Include images with `&lt;img&gt;&lt;/img&gt;`
+- Tweak the image format with [standard CSS/HTML](https://www.w3schools.com/css/css3_images.asp)
+- You can add text, youtube iframes, etc within the `div`
+
+---
+
+## Evolution in real time &amp;rarr; X-rays &amp;rarr; Image Processing
+
+&lt;div class="row" style="color: Navy; font-size: 15px;"&gt;
+  &lt;div class="column" style="max-width:41%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/barley_world.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;28 accessions around the world&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;58 generations in California&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="color: Navy; font-size: 15px;"&gt;
+  &lt;div class="column" style="max-width:51%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/x3000_setup.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; Proprietary X-Ray CT scan reconstruction &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17.5%;"&gt;
+    &lt;img src="../../barley/figs/S019_L0_1.gif"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; 975 spikes &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20.5%;"&gt;
+    &lt;img src="../../barley/figs/S017_L0_seed_10_0.gif"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; 38,000 seeds &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+```
+## Evolution in real time &amp;rarr; X-rays &amp;rarr; Image Processing
+
+&lt;div class="row" style="color: Navy; font-size: 15px;"&gt;
+  &lt;div class="column" style="max-width:41%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/barley_world.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;28 accessions around the world&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;58 generations in California&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="color: Navy; font-size: 15px;"&gt;
+  &lt;div class="column" style="max-width:51%;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/x3000_setup.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; Proprietary X-Ray CT scan reconstruction &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17.5%;"&gt;
+    &lt;img src="../../barley/figs/S019_L0_1.gif"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; 975 spikes &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20.5%;"&gt;
+    &lt;img src="../../barley/figs/S017_L0_seed_10_0.gif"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt; 38,000 seeds &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+```
+
+---
+
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/efF5PSvFQ2A?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Check out more 3D X-ray CT scans at &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+```
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/efF5PSvFQ2A?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;
+  Check out more 3D X-ray CT scans at &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;
+&lt;/p&gt;
+```
+&lt;hr&gt;
+
+- Any YouTube video has an _embed_ option to get the right `iframe`.
+
+- Use CSS/HTML `&lt;p&gt;&lt;/p&gt;` for specific text formatting.
+
+- Use `&lt;a&gt;&lt;/a&gt;` for hyperlinks
+
+---
+
+## &amp;darr; Before and After &amp;rarr;
+
+.left-column[
+![](../../img/aboutmelogos.png)
+]
+
+.right-column[
+- 2013 - 2018 : Math @ at the Universidad de Guanajuato and CIMAT.
+
+- 2016 - 2018 : Bachelor thesis: **Math + Archaeology**. Use TDA to quantify and classify the shape of pre-Columbian masks found in the Templo Mayor in Mexico City.
+
+- 2018 - 2023 : CMSE @ MSU. **Came for the math. Stayed for the plants.**
+
+- 2023 - ???? : PFFFD Postdoc Fellow @ Division of Plant Sciences at Mizzou in Columbia, MO
+]
+
+&lt;p style="font-size:3px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:53%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://research.missouri.edu/sites/default/files/featured-img/2022-02/emc-news-announcements-8jpg.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+```
+## &amp;darr; Before and After &amp;rarr;
+
+.left-column[
+![](../../img/aboutmelogos.png)
+]
+.right-column[
+- 2013 - 2018 : Math @ at the Universidad de Guanajuato and CIMAT.
+- 2016 - 2018 : Bachelor thesis: **Math + Archaeology**. Use TDA to quantify and classify the shape of pre-Columbian masks found in the Templo Mayor in Mexico City.
+- 2018 - 2023 : CMSE @ MSU. **Came for the math. Stayed for the plants.**
+- 2023 - ???? : PFFFD Postdoc Fellow @ Division of Plant Sciences at Mizzou in Columbia, MO
+]
+
+&lt;p style="font-size:3px"&gt;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&lt;/p&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:53%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://research.missouri.edu/sites/default/files/featured-img/2022-02/emc-news-announcements-8jpg.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+```
+&lt;hr&gt;
+
+- You might need hacks when you mix and match
+
+---
+
+class: inverse, center, middle
+
+# Additional resources
+
+---
+
+# Additional resources
+
+- General [RMarkdown](https://bookdown.org/yihui/rmarkdown/) and [xaringan](https://bookdown.org/yihui/rmarkdown/xaringan-format.html) documentation.
+
+- Or xaringan documentation as [xaringan slides](https://slides.yihui.org/xaringan/#1)
+
+- Cheatsheet for [rmarkdown](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf) `R` chunk options
+
+- W3schools has extensive and nicely explained CSS and HTML [tutorials](https://www.w3schools.com/css/default.asp)
+
+- You can setup your personal website via [DECS](https://www.egr.msu.edu/decs/help-support/how-to/engineering_homepage_setup)
+
+- Be *persistent*: First slide show might take you a week, but once you get a feeling for xaringan/CSS and your website folder structure, you'll spend at most a day preparing slides.
+
+- For reference, I wrote this whole thing in 4h total
+
+- (That's just to make the slides **after** I spent a few days making GIFs)
+
+---
+
+class: inverse, center, middle
+
+# Questions?
+
+![](https://64.media.tumblr.com/895f079d8cc1128b5ce3ca7aacf57389/9ff35c052f5d8802-16/s500x750/55486cc6b04f5f7192d0002707ca8b7e550e4db8.gifv)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,508 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Erik Amézquita &mdash; A hodge-podge of math and plants</title>
+<meta name="description" content="Erik Amézquita webpage">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="../css/hawthorne_type1_color2.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <header>
+            <h1><a href="../index.html">Erik Amézquita</a></h1>
+            <h2><a href="../index.html">PFFFD Fellow</a></h2>
+            <h2><a href="../index.html">Plant Sciences and Mathematics @ University of Missouri</a></h2>
+            <!--
+            <div class="logo">
+                <a href="img/front_original.jpg"><img src="img/front_medium.jpg" alt="Erik_in_Chicago_2019" /></a>
+            </div>
+            -->
+        </header>
+    </div>
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <nav>
+            <ul class="inline-list-custom">
+                <li><a href="../index.html">Home [TL;DR]</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../teaching.html">Academic Resources</a></li>
+                <li><a href="../service.html">Other Resources</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../else.html">Else</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h2>If life gives you lemons, do directional statistics</h2>
+        <p>
+            Citrus work like lego blocks. Roughly speaking, any two citrus
+            can hybridize and produce potentially new citrus varieties.
+            In fact, all citrus that you see in the produce section of the
+            market are hybrids. A grapefruit is actually a cross of a pummelo
+            with a sweet orange. An a sweet orange is a cross of a pummelo
+            with a sweet mandarin. And a sweet mandarin is a cross of a
+            pummelo with a pure mandarin. A pure mandarin crossed with a
+            pummelo can also produce a sour orange. And a sour orange crossed
+            with a citron yields a lemon. You get the picture. Citrus are
+            as promiscuous as it gets.
+        </p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="figs/citrus_family_tree_1.jpg" alt="Citrus Genealogy"/>
+            <br>
+            Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a>
+        </p>
+        <p>
+            This large variety of hybridization possibilities corresponds to
+            a variety of citrus fruit shapes. Can we quantify such shape
+            diversity? If we can mathematically describe the shape of both
+            a pummelo and a sweet orange, would I be able to predict that
+            their shape combination yields a grapefruit?
+        </p>
+        <p>
+            We are especially interested in being able to quantify and
+            characterize the distribution of the <em>oil glands</em> on
+            the citrus fruits. Citrus essential oils are important for the
+            food and perfume industries. Oil glands also play a fundamental
+            role in citrus fruit development. There are plenty of unknowns
+            going forward.
+        </p>
+        <h3>The setup</h3>
+        <p>
+            In collaboration with the <a href="https://citrusvariety.ucr.edu/" target="_blank">Givaudan
+            Citrus Variety Collection</a> at University of California&mdash;Riverside,
+            we got access to 158 individual fruit samples comprising 64
+            citrus varieties. These included all the fundamental citrus (citrons,
+            pure mandarins, pummelos), close relatives (trifoliates,
+            kumquats, microcitrus), and important hybrids (sweet oranges, lemons, etc.)
+            These were X-ray CT scanned at Michigan State University. After
+            a lot of image processing fiddling, we manage to segment out
+            the central column, flesh, rind, skin, and oil glands for each
+            citrus fruit.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/SR01_L01_black_spine.gif" alt="original"  style="float: left; height: 180px; margin: 0 0; vertical-align:center">
+            <img src="figs/SR01_L01_black_endocarp.gif" alt="normal"  style="float: left; height: 180px; margin: 0 0">
+            <img src="figs/SR01_L01_black_rind.gif" alt="unair"  style="float: left; height: 180px; margin: 0 0">
+            <img src="figs/SR01_L01_black_exocarp.gif" alt="clean"  style="float: left; height: 180px; margin: 0 0">
+            <img src="figs/SR01_L01_black_oil_glands.gif" alt="clean"  style="float: left; height: 180px; margin: 0 0; vertical-align:center">
+        </div>
+        <p>
+            <br>
+            We focus on the oil glands. We can represent each oil gland
+            as point in space where the <em>x,y,z</em> coordinates are the
+            center of mass of each gland. That is, each citrus fruit now
+            can be thought as point cloud in space (!) As a sanity check,
+            we verify that our count of individual oil glands goes in hand
+            with <a href="https://doi.org/10.1006/anbo.2001.1546" target="_blank">established literature</a>.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/SW02_L00_center_oil_glands.gif" alt="original"  style="float: left; height: 300px; margin: 0 0; vertical-align:center">
+            <img src="figs/oil_gland_number_vs_area.png" alt="normal"  style="float: left; height: 300px; margin: 0 0">
+        </div>
+        <h3>Modeling citrus fruits as ellipsoids</h3>
+        <p>
+            It seemed natural to model citrus as <a href="https://en.wikipedia.org/wiki/Ellipsoid" target="_blank">ellipsoids</a>
+            &mdash;an affine
+            transformation of a sphere. This was done by simply performing
+            <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares" target="_blank">ordinary
+            least squares regression</a> to find the best algebraic parameters
+            of the general ellipsoid formula. Next, the point cloud made of
+            all oil gland centers was projected to the best-fit ellipsoid.
+            Finally, we reparameterized these centers in terms of geodetical
+            coordinates &mdash;latitude and longitude. But latitude and
+            longitude coordinates can be thought as lying on a unit sphere, as
+            well.
+            We thus have a size-independent common
+            framework to compare all the oil glands for all the citrus fruit
+            varieties.
+            We visualized the oil glands on 2D via two
+            <a href="https://en.wikipedia.org/wiki/Lambert_cylindrical_equal-area_projection">Lambert
+            cylindrical equal-area projections</a> from the north and south poles.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/SR01_CRC3289_12B-19-9_L00_Geocentric.jpg" alt="original"  style="float: center; height: 225px; margin: 0 0; vertical-align:center">
+            <img src="figs/lambert_equal_area_N.gif" alt="normal"  style="float: center; height: 100px; margin: 50px 0">
+            <img src="figs/SR01_CRC3289_12B-19-9_L00_geocentric_lazi.jpg" alt="normal"  style="float: center; height: 200px; margin: 0 0">
+        </div>
+        <h3>Directional statistics</h3>
+        <p>
+            Now that all our oil gland data can be represented as points on
+            a common unit sphere, we turn to
+            <a href="https://doi.org/10.1007/s11749-021-00759-x" target="_blank">directional
+            statistics</a>. Directional statistics allows us to characterize
+            distributions specifically on circles, spheres, and related surfaces.
+            We can also test whether a collection of points on a sphere
+            follow a known distribution. To this end, we observed that there is
+            no statistical evidence that supports the hypothesis of glands being
+            uniformly distributed. Nor there was evidence in favor of rotational
+            symmetry.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/M04_00_lambert.jpeg" alt="original"  style="float: center; height: 300px; margin: 0 0; vertical-align:center">
+            <img src="figs/uniform_distribution.jpeg" alt="normal"  style="float: center; height: 300px; margin: 0 0">
+        </div>
+        <h3>What is the distribution then?</h3>
+        <p>
+            We can compute an empiric distribution via
+            <a href="https://idyll-lang.github.io/fidyll-examples/fast-kde/scroller/" target="_blank">kernel
+            density estimation (KDE)</a>. As expected, there is a spherical-specific
+            KDE that we can use. As in the linear case, our KDE will depend
+            on a bandwidth parameter that will determine how smooth our
+            empiric distribution is. We can play around with varying bandwidth
+            parameters and observe which regions show the most dramatic
+            distribution changes.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/P01C_L00_N.gif" alt="original"  style="float: center; height: 300px; margin: 0 0; vertical-align:center">
+        </div>
+        <h3>Future directions</h3>
+        <p>
+            Now that we are convinced that our pipeline enables us to quantify
+            and compare citrus fruit shape, the potential
+            future directions are exciting. To name a few:
+        </p>
+        <div class="list">
+            <ul>
+                <li>Locate, segment, and phenotype seed tissue.</li>
+                <li>Explore more on normal diffusion mechanics and their possible relationship to oil gland distribution.</li>
+                <li>Define a measure of similarity of oil gland distributions and compute a pairwise distance matrix for all citrus fruits.</li>
+                <li>Compare such distances between distributions to phylogenetic distances.</li>
+                <li>Explore alternative ellipsoid-to-sphere algorithms to minimize distortion.</li>
+            </ul>
+        </div>
+        <p>
+            Stay tuned for updates!
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+    </div>
+    <div class="small-12 medium-5 large-5 columns">
+        <p>
+            ¡<strong>Published article</strong>: Amézquita <em>et al.</em> (2022)!
+        </p>
+        <div class="thumbnail-img">
+            <div class="thumbnail-hover"><a href="https://doi.org/10.1002/ppp3.10333"></a></div>
+            <a href="https://doi.org/10.1002/ppp3.10333" target="_blank"><img src="figs/ppp3.png" alt="Amezquita et al 2022" style="vertical-align:bottom"/></a>
+        </div>
+        <p>
+            DOI: <a href="https://doi.org/10.1002/ppp3.10333" target="_blank">10.1002/ppp3.10333</a>
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <strong><a href="slides/cmse_brownbag_2022.html" target="_blank">As slides</a></strong>:
+            Presented at <a href="https://cmse.msu.edu/news-events/brown-bag/" target="_blank">CMSE Brown Bag Seminar</a>. October 2022.
+        </p>
+        <p>
+            <strong><a href="poster/osu_2022.pdf" target="_blank">As a static poster</a></strong>:
+            Presented at <a href="https://u.osu.edu/plantsciencessymposium/" target="_blank">OSUPSS</a>. April 2022.
+        </p>
+        <p>
+            <strong><a href="poster/osu_2022_dynamic.html" target="_blank">As a dynamic poster</a></strong>:
+            Presented at <a href="https://u.osu.edu/plantsciencessymposium/" target="_blank">OSUPSS</a>. April 2022.
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <img src="crc_pics/crc_diversity.jpg" alt="Amezquita et al 2021" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            <img src="figs/citrus_diagnostic.gif" alt="Amezquita et al 2021" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+        </p>
+        <p style="font-size:1.5em">
+            <strong><a href="#additional_resources">Go to additional resources</a></strong>
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+        <h3>Other research projects</h3>
+        <div class="list">
+            <ul>
+                <li><a href="../journal_diversity/description.html">Global disparities in plant biology research</a></li>
+                <li><a href="../barley/description.html">Quantification of barley grain morphology</a></li>
+                <li><a href="../walnuts/description.html">The crackability of walnuts: all about shape, in a nutshell</a></li>
+                <li><a href="../tda/description.html">The intersection of Topological Data Analysis and Biology</a></li>
+                <li><a href="../demat/description.html">Archaeological artifact classification and the Euler Characteristic</a></li>
+                <li><a href="../nasrin/description.html">Mapper to unravel the shape of omics data</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h2 id="additional_resources">Additional Resources</h2>
+        <h3>Ellipsoid approximations</h3>
+        <p>
+            <em>Given a pointcloud, a set of 3D x,y,z coordinates, what are the parameters
+            of the best-fit ellipsoid</em>? I was surprised there was not a
+            straightforward, widely-accepted answer. I also realized how
+            rusty my pre-calculus math is by now. There are a number of papers
+            out there.
+        </p>
+        <p>
+            I chose <a href="https://doi.org/10.1109/GMAP.2004.1290055">Li and
+            Griffiths (2004)</a> as it was both mathematically and computationally
+            the most straightforward answer I could find. They simply perform an
+            <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares" target="_blank">OLS</a>
+            to find the algebraic parameters that minimize the algebraic residuals
+            for the <em><a href="https://en.wikipedia.org/wiki/Quadric">general quadric surface</a></em>.
+            In principle, this approach could produce parameters that approximate
+            the points with a paraboloid or hyperboloid instead. You must know
+            that your point cloud indeed looks like an ellipsoid. Supposedly they
+            use Lagrange multipliers to guarantee that you'll always get
+            ellipsoid paramters, but I personally did not verify it.
+        </p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/9058/28744/1290055/1290055-fig-6-source-large.gif" alt="Ellipsoid Projection" width="80%"/>
+            <br>
+            Credits: <a href="https://doi.org/10.1016/10.1109/GMAP.2004.1290055">Li and Griffiths (2004)</a>
+        </p>
+        <p>
+            This approach will give you algebraic parameters of the general quadric surface
+            equation. To translate these into more intuitive geometric parameters
+            (semiaxes lengths, origin, rotation, etc.), you can follow Section 2.4 of
+            <a href="https://doi.org/10.1515/jogs-2020-0105" target="_blank">Panou <em>et al</em> (2020)</a>.
+        </p>
+        <div class="list">
+            <ul>
+                <li>I personally found
+                <a href="https://doi.org/10.1109/34.888714" target="_blank">Chojnacki <em>et al</em> (2000)</a>
+                too convoluted. I admit stats and numerical analysis are not
+                exactly my strength.</li>
+                <li>I remember I had trouble fully following and implementing
+                <a href="https://doi.org/10.1109/CAMSAP.2009.5413262" target="_blank">Yu <em>et al</em> (2009)</a>.</li>
+                <li>I tried my best to implement <a href="https://doi.org/10.1016/j.amc.2017.07.025" target="_blank">Reza
+                and Sengupta (2017)</a>. I was unable to get sensible results.</li>
+                <li>I was also a bit confused by
+                <a href="https://doi.org/10.1109/AVSS.2011.6027350" target="_blank">Sivapalan
+                <em>et al</em> (2011)</a>.</li>
+                <li><a href="https://doi.org/10.1515/jogs-2020-0105" target="_blank">Panou <em>et al</em> (2020)</a>
+                is a relative easy read for someone with a basic math
+                background. They propose a two-step approximation to obtain the ellipsoid.
+                The first step is an algebraic parameter approximation like
+                in <a href="https://doi.org/10.1109/GMAP.2004.1290055">Li and
+                Griffiths (2004)</a>. The second is a geometric parameter
+                approximation. However, I was unable to get significant results
+                from this second step. Maybe it only works with geoids, with
+                very large ellipsoids the size of a planet, not for ellipsoids
+                the size of a lemon.</li>
+            </ul>
+        </div>
+        <h3>Ellipsoid coordinates</h3>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="https://ars.els-cdn.com/content/image/1-s2.0-S0098300420305410-gr1_lrg.jpg" alt="Ellipsoid Projection" width="50%"/>
+            <br>
+            Credits: <a href="https://doi.org/10.1016/j.cageo.2020.104551">Diaz-Toca <em>et al.</em> (2020)</a>
+        </p>
+        <p>
+            Once we have the ellipsoid parameters, we have to
+            project our original point cloud onto such ellipsoid.
+            This projection can be either:
+        </p>
+        <div class="list">
+            <ul>
+                <li><strong>Geocentric</strong>: By drawing a ray from the
+                ellipsoid center to the point and noting where the ray
+                intersects the ellipsoid surface.</li>
+                <li><strong>Geodetic</strong>: By projecting the point
+                perpendicularly to the ellipsoid surface, i.e., by minimizing
+                the distance from the point to the surface.</li>
+            </ul>
+        </div>
+        <p>
+            The former projection can be computed immediately. The latter
+            requires a much more ellaborate computation.
+            <a href="https://doi.org/10.1016/j.cageo.2020.104551">Diaz-Toca <em>et al.</em> (2020)</a>
+            Is a very well-written breakdown of the computations needed, and
+            they even provide a link to C code that works out of the box.
+        </p>
+        <p>
+            Regardless of the projection used, we can then reparameterize
+            the original point cloud in (latitude, longitude, height) coordinates.
+            We can then translate the (latitude, longitude) coordinates to
+            a unit sphere. These unit sphere will be the common ground that
+            will allow us to compare all citrus at once.
+        </p>
+        <h3>Directional statistics</h3>
+        <p>
+            Directional statistics is a relatively new branch of statistics which
+            focuses on statistics where the domain is not a Euclidean space
+            &mdash;as with regular statististics&mdash; but
+            a circle, sphere, torical or cylindrical.
+        </p>
+        <p>
+            The 1999 seminal textbook <a href="https://doi.org/10.1002/9780470316979"><em>Directional Statistics</em></a>
+            by Mardia and Jupp is pretty good. It is seminal for a reason.
+            It basically compiles everything
+            that was known on the subject until that point. The textbook is quite
+            comprehensive, the index is very fleshed out, and most of the
+            chapters are self-contained. You can jump straight into the
+            the relevant content for the application you have in mind.
+            It also comes with plenty of citations so you can dive deeper
+            into the relevant literature.
+        </p>
+        <p>
+            More than 20 years later, Mardia and Jupp are still relevant.
+            Their textbook is still one of the best ways to get familiar with
+            the foundational ideas.
+            Naturally the discipline has grown, and there
+            have been plenty of advances since 1999.
+            <a href="https://doi.org/10.1201/9781315119472">Ley and Verdebout's
+            <em>Modern Directional Statistics</em> (2017)</a> aims to be an update.
+            They still provide some basic definitions and concepts, albeit
+            very succintly and refer the reader back to Mardia and Jupp
+            plenty of times.
+            Ley and Verdebout are still a pretty good reference to know
+            where to start the google scholar search on how to do a particular
+            task in directional statistics.
+            Applications are fleshed out in their complement
+            <a href="https://doi.org/10.1201/9781315228570"><em>Applied
+            Directional Statistics</em>.</a>
+        </p>
+        <p>
+            A brief review, update, and historical overview of the discipline is
+            provided by <a href="https://doi.org/10.1007/s11749-021-00759-x">Pewsey
+            and García Portugués (2021)</a>. Their last section covers on
+            some of the available software to do actual computations. Fortunately,
+            most of the software comes as R packages, works out of the box,
+            and it is easy to use.
+        </p>
+        <h3>Citrus are intrinsically linked to human history</h3>
+        <p>
+            I love the <a href="https://gastropod.com/" target="_blank">Gastropod
+            podcast</a>. The food that we consume is more than just food.
+            It is also a reflection of human culture and history. Food shaped
+            our society. Citrus are no exception. As <a href="http://www.cynthiagraber.com/home/Welcome.html" target="_blank">Cynthia Graber</a>
+            and <a href="http://www.ediblegeography.com/" target="_blank">Nicola Twilley</a> say,
+            &laquo;not only were these [citrus] fruits so precious that they inspired both museums and the Mafia, they are also under attack by an incurable immune disease that is decimating citrus harvests around the world.&raquo;
+            <a href="https://gastropod.com/museums-mafia-secret-history-citrus/" target="_blank">Listen to their whole citrus episode!</a>
+        </p>
+        <p>
+            <iframe frameBorder="0" height="200" scrolling="no" src="https://playlist.megaphone.fm/?e=VMP3074501891" width="100%"></iframe>
+        </p>
+        <p>
+            Also, I highly recommend you following and watching
+            <a href="https://www.youtube.com/@WeirdExplorer" target="_blank">@WeirdExplorer</a>
+            YouTube channel for a foodie insight into the wide, global
+            fruit variety. He
+            has a number of citrus-specific episodes. In particular, one of
+            his first episodes roughly explains how most citrus are hybrids.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/GgZ6H5yvp-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            And this one is pretty good as well. It also contains an important
+            message that fruit naming matters. There is a reason why the
+            <em>Makrut lime</em> should be always called <em>Makrut lime</em>
+            and not something else.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/2cyTYfD_3ZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            Citrus are quite fascinating. Their history is intrinsically
+            linked to ours. To name a few fun facts.
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://doi.org/10.1111/j.1753-4887.2009.00205.x" target="_blank">Citrus paved the way to the first modern medical trials
+                in Western medicine</a>. Scurvy was the <a href="https://doi.org/10.1111/j.1753-4887.1986.tb07575.x">biggest
+                scourge of the seas</a>. It is estimated than more sailors died
+                due to scurvy than the rest of diseases and sea battles combined.
+                One day, the British tested the anecdotes of sailors being scurvy-resistant due
+                to regular consumption of citrus. Several ships were sent for long
+                voyages. One was provided with citrus juice. Others were provided with no
+                fruits but fresh water, or various elixirs. This was the setup of
+                the first modern medical trial.</li>
+                <li>Very specific citrus are a key for various South and
+                South East Asian cuisines.
+                There are
+                anecdotes of Thai immigrants <a href="https://doi.org/10.1215/01636545-2010-027">trespassing the Citrus Variety
+                Collection of UC Riverside to obtain key ingredients</a> back in the 60s.
+                Else, people would smuggle citrus from
+                Asia to California to complete important dishes.
+                Smuggling naturally comes with a high risk of importing
+                diseases, which can be particularly catastrophic for comercial
+                fields of citrus as most of the commercially grown citrus fruits
+                are essentially clones. <a href="https://swfrec.ifas.ufl.edu/hlb/database/pdf/21_Karp_12.pdf">It
+                is important to develop citrus varieties that can grow in
+                other climates to both supply people with fruits and eliminate
+                the need of dangerous smuggling</a>.</li>
+                <li>Qu Yuan, probably the most important classic Chinese
+                poet, depicted an orange tree as a symbol of steadfastness and
+                resilience in the beautiful poem <a href="https://doi.org/10.6420/DHJHS.199907.0069" target="_blank"><em>Ju song</em></a>.
+                Although we <a href="https://archive.org/details/songsofsouthanci0000unse">do not know for certain if
+                Qu Yuan is the actual author of the poem</a>, it is beautiful nonetheless.
+                For context, Qu Yuan was a renowned advisor of a king circa 200 BC.
+                Inner conflicts with other advisors and court members led to
+                rumor spreads and backstabbing, which forced Qu Yuan to be
+                exiled from the kingdom. According to the legend, Qu Yuan was
+                absolutely distraught, he was profoundly hurt that his king
+                believed others' words and not his. Qu Yuan was roaming when
+                he observed an orange tree. He was captivated, given the fact
+                that orange trees were not supposed to grow, let alone flourish,
+                in that region, where the climate was colder. If an orange
+                tree was able to grow against harsh climates, he as a poet
+                should be able to withstand the terrible setbacks.</li>
+                <li>Citrons, especially <a href="https://en.wikipedia.org/wiki/Etrog">etrogs</a> are key in some Jewish festivities. The relationship between etrogs and the Jewish community <a href="https://doi.org/10.1126/science.129.3343.179" target="_blank">goes back millenia</a>. In fact, modern evidence suggests that as the Jewish community moved westward towards modern Europe, <a href="https://doi.org/10.21273/HORTSCI11023-16">they brought citrus cultivation and citrus breeding with them</a>. It was thanks to their migration that Romans tasted citrus for the first time, and they made quite an impact, especially across Italy and Spain.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <li>&copy; 2023 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
+                <li>Last updated: July 2023.</li>
+                <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
+
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/amezqui3/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/erik-amezquita/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                <a href="https://www.researchgate.net/profile/Erik-Amezquita-2" target="_blank"><img src="../img/researchgate.svg" width="30" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+                <a href="https://orcid.org/0000-0002-9837-0397" target="_blank"><img src="img/orcid.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+                <a href="https://scholar.google.com/citations?user=JBCDR4cAAAAJ&hl=en" target="_blank"><img src="img/googlescholar.svg" width="35" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/hawthorne.js"></script>
+
+</body>
+</html>

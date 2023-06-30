@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Euler meets plant science</title>
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Rasa&family=Roboto&display=swap" rel="stylesheet">
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+*{
+  box-sizing: border-box;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 19.8in;
+height: 10in;
+text-align: justify;
+font-size: 19px;
+background-color: #edf7f0;
+color: #000000;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #00ace624;
+color: #18453b;
+padding: 1.2mm;
+line-height: 1;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #18453b20;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  font-size: 40%;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 1em;
+  padding-left: 1em;
+  line-height: 1em;
+}
+table {
+  margin: auto;
+}
+th {
+  padding-left: 5mm;
+  padding-right: 5mm;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+padding-top: 0;
+}
+.references {
+font-size: 12px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 0px;
+    height: 10in;
+}
+.left{
+    width: 50%;
+}
+.right {
+    width: 25%;
+    background-color: #edf7f0;
+    font-family: 'Rasa', serif;
+    color: #000000;
+    padding: 1ex;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+span.citation {
+  color: #00ace6;
+  font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: #0484ae;
+}
+
+#title {
+    font-size: 40px;
+    text-align: left;
+    margin: 0;
+    line-height: 70%;
+    border-bottom: 0;
+}
+#author {
+    color: #18453b;
+    margin: 0;
+    line-height: 90%;
+    font-size: 1.2em;
+}
+.author a{
+    color: #18453b;
+}
+
+#affiliation {
+    padding-top: 0;
+    line-height: 75%;
+    color: #404040;
+    font-style: italic;
+    font-size: 12px;
+    margin: 0;
+}
+sup {
+    color: #767660;
+}
+.affiliation sup {
+    font-size: 10px;
+}
+
+.affiliation a{
+    color: #404040;
+}
+.author sup {
+    font-size: 16px;
+}
+.author_extra {
+    color: #0484ae;
+    margin: 0;
+    line-height: 85%;
+    font-size: 15px;
+    font-weight: 700;
+}
+.right h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.right h2 {
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: -15px;
+}
+.right h4 {
+    text-align: left;
+    margin-top: -5px;
+    margin-bottom: -10px;
+}
+.right p {
+color: #000000;
+}
+.right ol, ul {
+    text-align: left;
+}
+.main {
+    width: calc(19.8in * 0.5);
+    height: 10in;
+    position: fixed;
+    background-color: #18453b;
+    color: #ffffff96;
+    font-family: Overpass;
+    background-image: linear-gradient(#18453b 25%, #00ace6);
+}
+.main strong {
+    color: #FFFFFF;
+}
+img.main-img-left {
+    width: 20%;
+    left: 1em;
+    bottom: 1em;
+    position: absolute;
+}
+img.main-img-right {
+    width: 18%;
+    right: 1em;
+    bottom: 1em;
+    position: absolute;
+}
+.main p {
+    margin-top: 0.5em;
+    font-size: 70px;
+    text-align: left;
+}
+.fab {
+    color: #404040;
+    font-size: 25px;
+}
+.twitter, i {
+    color: #404040;
+    font-size: 35px;
+    text-decoration: none;
+}
+a.email {
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.85em;
+}
+.envelope {
+    color: #404040;
+    font-size: 1px;
+    text-decoration: none;
+}
+span > #tab:mytable {
+  font-weight: bold;
+}
+.section {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+}
+.main p {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+.main_pic {
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.orcid img {
+  width: 2%;
+}
+a.left:link, a.left:visited{
+    color: #ffff00;
+    border: 2px solid yellow;
+    padding: 10px 20px;
+}
+a.left:hover, a.left:active{
+    color: hotpink;
+    background-color:#00ace6;
+    border: 2px solid hotpink;
+    padding: 10px 20px
+}
+
+
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:13px;overflow:hidden;padding:3px 15px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:5px 7px;word-break:normal;}
+.tg .tg-alz1{background-color:#eee8d5;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="column left">
+        <div class="main">
+        <p>Using <strong>topology</strong> to <strong>analyze</strong> the <strong>shape</strong> of barley<p>
+        <p style="text-align: center;">Check the <strong>animated</strong> version of my <strong>poster</strong>!</p>
+        <p style="text-align:center; font-family:monospace,monospace;"><a class="left" href="https://bit.ly/barley_tda">bit.ly/barley_tda</a></p>
+        <p style="text-align:center; margin-top: -25px">
+            <img src="../figs/S019_L0_1_21.png" style="width:10%" />
+            <img src="../figs/ecc_filter_X_16.png" style="width:11%" />
+            <img src="../figs/svm_mds_canberra.png" style="width:11%" />
+        </p>
+        <img src="../figs/research.svg" class="main-img-left" />
+        <img src="../../img/spartan_logo_transparent.png" class="main-img-right" />
+        </div>
+    </div>
+    <div class="column right">
+        <div class="title section">
+            <h1 id="title"><a href="./neurips_tda_2020.html" target="_blank">Euler meets plant science</a></h1>
+
+            <h3 id="author" class="author">
+
+            <a href="../../index.html" target="_blank">Erik Amézquita</a><sup> 1, <a class="orcid" href="https://orcid.org/0000-0002-9837-0397"><img src="https://raw.githubusercontent.com/brentthorne/posterdown/master/images/orcid.jpg"></a></sup><br>
+
+            <a class='envelope'><i class="fas fa-envelope" style='font-size:15px'></i></a> <a href="mailto:amezqui3@msu.edu" class="email">amezqui3@msu.edu</a> <br>
+                  </h3>
+
+            <h5 id="author_extra" class="author_extra">
+             <a href="https://www.canr.msu.edu/people/michelle-quigley" target="_blank">Michelle Quigley</a><sup>2</sup>
+             <a href="https://www.win.tue.nl/~tophelde/" target="_blank">Tim Ophelders</a><sup>1</sup>
+             <a href="http://www.elizabethmunch.com/" target="_blank">Elizabeth Munch</a><sup>1</sup>
+             <a href="https://dhchitwood.wixsite.com/morphologylab" target="_blank">Daniel Chitwood</a><sup>2</sup>
+             <a href="https://jacoblandis.com/" target="_blank">Jacob Landis</a><sup>3,4</sup>
+             <a href="https://koeniglab.com/" target="_blank">Daniel Koenig</a><sup>3</sup>
+            </h5>
+
+            <p id="affiliation" class="affiliation">
+            <sup>1</sup> <a href="https://cmse.msu.edu/" target="_blank">Computational Math, Science &amp; Engineering, Michigan State University</a><br>
+            <sup>2</sup> <a href="https://www.canr.msu.edu/hrt/index" target="_blank">Horticulture, Michigan State University</a><br>
+            <sup>3</sup> <a href="https://plantbiology.ucr.edu/" target="_blank">Botany and Plant Sciences, University of California, Riverside</a><br>
+            <sup>4</sup> <a href="https://plantbio.cals.cornell.edu/" target="_blank">Integrative Plant Science, Cornell University</a>
+            </p>
+        </div>
+        <br>
+        <div id="experimental-design" class="section level2">
+            <h2 style="padding: 10px 0 0 0;">Experimental Design</h2>
+            <p><img src="../figs/composite_cross_collection.png" width="85%" style="display: block; margin: auto;" /></p>
+            <ul>
+            <li>28 founders (land races). 58 generations.</li>
+            </ul>
+        </div>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="padding: 10px 0 0 0;">Image processing to measure seeds</h2>
+            <p><img src="../figs/seeds_batch5b_transp.png" style="width:26.0%" />
+            <img src="../figs/../figs/boxplot_all_vol_h.png" style="width:65.0%" /></p>
+            <ul>
+                <li>3D X-ray CT scan data: 875 barley spikes.</li>
+                <li>38,000 seeds: generations F0, F18, and F58.</li>
+                <li>Distribution of length, height, width, volume, etc.</li>
+            </ul>
+        </div>
+        <div id="svm-table">
+            <h2 style="padding: 15px 0 15px 0;">SVM Classification Results</h2>
+            <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax">Shape descriptors</th>
+                    <th class="tg-0lax">No. descriptors</th>
+                    <th class="tg-0lax">Classification accuracy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-alz1">Traditional</td>
+                    <td class="tg-alz1">11</td>
+                    <td class="tg-alz1">51.9% &#8212 54.2%</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">Topological (ECT + KPCA)</td>
+                    <td class="tg-0lax">12</td>
+                    <td class="tg-0lax">43.2% &#8212 45.7%</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-alz1">Combined (Trad + Topo)</td>
+                    <td class="tg-alz1">23</td>
+                    <td class="tg-alz1">69.2% &#8212 71.9%</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="acknowledgements" class="section">
+            <h4 style="padding: 15px 0 0 0;">Acknowledgements</h4>
+            <p style="font-size: 12px; line-height: 90%;">This work is supported in part by Michigan State University and the National Science Foundation Research Traineeship Program <a href="https://impacts.natsci.msu.edu/", target="_blank">(DGE-1828149)</a>.</p>
+        </div>
+    </div>
+
+    <div class="column right">
+        <br>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2 style="padding: 0 0 0 0;">Euler characteristic transform (ECT)</h2>
+            <p><span class="math display">\[\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces})\]</span></p>
+            <ul style="margin-top: -10px;">
+            <li>ECT is the record of how the EC changes as we reconstruct a given object in all possible directions.</li>
+            <li>The ECT summarizes all shape information <span class="citation">[<a href="https://doi.org/10.1093/imaiai/iau011" target="_blank">1</a>]</span>.</li>
+            </ul>
+            <p><img src="../figs/ect_filter_49.png" width="80%" style="display: block; margin: auto;" /></p>
+        </div>
+        <div id="results-traditional-ect" class="section level2">
+            <h2 style="padding: 10px 0 0 0;">SVM: Traditional + ECT + KPCA </h2>
+            <p><img src="../figs/confusion_matrix_combined_crop.png" width="98%" style="display: block; margin: auto;" /></p>
+            <ul style="margin-top: -20px;">
+                <li>SVM to classify 3,000 seeds from the 28 founders</li>
+                <li>(80% training vs 20% testing) <span class="math inline">\(\times\)</span> 50 times</li>
+                <li><strong>70% classification accuracy</strong></li>
+            </ul>
+        </div>
+        <div id="references" class="section">
+            <h4 style="margin-top: -10px;" >References</h4>
+            <div id="refs" class="references">
+                <div id="ref-Turner2014">
+                <p>[1] K. Turner, S. Mukherjee, and D. M. Boyer, <a href="https://doi.org/10.1093/imaiai/iau011" target="_blank">“Persistent homology transform for modeling shapes and surfaces,”</a> <em>Information and Inference</em>, vol. 3, no. 4, pp. 310–344, Dec. 2014.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,961 @@
+---
+title: "The shape of things to come"
+subtitle: "Exploring the mathematical shape of plants"
+author: "**Erik Amézquita** <br> &mdash; <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> &mdash;"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Plant morphology
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/efF5PSvFQ2A?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+<p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'">Check out more 3D X-ray CT scans at <a href="https://www.youtube.com/@endlessforms6756">youtube.com/@endlessforms6756</a></p>
+
+---
+
+background-image: url("https://gradschool.missouri.edu/wp-content/uploads/2019/02/MU_UnitSig_GraduateSchool_rgb_std_horiz.png")
+background-size: 330px
+background-position: 98% 2%
+
+## &darr; Before and After &rarr;
+
+.left-column[
+![](../../img/aboutmelogos.png)
+]
+
+.right-column[
+- 2013 - 2018 : Math @ at the Universidad de Guanajuato and CIMAT.
+
+- 2016 - 2018 : Bachelor thesis: **Math + Archaeology**. Use TDA to quantify and classify the shape of pre-Columbian masks found in the Templo Mayor in Mexico City.
+
+- 2018 - 2023 : CMSE @ MSU. **Came for the math. Stayed for the plants.**
+
+- 2023 - ???? : PFFFD Postdoc Fellow @ Division of Plant Sciences at Mizzou in Columbia, MO
+]
+
+<p style="font-size:3px">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+
+<div class="row">
+  <div class="column" style="max-width:45%">
+    <img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg">
+  </div>
+  <div class="column" style="max-width:53%">
+    <img style="padding: 0 0 0 0;" src="https://research.missouri.edu/sites/default/files/featured-img/2022-02/emc-news-announcements-8jpg.jpg">
+  </div>
+</div>
+
+---
+
+background-image: url("../../cmse/figs/cmse logo file-01.svg")
+background-size: 150px
+background-position: 1% 50%
+
+class: center
+
+# My research: Crossing and merging bridges
+
+<div class="row">
+  <div class="column" style="width:15%">
+  </div>
+  <div class="column" style="max-width:15%">
+    <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/S017_L3_1.gif"></a>
+  </div>
+  <div class="column" style="max-width:18%">
+    <a href="https://doi.org/10.1002/ppp3.10333" target="_blank"><img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_black_exocarp.gif"></a>
+  </div>
+  <div class="column" style="max-width:25%">
+    <img style="padding: 0 0 0 0;" src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif">
+  </div>
+  <div class="column" style="max-width:25%">
+    <img style="padding: 0 0 0 0;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif">
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="width:15%">
+  <p style="font-size:5px">&mdash;</p>
+  </div>
+  <div class="column" style="max-width:28%">
+    <a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"><img style="padding: 0 0 0 0;" src="../../tutorials/figs/plants_and_python_group_photo.jpg"></a>
+  </div>
+  <div class="column" style="max-width:50%">
+    <a href="https://doi.org/10.1073/pnas.2217564120" target="_blank"><img style="padding: 0 0 0 0;" src="../../journal_diversity/figs/frequencies_globe_inv.jpg"></a>
+  </div>
+</div>
+
+<div class="list" style="font-size: 10px; text-align: left;">
+    <ul>
+      <li>Marks <em>et al.</em> (2023) A critical analysis of plant science literature reveals ongoing inequities. DOI: <a href="https://doi.org/10.1073/pnas.2217564120" target="_blank">10.1101/2022.10.15.512190</a></li>
+      <li><strong>A</strong> <em>et al.</em> (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. DOI: <a href="https://doi.org/10.1002/ppp3.10333" target="_blank">10.1002/ppp3.10333</a></li>
+      <li><strong>A</strong> <em>et al.</em> (2022) Genomics data analysis via spectral shape and topology. DOI: <a href="https://doi.org/10.48550/arXiv.2211.00938" target="_blank">10.48550/arXiv.2211.00938</a></li>
+      <li>VanBuren<em>et al.</em> (2022) Teaching tools in plant biology. Plants and Python, coding from scratch in the plant sciences. DOI: <a href="https://doi.org/10.1093/plcell/koac187" target="_blank">10.1093/plcell/koac187</a>.</li>
+      <li><strong>A</strong> <em>et al.</em> (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. DOI: <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">10.1093/insilicoplants/diab033</a></li>
+      <li><strong>A</strong> <em>et al.</em> (2020) The shape of things to come: Topological data analysis and biology, from molecules to organisms. DOI: <a href="https://doi.org/10.1002/dvdy.175" target="_blank">10.1002/dvdy.175</a></li>
+    </ul>
+</div>
+
+---
+
+# The shape of things to come
+
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;">
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;text-align: center; font-size:28px">The shape of adaptability</p>
+    <img style="padding: 0 70px;" src="../figs/S017_L3_1.gif"></img>
+    <img style="padding: 0 55px;" src="../figs/ecc_X.gif"></img>
+    <p style="text-align: center;">Topological Data Analysis</p>
+    <p style="text-align: center;">Euler Characteristic Transform</p>
+  </div>
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;font-size:28px;text-align: center;">The shape of development</p>
+    <img style="padding: 0 60px;" src="../../citrus/figs/SR01_L01_black_exocarp.gif"></img>
+    <img style="padding: 0 27px;" src="../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg"></img>
+    <p style="text-align: center;">Ellipsoidal modeling</p>
+    <p style="text-align: center;">Directional statistics</p>
+  </div>
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;font-size:28px;text-align: center;">The shape of domestication</p>
+    <img style="padding: 0 35px;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"></img>
+    <img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg"></img>
+    <p style="text-align: center;">Allometry of multiple tissues</p>
+    <p style="text-align: center;">Convexity indices</p>
+  </div>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# 1. Quantifying the barley morphology
+
+## Brewing with the Euler Characteristic Transform
+
+```{r, out.width=400}
+knitr::include_graphics("../figs/amezquita_etal_2021.png")
+```
+
+---
+
+<div class="row">
+  <div class="column" style="max-width:44%">
+    <a href="https://kizilvest.ru/20150827-v-kizilskom-rajone-nachalas-uborochnaya-strada/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_kizilskoye.jpg"></a>
+    <a href="https://ipad.fas.usda.gov/highlights/2008/11/eth_25nov2008/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_ethiopia.gif"></a>
+    <a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_historical_expansion.jpg"></a>
+  </div>
+  <div class="column" style="max-width:44%">
+    <a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"></a>
+    <a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"></a>
+    <a href="https://www.nationalgeographic.co.uk/travel/2020/05/photo-story-from-barley-fields-to-whisky-barrels-in-rural-scotland" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_seed_scotland_cropped.jpg"></a>
+  </div>
+  <div class="column" style="max-width:8%; font-size: 15px;">
+    <p style="text-align: center; font-size: 30px; line-height: 1em;"> <strong> Barley across the world </strong></p>
+    <p>Kiliskoye (Chelyabinsk, Russia)</p>
+    <p>Marchouch (Rabat, Morocco)</p>
+    <p>Aksum (Tigray, Ethiopia)</p>
+    <p>Salar (Tsetang, Tibet)</p>
+    <p>Expansion of the barley. </p>
+    <p>Turriff (Aberdeenshire, Scotland)</p>
+  </div>
+</div>
+
+---
+
+## Evolution in real time &rarr; X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:41%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/barley_world.jpg">
+    <p style="text-align: center;">28 accessions around the world</p>
+  </div>
+  <div class="column" style="max-width:50%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/composite_cross_collection.jpg">
+    <p style="text-align: center;">58 generations in California</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center;"> 975 spikes </p>
+  </div>
+  <div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S017_L0_seed_10_0.gif">
+    <p style="text-align: center;"> 38,000 seeds </p>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/S017_L0_seed_10_0.gif")
+background-size: 85px
+background-position: 90% 2%
+
+# Traditional shape descriptors
+
+<div class="row">
+  <div class="column" style="max-width:55%">
+    <img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Length.png">
+    <img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Area.png">
+  </div>
+  <div class="column" style="max-width:45%">
+    <img style="padding: 0 0 0 0;" src="../figs/boxplot_all_vol_h.png">
+    <img style="padding: 0 0 0 0;" src="../figs/boxplot_all_length_h.png">
+    <img style="padding: 0 0 0 0;" src="../figs/boxplot_all_area_h.png">
+  </div>
+</div>
+
+---
+
+# Topology: The Euler characteristic
+
+$$\begin{align} \chi &= \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}) \\ &= \#(\text{Connected Components}) - \#(\text{Loops}) + \#(\text{Voids}). \end{align}$$
+
+<div class="row">
+  <div class="column" style="width:5%">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tda/figs/tetrahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tda/figs/cube.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tda/figs/octahedron.gif">
+  </div>
+  <div class="column" style="width:5%">
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="width:5%">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tda/figs/dodecahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tda/figs/icosahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"> V - E + F = 2</p>
+  </div>
+  <div class="column" style="width:5%">
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+## Euler Characteristic Curve (ECC)
+
+- Consider a cubical complex $X\subset\mathbb{R}^d$
+- And a unit-length direction $\nu\in S^{d-1}$
+
+- And the subcomplex containing all cubical cells below height $h$ in the direction $\nu$
+$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$
+
+- The Euler Characteristic Curve (ECC) of direction $\nu$ is defined as the sequence $$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$
+
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 800px
+background-position: 50% 88%
+
+## Euler Characteristic Transform (ECT)
+
+- Repeat and concatenate for all possible directions.
+
+$$
+\begin{split}
+ECT(X):\; & S^{d-1} \to \mathbb{Z}^{\mathbb{R}}\\
+&\nu\mapsto\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.
+\end{split}
+$$
+
+- [**Theorem** (Turner, Mukherjee, Boyer 2014) & (Curry, Mukherjee, Turner, 2018)](http://arxiv.org/abs/1805.09782):  The ECT is injective with a finite bound of necessary directions.
+
+---
+
+background-image: url("../figs/turner_etal_2014.png")
+background-size: 280px
+background-position: 99% 1%
+
+
+# More on the ECT
+
+- Easy to compute: a quick alternating sum.
+
+- *Different* simplicial complexes correspond to *different* ECTs.
+
+- [**Theorem _(ibid)_**](https://arxiv.org/abs/1310.1030): The ECT effectively summarizes all possible information related to shape.
+
+There is elusive math research on computationally efficient reconstruction algorithms:
+- [Turner, Mukherjee, Curry (2021)](https://arxiv.org/abs/1805.09782): Finite number of directions
+- [Betthauser (2018)](https://people.clas.ufl.edu/peterbubenik/files/Betthauser_Thesis.pdf): 2D reconstruction
+- [Fasy, Micka, Millman, Schenfisch, Williams (2022)](https://arxiv.org/abs/1912.12759): 3D reconstruction
+- [Crawford, Monod, Chen, Mukherjee, Rabadan (2020)](https://doi.org/10.1080/01621459.2019.1671198): Smooth ECT
+- [Jiang, Kurtek, Needham (2020)](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w50/Jiang_The_Weighted_Euler_Curve_Transform_for_Shape_and_Image_Analysis_CVPRW_2020_paper.pdf): Weighted ECT
+
+```{r, out.width="500px"}
+knitr::include_graphics(c("../../arabidopsis/figs/ect_col-0_pot0_leaf0.gif"))
+```
+
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 600px
+background-position: 50% 98%
+
+## Topological shape descriptors for barley seeds
+
+.pull-left[
+```{r, out.width=250}
+knitr::include_graphics('../figs/pole_directions_p7_m12_crop.jpg')
+```
+]
+
+.pull-right[
+- 158 directions
+
+- 16 slices per direction
+
+- Every seed is associated a $158\times16=2528$-dim vector
+
+- Reduced to 12 dimensions with UMAP
+]
+
+
+---
+
+# Supervised Learning
+
+![](../../demat/figs/supervised_learning.png)
+
+---
+
+background-image: url("../figs/barley_world.jpg")
+background-size: 225px
+background-position: 98% 2%
+
+# Quantify the shape of barley
+
+**Goal:** Classify the **28** barley accessions solely by grain morphology.
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Shape descriptors</th>
+    <th class="tg-0pky">No. of descriptors</th>
+    <th class="tg-0pky">F1</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-2bhk">Traditional</td>
+    <td class="tg-2bhk">11</td>
+    <td class="tg-2bhk">0.55 &plusmn; 0.019</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Topological</td>
+    <td class="tg-0pky">12</td>
+    <td class="tg-0pky">0.74 &plusmn; 0.016</td>
+  </tr>
+  <tr>
+    <td class="tg-2bhk">Combined</td>
+    <td class="tg-2bhk">23</td>
+    <td class="tg-2bhk"><strong>0.86 &plusmn; 0.010</strong></td>
+  </tr>
+</tbody>
+</table>
+
+### What does topology actually measure?
+
+.pull-left[
+```{r, out.width=225}
+knitr::include_graphics(c('../figs/discerning_directions.png'))#, '../figs/arrow_seed_09_0.gif'))
+```
+]
+
+.pull-right[
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Predicting with Semi-Supervised Learning
+
+![](../../demat/figs/semisupervised_learning.png)
+
+---
+
+# Prediction into semi-supervised territory
+
+- Train an SVM with 100% of the founders $(F_0)$
+
+- Classify the progeny $(F_{18}\text{ and }F_{58})$ to detect genotype enrichment
+
+.pull-left[
+![](../figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+---
+
+background-image: url("../figs/comparison_lines_combined_topounscaled_d158_T16_horz.png")
+background-size: 900px
+background-position: 50% 70%
+
+## Observe shape distribution across lines
+
+---
+
+background-image: url("../figs/amezquita_etal_2021.png")
+background-size: 300px
+background-position: 98% 2%
+
+
+# Summary
+
+.left-column[
+```{r, out.width=150, fig.align='center'}
+knitr::include_graphics(c('../figs/S017_L3_1.gif', '../figs/ecc_X.gif'))
+```
+]
+
+.right-column[
+- **TDA** captures **nuanced** morphological information that is not obvious to the naked eye.
+
+- We get the best results by **combining** both traditional and topological morphological descriptors.
+
+- We can tell **similar** population genetic dynamics by using combined **morphological** descriptors.
+
+- Seed phenotyping can be **cheaper** than genotyping.
+
+- This is one of the **first** applications of the ECT to real-world data.
+
+- First application of the ECT to **plant biology** specifically.
+]
+
+---
+
+class: center, inverse, middle
+
+# 2. If life gives you lemons...
+
+## Modeling citrus oil gland distribution
+
+### Comparing limes to oranges with directional statistics
+
+```{r, out.width=400, fig.align='center'}
+knitr::include_graphics('../../citrus/figs/ppp3.png')
+```
+
+---
+
+## Think of citrus as lego blocks
+
+![](../../citrus/figs/citrus_family_tree_1.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+---
+
+## X-rays &rarr; Image Processing &rarr; Oil glands
+
+<div class="row">
+  <div class="column" style="max-width:37%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
+    <p style="text-align: center;">UCR Collaboration</p>
+  </div>
+  <div class="column" style="max-width:37%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
+    <p style="text-align: center;">3D X-Ray CT scan</p>
+  </div>
+  <div class="column" style="max-width:25%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/lemon_development.jpg">
+    <p style="text-align: center;">Fruit development</p>
+  </div>
+</div>
+
+<div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:20%;">
+    <img src="../../citrus/figs/SR01_L01_endocarp.gif">
+    <p style="text-align: center;"> Endocarp </p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../citrus/figs/SR01_L01_rind.gif">
+    <p style="text-align: center; padding:5px 0;"> Rind </p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../citrus/figs/SR01_L01_exocarp.gif">
+    <p style="text-align: center;"> Exocarp </p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../citrus/figs/SR01_L01_oil_glands.gif">
+    <p style="text-align: center;"> Oil glands</p>
+  </div>
+  <div class="column" style="max-width:20%;padding: 10px 0 0 20px;">
+    <p>
+      <li>53 different citrus species</li><br>
+      <li>All fundamental lego blocks and several relatives and hybrids of interest</li><br>
+      <li>166 individual fruits</li>
+    </p>
+  </div>
+</div>
+
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+class: middle
+
+## Citrus modeling: Sour and sweet orange
+
+```{r, out.width=800, fig.align='center'}
+knitr::include_graphics(c('../../citrus/figs/SR01_CRC3289_12B-19-9_L00_lambproj.jpg',
+                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj.jpg'))
+```
+
+---
+
+# Citrus projections
+
+![](../../citrus/figs/citrus_comparison_panel_alt.jpg)
+
+---
+
+background-image: url("../../citrus/ellipsoids/GarciaPortugues_etal_2020a.png")
+background-size: 200px
+background-position: 99% 1%
+
+# Uniform and rotationally symmetric spherical distributions
+
+![](../../citrus/figs/rotasym_comparison_panel_alt.jpg)
+
+- A battery of tests reveal that citrus oil glands are neither uniformly nor rotationally symmetrically distributed.
+
+---
+
+background-image: url("../../citrus/ellipsoids/GarciaPortugues_2013.png")
+background-size: 150px
+background-position: 95% 3%
+
+# Spherical Kernel Density Estimators
+
+![](../../citrus/figs/WR19_CRC3842_18B-18-5_L00_emi_kde_N.jpg)
+
+- Oil glands of a papeda
+- Red arrows indicate the most significant gradient values for the density function
+- Concentration parameter $k$ is chosen to be optimal
+
+---
+
+background-image: url("../../citrus/figs/ppp3.png")
+background-size: 225px
+background-position: 95% 3%
+
+# Summary
+
+.left-column[
+
+```{r, out.width=150, fig.align='center'}
+knitr::include_graphics(c('../../citrus/crc_pics/citrus_amblycarpa.jpg',
+                          '../../citrus/figs/SR01_L01_black_exocarp.gif',
+                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg'))
+```
+
+]
+
+.right-column[
+- It is possible to **compare** ~~apples~~ limes to oranges, despite diversity in shapes and sizes.
+
+- We can define the non-parametrical **distribution** of oil glands for most of the citrus.
+
+- **First** time citrus shape has been examined using X-ray CT scans.
+
+- AFAIK, this is also the **first** time directional statistics have been **applied** to plant biology.
+]
+
+---
+
+class: inverse, center, middle
+
+# 3. All about cracks, kernels, and domestication
+
+## In a nutshell
+
+```{r, out.width=200, fig.align='center'}
+knitr::include_graphics('https://upload.wikimedia.org/wikipedia/commons/3/39/Benutzung_eines_Nussknackers.gif')
+```
+
+---
+
+# The wal(nu)tzing nutcracker!
+
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px">
+  <div class="column" style="max-width:25%;">
+    <img src="../../walnuts/figs/IMGA04011.jpg">
+    <p style="text-align: center;">148 accessions</p>
+  </div>
+  <div class="column" style="max-width:42%;">
+    <img src="../../barley/figs/x3000_setup.jpg">
+    <p style="text-align: center;">1301 walnuts scanned</p>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="../../walnuts/figs/pat_walnut_crack_detail4.jpg">
+    <p style="text-align: center;">Qualitative data for crackability</p>
+  </div>
+</div>
+
+<div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif">
+    <p style="text-align: center; margin: 0.5ex;">Shell</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Air</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Packing tissue</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif">
+    <p style="text-align: center;margin: 0.5ex;">Kernel</p>
+  </div>
+  <div class="column" style="max-width:20%; padding: 0 0 0 5px">
+    <p style="margin:5px 0 0 0; text-align:left">
+      &#9656;&ensp;Individuals separated manually<br>
+      &#9656;&ensp;Tissues separated with watershed segmentation<br>
+      &#9656;&ensp;38 traditional shape and size descriptors
+    </p>
+  </div>
+</div>
+
+---
+
+# The power of allometry: $\;y = e^bV_N^m$
+
+For most living organisms, different tissues grow at different rates with respect to each other.
+
+Growth does **not** scale linearly but following a power law.
+
+<div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:33%;">
+    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.jpg">
+    <p style="padding: 0 2ex 0 0;">Walnut changes dramatically after its diameter is larger than 1.6cm</p>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="../../walnuts/figs/air_volume_vs_nut_volume.jpg">
+    <p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then air volume increases by 2.3x</p>
+    <p style="padding: 0 2ex 0 0;">Walnut diameter is below 16cm</p>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg">
+    <p style="margin: 1.1ex 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then kernel volume only increases by 1.8x</p>
+  </div>
+</div>
+
+There are biophysical constraints at play in walnut development
+
+---
+
+## Correlation with traits of interest
+
+![](../../walnuts/figs/combination_hbar_correlation.jpg)
+
+.pull-left[
+**Walnuts with more kernel filling ratio have:**
+
+- Less air filling ratio
+- Smaller volume
+- Smoother shells
+- Kernel overall shape is more convex 
+- But it also has numerous deep but thin grooves.
+] 
+
+.pull-right[
+**Walnuts with thinner shells have:**
+
+- Less total shell volume and shell ratio
+- More air filling ratio
+- Smoother shells
+]
+
+---
+
+<h3 style="line-height:0">Descriptors that explain the most crackability variance</h3>
+
+```{r, out.width=725, fig.align='center'}
+knitr::include_graphics(c('../../walnuts/figs/qual_EaseOfRemoval_scatter_2x4.jpg',
+                          '../../walnuts/figs/qual_ShellStrength_scatter_2x4.jpg'))
+```
+
+---
+
+## Can you spot the Earliest Himalayan accession?
+
+```{r, out.width=500, fig.align='center'}
+knitr::include_graphics('../../walnuts/figs/pat_walnut_crack_crop.jpg')
+```
+
+This one accession is the most heterozygous wild type of the bunch
+
+---
+
+## The Earliest Himalayan accession breaks the pattern
+
+```{r, out.width=725, fig.align='center'}
+knitr::include_graphics(c('../../walnuts/figs/NewStuke_R1_T18_vs_2014SBa_R7_T26.png'))
+```
+
+--
+
+```{r, out.width=725, fig.align='center'}
+knitr::include_graphics(c('../../walnuts/figs/qual_85-023-2_scatter.jpg'))
+```
+
+- The kernel of Earliest has deeper, wider cavities
+- Does it refer to the cavity located at the proximal end?
+
+---
+
+background-image: url("https://toasterovenlove.com/wp-content/uploads/Stirred-nuts-on-pan.jpg")
+background-size: 180px
+background-position: 98% 2%
+
+# Summary
+
+.left-column[
+
+```{r, out.width=725, fig.align='center'}
+knitr::include_graphics(c('../../walnuts/figs/2014SBa_R5_T81_meat_2.gif',
+                          '../../walnuts/figs/kernel_volume_vs_nut_volume.jpg'))
+```
+
+]
+
+.right-column[
+
+- There are serious **biophysical** constraints that govern the kernel filling ratio.
+
+- Larger walnuts tend to have **less** kernel and **more** air relative to their size.
+
+- Walnuts with thinner shells also have **more** air.
+
+- **Less** packing tissue in general corresponds to better **crackability**.
+
+- The shape of **domestication** is quite **nuanced**: it is a hard nut to crack.
+
+- AFAIK, this is the first time that **allometry** has been studied for walnut fruit.
+
+- AFAIK, first time packing tissue volume and **convexity** indices have been measured.
+]
+
+---
+
+class: center, inverse, middle
+
+# 4. Future directions
+
+## Barley scratching the surface
+
+---
+
+# Grains, oranges, and nuts oh my!
+
+.left-column[
+
+```{r, out.width=100, fig.align='center'}
+knitr::include_graphics(c('../figs/S017_L3_1.gif',
+                          '../../citrus/figs/SR01_L01_black_exocarp.gif',
+                          '../../walnuts/figs/2014SBa_R5_T81_meat_2.gif'))
+```
+
+]
+
+.right-column[
+- Identify specific **molecular markers** corresponding to topological traits of **barley seeds**.
+- Develop a high-throughput **seed phenotyping** pipeline for seed morphology.
+
+- Compute a pairwise distance matrix for citrus oil gland **distributions**.
+- Use **persistent homology** as an alternative to quantify the distribution of such oil glands.
+
+- Measure the size and volume of the central **cavity** of the walnut kernel.
+- Use the ECT or a similar approach to quantify **nuances** present in the kernel.
+]
+
+
+---
+
+background-image: url("https://gradschool.missouri.edu/wp-content/uploads/2019/02/MU_UnitSig_GraduateSchool_rgb_std_horiz.png")
+background-size: 330px
+background-position: 98% 2%
+
+## Future research at Mizzou
+
+.pull-left[
+The shape of maize roots
+
+```{r, out.width=200}
+knitr::include_graphics(c('../../psd/figs/Maiz_root_Dario.jpeg'))
+```
+
+The shape of dodder movement
+
+```{r, out.width=300}
+knitr::include_graphics(c('https://i.makeagif.com/media/11-28-2013/qmlphv.gif'))
+```
+
+]
+
+.pull-right[
+Dabbing into UAV imagery for sorghum high-throughput phenotyping
+
+![](https://pub.mdpi-res.com/remotesensing/remotesensing-11-02075/article_deploy/html/images/remotesensing-11-02075-ag.png?1569418523)
+
+- David Mendoza Cozatl
+- Robert Sharpe
+- So-Yon Park
+- Andrew Scaboo
+
+]
+
+---
+
+background-image: url("../../tutorials/figs/plantspython22_01.png")
+background-size: 225px
+background-position: 99% 1%
+
+# Plants & Python _a la_ Mizzou
+
+.pull-left[
+![](https://plantsandpython.github.io/PlantsAndPython/_static/plants_python_logo.jpg)
+![](../../tutorials/figs/class_foto1.png)
+]
+
+.pull-right[
+- **Inspired by the current Plants & Python course @ MSU**
+
+- Offered in hybrid format between MSU and UNAM
+
+- **HRT 841**: Foundation in Computational and Plant Science
+
+- **UNAM Temas Selectos**: Bioinformática y Minería de Datos con Python
+
+- Freely available material in jupyter notebook format.
+
+- Material in English and Spanish.
+]
+
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 1%
+
+class: inverse
+
+## Thank you!
+
+<div class="row" style="margin-top: -25px;">
+  <div class="column" style="max-width:17.5%; font-size: 13px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <p style="text-align: center; color: White">Liz Munch<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
+    <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
+    <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
+  </div>
+  <div class="column" style="max-width:17.5%; font-size: 13px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://caes.ucdavis.edu/sites/g/files/dgvnsk1721/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=345be249&itok=77W2Yqpk">
+    <p style="text-align: center; color: White">Pat Brown<br>(UC Davis)</p>
+  </div>
+  <div class="column" style="max-width:13%; font-size: 13px;">
+  <img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p">
+  <p style="text-align: center; color: White">Dan Koenig<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
+  </div>
+  <div class="column" style="width:10%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:40%; font-size: 24px; line-height:1.25">
+  <p style="text-align: center; color: White"><strong>Committee Members</strong></p>
+  <p style="text-align: center; color: White; font-size: 18px;">Liz Munch<br>Dan Chitwood<br>José Perea<br>Addie Thompson</p>
+  <p style="text-align: center; color: White"><strong>References</strong></p>
+  <p style="color: White; font-size: 12px; text-align:left">
+    <strong>A</strong> <em>et al.</em> (202?) The shape of walnuts, kernels, and domestication, in a nutshell. <em>In preparation</em>
+  </p>
+  <p style="color: White; font-size: 12px; text-align:left">
+    <strong>A</strong> <em>et al.</em> (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. <a href="https://doi.org/10.1002/ppp3.10333" target="_blank">DOI: 10.1002/ppp3.10333</a>
+  </p>
+  <p style="color: White; font-size: 12px; text-align:left">
+    <strong>A</strong> <em>et al.</em> (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">DOI: 10.1093/insilicoplants/diab033</a>
+  </p>
+  <p style="color: White; font-size: 12px; text-align:left">
+    <strong>A</strong> <em>et al.</em> (2020) The shape of things to come: Topological data analysis and biology, from molecules to organisms. <a href="https://doi.org/10.1002/dvdy.175" target="_blank">DOI: 10.1002/dvdy.175</a>
+  </p>
+    <p style="text-align: center; color: White; font-size:15px; line-height:1.1">Slides made in RStudio <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html" target="_blank">xaringan</a>.</p>
+  </div>
+</div>

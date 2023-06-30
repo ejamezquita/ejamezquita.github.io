@@ -1,0 +1,111 @@
+---
+title: 'PLB 812 : Homework 4'
+author: "Erik Amézquita"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    highlight: pygments
+    self_contained: false
+    lib_dir: "../../h/"
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+library("RColorBrewer")
+library("gplots")
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+Use previous lab slides and files along with the software documentation to answer the questions. Navigate to the `/data/run/username/homework_04_variantcalling` directory. Modify the `gatk_haplotypecaller.sh` job script to use as input `mystery_diploid_potato_chr2.bam` and then run it.
+
+### What are two ways you could modify the gatk_haplotypecaller.sh script that may end up resulting in more SNPs called in the sample, and why would this be the result? **(2 pts)**
+
++ Decrease the `--min-base-quality-score` threshold: we would allow lower base quality reads. Thus we would consider more bases, which could yield more SNPs.
++ Have a higher `--heterozygosity` value: We prime HaplotypeCaller to consider the fact that a larger percentage of loci are heterozygous, so more SNPs will be called.
+
+### Below are some (not all) of the records in VCF format. In the blank fields “ref” and “alt”, write examples of how a short deletion and short insertion relative to the reference genome would be represented. **(2 pts)**
+
+CHROM  |  POS   |    ID   |   REF   |    ALT    
+-------|--------|---------|---------|----------
+Chr01  |1000    |.        | CA      | C
+Chr01  |2000    |.        | C       | CT
+
+### How many variants were called in the VCF produced by `gatk_haplotypecaller.sh`? Write the commands you used to get this number. Hint: use inverted matching with grep and pipe the output to `wc -l`. **(1 pts)**
+
+```{r, engine = 'bash', echo=TRUE}
+$ grep -v "^#" mystery_diploid_potato_chr2.vcf | wc -l
+792
+```
+
+### How many variants were called in the VCF with QUAL of less than 100? Write the commands use use to get this number. Hint: awk **(1 pts)**
+
+```{r, engine = 'bash', echo=TRUE}
+$ grep -v "^#" mystery_diploid_potato_chr2.vcf | awk '$6 < 100' | wc -l
+84
+```
+
+##### Modify the `gatk_variantfiltration.sh` job script to filter the raw VCF produced earlier and run it.
+
+### How many variants passed the filters? Write the command(s) you used to get this number. (2 pts)
+
+According to [GATK VariantFiltration documentation](https://gatk.broadinstitute.org/hc/en-us/articles/360037434691-VariantFiltration), the output results in
+
+> A filtered VCF in which passing variants are annotated as PASS and failing variants are annotated with the name(s) of the filter(s) they failed. 
+
+Thus we filter for the string `PASS` using awk:
+
+```{r, engine = 'bash', echo=TRUE}
+$ grep -v "^#" mystery_diploid_potato_chr2.filtered.vcf | awk '$7 == "PASS" {print $7}' | wc -l
+769
+```
+
+### How would you modify these filter expressions to result in more passing variants and why would it relax the stringency of filtering? (2 pts)
+
+    --filterExpression "QUAL < 60" 
+    --filterExpression "MQ < 40" 
+
+To relax the filters, we can either lower the read quality (QUAL) threshold (say `--filterExpression "QUAL < 40"`), or the root mean square mapping quality (MQ) threshold (say `--filterExpression "MQ < 40"`).
+
+In the first case, we would be more lenient with read quality, which in turn would allow to consider more polymorphisms. Since the Phred scale is logarithmic, a QUAL value of 40 means that we're 99.99% sure that the read (and thus the polymorphism) is real.
+
+In the second case, we compute the square root of the average of the squares of the mapping qualities at the site. That is, we make sure that the read quality is close to uniform across the identified polymorphism. By lowering the threshold, we're more lenient with the overall read accuracy of the polymorphic match. It is worth noting that the [official GATK documentation](https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants) suggests:
+
+> Our recommendation is to fail any variant with an MQ value less than 40.0.
+
+### How many variants failed the QUAL60 filter? Write the command(s) you used. Be sure not to include lines from the header that say “QUAL60”. (2 pts)
+
+A variant could have failed multiple filters, including QUAL60. Rather than looking for the specific `QUAL60` string, we should look for strings that _contain the substring_ `QUAL60`. That being said, with grep we first exclude the header. Then we assign `QUAL60` as our variable `pat` (for pattern). Next we ask for the rows where the 7th column contains such pattern (either as a string or a substring). Finally, print the number of such rows.
+
+```{r, engine = 'bash', echo=TRUE}
+$ grep -v "^#" mystery_diploid_potato_chr2.filtered.vcf | awk -v pat="QUAL60" '$7~pat' | wc -l
+23
+
+```
+
+### In each of the VCF entries, the last field contains the following information “GT:AD:DP:GQ:PL” which represent genotype, allele depth, read depth, genotype quality, and phred-scaled genotype likelihood Given a reference allele of C and alternate allele of T, what is the genotype you infer from the values for “GT” below? (1 pt)
+
+    0/1
+    1/1 
+
+Recall that the sample comes from a diploid organism. From the [VCF documentation](https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format),
+
+> - 0/0 : the sample is homozygous reference
+> - 0/1 : the sample is heterozygous, carrying 1 copy of each of the REF and ALT alleles
+> - 1/1 : the sample is homozygous alternate
+
+In our case, 
+
+- **0/1**: The observed allele combination is C/T
+- **1/1**: The observed allele combination is T/T
+
+### You were given a BAM file generated by mapping genomic reads with BWA-MEM software and post-processed with Picard Tools Mark Duplicates. Describe in your own words the purpose of the post-processing step. (2 pt)
+
+To prepare a sample, we often get duplicated reads arising from the same DNA fragment. For instance, think of constructing a library with PCR. If an there's an artifact present when we prepare the original sample, we risk to amplify the artifact throughtout all of the duplicates. The same considerations apply to single amplification clusters which are detected as multiple clusters by optical sensors. 
+
+Picard MarkDuplicates identifies duplicates compares the reads in the BAM file and later distinguishes the primary from the duplicate reads based on their base-quality scores. 
+
+If these duplicates are left, we will be prone to find more false positives when running the HaplotypeCaller: HaplotypeCaller will think there are more independent fragments! For instance, if we do not remove duplicates, say we have 10 reads in total that align to a certain fragment of the reference genome. Say that 6 of those reads are duplicates and that the primary read suggests a SNP. Thus, we would see that 7 out of 10 reads suggest a SNP and we would mark it as such. But in reality, if we remove the duplicates, only 1 out 4 reads would suggest the same SNP!

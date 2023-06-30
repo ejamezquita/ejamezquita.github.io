@@ -1,0 +1,416 @@
+---
+title: "Quantifying the shape of plants"
+subtitle: "using Topological Data Analysis"
+author: "**Erik Amézquita**"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+class: inverse
+
+# Plant morphology
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+---
+
+# Topological Data Analysis (TDA)
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <ul>
+      <li> X-ray CT </li>
+      <li> Point clouds </li>
+      <li> Time series </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../figs/ecc_X.gif">
+    <p style="font-size: 23px; text-align: center; color: DarkRed;"> Topological Summary </p>
+    <ul>
+      <li> Euler Characteristic </li>
+      <li> Persistence diagrams </li>
+      <li> Mapper/Reeb graphs </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:35%; font-size: 15px;">
+    <img src="../figs/svm_mds_canberra_transp.png">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Analysis </p>
+    <ul>
+      <li> Statistics </li>
+      <li> Machine learning </li>
+      <li> Classification/prediction </li>
+    <ul>
+  </div>
+</div>
+
+---
+
+background-image: url("../../cmse/figs/cmse logo file-01.svg")
+background-size: 150px
+background-position: 5% 60%
+
+class: center
+
+# My research: Crossing and merging bridges
+
+<div class="row">
+  <div class="column" style="width:15%">
+  </div>
+  <div class="column" style="max-width:19%">
+    <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/S017_L3_1.gif"></a>
+  </div>
+  <div class="column" style="max-width:25%">
+    <img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_exocarp.gif">
+  </div>
+  <div class="column" style="max-width:32%">
+    <img style="padding: 0 0 0 0;" src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif">
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="width:15%">
+  </div>
+  <div class="column" style="max-width:45%">
+    <a href="https://github.com/amezqui3/demeter" target="_blank"><img style="padding: 10px 0 0 0;" src="../figs/github_demeter.png"></a>
+  </div>
+  <div class="column" style="max-width:28%">
+    <!---
+    <a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"><img style="padding: 0 0 0 0;" src="https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg"></a>
+    --->
+    <a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"><img style="padding: 0 0 0 0;" src="../../tutorials/figs/plants_and_python_group_photo.jpg"></a>
+  </div>
+</div>
+
+---
+
+class: inverse
+
+<div class="row">
+  <div class="column" style="max-width:44%">
+    <a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_norway.jpg"></a>
+    <a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"></a>
+    <a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_world.jpg"></a>
+  </div>
+  <div class="column" style="max-width:44%">
+    <a href="https://www.bloomberg.com/news/articles/2020-09-13/iraq-to-offer-first-ever-barley-exports-as-rains-yield-surplus" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_iraq.jpg"></a>
+    <a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"></a>
+    <div class="row">
+      <div class="column" style="max-width:46%">
+        <img src="../figs/S019_L0_1.gif">
+      </div>
+      <div class="column" style="max-width:55%">
+        <img src="../figs/S017_L0_seed_10_0.gif">
+      </div>
+    </div>
+  </div>
+  <div class="column" style="max-width:8%; font-size: 15px;">
+    <p style="text-align: center; font-size: 30px; line-height: 1em;"> <strong> Barley from across the world </strong></p>
+    <p>28 collected barley varieties</p>
+    <p>Brought to California in 1929</p>
+    <p>Artificial evolution experiment for 58 generations</p>
+    <p>975 panicles scanned</p>
+    <p>38,000 seeds isolated</p>
+  </div>
+</div>
+
+---
+
+# Topology: The Euler characteristic $\chi$
+
+$$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$
+
+<div class="row">
+  <div class="column" style="width:5%">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Tetrahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Hexahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Octahedron.gif">
+  </div>
+  <div class="column" style="width:5%">
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="width:5%">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Dodecahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Icosahedron.gif">
+  </div>
+  <div class="column" style="max-width:30%">
+    <p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"> V - E + F = 2</p>
+  </div>
+  <div class="column" style="width:5%">
+  </div>
+</div>
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+```{r, out.width=650}
+knitr::include_graphics("../figs/ecc_ver2.gif")
+```
+
+## The Euler Characteristic Transform (ECT)
+
+```{r, out.width=650}
+knitr::include_graphics("../figs/ect_000.png")
+```
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+```{r, out.width=650}
+knitr::include_graphics("../figs/ecc_Z_32.png")
+```
+
+## The Euler Characteristic Transform (ECT)
+
+```{r, out.width=650}
+knitr::include_graphics("../figs/ect_ver2.gif")
+```
+
+---
+
+# Quantify the shape of barley
+
+**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Shape descriptors</th>
+    <th class="tg-0pky">No. of descriptors</th>
+    <th class="tg-0pky">F1</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-2bhk">Traditional</td>
+    <td class="tg-2bhk">11</td>
+    <td class="tg-2bhk">0.55 &plusmn; 0.019</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Topological</td>
+    <td class="tg-0pky">12</td>
+    <td class="tg-0pky">0.74 &plusmn; 0.016</td>
+  </tr>
+  <tr>
+    <td class="tg-2bhk">Combined</td>
+    <td class="tg-2bhk">23</td>
+    <td class="tg-2bhk"><strong>0.86 &plusmn; 0.010</strong></td>
+  </tr>
+</tbody>
+</table>
+
+### What does topology actually measure?
+
+.pull-left[
+```{r, out.width=225}
+knitr::include_graphics(c('../figs/discerning_directions.png'))#, '../figs/arrow_seed_09_0.gif'))
+```
+]
+
+.pull-right[
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Into semi-supervised territory
+
+- Train an SVM with 100% of the founders $(F_0)$
+
+- Classify the progeny $F_{58}$: DNA (genotype) &harr; shape (phenotype) enrichment
+
+.pull-left[
+![](../figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+---
+
+## A different crop: If life gives you lemons...
+
+<div class="row">
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
+    <p style="text-align: center;"> UCR Collaboration </p>
+  </div>
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
+    <p style="text-align: center;"> 3D X-Ray CT scan </p>
+  </div>
+  <div class="column" style="max-width:23%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif">
+    <p style="text-align: center;"> Raw </p>
+  </div>
+</div>
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_L01_spine.gif">
+    <p style="text-align: center;"> Spine </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_L01_endocarp.gif">
+    <p style="text-align: center;"> Endocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_L01_rind.gif">
+    <p style="text-align: center;"> Rind </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_L01_exocarp.gif">
+    <p style="text-align: center;"> Exocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_L01_oil_glands.gif">
+    <p style="text-align: center;"> Oil glands</p>
+  </div>
+</div>
+
+---
+
+## Quantifying the shape of citrus and their oil glands
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:44%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/exocarp_vs_endocarp.jpg">
+    <img src="../../citrus/figs/knn01_panel_log_density.svg">
+    <img src="../../citrus/figs/M06_CRC3844_12B-31-1_L00_frontal_ell_projection.jpg">
+  </div>
+  <div class="column" style="max-width:54%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/M01_CRC3226_12B-27-1_L00_emi_kde_N.jpg">
+    <img src="../../citrus/figs/M01_L00_N.gif">
+  </div>
+</div>
+
+---
+
+### Grand challenge: genotype (DNA) &harr; phenotype (shape)
+
+Leaf development in Arabidopsis: the guinea pig of plant biology
+
+.pull-left[
+```{r, out.width=225}
+knitr::include_graphics(c('../../arabidopsis/figs/Day7_110921_Col_0_X_pot3_leaf_X.gif',
+                          '../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif'))
+```
+]
+
+.pull-right[
+![](../../arabidopsis/figs/ecc_axis_X.gif)
+![](../../arabidopsis/figs/ecc_axis_Y.gif)
+![](../../arabidopsis/figs/ecc_axis_Z.gif)
+]
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 1%
+
+class: inverse
+
+## Thank you!
+
+<div class="row" style="margin-top: -25px;">
+  <div class="column" style="max-width:19.5%; font-size: 13px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <p style="text-align: center; color: White">Elizabeth Munch<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
+    <img style="padding: 0 0 0 0;" src="../figs/S017_L0_seed_10_0.gif">
+  </div>
+  <div class="column" style="max-width:19.5%; font-size: 13px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
+    <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
+  </div>
+  <div class="column" style="max-width:14%; font-size: 13px;">
+  <img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p">
+  <p style="text-align: center; color: White">Dan Koenig<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_black_exocarp.gif">
+  </div>
+  <div class="column" style="width:10%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25; padding: 0 0 0 0;">
+  <p style="text-align: center; color: White"><strong>Email</strong></p>
+  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
+  <p style="text-align: center; color: White"><strong>Website/slides</strong></p>
+  <p style="text-align: center; color: Yellow"><a href="https://egr.msu.edu/~amezqui3/aboutme.html" target="_blank">egr.msu.edu/~amezqui3</a></p>
+  <p style="text-align: center; color: White"><strong>References</strong></p>
+  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
+  <strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch, D.H. Chitwood (2022) <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform"</a>. <em>in Silico Plants</em> 4(1); diab033
+  </p>
+  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
+  <strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, D. Seymour, E. Munch, D.H. Chitwood <a href="" target="_blank">The shape of aroma: measuring and modeling citrus oil gland distribution"</a>. BiorXiv. 
+  </p>
+  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
+      K. Turner, S. Mukherjee, D.M. Boyer (2014) <a href="https://doi.org/10.1093/imaiai/iau011" target="_blank">"Persistent homology transform for modeling shapes and surfaces,"</a> <em>Information and Inference</em>, 3(4) 310–344
+  </p>
+  <p style="text-align: center; color: White; font-size:10px; line-height:1.1">Slides made in xaringan and rmarkdown</p>
+  
+  </div>
+</div>

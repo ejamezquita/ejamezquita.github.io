@@ -1,0 +1,217 @@
+---
+title: "Quantifying the shape of leaf development"
+subtitle: "using Topological Data Analysis (TDA)"
+author: "**Erik Amézquita**"
+date: "Computational Mathematics, Science, and Engineering <br> `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# Topological Data Analysis (TDA)
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../../barley/figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <ul>
+      <li> micro-CT </li>
+      <li> Point clouds </li>
+      <li> Time series </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../../barley/figs/ecc_X.gif">
+    <p style="font-size: 23px; text-align: center; color: DarkRed;"> Topological Summary </p>
+    <ul>
+      <li> Euler Characteristic </li>
+      <li> Persistence diagrams </li>
+      <li> CROCKER plots </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:35%; font-size: 15px;">
+    <img src="../../barley/figs/svm_mds_ect.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Analysis </p>
+    <ul>
+      <li> Statistics </li>
+      <li> Machine learning </li>
+      <li> Classification/prediction </li>
+    <ul>
+  </div>
+</div>
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedrons
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topological features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 2 connected components, 1 loop, 0 voids
+
+```{r, out.width=600}
+knitr::include_graphics("../figs/nardini_etal_2021_f4.png")
+```
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1371/journal.pcbi.1009094">Nardini <em>et al.</em> (2021)</a></p>
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each simplex is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eigcurv_filter.gif", "../../barley/figs/gaussian_density_filter.gif"))
+```
+]
+
+.pull-right[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eccentricity_filter.gif", "../../barley/figs/vrips_ver2.gif"))
+```
+]
+
+---
+
+# Combining both ingredients
+
+![](../figs/nardini_etal_2021_f6.png)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1371/journal.pcbi.1009094">Nardini <em>et al.</em> (2021)</a></p>
+
+---
+
+## Example 1: Image data &rarr; Grayside filter
+
+### Detecting holes &rarr; detect/characterize cancerous tissue
+
+.pull-left[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg)
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg)
+]
+
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.media.2019.03.014">Qaiser <em>et al.</em> (2019)</a></p>
+
+---
+
+## Image data &rarr; Multiple ways to filter
+
+### Quantify cell fate-map morphologies
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_s6_ln.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.cell.2019.05.011">Kierzkowski <em>et al.</em> (2019)</a></p>
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.media.2019.03.014">Qaiser <em>et al.</em> (2019)</a></p>
+]
+
+---
+
+## Image data &rarr; Multiple ways to filter
+
+### Quantify cell fate-map morphologies
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_s6_ln.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.cell.2019.05.011">Kierzkowski <em>et al.</em> (2019)</a></p>
+]
+
+.pull-right[
+- Growth amount
+
+- Anisotropy
+
+- Cell proliferation
+
+- Cell size
+
+- Stomatal density
+
+- Lobeyness
+]
+
+---
+
+### Multiple TDA ways to characterize and compare shape
+
+```{r, out.width="650px"}
+knitr::include_graphics(c("../figs/guzel_etal_2022_f7.png"))
+```
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://arxiv.org/abs/2206.03973">Güzel <em>et al.</em> (2022)</a></p>
+
+```{r, out.width="650px"}
+knitr::include_graphics(c("../figs/kierzkowski_etal_2019_f4_no.jpg"))
+```
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.cell.2019.05.011">Kierzkowski <em>et al.</em> (2019)</a></p>
+
+---
+
+background-image: url("../figs/guzel_etal_2022_f12.png")
+background-size: 600px
+background-position: 50% 60%
+
+## Keep track of temporal data &rarr; CROCKER plot
+
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://arxiv.org/abs/2204.06321">Güzel <em>et al.</em> (2022)</a></p>
+
+---
+
+background-image: url("../figs/guzel_etal_2022_f12.png")
+background-size: 600px
+background-position: 50% 60%
+
+## Keep track of temporal data &rarr; CROCKER plots
+
+```{r, out.width="800px"}
+knitr::include_graphics(c("../figs/kierzkowski_etal_2019_f4_no.jpg"))
+```
+
+---
+
+## Other ways, other morphologies &rarr; River beads
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_f6_fkgl.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1016/j.cell.2019.05.011">Kierzkowski <em>et al.</em> (2019)</a></p>
+]
+
+.pull-right[
+![](https://agupubs.onlinelibrary.wiley.com/cms/asset/3034ccf4-7f5c-4aa3-8a3f-b623c036e9da/jgrf21136-fig-0002-m.jpg)
+![](https://agupubs.onlinelibrary.wiley.com/cms/asset/253b03cc-7347-4551-9423-2df214c0d6c6/jgrf21136-fig-0003-m.jpg)
+<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1029/2019JF005206">Hiatt <em>et al.</em> (2019)</a></p>
+]

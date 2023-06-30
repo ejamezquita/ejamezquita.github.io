@@ -1,0 +1,291 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Erik Amézquita &mdash; A hodge-podge of math and plants</title>
+<meta name="description" content="Erik Amézquita webpage">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="css/hawthorne_type1_color2.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<script src="js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <header>
+            <h1><a href="index.html">Erik Amézquita</a></h1>
+            <h2><a href="index.html">PFFFD Fellow</a></h2>
+            <h2><a href="index.html">Plant Sciences and Mathematics @ University of Missouri</a></h2>
+            <!--
+            <div class="logo">
+                <a href="img/front_original.jpg"><img src="img/front_medium.jpg" alt="Erik_in_Chicago_2019" /></a>
+            </div>
+            -->
+        </header>
+    </div>
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <nav>
+            <ul class="inline-list-custom">
+                <li><a href="index.html">Home [TL;DR]</a></li>
+                <li><a href="research.html" class="current">Research</a></li>
+                <li><a href="teaching.html">Academic Resources</a></li>
+                <li><a href="service.html">Other Resources</a></li>
+                <li><a href="aboutme.html">About Me</a></li>
+                <li><a href="else.html">Else</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h1>Describing Demeter</h1>
+        <p>
+            Demeter was the Greek goddess of the harvest, agriculture, fertility and religious law. She, as the rest of the Greek deities, was an embodiment of multitasking and multidisciplinarity. In fact, most of the Olympus had to supervise multiple tasks each, as it seems that economic trouble and budget constraints have plagued Greece since ancient, mythological times. Demeter must have had a precise knowledge of yields and cycles of all the different crops, along with fine-grained details on how each variety of cereal reacts to different soils, climates and farming practices. On top of that, she had to supervise and assist the proper following of sacred rules. With such a packed schedule, she needed to identify quickly the important traits of numerous cultivated plants. Perhaps a thorough, informed glance at the shape of each grain and spike revealed to her all the information required to understand the yield and resistance properties of different plant species. Maybe Demeter used mathematics, especially algebraic topology, the mathematical study and description of shape.
+        </p>
+        <h2>Peeling citrus</h2>
+        <p>
+            Citrus work like legos. All the citrus you see out there in the produce section are a combination of just three fundamental lego blocks:
+            <div class="list">
+                <ul>
+                    <li>Pure mandarins <em>(C. reticulata)</em></li>
+                    <li>Citrons <em>(C. medica)</em></li>
+                    <li>Pummelos <em>(C. maxima)</em></li>
+                </ul>
+            </div>
+            With a wide variety of citrus X-ray CT scans at our disposal, we can explore interesting questions regarding different tissue development under hybridization.
+        </p>
+        <img src="citrus/figs/citrus_diagnostic.gif" alt="citrus_animation"  style="float: center; width: 80%;">
+        <p>
+            -
+        </p>
+        <p>
+            For instance, we can explore the distribution of oil glands across citrus skin. Preliminary results suggest that shape matters: glands seem distribute uniformly across the skin for near-spherical citrus (like oranges and grapefruits), but they are concentrated around the equator for more ellongated fruits (like kumquats and finger limes.)
+        </p>
+        <p><strong>Publications</strong></p>
+        <div class="list">
+            <ul>
+                <li><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, D. Seymour, E. Munch, D.H. Chitwood (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. <em>Plants, People, Planet</em>. <a href="https://doi.org/10.1002/ppp3.10333" target="_blank">DOI: 10.1002/ppp3.10333</a></li>
+            </ul>
+        </div>
+        <p><strong>Most recent presentations</strong></p>
+        <p style="font-size:10px">
+            NOTE: In 2020, I switched from LaTeX to <a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html" target="_blank">RMarkdown + xaringan</a> to produce my posters and slides based on HTML. Upside is that I can embed videos and gifs. Downside is that rendering may vary depending on the browser used. My slides should render properly in Firefox and Chromium. I can't make promises on other browsers. Let me know if my material is rendered funny!
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://www.ams.org/meetings/sectional/2292_program.html" target="_blank">2022 AMS Spring Central</a>. American Mathematical Society Sectional Meeting. Virtual. March 2022. <a href="citrus/slides/ams_2022.html" target="_blank">Slides</a>.</li>
+            </ul>
+        </div>
+        <p><strong>Most recent poster</strong></p>
+        <p style="font-size:10px">
+            See note above regarding my produced presentation slides.
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://u.osu.edu/plantsciencessymposium/" target="_blank">2022 OSU PSS.</a> The Ohio State University Plant Sciences Sympossium. Online. April 2022. <a href="citrus/slides/osu_2022_static.html" target="_blank"> [Animated HTML poster]</a>.</li>
+            </ul>
+        </div>
+        <h2>Quantification of barley grains, topological data analysis, X-ray CT scan image processing</h2>
+            <p>
+            Morphometrics allows us to compare and describe shapes of leaves and fruits based on homologous landmarks. Nonetheless, the overall architecture of a plant resembles more of a branching structure which current morphometric methods are not sufficiently comprehensive to quantify. These methods fail to compare disparate and diverse shapes, since there may not be identifiable homologous points. My lab proposes thus a new approach: topological data analysis (TDA) to quantify plant morphology. TDA is a relatively new area in mathematics which seeks to model and analyze complex data sets using the mathematical notion of shape. Given a 2D or 3D image and a filter function, TDA is able to produce a topological signature that mathematically encodes the essential features of the image’s shape.
+            </p>
+            <img src="barley/figs/ECC_barley.png" alt="original"  style="float: center; width: 100%;">
+            <p>
+            We have (plenty of) 3D voxel-based images in our case. These are all X-ray CT scans which must be preprocessed before doing any actual data analysis. The air first must be normalized, then removed, next the image is pruned appropriately, later segmented, and finally labelled.
+            </p>
+            <div class="row">
+                <img src="barley/figs/S017_0_original.gif" alt="original"  style="float: left; width: 18%; margin-right: 1%; margin-bottom: 0.5em;">
+                <img src="barley/figs/S017_1_normal.gif" alt="normal"  style="float: left; width: 18%; margin-right: 1%; margin-bottom: 0.5em;">
+                <img src="barley/figs/S017_2_unair.gif" alt="unair"  style="float: left; width: 18%; margin-right: 1%; margin-bottom: 0.5em;">
+                <img src="barley/figs/S019_L0_1.gif" alt="clean"  style="float: left; width: 31%; margin-left: 10%; margin-bottom: 0.5em;">
+            </div>
+            <p>
+            Currently I am interested in computing the <a href="https://arxiv.org/abs/1310.1030" target="_blank">Euler characteristic transform</a> of individual barley seeds. Personally, I found reading Turner's 2014 paper quite challenging at first. <a href="barley/slides/lab200330.pdf" target="_blank">Here are some slides</a> I made with plenty of figures to ease the reading.
+
+            I tried to record a very gentle introduction to the Euler Characteristic Transform, which can be seen here.
+            </p>
+            <p>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LtI6Y9ct1hc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>
+        <p><strong>Publications</strong></p>
+        <div class="list">
+            <ul>
+                <li><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch, D.H. Chitwood (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. <em>in Silico Plants</em> (diab033) <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">DOI: 10.1093/insilicoplants/diab033</a></li>
+                <li><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, E. Munch, D.H. Chitwood (2020) The shape of things to come: Topological Data Analysis and biology, from molecules to organisms. <em>Developmental Dynamics</em> 249(7); 816&mdash;833. <a href="https://doi.org/10.1002/dvdy.175" target="_blank">DOI: 10.1002/dvdy.175</a></li>
+            </ul>
+        </div>
+        <p><strong>Most recent presentations</strong></p>
+        <p style="font-size:10px">
+            NOTE: In 2020, I switched from LaTeX to <a href="https://bookdown.org/yihui/rmarkdown/xaringan-preview.html" target="_blank">RMarkdown + xaringan</a> to produce my posters and slides based on HTML. Upside is that I can embed videos and gifs. Downside is that rendering may vary depending on the browser used. My slides should render properly in Firefox and Chromium. I can't make promises on other browsers. Let me know if my material is rendered funny!
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://www.jointmathematicsmeetings.org//jmm" target="_blank">JMM 2022</a>. Joint Mathematics Meeting. Virtual. April 2022. <a href="barley/slides/jmm_2022.html">Slides</a></li>
+                <li><a href="https://sites.google.com/view/xvisembiomat/home" target="_blank">XVI SEMBIOMAT</a>. Seminario Internacional de Biomatemática. Sociedad Peruana de Matemática Aplicada y Computacional. Virtual. Diciembre 2021. <a href="barley/slides/sembiomat_2021.html">Slides</a> [en español]</li>
+            </ul>
+        </div>
+        <p><strong>Most recent workshop</strong></p>
+        <div class="list">
+            <ul>
+                <li><a href="https://www.plantphenotyping.org/conference-home" target="_blank">2022 NAPPN Annual Conference</a>. North American Plant Phenotyping Network. Athens, Georgia. February 2022.<a href="https://github.com/amezqui3/demeter" target="_blank"> [Workshop material available here]</a>.</li>
+            </ul>
+        </div>
+        <p><strong>Most recent poster</strong></p>
+        <p style="font-size:10px">
+            See note above regarding my produced presentation slides.
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://sites.google.com/view/aatrn-poster-session/home" target="_blank">1st AATRN Poster Session</a>. Applied Algebraic Topology Research Network. Virtual. October 2021.<a href="barley/slides/eccb_2021_dynamic.html" target="_blank"> [Animated HTML poster]</a>. <a href="barley/slides/gtdaml_2021_slides.html" target="_blank">[Accompanying slides]</a>. <a href="https://youtu.be/vWT3FLGvCO4" target="_blank">[Promotional video]</a>.</li>
+            </ul>
+        </div>
+        <h1>Previous interests</h1>
+        <div class="list">
+            <ul>
+                <li><em>Bridging math and archaeology with topological data analysis</em></li>
+                <div class="list">
+                    <ul>
+                        <p>
+                        Between 1978 and 1982, excavations were made in Templo Mayor, one of the epicenters of Aztec culture. Distributed among several crypts and chambers, 162 masks were found as offerings to Aztec authorities between the 14th and 15th centuries in today's modern Mexico City. These masks pose several questions, as their styles are unusual for the location and timeline. The archaeological community believes that the styles <a href="http://hdl.handle.net/11858/00-1780-0000-000B-216A-E" target="_blank">resemble those found across the Mexican state of Guerrero on the Pacific coast.</a> Although Guerrero is roughly 300km away from Templo Mayor, the Aztecs had extensive routes of trade and tribute from coast to coast. What is more surprising is the fact that some the styles represented in the 162 mask collection resemble the styles present in Guerrero 500 or even 1000 years prior to the Templo Mayor offerings in the 14th century.
+                        </p>
+                        <img src="demat/mezcala_masks.png" alt="original"  style="float: center; width: 100%;">
+                        <div class="list">
+                            <ul>
+                                <p style="text-align: right; font-size: 10px; line-height: 10px">Credits: Diego Jiménez Badillo</p>
+                            </ul>
+                        </div>
+                        <p>
+                        The problem posed by archaeologists is then to determine the number of actually different styles represented in the 162 mask collection and to identify the items accordingly. Such identification would further the knowledge of archaeology in Guerrero and deepen the understanding of the Templo Mayor-Guerrero interactions during the 14th century. Due to the limited amount of artifacts from Guerrero, most of the proposed classifications of these 162 masks rely heavily on subjective perceptions which is reflected in several discrepancies among classifications given in the archaeological community.
+                        </p>
+                        <div class="row">
+                            <img src="demat/hairdo.png" alt="original"  style="float: left; width: 48%; margin-right: 1%; margin-bottom: 0.5em;">
+                            <img src="demat/noses.png" alt="normal"  style="float: left; width: 48%; margin-right: 1%; margin-bottom: 0.5em;">
+                        </div>
+                        <div class="list">
+                            <ul>
+                                <p style="text-align: center; font-size: 10px; line-height: 0px">Variety of hairstyles and noses found in the masks. Credits: Olmedo Vera and González (1986)</p>
+                            </ul>
+                        </div>
+                        <p>
+                        The main goal of my <a href="demat/bachelor_thesis.pdf" target="_blank">bachelor thesis</a> was to define the morphology of each mask in a more objective manner based on its geometrical and topological invariants. Namely, we attempt to describe the morphology of a mask based on the Euler Characteristic. The idea is based on the Euler Characteristic Graphs (ECGs) which were proposed in the <a href="https://doi.org/10.1016/j.patrec.2014.07.001" target="_blank">2014 research paper by Richardson and Werman.</a>
+                        </p>
+                        <img src="demat/ecg_results.png" alt="original"  style="float: center; width: 100%;">
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="small-12 medium-3 large-3 centered columns">
+        <p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vWT3FLGvCO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Xray CT scan of scarlet emperor mandarins</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/apple_vasculature_01.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Observing apple vasculature</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/corn_ear_01.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Couple of corn ears</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/corn_ear_04.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Interior of a corn ear</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/agave_x_manfreda1.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Agave crossed with Manfreda</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/bellpepper5.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">A cavernous bell pepper!</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/cactus2.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 10px">Quoting Dan C: <em>"Everytime you see a cactus, you should feel awe."</em></p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/haworthia1.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px">Spiraling with haworthia</p>
+            </ul>
+        </div>
+        <p>
+            <img src="img/walnuts_orange_06.jpg" width="550" alt="barley_panicle" />
+        </p>
+        <div class="list">
+            <ul>
+                <p style="text-align: center; font-size: 10px; line-height: 0px"><em>Brains, brains, brains...</em> walnuts</p>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <li>Last updated: July 2023.</li>
+                <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
+
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/amezqui3/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/erik-amezquita/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                <a href="https://www.researchgate.net/profile/Erik-Amezquita-2" target="_blank"><img src="img/researchgate.svg" width="30" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+                <a href="https://scholar.google.com/citations?user=JBCDR4cAAAAJ&hl=en" target="_blank"><img src="img/googlescholar.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/hawthorne.js"></script>
+
+</body>
+</html>

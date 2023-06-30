@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>When life gives you lemons</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   -" />
+    <meta name="date" content="2021-09-09" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# When life gives you lemons
+## make Topological Data Analysis
+### <strong>Erik Amézquita</strong> <br> -
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+### 2021-09-09
+
+---
+
+
+
+class: inverse
+
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Topological Data Analysis
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../../barley/figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Raw Data &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; X-ray CT &lt;/li&gt;
+      &lt;li&gt; Point clouds &lt;/li&gt;
+      &lt;li&gt; Time series &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../../barley/figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 23px; text-align: center; color: DarkRed;"&gt; Topological Summary &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Euler Characteristic &lt;/li&gt;
+      &lt;li&gt; Persistence diagrams &lt;/li&gt;
+      &lt;li&gt; Mapper/Reeb graphs &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;img src="../../barley/figs/svm_mds_ect.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Analysis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Statistics &lt;/li&gt;
+      &lt;li&gt; Machine learning &lt;/li&gt;
+      &lt;li&gt; Classification/prediction &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse, center, middle
+
+# Citrus are quite versatile
+
+&lt;iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GgZ6H5yvp-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+# Citrus origins are... complicated
+
+- 10* _fundamental_ citrus gave rise to all citrus diversity we see today
+
+- Originated in South and South East Asia, and Australia.
+
+- Still some debate as to what exactly is a citrus
+
+.pull-left[
+![](../figs/precursor_citrus_phylogenetic.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+![](../figs/precursor_citrus_geo_distribution.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+## Think of citrus as lego blocks
+
+![](../figs/citrus_family_tree_1.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Previous work on nucleome-based phylogeny
+
+- 360K + SNPs in non-genic, non-pericentromeric regions
+
+- **SNP**: Single Nucleotide Polymorphism
+
+- Do a PCA of pairwise nuclear genome distance
+
+.pull-left[
+![](https://www.whatisdna.net/wp-content/uploads/2016/11/SNP.png)
+]
+
+.pull-right[
+![](../figs/precursor_citrus_pca_distribution.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+### Relationships can be stronger amongst certain groups
+
+&lt;img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnature25447/MediaObjects/41586_2018_Article_BFnature25447_Fig3_HTML.jpg?as=webp" width="450" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: inverse, center, middle
+
+# X-ray CT scanning has entered the chat
+
+---
+
+# Scan all the citrus
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;blockquote class="twitter-tweet" data-conversation="none" data-lang="es" data-dnt="true"&gt;
+      &lt;p lang="in" dir="ltr"&gt;Citrus nippokoreana specimens &lt;a href="https://t.co/HjrMlBcXQK"&gt;pic.twitter.com/HjrMlBcXQK&lt;/a&gt;&lt;/p&gt;&amp;mdash; de la parra (@hojasyhelechos) &lt;a href="https://twitter.com/hojasyhelechos/status/1079144843773952000?ref_src=twsrc%5Etfw"&gt;December 29, 2018&lt;/a&gt;
+      &lt;/blockquote&gt;
+      &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;blockquote class="twitter-tweet" data-conversation="none" data-lang="es" data-dnt="true"&gt;
+      &lt;p lang="in" dir="ltr"&gt;Citrus nippokoreana &lt;a href="https://t.co/B2FKOqQhK1"&gt;pic.twitter.com/B2FKOqQhK1&lt;/a&gt;&lt;/p&gt;&amp;mdash; de la parra (@hojasyhelechos) &lt;a href="https://twitter.com/hojasyhelechos/status/1079144306630422529?ref_src=twsrc%5Etfw"&gt;December 29, 2018&lt;/a&gt;
+      &lt;/blockquote&gt;
+      &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Raw Data: X-rays &amp;rarr; Image Processing
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:51%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../barley/figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt; Proprietary X-Ray CT scan 3D reconstruction &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_CRC3289_12B-19-9_L01_raw.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Raw &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Black; font-size: 15px;"&gt;
+    &lt;ul&gt;
+      &lt;li&gt; 63 raw scans &lt;/li&gt;
+      &lt;li&gt; 51 different citrus species &lt;/li&gt;
+      &lt;li&gt; 166 different individuals &lt;/li&gt;
+      &lt;li&gt; At least three samples per species &lt;/li&gt;
+      &lt;li&gt; All ancestors and crosses of interest included &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+--
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:22%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_exocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Exocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_rind.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Mesocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_endocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Endocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_spine.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Spine &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/citrus_diagnostic.gif")
+background-size: 650px
+background-position: 50% 70%
+
+## Rich tissue collection
+
+---
+
+class: inverse, center, middle
+
+# Looking to strike some oil
+
+---
+
+## Oil glands in citrus
+
+- Huge perfume and food industry behind essential oils
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+&lt;iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1720809115"&gt;Smith &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+- Cross-sectional view of a navel orange peel bending to the point of jetting.
+
+Slowed 133x
+]
+
+---
+
+## Serious money from the perfume industry
+
+&lt;p align="center"&gt;
+&lt;iframe width="700" height="400" src="https://insideucr.ucr.edu/stories/2020/02/11/givaudan-brings-its-virtual-taste-trek-riverside" title="W3Schools Free Online Web Tutorials"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt;&lt;a href="https://insideucr.ucr.edu/stories/2020/02/11/givaudan-brings-its-virtual-taste-trek-riverside"&gt;Original link&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Isolating the oil glands of a sweet orange
+
+.pull-left[
+![](../figs/SW04_L01_oil_glands.gif)
+]
+
+.pull-right[
+![](../figs/SW04_L00_oil_glands.gif)
+]
+
+- Explore gland sizes, distribution, locations, patterns, etc.
+
+--
+
+- 500,000 voxels per orange
+
+---
+
+## The centers will be just fine
+
+.pull-left[
+![](../figs/SW02_L00_center_oil_glands.gif)
+- About 18,000 gland centers detected
+
+- Number in the right ballpark
+
+- **We have a typical point cloud in `\(\mathbb{R}^3\)`.**
+]
+
+.pull-right[
+![](../figs/oil_gland_number_vs_area.png)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1006/anbo.2001.1546"&gt;Knight &lt;em&gt;et al.&lt;/em&gt; (2001)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+class: inverse, center, middle
+
+# TDA in the lime-light
+
+---
+
+&lt;img src="../figs/measures_of_order_for_nearly_hexagonal_lattices.png" width="550" style="display: block; margin: auto;" /&gt;
+
+&lt;p align="center"&gt;
+&lt;iframe width="650" height="350" src="https://www.youtube-nocookie.com/embed/TzxkYdGT-3E?start=72" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+
+[Link to paper](https://doi.org/10.1016/j.physd.2018.05.005)
+
+---
+
+## Local features quantified with persistence homology
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr2_lrg.jpg" width="550" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Small bars carry geometric information
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr3_lrg.jpg" width="550" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Traditional characterization of hexagonal order
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr1_lrg.jpg" width="450" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+Based on the Delaunay triangulation
+
+- **Nearest Neighbor Number `\(N^3\)`:**  `\(\mathrm{var}(N_i) − 6\)`
+    - `\(N_i\)` is the number of nearest neighbors of the `\(i\)`-th lattice point _according to the Delaunay triangulation_.
+
+
+- **Delaunay triangulation measure (DT):** Average of `\(L_{i,dev}\)` over all triangles.
+    - `\(L_{dom}\)` is the average triangle edge length
+
+    - `\(L_{i,k}\)` length of the `\(k\)`th edge and `\(i\)`th triangle
+
+    - Each triangle has score `\(L_{i,dev} = \sum_{i=1}^3|L_{i,k} - L_{dom}|\)`
+
+---
+
+## Topological characterization of hexagonal order
+
+Based on persistance barcodes
+
+- **Using the `\(H_0\)` bars:** The total variance of `\(0\)`-bars: `\(\mathrm{var}(H_0)\)`
+
+
+- **Using the `\(H_1\)` bars:** The total sum of `\(1\)`-bars: `\(\sum H_{1}\)`
+
+
+- **Combining both dimensions:** Linear combination of the two above
+
+`$$\displaystyle CPH = 2\mathrm{var}(H_0) + \frac{1}{2-\sqrt2}\sum H_1$$`
+- Chosen such that the max value of either `\(c_1\mathrm{var}(H_0)\)` or `\(c_2\sum H_1\)` is `\(\frac12\)` in `\(R\)`.
+- `\(R\)` the region of possible triangles such that the largest side is of length `\(1\)`.
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr4_lrg.jpg" width="420" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Latices perturbed at one point
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr7_lrg.jpg" width="700" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+- Measures of order as functions of the position of the perturbed point.
+
+- The point at the center of the hexagon represents a perfect, unperturbed lattice.
+
+- `\(N^3\)` is discrete.
+
+- The DT measure thus carries a small discontinuity.
+
+- `\(\mathrm{var}(H_0)\)` is insensitive to changes in the position of the central lattice point when that point is near the center of the hexagon.
+
+- `\(\sum H_1\)`  appears to be most sensitive to perturbations of the lattice point when that point is near to the center.
+
+---
+
+## Randomly perturbed lattices
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr8_lrg.jpg" width="700" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Ion bombardment of solid surfaces
+
+- Shenoy, Chan and Chason first studied the coupling between the surface topography and composition that arises during ion bombardment of a binary compound.
+
+- Bradley and Shipman (BS) extended this theory to include the effect of mass redistribution.
+
+- The BS equations govern the behavior of the deviations of the
+    - Surface height `\(u(x,y,t)\)`
+    - Surface concentration of one of the two atomic species `\(\varphi(x,y,t)\)`
+
+`$$\begin{align}
+\frac{\partial u}{\partial t} &amp;= \varphi - \nabla^2u - \nabla^2\nabla^2u + \lambda(\nabla u)^2,\\
+\frac{\partial\varphi}{\partial t} &amp;= -a\varphi + b\nabla^2u+c\nabla^2\varphi + \nu\varphi^2 + \eta\varphi^3.
+\end{align}$$`
+
+- Bifurcation parameter `\(b\)` is of interest when very close to a critical threshold `\(b_T\)`.
+    - Determines regularity of pattern
+
+- Increase of `\(\nu\)` increases the average height disparity between defect and defect-free regions of the surface.
+
+---
+
+### Dependence of order on `\(b\)`
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr10_lrg.jpg" width="525" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### 50 simulations on a `\(256\times256\)` grid
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr9_lrg.jpg" width="700" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### Dependence of order on `\(\nu\)`
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr11_lrg.jpg" width="700" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Templated patterns
+
+- Prepattern the surface before bombardment
+`$$u_{\sin,0}(x,y) = 10^{-2}\sin(k_0x)+\xi(x,y)$$`
+- where
+   - `\(k_0 = 2\pi/\lambda_0\)` is the wave number of the template
+   - `\(\lambda_0\)` is the wavelength of the initial sinusoid
+   - `\(\xi\)` is a small perturbation
+
+- Simulate a domain `\(0\leq x,y\leq L\)`, with `\(L=400\)`.
+
+- Set `\(N = L/\lambda_0\)`, the number of wavelengths that fit across the spatial domain.
+    - `\(N = 0\)` is no patterning
+    - Vary `\(N\)` all the way to `\(42\)`
+
+- 150 trials per set of hyperparameters
+
+- Best ordered results expected around `\(N\approx 39\)` and `\(N\approx 20\)`.
+
+---
+
+## Templated patterns
+
+&lt;img src="https://ars.els-cdn.com/content/image/1-s2.0-S0167278917306851-gr12_lrg.jpg" width="700" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.physd.2018.05.005"&gt;Motta &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: inverse, center, middle
+
+# Follow-up: Persistence Images
+
+---
+
+&lt;img src="../figs/persistence_images_stable_vector_representation_of_persistent_homology.png" width="550" style="display: block; margin: auto;" /&gt;
+
+&lt;p align="center"&gt;
+&lt;iframe width="700" height="425" src="https://www.youtube-nocookie.com/embed/Z9lnifRJGcE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+
+[Link to paper](http://jmlr.org/papers/v18/16-337.html)
+
+---
+
+class: inverse, center, middle
+
+# Questions?
+
+--
+
+### Slides made with [RMarkdown + xaringan](https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

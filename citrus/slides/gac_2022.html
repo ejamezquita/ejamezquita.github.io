@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>When life gives you lemons</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   -" />
+    <meta name="date" content="2022-02-18" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# When life gives you lemons
+## model the citrus oil gland distribution
+### <strong>Erik Amézquita</strong> <br> -
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+### 2022-02-18
+
+---
+
+
+
+class: inverse, center
+
+# Scan all (the citrus)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/khRS5AuleIM?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/HAIaektvV3Q?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/Xo2HULkkm3s?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/EwTwSNrBuIo?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Citrus taxonomy is... complicated
+
+- 10* _fundamental_ citrus gave rise to all citrus diversity we see today
+
+- Originated in South and South East Asia, and Australia.
+
+- Still some debate as to what exactly is a citrus
+
+.pull-left[
+![](../figs/precursor_citrus_phylogenetic.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+![](../figs/precursor_citrus_geo_distribution.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+## Think of citrus as lego blocks
+
+![](../figs/citrus_family_tree_1.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: inverse, center, middle
+
+# Scan it all!
+]
+
+---
+
+## Raw Data: X-rays &amp;rarr; Image Processing
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg"&gt;
+    &lt;p style="text-align: center;"&gt; UCR Collaboration &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg"&gt;
+    &lt;p style="text-align: center;"&gt; 3D X-Ray CT scan &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Raw &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+--
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_spine.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Spine &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_endocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Endocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_rind.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Rind &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_exocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Exocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_oil_glands.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Oil glands&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/citrus_diagnostic.gif")
+background-size: 650px
+background-position: 50% 70%
+
+## Rich tissue collection
+
+---
+
+class: inverse, center, middle
+
+# Looking to strike some oil
+
+---
+
+# Allometry
+
+![](../figs/exocarp_vs_endocarp.jpg)
+
+---
+
+# Allometry
+
+![](../figs/whole_vs_oil_glands.jpg)
+
+---
+
+# Allometry
+
+![](../figs/oil_glands_vs_num_glands.jpg)
+
+---
+
+background-image: url("../ellipsoids/Li_and_Griffiths_2004.png")
+background-size: 200px
+background-position: 95% 3%
+
+## Model the whole fruit as an ellipsoid
+
+.pull-left[
+![](../figs/SW01_CRC3030_12B-8-5_L02_frontal_ell_projection.jpg)
+![](../figs/SR01_CRC3289_12B-19-9_L02_frontal_ell_projection.jpg)
+]
+
+.pull-right[
+![](../figs/C08C_CRC3546_18A-5-3_L00_frontal_ell_projection.jpg)
+![](../figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg)
+]
+
+---
+
+# How round _is_ a round orange?
+
+![](../figs/sphericity_index_distribution.jpg)
+
+---
+
+## Oil gland modeling with directional statistics
+
+### Lambert Azimuthal Projection
+
+.pull-left[
+![](https://upload.wikimedia.org/wikipedia/commons/4/4d/Generalized_Lambert_Equal-Area_projection.gif)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+![](https://upload.wikimedia.org/wikipedia/commons/a/a9/LambertAlt.gif)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+]
+
+Helps to visualize better a sphere in 2D
+
+---
+
+background-image: url("../ellipsoids/GarciaPortugues_2013.png")
+background-size: 250px
+background-position: 95% 3%
+
+## Spherical Kernel Density Estimation
+
+![](../figs/M01_CRC3226_12B-27-1_L00_emi_kde_N.jpg)
+
+- Oil glands of a mandarin
+
+- Red arrows indicate the most significant gradient values for the density function
+
+--
+
+- Statistical tool to model oil gland distribution!
+
+---
+
+background-image: url("../figs/SW03_CRC1241-B_12B-4-3_L00_uniform_comparison.jpg")
+background-size: 600px
+background-position: 50% 90%
+
+## Distribution of oil glands is NOT uniform
+
+---
+
+# Future directions
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+- Compare differences in oil gland density distribution
+    - Between "species"
+    - Between wild types and domesticated fruits
+    
+- Propose a distribution model
+
+- Insights into fruit development
+]
+
+---
+
+class: inverse, middle
+
+# Thank you!
+
+.pull-left[
+![](../figs/citrus-picking-guide7.png)
+&lt;p style="font-size: 12px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://citrusaustralia.com.au/wp-content/uploads/Citrus-picking-guide.pdf"&gt;Citrus Australia&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+Joint work with:
+
+- Michelle Quigley (MSU Hort)
+
+- Tim Ophelders (TU Eidhoven)
+
+- Danelle Seymour (UC Riverside)
+
+- Liz Munch (MSU CMSE/Math)
+
+- Dan Chitwood (MSU Hort/CMSE)
+
+&lt;img src="../../cmse/figs/cmse_image002.jpg" width="200" style="display: block; margin: auto;" /&gt;
+]
+--
+
+### Slides made with [RMarkdown + xaringan](https://bookdown.org/yihui/rmarkdown/xaringan-preview.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

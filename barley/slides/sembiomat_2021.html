@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Midiendo la forma en botánica</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Michelle Quigley, Tim Ophelders   Elizabeth Munch, Dan Chitwood   Dan Koenig, Jacob Landis   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Midiendo la forma en botánica
+]
+.subtitle[
+## usando Análsis Topológico de Datos
+]
+.author[
+### <strong>Erik Amézquita</strong>, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -
+]
+.institute[
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+]
+.date[
+### 2022-12-13 <br> - <br> Slides: <a href="https://www.egr.msu.edu/~amezqui3/barley/slides/sembiomat_2021.html"><code>https://bit.ly/cebada_atd</code></a>
+]
+
+---
+
+
+
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Morfología del reino vegetal
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Mira más tomografías 3D en &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Morfometría Tradicional
+
+&lt;img src="https://nph.onlinelibrary.wiley.com/cms/asset/e0e8b362-efee-410a-a293-947c2d57acb9/nph16286-fig-0003-m.jpg" width="650" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href=" https://doi.org/10.1111/nph.16286"&gt;Gupta &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Métodos morfométricos usuales no son suficientes
+
+.pull-left[
+Descriptores Elípticos de Fourier (EFD)
+![](../figs/chitwood_sinha_2016_01_02.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cub.2016.02.033"&gt;Chitwood and Sinha (2016)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+Morfometría Geométrica (GMM)
+![](../figs/chitwood_2021_fig-004_1.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href=" https://doi.org/10.1002/ppp3.10157"&gt;Chitwood  (2020)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+class: inverse
+
+# Necesitamos algo más robusto para datos más diversos
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/j0R9mMs5E50?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/2FmwkEA3tsY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/vxcSZsCs5BU?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/KXt-C-_OA3o?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Mira más tomografías 3D en &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Análisis Topológico de Datos (ATD, TDA)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Datos &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Escanes rayos X &lt;/li&gt;
+      &lt;li&gt; Nubes de puntos &lt;/li&gt;
+      &lt;li&gt; Series de tiempo &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Resumen Topológico &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Característica de Euler &lt;/li&gt;
+      &lt;li&gt; Diagramas de persistencia &lt;/li&gt;
+      &lt;li&gt; Mapper &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;img src="../figs/svm_mds_ect.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Análisis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Estadística &lt;/li&gt;
+      &lt;li&gt; Aprendizaje de máquina &lt;/li&gt;
+      &lt;li&gt; Clasificación y predicción &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse, middle, center
+
+# 1. Análisis Topológico de Datos
+
+## La Transformada de Característica de Euler (ECT)
+
+---
+
+# 1er ingrediente: Complejos
+
+- Nuestros datos como una colección de bloques elementales ( _células_ )
+
+Vértices | Aristas | Caras | Volúmenes
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- Una colección bien pegada de células: _complejo simplicial_ o _complejo cúbico_
+
+- Contar el número de rasgos topológicos ( _agujeros_ )
+
+Componentes conexas | Ciclos | Vacíos
+--------------------|--------|-------
+       0-dim        | 1-dim  | 2-dim
+    
+.pull-left[
+&lt;img src="../../tda/figs/simplicial_complex.jpg" width="250px" style="display: block; margin: auto;" /&gt;
+- 3 componentes, 1 ciclo, 1 vacío
+]
+
+.pull-right[
+&lt;img src="../../tda/figs/cubical_complex.jpg" width="250px" style="display: block; margin: auto;" /&gt;
+- 2 componentes, 3 ciclos, 1 vacío
+]
+
+---
+
+# 2do ingrediente: Filtración
+
+- Asignamos un valor real cada simplejo y construimos el complejo poco a poco.
+
+- Observamos cómo cambia el número de rasgos topológicos a medida que crece el complejo
+
+.pull-left[
+&lt;img src="../figs/eigcurv_filter.gif" width="220px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/gaussian_density_filter.gif" width="220px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="../figs/eccentricity_filter.gif" width="220px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/vrips_ver2.gif" width="220px" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+- **Homología persistente**
+
+---
+
+# Ejemplo 1
+
+## Detectar agujeros &amp;rarr; detectar tejido cancerígeno
+
+.pull-left[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg)
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2_lrg.jpg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Ejemplo 2
+
+## Detectar agujeros &amp;rarr; detectar recombinaciones
+
+.pull-left[
+![](https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/ce30e9df-d595-4520-a68a-74f3c6f151d1/assets/graphic/pnas.1313480110fig01.jpeg)
+]
+
+.pull-right[
+![](https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/b733c3a3-00f2-43d5-b372-9da25f3d33c9/assets/graphic/pnas.1313480110fig02.jpeg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1313480110"&gt;Chan &lt;em&gt;et al.&lt;/em&gt; (2013)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Ejemplo 3
+
+## Detectar agujeros &amp;rarr; detectar conformaciones abiertas y cerradas
+
+.pull-left[
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_001.jpg)
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_012.jpg)
+]
+
+.pull-right[
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_010.jpg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1515/sagmb-2015-0057"&gt;Kovacev-Nikolic &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: inverse
+
+# Interludio comercial
+
+- Más información y referencias sobre la teoría matemática de ATD y sus aplicaciones a biología
+
+&gt; Amézquita _et al._ (2020) "The shape of things to come: Topological data analysis and biology, from molecules to organisms". _Developmental Dynamics_ 249(7) pp. 816-833. DOI: [10.1002/dvdy.175](https://doi.org/10.1002/dvdy.175)
+
+![](../../tda/figs/amezquita_etal_2020.png)
+
+--
+
+- Más herramientas de ATD: mapper, panoramas de persistencia, viñedos de persistencia, imágenes de persistencia, etc.
+
+---
+
+# La característica de Euler
+
+`$$\chi = \#(\text{Vértices}) - \#(\text{Aristas}) + \#(\text{Caras}).$$`
+&lt;img src="../../tda/figs/euler_characteristic_2.png" width="400" style="display: block; margin: auto;" /&gt;
+
+- Resumimos todos los rasgos topológicos con la fórmula de Euler-Poincaré,
+
+`$$\chi = \#(\text{Componentes Conexas}) - \#(\text{Ciclos}) + \#(\text{Vacíos}).$$`
+
+
+- La característica de Euler es un **invariante topológico**.
+
+---
+
+background-image: url("../figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+# Curva de Característica de Euler (ECC)
+
+- Consideramos un complejo `\(X\subset\mathbb{R}^d\)`
+- Una dirección unitaria `\(\nu\in S^{d-1}\)`
+
+- Y el subcomplejo que contiene todas las células debajo de la altura `\(h\)` respecto a la dirección `\(\nu\)`
+`$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$`
+
+- La Curva de Característica de Euler de dirección `\(\nu\)` se define como la sucesión `$$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$`
+
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 800px
+background-position: 50% 88%
+
+## Transformada de Característica de Euler (ECT)
+
+- Repetimos para todas las direcciones posibles.
+
+- Más formalmente, la ECT es una función
+
+$$
+`\begin{split}
+ECT(X):\; &amp; S^{d-1} \to \mathbb{Z}^{\mathbb{R}}\\
+&amp;\nu\mapsto\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.
+\end{split}`
+$$
+
+
+---
+
+# ¿Porqué la transformada ECT?
+
+--
+
+- Es fácil de calcular: una simple sucesión de sumas
+
+--
+
+[**Teorema _(Turner, Mukherjee, Boyer 2014)_**](https://doi.org/10.1093/imaiai/iau011): La ECT es inyectiva para complejos simpliciales finitos en 3D
+
+[**Teorema _(ibid)_**](https://arxiv.org/abs/1310.1030): La ECT es una estadística suficiente para complejos simpliciales finitos en 3D
+
+--
+
+_Traducción:_ 
+
+- Dada todas las (infinitas) ECCs correspondientes a todas las direcciónes
+
+- Complejos simpliciales *distintos* corresponden a ECTs *distintas*
+
+- La ECT en efecto resume toda la información posible respecto a la forma de nuestro complejo
+
+--
+
+Desarrollar un algoritmo eficiente de reconstrucción de objetos en 3D a partir de una colección finita de direcciones sigue siendo un problema abierto ([Betthauser 2018](https://people.clas.ufl.edu/peterbubenik/files/Betthauser_Thesis.pdf); [Curry et al. 2018](https://arxiv.org/abs/1805.09782); [Fasy et al. 2019](https://arxiv.org/abs/1912.12759)).
+
+---
+
+class: inverse, middle, center
+
+# 2. Cebada
+
+## Cuantificando la morfología de la cebada usando la Característica de Euler
+
+### Amézquita et al. (2021) [Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform](https://doi.org/10.1093/insilicoplants/diab033)
+
+---
+
+class: inverse
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://kizilvest.ru/20150827-v-kizilskom-rajone-nachalas-uborochnaya-strada/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_kizilskoye.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://ipad.fas.usda.gov/highlights/2008/11/eth_25nov2008/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_ethiopia.gif"&gt;&lt;/a&gt;
+    &lt;a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_historical_expansion.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.nationalgeographic.co.uk/travel/2020/05/photo-story-from-barley-fields-to-whisky-barrels-in-rural-scotland" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_seed_scotland_cropped.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
+    &lt;p style="text-align: center; font-size: 30px; line-height: 1em;"&gt;&lt;strong&gt;Cebada del mundo&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;Kiliskoye (Chelyabinsk, Rusia)&lt;/p&gt;
+    &lt;p&gt;Marchouch (Rabat, Marruecos)&lt;/p&gt;
+    &lt;p&gt;Aksum (Tigray, Etiopía)&lt;/p&gt;
+    &lt;p&gt;Salar (Tsetang, Tíbet)&lt;/p&gt;
+    &lt;p&gt;Expansión de la cebada&lt;/p&gt;
+    &lt;p&gt;Turriff (Aberdeenshire, Scotland)&lt;/p&gt;
+    &lt;p style="font-size:9px;line-height: 1em;"&gt;Click on any picture for more details and credits&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Experimento Cross Composite II
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_01.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Experimento Cross Composite II
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 fundadores/variedades** `\((F_0)\)`
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_02.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Experimento Cross Composite II
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 fundadores/variedades** `\((F_0)\)`
+
+- Cruzamos `\({28 \choose 2}\)` **híbridos** `\((F_1)\)`
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_03.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Experimento Cross Composite II
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 fundadores/variedades** `\((F_0)\)`
+
+- Cruzamos `\({28 \choose 2}\)` **híbridos** `\((F_1)\)`
+
+- **Auto-polinizar** los 379 híbridos resultantes
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_04.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Experimento Cross Composite II
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 fundadores/variedades** `\((F_0)\)`
+
+- Cruzamos `\({28 \choose 2}\)` **híbridos** `\((F_1)\)`
+
+- **Auto-polinizar** los 379 híbridos resultantes
+
+- Cada línea crece en un área distinta en un terreno abierto.
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_05.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Experimento Cross Composite II
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 fundadores/variedades** `\((F_0)\)`
+
+- Cruzamos `\({28 \choose 2}\)` **híbridos** `\((F_1)\)`
+
+- **Auto-polinizar** los 379 híbridos resultantes
+
+- Cada línea crece en un área distinta en un terreno abierto **por 58 generaciones**.
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+## Datos: rayos X &amp;rarr; Procesamiento de imágenes
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:37.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_packing.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Cebada enviada desde California&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Datos: rayos X &amp;rarr; Procesamiento de imágenes
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:37.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_packing.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Cebada enviada desde California&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Reconstrucción de tomografías 3D &amp;reg;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Datos: rayos X &amp;rarr; Procesamiento de imágenes
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:37.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_packing.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Cebada enviada desde California&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Reconstrucción de tomografías 3D &amp;reg;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_xray_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Creatividad para escanear&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Datos: rayos X &amp;rarr; Procesamiento de imágenes
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:37.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_packing.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Cebada enviada desde California&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Reconstrucción de tomografías 3D &amp;reg;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_xray_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Creatividad para escanear&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; 975 espigas &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_L3_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; 3 generaciones &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Datos: rayos X &amp;rarr; Procesamiento de imágenes
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:37.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_packing.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Cebada enviada desde California&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Reconstrucción de tomografías 3D &amp;reg;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../figs/barley_xray_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Creatividad para escanear&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; 975 espigas &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_L3_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; 3 generaciones &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/S017_L0_seed_10_0.gif"&gt;
+    &lt;p style="text-align: center;"&gt; 38,000 semillas &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Procesamiento de imágenes &amp;rarr; Descriptores tradicionales
+
+.pull-left[
+- Longitud
+- Ancho
+- Altura
+- Área de superficie
+- Volumen
+![](../figs/seed_orientation1.png)
+![](../figs/seed_orientation3.png)
+]
+
+--
+
+.pull-right[
+![](../figs/boxplot_all_vol_h.png)
+![](../figs/boxplot_all_length_h.png)
+![](../figs/boxplot_all_area_h.png)
+]
+
+---
+
+background-image: url("../figs/S012_L2_Blue_33.png")
+background-size: 150px
+background-position: 99% 50%
+
+# Juego y estrategia
+
+- **Meta:** Clasificar 28 variedades de cebada usando únicamente información morfológica de los granos.
+
+- **3121** granos en total
+
+--
+
+.pull-left[
+&lt;img src="../figs/pole_directions_p7_m12_crop.jpg" width="150" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- 158 direcciones
+- 16 rebanadas por dirección
+- Cada semilla es asociada a un vector `\(158\times16=2528\)`-dim
+- Dimensiones reducidas por separado con KPCA y UMAP
+]
+
+
+
+--
+
+- Comparamos **3** conjuntos de descriptores morfológicos
+
+Descriptor | No. of descriptors
+-----------|--------------------
+Tradicional | 11
+Topológico (ECT &amp;rarr; KPCA/UMAP) | ~~2528~~ &amp;rarr; 12
+Combinado (Trad &amp;oplus; Topo) | 23
+
+--
+
+- Muestreamos aleatoriamente 75/25 para entrenamiento y prueba.
+
+- Repetimos el muestreo y SVM 100 veces y consideramos el promedio.
+
+---
+
+# Clasificación de 28 líneas con SVM
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Descriptores&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;No. de descriptores&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Precisión&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Recall&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Tradicional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.57 &amp;plusmn; 0.058&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.56 &amp;plusmn; 0.019&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Topológico&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.75 &amp;plusmn; 0.047&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.75 &amp;plusmn; 0.016&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Combinado&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.87 &amp;plusmn; 0.031&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.86 &amp;plusmn; 0.010&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.86 &amp;plusmn; 0.010&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;img src="../figs/avg_f1_combined_158_16_12_umap_horz.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Descriptores morfológicos tradicionales
+
+![](../figs/trad_pca_2_dims_founders_spikes.jpg)
+
+---
+
+# Descriptores morfólogicos topológicos + UMAP
+
+![](../figs/umap_2_dims_founders_spikes.jpg)
+
+---
+
+# Descriptores morfológicos topológicos + KPCA
+
+![](../figs/kpca_2_dims_founders_spikes.jpg)
+
+---
+
+# Información topológica al descubierto
+
+.pull-left[
+- Análisis de varianzar para determinar las direcciones y rebanadas más relevantes.
+
+- La hendidura central y la parte inferior de la semilla es bastante descriptiva!
+
+&lt;img src="../figs/kruskal_wallis_topo_summary.jpg" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="../figs/discerning_directions.png" width="225" style="display: block; margin: auto;" /&gt;
+
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Moviéndonos a terreno semi-supervisado
+
+- Entrenamos un SVM con el 100% de los fundadores `\((F_0)\)`
+
+- Clasificamos a la progenie `\((F_{18}\text{ and }F_{58})\)` para detectar enriquecimiento de genotipo.
+
+.pull-left[
+![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+
+---
+class: right, bottom, inverse
+
+background-image: url("../figs/acknowledgments.jpg")
+background-size: 1000px
+background-position: 50% 40%
+
+- [`https://bit.ly/cebada_atd`](https://www.egr.msu.edu/~amezqui3/barley/slides/sembiomat_2021.html)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

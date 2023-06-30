@@ -1,0 +1,154 @@
+---
+title: "Quantifying the shape of barley"
+subtitle: "using Topological Data Analysis"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+class: inverse
+
+<div class="row">
+  <div class="column" style="max-width:44%">
+    <!-- <a href="https://www.thescottishfarmer.co.uk/arable/14364703.hybrid-barley-pays-off-for-mixed-farming-too/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_scotland.jpg"></a> -->
+    <a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_norway.jpg"></a>
+    <a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"></a>
+    <a href="https://ipad.fas.usda.gov/highlights/2008/11/eth_25nov2008/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_ethiopia.gif"></a>
+  </div>
+  <div class="column" style="max-width:44%">
+    <a href="https://kizilvest.ru/20150827-v-kizilskom-rajone-nachalas-uborochnaya-strada/" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_kizilskoye.jpg"></a>
+    <a href="https://www.bloomberg.com/news/articles/2020-09-13/iraq-to-offer-first-ever-barley-exports-as-rains-yield-surplus" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_iraq.jpg"></a>
+    <a href="https://thewire.in/agriculture/covid-19-lockdown-crop-harvest-farmers" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_rajasthan.jpg"></a>
+  </div>
+  <div class="column" style="max-width:8%; font-size: 15px;">
+    <p style="text-align: center; font-size: 30px; line-height: 1em;"> <strong> Barley across the world </strong></p>
+    <p>Tjøtta (Nordland, Norway)</p>
+    <p>Kiliskoye (Chelyabinsk, Russia)</p>
+    <p>Marchouch (Rabat, Morocco)</p>
+    <p>Bagdad (Iraq) </p>
+    <p>Aksum (Tigray, Ethiopia) </p>
+    <p>Hanumangarh (Rajasthan, India) </p>
+    <p style="font-size:9px;line-height: 1em;">Click on any picture for more details and credits</p>
+  </div>
+</div>
+
+---
+
+# Morphological seed diversity of lines
+
+<div class="row">
+  <div class="column" style="max-width:45%">
+    <a href="https://www.nationalgeographic.co.uk/travel/2020/05/photo-story-from-barley-fields-to-whisky-barrels-in-rural-scotland" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_seed_scotland.jpg"></a>
+  </div>
+  <div class="column" style="max-width:55%">
+    <a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_seed_tibet.jpg"></a>
+    <a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_historical_expansion.jpg"></a>
+    <p style="font-size: 15px; line-height: 1em"> Barley seeds from Scotland and Tibet. </p>
+    <p style="font-size: 15px; line-height: 1em"> Historical expansion of the barley as a crop. </p>
+    <p style="font-size:9px;line-height: 1em;">Click on any picture for more details and credits</p>
+  </div>
+</div>
+
+---
+
+# Topological Data Analysis (TDA)
+
+<div class="row" style="margin-top: -30px;">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1_21.png">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <ul>
+      <li> X-ray CT </li>
+      <li> Point clouds </li>
+      <li> Time series </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../figs/ecc_filter_X_16.png">
+    <p style="font-size: 23px; text-align: center; color: DarkRed;"> Topological Summary </p>
+    <ul>
+      <li> Euler Characteristic </li>
+      <li> Persistence diagrams </li>
+      <li> Mapper/Reeb graphs </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:35%; font-size: 15px;">
+    <img src="../figs/svm_mds_canberra.png">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Analysis </p>
+    <ul>
+      <li> Statistics </li>
+      <li> Machine learning </li>
+      <li> Classification/prediction </li>
+    <ul>
+  </div>
+</div>
+
+---
+
+# Classification of 28 lines with SVM
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Shape descriptors</th>
+    <th class="tg-0pky">No. of descriptors</th>
+    <th class="tg-0pky">Classification accuracy</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-2bhk">Traditional</td>
+    <td class="tg-2bhk">11</td>
+    <td class="tg-2bhk">54.7% --- 57.1%</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">Topological (ECT + KPCA)</td>
+    <td class="tg-0pky">12</td>
+    <td class="tg-0pky">53.9% --- 56.9%</td>
+  </tr>
+  <tr>
+    <td class="tg-2bhk">Combined (Traditional + Topological)</td>
+    <td class="tg-2bhk">23</td>
+    <td class="tg-2bhk">70.0% --- 72.4%</td>
+  </tr>
+</tbody>
+</table>
+
+```{r, out.width=700}
+knitr::include_graphics('../figs/avg_accuracy_normalized_size_combined_158_8_laplacedot_12_horz_transp.png')
+```
+
+
+Grab the animated slides at [`bit.ly/nappn21_barley`](https://bit.ly/nappn21_barley)

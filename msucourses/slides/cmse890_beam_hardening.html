@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Exploring Beam Hardening</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   -" />
+    <meta name="date" content="2022-12-11" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Exploring Beam Hardening
+]
+.subtitle[
+## CMSE 890 End of Semester Project
+]
+.author[
+### <strong>Erik Amézquita</strong> <br> -
+]
+.institute[
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+]
+.date[
+### 2022-12-11
+]
+
+---
+
+
+
+
+class: inverse, center, middle
+
+# Flashback
+
+## X-ray tomography
+
+## Beer's law
+
+---
+
+# Monochromatic sources
+
+`$${N}_{\textrm{out}}({x}) = {N}_{\textrm{in}}\exp({-\mu}{x})$$`
+
+---
+
+# Monochromatic sources
+
+`$${N}_{\textrm{out}}({x}) = {N}_{\textrm{in}} \exp(-{\overbrace{\mu}^{\textrm{attenuation coefficient}} \underbrace{x}_{\textrm{thickness}}})$$`
+--
+
+- We assume a single, monochromatic X-ray beam
+
+- That is, all photons in the beam have the exact same energy
+
+--
+
+- `\(\mu\)` is not constant: it depends on the material
+
+`$${N}_{\textrm{out}} = {N}_{\textrm{in}}\exp\left(-\int_L\mu(x,y)d\ell\right)$$`
+--
+
+- Equivalently
+
+`$$m_L = \int_L\mu(x,y)d\ell = \log\frac{{N}_{\textrm{in}}}{{N}_{\textrm{out}}}$$`
+--
+
+- No scatter
+
+- Narrow beam
+
+- No partial volume effect
+
+---
+
+class: inverse, center, middle
+
+# Reality check
+
+---
+
+# Beam hardening
+
+- In reality, we have to consider a large range of photon energies
+
+--
+
+- Low energies are preferentially absorbed
+
+--
+
+- Beam becomes richer in high energy photons as it goes through the first object layers
+
+--
+
+- Average energy of detected photons is larger than the average energy of the incident photons.
+
+--
+
+![](../figs/beam_hardening.png)
+
+---
+
+# Polychromatic sources
+
+- Attenuation due to the tissue at some point will be different for rays from different directions.
+
+`$$p_L = \int S_{\textrm{in}}(E)\exp\left[-\int\mu(x,y,E)d\ell\right]dE$$`
+---
+
+# Polychromatic sources
+
+- Attenuation due to the tissue at some point will be different for rays from different directions.
+
+`$$p_L = \int \overbrace{S_{\textrm{in}}(E)}^{\textrm{photon density}}\exp\overbrace{\left[-\int\mu(x,y,E)d\ell\right]}^{\textrm{energy dependence}}dE$$`
+--
+
+- `\(S_{\textrm{in}}(E)dE\)` is the total number of incident photons in the energy range `\([E, E+\Delta E]\)`.
+
+--
+
+- Detector sensitivity also plays a role in real life.
+
+---
+
+# Polychromatic sources
+
+- Attenuation due to the tissue at some point will be different for rays from different directions.
+
+`$$p_L = \int \overbrace{S_{\textrm{in}}(E)}^{\textrm{photon density}}\exp\overbrace{\left[-\int\mu(x,y,E)d\ell\right]}^{\textrm{energy dependence}}dE$$`
+
+- `\(S_{\textrm{in}}(E)dE\)` is the total number of incident photons in the energy range `\([E, E+\Delta E]\)`.
+
+- ~~Detector sensitivity also plays a role in real life.~~ Assume constant sensitivity.
+
+---
+
+# Beam-hardening conundrum
+
+- We measure `\(p_L\)` but we can only solve `\(\mu\)` in `\(\int_L\mu(x,y)d\ell\)`.
+
+--
+
+- If left unaddressed, we have severe artifacts whenever there are two materials with very different densities
+
+![](../figs/industrial_phantom.png)
+
+---
+
+class: inverse, center, middle
+
+# What to do, then?
+
+## Multiple solutions have been proposed since the late 70s
+
+## Preprocessing and Postprocessing
+
+---
+
+# Force monochromacity
+
+- Pre-harden the beam by placing a filter in front of the source
+
+![](../figs/preharden_filters.jpg)
+--
+
+- Lose sensitivity of soft materials
+
+--
+
+- Expose the object/patient to a higher radiation dose
+
+---
+
+# Preprocessing: Linearization
+
+- We want `\(\{m_L\}\)` but we only have `\(\{p_L\}\)` observations
+
+--
+
+- Use a correction function `\(f(p_L) \approx m_L\)` (usually a low degree polynomial) as a preprocessing step
+
+--
+
+- If the assumption of photons being monoenergetic were indeed valid, a ray integral for an homogeneous material would be given by 
+`$$\mu\underbrace{\ell}_{\textrm{thickness}} = \log\frac{N_{\textrm{in}}}{N_{\textrm{out}}}$$`
+--
+
+- That is, `\(\log\frac{N_{\textrm{in}}}{N_{\textrm{out}}}\)` is linearly proportional to absorber thickness.
+
+--
+
+- Experimentally computed for one reference material, and we assume that the behavior is similar for other materials
+
+---
+
+# Preprocessing: Linearization
+
+![](../figs/linearization_bh.png)
+
+--
+
+- Good for soft tissue; bad whenever bone/metal are present
+
+---
+
+# Postprocessing: Multimaterial linearization
+
+- Do an initial reconstruction 
+
+--
+
+- Segment different materials
+
+--
+
+- Linearization for different materials
+
+---
+
+# Dual-energy technique
+
+- Split the material and energy dependencies
+
+`$$\mu(x,y,E) = \overbrace{\varphi(x,y)\Phi(E)}^{\textrm{photoelectric effect}} + \overbrace{\theta(x,y)\Theta(E)}^{\textrm{Compton scatter}}$$`
+
+- `\(\Phi(E)={{1/E^3}\over {1/E_0^3}}\)` with `\(E_0\)` the reference energy (usually `\(E_0=70\)`keV).
+
+- `\(\Theta(E)={{f_{{\rm KN}}(E)}\over {f_{{\rm KN}}(E_0)}}\)` where `\(f_{\rm KN}\)` is the Klein-Nishima equation.
+
+--
+
+- Thus the polychromatic descriptor is
+
+`$$p_L = \int S_{\textrm{in}}(E)\exp\left[-A_1\Phi(E) + A_2\Theta(E)\right]dE$$`
+
+- `\(A_1 = \int_L \phi(x,y) d\ell\)` and `\(A_2 = \int_L \theta(x,y) d\ell\)`
+
+--
+
+- Determine `\(A_1\)` and `\(A_2\)`
+
+--
+
+- Determine `\(\varphi(x,y)\)` and `\(\theta(x,y)\)`
+
+--
+
+- Determine `\(\mu\)` at any enery free from beam hardening!
+
+---
+
+# Dual-energy technique
+
+- Use two different source spectra
+
+`$$I_1 = \int S_{1}(E)\exp\left[-A_1\Phi(E) + A_2\Theta(E)\right]dE$$`
+`$$I_2 = \int S_{2}(E)\exp\left[-A_1\Phi(E) + A_2\Theta(E)\right]dE$$`
+--
+
+- Use split detectors
+
+- Do alternating voltages
+
+--
+
+![](../figs/dual_energy_attenuation.png)
+
+---
+
+# Iterative reconstruction models
+
+- The idea was sort-of discussed in previous classes
+
+--
+
+- IMPACT: Iterative Maximum likelihood Polychromatic Algorithm for CT
+
+--
+
+- *Given* a set of measurements `\(\{y_i\}_{i=1}^I\)`
+- *Find* a distribution of inear attenuation coefficients `\(\{\mu_j\}_{j=1}^J\)` such that they maximize the loglikehood
+
+`$${\rm L} = \underbrace{\sum_{i=1}^I\,}_{\textrm{projections}} \left(y_i \cdot \ln (\underbrace{\hat{y}_i}) - \underbrace{\hat{y}_i}_{\textrm{expected no. of photons given }\mu_j}\right)$$`
+--
+
+- `\(y_i\)` assumed to be a Poisson realization of `\(\hat y_i\)`.
+
+`$$\hat{y}_i=\underbrace{b_i}_{\textrm{blank scan}} \cdot \exp\left({-}\underbrace{\sum_{j=1}^J}_{\textrm{pixels}}\,\overbrace{l_{ij}}^{\textrm{intersection length}} \mu_j\right)$$`
+
+---
+# Iterative reconstruction models
+
+- More general by considering energy dependency
+
+- Split `\(\mu\)` into photoelectric effect and Compton scatter components
+
+- Assume the materials behave linearly 
+
+`$$\hat{y}_i=\overbrace{\sum_{k=1}^{K}}^{\textrm{energies}}\, b_{ik} \cdot \exp\left({-}\sum_{j=1}^J l_{ij} \left[\phi(\mu_j) \cdot \Phi_k + \theta(\mu_j) \cdot \Theta_k\right]\right)$$`
+
+--
+
+Update step
+
+`$$\mu^{n+1}_j = \mu^{n}_j + \Delta\mu^{n}_j$$`
+`$$\Delta\mu^{n}_j =\, {{\phi'_j \cdot {\displaystyle \sum_{i=1}^I}\, l_{ij} e_i Y^\Phi_i + \theta'_j \cdot {\displaystyle \sum_{i=1}^I}\, l_{ij} e_i Y^\Theta_i}\over {\phi'_j \cdot {\displaystyle \sum_{i=1}^I}\, l_{ij} M_i + \theta'_j \cdot {\displaystyle \sum_{i=1}^I}\, l_{ij} N_i}}$$`
+
+---
+class: inverse, center, middle
+
+# Results reported in literature
+
+---
+
+# Dual energy in medical settings 
+
+&lt;iframe src="../pdf/Pessis_etal2013.pdf#toolbar=0" width="100%" height="500px"&gt;
+&lt;/iframe&gt;
+
+---
+
+# Dual energy in medical settings 
+
+&lt;iframe src="../pdf/Kaza_etal2012.pdf#toolbar=0" width="100%" height="500px"&gt;
+&lt;/iframe&gt;
+
+---
+
+# Industrial setting
+
+&lt;iframe src="../pdf/Cao_etal2018.pdf#toolbar=0" width="100%" height="500px"&gt;
+&lt;/iframe&gt;
+
+---
+class: inverse, center, middle
+
+# Thanks!
+
+---
+
+# Reference material
+
+- W. Cao, T. Sun, G. Fardell, B. Price, and W. Dewulf (2018), "Comparative performance assessment of beam hardening correction algorithms applied on simulated data sets". _Journal of Microscopy_, 272: 229-241. doi: 10.1111/jmi.12746
+
+- B. De Man, J. Nuyts, P. Dupont, G. Marchal and P. Suetens (2001) "An iterative maximum-likelihood polychromatic algorithm for CT," in _IEEE Transactions on Medical Imaging_, vol. 20, no. 10, pp. 999-1008, doi: 10.1109/42.959297.
+
+- G. T. Herman and S. S. Trivedi (1983) "A Comparative Study of Two Postreconstruction Beam Hardening Correction Methods," in _IEEE Transactions on Medical Imaging_, vol. 2, no. 3, pp. 128-135, doi: 10.1109/TMI.1983.4307626.
+
+- A. C. Kak and M. Slaney (1988) _Principles of Computerized Tomographic Imaging_, IEEE Press. Chapter 4.
+
+- R. K. Kaza, J. F. Platt, R. H. Cohan, E. M. Caoili, M. M. Al-Hawary, and A. Wasnik (2012) "Dual-Energy CT with Single- and Dual-Source Scanners: Current Applications in Evaluating the Genitourinary Tract" _RadioGraphics_ 32:2, 353-369, doi:10.1148/rg.322115065
+
+- E. Pessis, R. Campagna, J-M. Sverzut, F. Bach, M. Rodallec, H. Guerini, A. Feydy, and J-L. Drapé (2013) "Virtual Monochromatic Spectral Imaging with Fast Kilovoltage Switching: Reduction of Metal Artifacts at CT" _RadioGraphics_ 33:2, 573-583 , doi: 10.1148/rg.332125124
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

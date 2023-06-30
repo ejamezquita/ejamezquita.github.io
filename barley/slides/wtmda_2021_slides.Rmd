@@ -1,0 +1,440 @@
+---
+title: "Quantifying the shape of plants"
+subtitle: "using Topological Data Analysis"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# TDA applied to plant biology
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <p> X-Ray CT 3D voxel-based reconstructions </p>
+    <p> Segmented seeds </p>
+  </div>
+</div>
+
+---
+
+# TDA applied to plant biology
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <p> X-Ray CT 3D voxel-based reconstructions </p>
+    <p> Segmented seeds </p>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../figs/ecc_X.gif">
+    <p style="font-size: 23px; text-align: center; color: DarkRed;"> Topological Summary </p>
+    <p style="text-align:center;">Euler Characteristic Transform</p>
+    <p style="text-align:center;"><a href="http://dx.doi.org/10.1093/imaiai/iau011" target="_blank">(Turner, Mukherjee, and Boyer)</a></p>
+  </div>
+</div>
+
+---
+
+# TDA applied to plant biology
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Raw Data </p>
+    <p> X-Ray CT 3D voxel-based reconstructions </p>
+    <p> Segmented seeds </p>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../figs/ecc_X.gif">
+    <p style="font-size: 23px; text-align: center; color: DarkRed;"> Topological Summary </p>
+    <p style="text-align:center;">Euler Characteristic Transform</p>
+    <p style="text-align:center;"><a href="http://dx.doi.org/10.1093/imaiai/iau011" target="_blank">(Turner, Mukherjee, and Boyer)</a></p>
+  </div>
+  <div class="column" style="max-width:35%; font-size: 15px;">
+    <img src="../figs/svm_mds_ect.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Analysis </p>
+    <ul>
+      <li> SVM classification </li>
+      <li> Variance analysis </li>
+      <li> Link phenotype with genotype </li>
+    <ul>
+  </div>
+</div>
+
+---
+
+# Cross Composite II experiment
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_01.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Cross Composite II experiment
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+- **28 parents/accessions** $(F_0)$
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_02.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Cross Composite II experiment
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 parents/accessions** $(F_0)$
+
+- Do ${28 \choose 2}$ **hybrids** $(F_1)$
+
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_03.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Cross Composite II experiment
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 parents/accessions** $(F_0)$
+
+- Do ${28 \choose 2}$ **hybrids** $(F_1)$
+
+- **Self-fertilize** the resulting 379 hybrids
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_04.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Cross Composite II experiment
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 parents/accessions** $(F_0)$
+
+- Do ${28 \choose 2}$ **hybrids** $(F_1)$
+
+- **Self-fertilize** the resulting 379 hybrids
+
+- Each line grows in a different part of an open field
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+background-image: url("../figs/composite_cross_v_05.png")
+background-size: 425px
+background-position: 95% 90%
+
+# Cross Composite II experiment
+
+.pull-left[
+
+![](../figs/barley_world.jpg)
+
+- **28 parents/accessions** $(F_0)$
+
+- Do ${28 \choose 2}$ **hybrids** $(F_1)$
+
+- **Self-fertilize** the resulting 379 hybrids
+
+- Each line grows in a different part of an open field **for 58 generations**
+]
+
+.pull-right[
+![](../figs/composite_hybrid_mixture.jpg)
+]
+
+---
+
+# Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+</div>
+
+---
+
+# Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center;"> 975 spikes </p>
+  </div>
+</div>
+
+---
+
+# Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center;"> 975 spikes </p>
+  </div>
+  <div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S017_L0_seed_10_0.gif">
+    <p style="text-align: center;"> 38,000 seeds </p>
+  </div>
+</div>
+
+---
+
+# Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center;"> 975 spikes </p>
+  </div>
+  <div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S017_L0_seed_10_0.gif">
+    <p style="text-align: center;"> 38,000 seeds </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:35%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/seed_orientation1.png">
+    <p style="text-align: center;"> Align all the seeds </p>
+  </div>
+</div>
+
+---
+
+# Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
+    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
+  </div>
+  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center;"> 975 spikes </p>
+  </div>
+  <div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;">
+    <img src="../figs/S017_L0_seed_10_0.gif">
+    <p style="text-align: center;"> 38,000 seeds </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:35%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../figs/seed_orientation1.png">
+    <p style="text-align: center;"> Align all the seeds </p>
+  </div>
+  <div class="column" style="max-width:55%; color: Navy; font-size: 15px;">
+    <img src="../figs/boxplot_all_traditional_h.gif">
+    <p style="text-align: center;"> Traditional shape descriptors </p>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+# Euler Characteristic Curve (ECC)
+
+- Consider a cubical complex $X\subset\mathbb{R}^d$
+
+--
+
+- And filter it along the unit-length direction $\nu\in S^{d-1}$
+$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$
+
+--
+
+- The ECC of direction $\nu$ is defined as the sequence $$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$
+
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 800px
+background-position: 50% 88%
+
+
+# Euler Characteristic Transform (ECT)
+
+- Repeat and concatenate for all possible directions.
+
+$$
+\begin{split}
+ECT(X):\; & S^{d-1} \to \mathbb{Z}^{\mathbb{R}}\\
+&\nu\mapsto\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.
+\end{split}
+$$
+--
+
+- [**Theorem** (Curry, Mukherjee, Turner, 2018)](http://arxiv.org/abs/1805.09782):  The map ECT is injective.
+
+---
+
+
+# Hidden topological shape information
+
+- **Goal:** Classify 28 barley accessions using solely grain morphology information.
+
+- **3121** grains in total
+
+--
+
+.pull-left[
+![](../figs/svm_f0_table_umap_results.png)
+]
+
+.pull-right[
+```{r, out.width=150}
+knitr::include_graphics('../figs/pole_directions_p7_m12_crop.jpg')
+```
+]
+
+---
+
+# Hidden topological shape information
+
+- **Goal:** Classify 28 barley accessions using solely grain morphology information.
+
+- **3121** grains in total
+
+.pull-left[
+![](../figs/svm_f0_table_umap_results.png)
+
+```{r, out.width=300}
+knitr::include_graphics(c('../figs/kruskal_wallis_topo_summary.jpg'))
+```
+]
+
+.pull-right[
+```{r, out.width=150}
+knitr::include_graphics('../figs/pole_directions_p7_m12_crop.jpg')
+```
+]
+
+---
+
+# Hidden topological shape information
+
+- **Goal:** Classify 28 barley accessions using solely grain morphology information.
+
+- **3121** grains in total
+
+.pull-left[
+![](../figs/svm_f0_table_umap_results.png)
+
+```{r, out.width=300}
+knitr::include_graphics(c('../figs/kruskal_wallis_topo_summary.jpg'))
+```
+]
+
+.pull-right[
+```{r, out.width=150}
+knitr::include_graphics('../figs/discerning_directions.png')
+```
+
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Into semi-supervised territory
+
+- Train an SVM with 100% of the founders $(F_0)$
+
+- Classify the progeny $(F_{18}\text{ and }F_{58})$ to detect genotype enrichment
+
+--
+
+.pull-left[
+![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.png)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.png)
+]
+
+
+---
+class: right, bottom, inverse
+
+background-image: url("../figs/acknowledgments.jpg")
+background-size: 1000px
+background-position: 50% 40%

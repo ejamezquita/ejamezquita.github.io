@@ -1,0 +1,139 @@
+---
+title: "Resume"
+author: "Erik Amézquita" 
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{css, echo=FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 0rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.05in;
+}
+```
+
+```{css, echo=FALSE}
+.aside {
+  padding-top: 0;
+}
+
+.aside > p:first-of-type {
+  margin-top: 0;
+}
+```
+
+Aside
+================================================================================
+
+```{r, out.width=150, fig.align='center', echo=FALSE}
+knitr::include_graphics('https://www.egr.msu.edu/~amezqui3/barley/figs/S017_L3_1.gif')
+```
+
+View my full CV online at [`egr.msu.edu/~amezqui3/cv`](https://www.egr.msu.edu/~amezqui3/cv.html)
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-building"></i> 428 S Shaw Ln <br> Engineering Bldg Rm 1515 <br> East Lansing, MI 48824
+- <i class="fa fa-envelope"></i> amezqui3@msu.edu
+- <i class="fa fa-github"></i> [github.com/amezqui3](https://github.com/amezqui3/)
+- <i class="fa fa-link"></i> [egr.msu.edu/~amezqui3](https://egr.msu.edu/~amezqui3)
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- **Programming**: Python, R, C/C++, bash/unix
+
+- **Technologies**: $\LaTeX$, RMarkdown, jupyter, vim, html/css
+
+- **Languages**: Spanish (native), English (fluent), French (elementary)
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Made with the R package [**pagedown**](https://github.com/rstudio/pagedown).
+
+Updated on `r Sys.Date()`.
+
+
+Main
+================================================================================
+
+Erik Amézquita {#title}
+--------------------------------------------------------------------------------
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### PhD Candidate, Computational Mathematics, Science & Engineering
+
+Michigan State University
+
+East Lansing, MI
+
+current - 2018
+
+* Focused in quantifying plant morphology using topological data analysis (TDA) and X-Ray CT scans.
+* Advisors: [Elizabeth Munch](http://www.elizabethmunch.com/) and [Dan Chitwood](https://orcid.org/0000-0003-4875-1447)
+* Awarded the [2022 Fitch H. Beach Award](https://www.egr.msu.edu/graduate/fitch-h-beach-awards) by the College of Engineering for most outstanding engineering graduate research.
+* Supported partly by an [IMPACTS Fellowship](https://impacts.natsci.msu.edu/trainees/erik-jose-amezquitamorataya/), awarded jointly by MSU and the NRT-NSF program (NSF DGE-1828149).
+
+### Bachelor of Science, Mathematics
+
+Universidad de Guanajuato
+
+Guanajuato, Gto.
+
+2018 - 2013
+
+* [Thesis](https://www.egr.msu.edu/~amezqui3/demat/bachelor_thesis.pdf): Efficient object classification using the Euler characteristic
+* Advisor: [Antonio Rieser](https://sites.google.com/view/arieser) (CONACYT-CIMAT)
+* Awarded the [2018 Sotero Prieto Medal](https://www.smm.org.mx/premio-sotero-prieto) by the Mexican Mathematics Society for best undergrad math thesis produced in Mexico.
+* Supported by the [CIMAT](https://cimat.mx/en) Academic Excellence Scholarship 2013-2018
+
+
+Relevant Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+### Graduate Research Assistant
+
+[Chitwood](https://orcid.org/0000-0003-4875-1447)-[Munch](http://www.elizabethmunch.com/) Lab
+
+Michigan State University
+
+current - 2018
+
+* Explored oil glands distribution of Citrus with directional statistics.
+* Characterized barley spikes morphology with the ECT and TDA.
+* Collected TDA resources in [jupyter notebooks](https://github.com/amezqui3/demeter). Presented at [NAPPN 2022](https://www.plantphenotyping.org/).
+
+Relevant Peer-reviewed work {data-icon=file}
+--------------------------------------------------------------------------------
+
+### Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform
+
+**E.J. Amézquita**, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch,  D. H. Chitwood
+
+N/A
+
+2022
+
+_in Silico Plants_ 4(1) diab033. DOI: [10.1093/insilicoplants/diab033](https://doi.org/10.1093/insilicoplants/diab033)
+
+### The shape of things to come: Topological data analysis and biology, from molecules to organisms
+
+**E.J. Amézquita**, M.Y. Quigley, T. Ophelders, E. Munch, D.H. Chitwood
+
+N/A
+
+2020
+
+Developmental Dynamics. 249(7) pp. 816-833. DOI: [10.1002/dvdy.175](https://doi.org/10.1002/dvdy.175)

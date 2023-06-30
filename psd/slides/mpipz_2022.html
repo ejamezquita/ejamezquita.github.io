@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Quantifying the shape of leaf development</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Quantifying the shape of leaf development
+## using Topological Data Analysis (TDA)
+### <strong>Erik Amézquita</strong>
+### Computational Mathematics, Science, and Engineering <br> 2022-08-29
+
+---
+
+
+
+
+# Topological Data Analysis (TDA)
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../../barley/figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Raw Data &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; micro-CT &lt;/li&gt;
+      &lt;li&gt; Point clouds &lt;/li&gt;
+      &lt;li&gt; Time series &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../../barley/figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 23px; text-align: center; color: DarkRed;"&gt; Topological Summary &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Euler Characteristic &lt;/li&gt;
+      &lt;li&gt; Persistence diagrams &lt;/li&gt;
+      &lt;li&gt; CROCKER plots &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;img src="../../barley/figs/svm_mds_ect.gif"&gt;
+    &lt;p style="font-size: 25px; text-align: center; color: DarkRed;"&gt; Analysis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Statistics &lt;/li&gt;
+      &lt;li&gt; Machine learning &lt;/li&gt;
+      &lt;li&gt; Classification/prediction &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedrons
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topological features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 2 connected components, 1 loop, 0 voids
+
+&lt;img src="../figs/nardini_etal_2021_f4.png" width="600" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1371/journal.pcbi.1009094"&gt;Nardini &lt;em&gt;et al.&lt;/em&gt; (2021)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each simplex is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+&lt;img src="../../barley/figs/eigcurv_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/gaussian_density_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="../../barley/figs/eccentricity_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/vrips_ver2.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Combining both ingredients
+
+![](../figs/nardini_etal_2021_f6.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1371/journal.pcbi.1009094"&gt;Nardini &lt;em&gt;et al.&lt;/em&gt; (2021)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Example 1: Image data &amp;rarr; Grayside filter
+
+### Detecting holes &amp;rarr; detect/characterize cancerous tissue
+
+.pull-left[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg)
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Image data &amp;rarr; Multiple ways to filter
+
+### Quantify cell fate-map morphologies
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_s6_ln.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cell.2019.05.011"&gt;Kierzkowski &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+## Image data &amp;rarr; Multiple ways to filter
+
+### Quantify cell fate-map morphologies
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_s6_ln.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cell.2019.05.011"&gt;Kierzkowski &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+- Growth amount
+
+- Anisotropy
+
+- Cell proliferation
+
+- Cell size
+
+- Stomatal density
+
+- Lobeyness
+]
+
+---
+
+### Multiple TDA ways to characterize and compare shape
+
+&lt;img src="../figs/guzel_etal_2022_f7.png" width="650px" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://arxiv.org/abs/2206.03973"&gt;Güzel &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+
+&lt;img src="../figs/kierzkowski_etal_2019_f4_no.jpg" width="650px" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cell.2019.05.011"&gt;Kierzkowski &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+background-image: url("../figs/guzel_etal_2022_f12.png")
+background-size: 600px
+background-position: 50% 60%
+
+## Keep track of temporal data &amp;rarr; CROCKER plot
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://arxiv.org/abs/2204.06321"&gt;Güzel &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+background-image: url("../figs/guzel_etal_2022_f12.png")
+background-size: 600px
+background-position: 50% 60%
+
+## Keep track of temporal data &amp;rarr; CROCKER plots
+
+&lt;img src="../figs/kierzkowski_etal_2019_f4_no.jpg" width="800px" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Other ways, other morphologies &amp;rarr; River beads
+
+.pull-left[
+![](../figs/kierzkowski_etal_2019_f6_fkgl.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cell.2019.05.011"&gt;Kierzkowski &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+![](https://agupubs.onlinelibrary.wiley.com/cms/asset/3034ccf4-7f5c-4aa3-8a3f-b623c036e9da/jgrf21136-fig-0002-m.jpg)
+![](https://agupubs.onlinelibrary.wiley.com/cms/asset/253b03cc-7347-4551-9423-2df214c0d6c6/jgrf21136-fig-0003-m.jpg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1029/2019JF005206"&gt;Hiatt &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

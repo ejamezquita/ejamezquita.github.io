@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The shape of things to come</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   —   Computational Mathematics, Science, and Engineering   Michigan State University   —" />
+    <meta name="date" content="2023-01-26" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The shape of things to come
+]
+.subtitle[
+## Topological Data Analysis and Plant Biology
+]
+.author[
+### <strong>Erik Amézquita</strong> <br> — <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> —
+]
+.date[
+### 2023-01-26
+]
+
+---
+
+
+
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/efF5PSvFQ2A?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Check out more 3D X-ray CT scans at &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Topological Data Analysis (TDA)
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 20px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 30px; text-align: center; color: DarkRed;"&gt; Raw Data &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; X-ray CT &lt;/li&gt;
+      &lt;li&gt; Point clouds &lt;/li&gt;
+      &lt;li&gt; Time series &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 20px;"&gt;
+    &lt;img src="../figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 28px; text-align: center; color: DarkRed;"&gt; Topological Summary &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Euler Characteristic &lt;/li&gt;
+      &lt;li&gt; Persistence diagrams &lt;/li&gt;
+      &lt;li&gt; Mapper/Reeb graphs &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 20px;"&gt;
+    &lt;img src="../figs/svm_mds_ect.gif"&gt;
+    &lt;p style="font-size: 30px; text-align: center; color: DarkRed;"&gt; Analysis &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt; Statistics &lt;/li&gt;
+      &lt;li&gt; Machine learning &lt;/li&gt;
+      &lt;li&gt; Classification/prediction &lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../../cmse/figs/cmse logo file-01.svg")
+background-size: 150px
+background-position: 1% 50%
+
+class: center
+
+# My research: Crossing and merging bridges
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:15%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:15%"&gt;
+    &lt;a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/S017_L3_1.gif"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:18%"&gt;
+    &lt;a href="https://doi.org/10.1002/ppp3.10333" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_exocarp.gif"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:15%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:28%"&gt;
+    &lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../tutorials/figs/plants_and_python_group_photo.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:60%"&gt;
+    &lt;a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../journal_diversity/figs/frequencies_globe_inv.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="list" style="font-size: 10px; text-align: left;"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;R.A. Marks &lt;em&gt;et al.&lt;/em&gt; (2022) Global disparities in plant science: a legacy of colonialism, patriarchy, and exclusion. DOI: &lt;a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"&gt;10.1101/2022.10.15.512190&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. &lt;a href="https://doi.org/10.1002/ppp3.10333" target="_blank"&gt;DOI: 10.1002/ppp3.10333&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;R. VanBuren &lt;em&gt;et al.&lt;/em&gt; (2022) Teaching Tools in Plant Biology. Plants and Python, Coding from Scratch in the Plant Sciences. &lt;a href="https://doi.org/10.1093/plcell/koac187" target="_blank"&gt;DOI: 10.1093/plcell/koac187&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. &lt;a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"&gt;DOI: 10.1093/insilicoplants/diab033&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/seed.png")
+background-size: 325px
+background-position: 99% 99%
+
+# Roadmap for today
+
+### Split into modules
+
+1. Survey of TDA in biology applications
+
+1. The Euler Characteristic Transform and barley morphology
+
+1. Modeling citrus oil glands with directional statistics
+
+1. All about shape, in a nutshell
+
+---
+
+class: inverse, middle, center
+
+# 1. TDA meets biology in a number of ways
+
+## Shape is data and data is shape
+
+### The significance of detecting connected components and holes
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _cells_ )
+
+Vertices | Edges | Faces | Cubes
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _cubical complex_
+
+- Count the number of topological features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 2 connected components, 1 loop, 0 voids
+
+&lt;img src="../../tda/figs/binary_to_cubical_complex_textless.png" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each cell is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+&lt;img src="../figs/eigcurv_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/gaussian_density_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="../figs/eccentricity_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/vrips_ver2.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# TDA + Biology in the literature
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/ce30e9df-d595-4520-a68a-74f3c6f151d1/assets/graphic/pnas.1313480110fig01.jpeg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/b733c3a3-00f2-43d5-b372-9da25f3d33c9/assets/graphic/pnas.1313480110fig02.jpeg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1313480110"&gt;Chan &lt;em&gt;et al.&lt;/em&gt; (2013)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_001.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_012.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_010.jpg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1515/sagmb-2015-0057"&gt;Kovacev-Nikolic &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:28%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-3-030-20867-7_7/MediaObjects/484957_1_En_7_Fig1_HTML.png"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1007/978-3-030-20867-7_7"&gt;Chitwood &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:25px;"&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Cancerous tissue&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Horizontal Reassortment&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Open/closed conformations&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Components&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Panicle structure&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Advertisement
+
+- More content, references, and examples
+
+&gt; Amézquita _et al._ (2020) "The shape of things to come: Topological data analysis and biology, from molecules to organisms". _Developmental Dynamics_ **249**(7) pp. 816-833. DOI: [10.1002/dvdy.175](https://doi.org/10.1002/dvdy.175)
+
+![](../../tda/figs/amezquita_etal_2020.png)
+
+---
+
+class: inverse, middle, center
+
+# 2. Focusing on the Euler Characteristic
+
+## The Euler Characteristic Transform (ECT)
+
+---
+
+# Topology: The Euler characteristic `\(\chi\)`
+
+`$$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$`
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/tetrahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/cube.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/octahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/dodecahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/icosahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; V - E + F = 2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 90%
+
+# Euler Characteristic Curve (ECC)
+
+- Consider a cubical complex `\(X\subset\mathbb{R}^d\)`
+- And a unit-length direction `\(\nu\in S^{d-1}\)`
+
+- And the subcomplex containing all cubical cells below height `\(h\)` in the direction `\(\nu\)`
+`$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$`
+
+- The Euler Characteristic Curve (ECC) of direction `\(\nu\)` is defined as the sequence `$$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$`
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 800px
+background-position: 50% 88%
+
+## Euler Characteristic Transform (ECT)
+
+- Repeat and concatenate for all possible directions.
+
+$$
+`\begin{split}
+ECT(X):\; &amp; S^{d-1} \to \mathbb{Z}^{\mathbb{R}}\\
+&amp;\nu\mapsto\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.
+\end{split}`
+$$
+
+- [**Theorem** (Turner, Mukherjee, Boyer 2014) &amp; (Curry, Mukherjee, Turner, 2018)](http://arxiv.org/abs/1805.09782):  The ECT is injective with a finite bound of necessary directions.
+
+---
+
+background-image: url("../figs/turner_etal_2014.png")
+background-size: 280px
+background-position: 99% 1%
+
+
+# More on the ECT
+
+- Easy to compute: a quick alternating sum.
+
+- *Different* simplicial complexes correspond to *different* ECTs.
+
+- [**Theorem _(ibid)_**](https://arxiv.org/abs/1310.1030): The ECT effectively summarizes all possible information related to shape.
+
+There is elusive math research on computationally efficient reconstruction algorithms:
+- [Turner, Mukherjee, Curry (2021)](https://arxiv.org/abs/1805.09782): Finite number of directions
+- [Betthauser (2018)](https://people.clas.ufl.edu/peterbubenik/files/Betthauser_Thesis.pdf): 2D reconstruction
+- [Fasy, Micka, Millman, Schenfisch, Williams (2022)](https://arxiv.org/abs/1912.12759): 3D reconstruction
+- [Crawford, Monod, Chen, Mukherjee, Rabadan (2020)](https://doi.org/10.1080/01621459.2019.1671198): Smooth ECT
+- [Jiang, Kurtek, Needham (2020)](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w50/Jiang_The_Weighted_Euler_Curve_Transform_for_Shape_and_Image_Analysis_CVPRW_2020_paper.pdf): Weighted ECT
+
+&lt;img src="../../arabidopsis/figs/ect_col-0_pot0_leaf0.gif" width="500px" style="display: block; margin: auto;" /&gt;
+![]()
+
+---
+
+background-image: url("../figs/amezquita_etal_2021.png")
+background-size: 400px
+background-position: 50% 95%
+
+class: inverse, middle, center
+
+# Quantifying barley morphology
+
+## Using the Euler Characteristic Transform
+
+---
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_norway.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_morocco.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/barley_world.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://doi.org/10.2134/agronj1929.00021962002100040014x" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/composite_cross_v_05.png"&gt;&lt;/a&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="column" style="max-width:46%"&gt;
+        &lt;img src="../figs/S019_L0_1.gif"&gt;
+      &lt;/div&gt;
+      &lt;div class="column" style="max-width:55%"&gt;
+        &lt;img src="../figs/S017_L0_seed_10_0.gif"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
+    &lt;p style="text-align: center; font-size: 30px; line-height: 1em; color: #18453B;"&gt; &lt;strong&gt; Barley from across the world &lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;28 collected barley varieties&lt;/p&gt;
+    &lt;p&gt;Brought to California in 1929&lt;/p&gt;
+    &lt;p&gt;Artificial evolution experiment for 58 generations&lt;/p&gt;
+    &lt;p&gt;975 panicles scanned&lt;/p&gt;
+    &lt;p&gt;38,000 seeds isolated&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/S017_L0_seed_10_0.gif")
+background-size: 85px
+background-position: 90% 2%
+
+# Traditional shape descriptors
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:55%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Length.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_founders_Area.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:45%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_all_vol_h.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_all_length_h.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/boxplot_all_area_h.png"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+background-image: url("../figs/ect_ver2.gif")
+background-size: 600px
+background-position: 50% 98%
+
+# Topological shape descriptors
+
+.pull-left[
+&lt;img src="../figs/pole_directions_p7_m12_crop.jpg" width="250" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- 158 directions
+
+- 16 slices per direction
+
+- Every seed is associated a `\(158\times16=2528\)`-dim vector
+
+- Reduced to 12 dimensions with UMAP
+]
+
+
+---
+
+# Supervised Learning
+
+![](../../demat/figs/supervised_learning.png)
+
+---
+
+# Quantify the shape of barley
+
+**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Shape descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;No. of descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Traditional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Topological&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Combined&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;&lt;strong&gt;0.86 &amp;plusmn; 0.010&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+### What does topology actually measure?
+
+.pull-left[
+&lt;img src="../figs/discerning_directions.png" width="225" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+![](../figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Traditional shape descriptors
+
+![](../figs/trad_pca_2_dims_founders_spikes.jpg)
+
+---
+
+# Topological shape descriptors + UMAP
+
+![](../figs/umap_2_dims_founders_spikes.jpg)
+
+---
+
+# Predicting with Semi-Supervised Learning
+
+![](../../demat/figs/semisupervised_learning.png)
+
+---
+
+# Prediction into semi-supervised territory
+
+- Train an SVM with 100% of the founders `\((F_0)\)`
+
+- Classify the progeny `\((F_{18}\text{ and }F_{58})\)` to detect genotype enrichment
+
+.pull-left[
+![](../figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+---
+
+background-image: url("../figs/comparison_lines_combined_topounscaled_d158_T16_horz.png")
+background-size: 900px
+background-position: 50% 70%
+
+## Observe shape distribution across lines
+
+---
+
+# Future directions
+
+.left-column[
+![](../figs/seeds_batch2_2_transp.png)
+![](../figs/seeds_batch2_3_transp.png)
+]
+
+.right-column[
+- Identify specific molecular markers corresponding to morphological differences across the diverse barley population.
+
+- Develop a high-throughput pipeline to produce 3D images of individual barley seeds and quantify comprehensively their morphology.
+
+- Formalize a method for promising seedling selection to further crop breeeding.
+
+- Extend such pipeline and population genetics studies to other crops and grains.
+]
+
+---
+
+background-image: url("../../citrus/figs/ppp3.png")
+background-size: 400px
+background-position: 50% 90%
+
+class: center, inverse, middle
+
+# 3. If life gives you lemons...
+
+## Modeling citrus oil gland distribution
+
+---
+
+## Think of citrus as lego blocks
+
+![](../../citrus/figs/citrus_family_tree_1.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Raw Data: X-rays &amp;rarr; Image Processing
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg"&gt;
+    &lt;p style="text-align: center;"&gt; UCR Collaboration &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg"&gt;
+    &lt;p style="text-align: center;"&gt; 3D X-Ray CT scan &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Raw &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_spine.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Spine &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_endocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Endocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_rind.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Rind &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_exocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Exocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_L01_oil_glands.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Oil glands&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Size and average distance between closest oil glands
+
+![](../../citrus/figs/knn01_panel.svg)
+
+- Smaller fruits report higher density of oil glands
+- Similar results when looking at the average distance between each oil gland and its 2nd, 3rd, ..., 25th nearest neighbors
+
+---
+
+## Average distance from each gland to its `\(k\)`-th nearest neighbor
+
+![](../../citrus/figs/panel_knn25_growth.svg)
+
++ `\(\text{Avg.dist}(k) = \sqrt{Mk + B}\)`
++ Oil glands might be distributing themselves following **normal diffusion** mechanics
++ The **outliers** for citrus groups usually correspond to hybrids.
+
+---
+
+## Model the whole fruit as an ellipsoid
+
+.pull-left[
+![](../../citrus/figs/SW01_CRC3030_12B-8-5_L02_frontal_ell_projection.jpg)
+![](../../citrus/figs/SR01_CRC3289_12B-19-9_L02_frontal_ell_projection.jpg)
+]
+
+.pull-right[
+![](../../citrus/figs/C08C_CRC3546_18A-5-3_L00_frontal_ell_projection.jpg)
+![](../../citrus/figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg)
+]
+
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Sour orange
+
+![](../../citrus/figs/SR01_CRC3289_12B-19-9_L00_Geocentric.jpg)
+
+&lt;img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L00_geocentric_lazi.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Mandarin
+
+![](../../citrus/figs/M01_CRC3226_12B-27-1_L00_Geocentric.jpg)
+
+&lt;img src="../../citrus/figs/M01_CRC3226_12B-27-1_L00_geocentric_lazi.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+## Citrus modeling: Kumquat
+
+![](../../citrus/figs/WR02_CRC3877_12B-44-13_L00_Geocentric.jpg)
+
+&lt;img src="../../citrus/figs/WR02_CRC3877_12B-44-13_L00_geocentric_lazi.jpg" width="550" style="display: block; margin: auto;" /&gt;
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+# Citrus modeling: Finger lime
+
+![](../../citrus/figs/WR08_CRC3661_18B-16-5_L00_Geocentric.jpg)
+
+&lt;img src="../../citrus/figs/WR08_CRC3661_18B-16-5_L00_geocentric_lazi.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../../citrus/figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg")
+background-size: 400px
+background-position: 50% 90%
+
+class: inverse, center, middle
+
+# Directional statistics
+
+## Perform statistics directly on a sphere surface
+
+### Most of the citrus are nearly spherical, anyway
+
+---
+
+# Citrus projections
+
+![](../../citrus/figs/citrus_comparison_panel_alt.jpg)
+
+---
+
+background-image: url("../../citrus/ellipsoids/GarciaPortugues_etal_2020a.png")
+background-size: 200px
+background-position: 99% 1%
+
+# Uniform and rotationally symmetric spherical distributions
+
+![](../../citrus/figs/rotasym_comparison_panel_alt.jpg)
+
+- A battery of tests reveal that citrus oil glands are neither uniformly nor rotationally symmetrically distributed.
+
+---
+
+# Kernel Density Estimators
+
+![](https://www.statsmodels.org/dev/_images/examples_notebooks_generated_kernel_density_16_0.png)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.statsmodels.org/dev/examples/notebooks/generated/kernel_density.html"&gt;Statsmodels&lt;/a&gt;&lt;/p&gt;
+
+- The choice of bandwidth is crucial
+- Large bandwidths tend to oversmooth
+- Small bandwidths tend to overfit
+- Plenty of literature on `\(\mathbb{R}\)` on how to choose an adequate value
+
+---
+
+background-image: url("../ellipsoids/GarciaPortugues_2013.png")
+background-size: 300px
+background-position: 95% 3%
+
+# Spherical KDE
+
+![](../../citrus/figs/WR19_CRC3842_18B-18-5_L00_emi_kde_N.jpg)
+
+- Oil glands of a papeda
+- Red arrows indicate the most significant gradient values for the density function
+- Concentration parameter `\(k\)` is chosen to be optimal
+
+---
+
+background-image: url("../../citrus/ellipsoids/Vuollo_and_Holmstrom_2018.png")
+background-size: 300px
+background-position: 95% 3%
+
+# More exploratory analysis
+
+## SphereSiZer: Pummelo
+
+![](../../citrus/figs/P01C_L00_W.gif)
+
+---
+
+# Side view of a sweet orange
+
+![](../../citrus/figs/SW01_L00_W.gif)
+
+---
+
+# Side view of a mandarin
+
+![](../../citrus/figs/M01_L00_W.gif)
+
+---
+
+# Side view of a kumquat
+
+![](../../citrus/figs/WR02_L00_W.gif)
+
+---
+
+# Side view of a finger lime
+
+![](../../citrus/figs/WR08_L00_W.gif)
+
+---
+
+class: inverse, center, middle
+
+# Future topological directions
+
+## Obligatory TDA plug
+
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L00_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L00_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L01_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L02_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M04_CRC3752_12B-28-7_L02_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Persistent Homology ( `\(H_0\)` and `\(H_1\)`) computed with Ripser in `scikit-tda`.
+
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L00_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L01_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L02_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/M01_CRC3226_12B-27-1_L02_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Persistent Homology ( `\(H_0\)` and `\(H_1\)`) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L00_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L00_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L01_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L02_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/C02_CRC3919_18A-24-1_L02_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Persistent Homology ( `\(H_0\)` and `\(H_1\)`) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L00_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L01_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L02_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR02_CRC3877_12B-44-13_L02_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Persistent Homology ( `\(H_0\)` and `\(H_1\)`) computed with Ripser in `scikit-tda`.
+---
+
+### Quantify the distribution of oil glands using Persistent Homology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L00_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L01_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L02_frontpic.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../citrus/figs/WR08_CRC3661_18B-16-5_L02_phlifetime.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Persistent Homology ( `\(H_0\)` and `\(H_1\)`) computed with Ripser in `scikit-tda`.
+
+---
+
+# Future directions
+
+.left-column[
+![](../../citrus/crc_pics/citrus_amblycarpa.jpg)
+![](../../citrus/crc_pics/citrus_hystrix.jpg)
+![](../../citrus/crc_pics/citrus_macrophylla.jpg)
+]
+
+.right-column[
+
+- Locate, segment, and phenotype seed tissue.
+
+- Explore more on normal diffusion mechanics and their possible relationship to oil gland distribution.
+
+- Define a measure of similarity of oil gland distributions and compute a pairwise distance matrix for all citrus fruits.
+
+- Compare such distances between distributions to phylogenetic distances.
+
+- Explore alternative ellipsoid-to-sphere algorithms to minimize distortion.
+
+]
+
+---
+
+class: inverse, center, middle
+
+# All about cracks and shapes
+
+## In a nutshell
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Benutzung_eines_Nussknackers.gif" width="200" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The wal(nu)tzing nutcracker!
+
+.pull-left[
+![](../../barley/figs/x3000_setup.jpg)
+]
+
+.pull-right[
+- 172 batches &amp;rarr; ~1300 walnuts
+
+- Individual walnuts manually separated
+
+- **Plenty of image processing**
+]
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Shell &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Air &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Packing &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Kernel &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Watershed segmentation
+
+![](../../walnuts/figs/2014SBa_R1_T3_001_x.jpg)
+
+---
+
+## Watershed segmentation
+
+![](../../walnuts/figs/2014SBa_R1_T3_001_y.jpg)
+
+---
+
+## Watershed segmentation
+
+![](../../walnuts/figs/2014SBa_R1_T3_001_z.jpg)
+
+---
+
+## Orientation
+
+![](../../walnuts/figs/2008SB_R4_T13_007_original.png)
+
+![](../../walnuts/figs/2008SB_R4_T13_007+rotXYZ.png)
+
+---
+
+## Orientation
+
+![](../../walnuts/figs/2011SBb_R3_T20_001_original.png)
+
+![](../../walnuts/figs/2011SBb_R3_T20_001+rotXYZ.png)
+
+---
+
+## Shell interior protrusions
+
+![](../../walnuts/figs/2012SB_R16_T58_001_protrusion.jpg)
+
+---
+
+## Shell interior protrusions
+
+![](../../walnuts/figs/2014SBa_R5_T49_008_protrusion.jpg)
+
+---
+
+## Future directions
+
+.pull-left[
+![](../../walnuts/figs/traditional_table.png)
+Bertrand _et al_ (2020)
+]
+
+.pull-right[
+Some of measurements of the table are duplicates.
+
+Additional measurements we can make
+
+- Relationship to convex hull volume and convex hull surface area (shell and kernel)
+
+- Other sphericity indices
+
+- Volume of packing tissue
+
+- Percentage of volume for each tissue wrt to the total volume
+
+- Volume and percentage of protruding shell
+]
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 1%
+
+class: inverse
+
+## Thank you!
+
+&lt;div class="row" style="margin-top: -25px;"&gt;
+  &lt;div class="column" style="max-width:17.5%; font-size: 13px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Elizabeth Munch&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Tim Ophelders&lt;br&gt;(Utrecht)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Jacob Landis&lt;br&gt;(Cornell)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:17.5%; font-size: 13px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Dan Chitwood&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Michelle Quigley&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.plantsciences.ucdavis.edu/sites/g/files/dgvnsk1736/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=9707347b&amp;itok=gDYXMHJj"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Pat Brown&lt;br&gt;(UC Davis)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:13%; font-size: 13px;"&gt;
+  &lt;img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p"&gt;
+  &lt;p style="text-align: center; color: White"&gt;Dan Koenig&lt;br&gt;(UC Riverside)&lt;/p&gt;
+  &lt;img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh"&gt;
+  &lt;p style="text-align: center; color: White"&gt;Danelle Seymour&lt;br&gt;(UC Riverside)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:10%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;amezqui3@msu.edu&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Slides&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;bit.ly/mu_22&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    &lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. &lt;a href="https://doi.org/10.1002/ppp3.10333" target="_blank"&gt;DOI: 10.1002/ppp3.10333&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    &lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. &lt;a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"&gt;DOI: 10.1093/insilicoplants/diab033&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    VanBuren, R. &lt;em&gt;et al.&lt;/em&gt; (2022) Plants &amp; Python: A series of lessons in coding, plant biology, computation, and bioinformatics. &lt;a href="https://doi.org/10.1093/plcell/koac187" target="_blank"&gt;DOI: 10.1093/plcell/koac187&lt;/a&gt;
+  &lt;/p&gt;
+    &lt;p style="text-align: center; color: White; font-size:15px; line-height:1.1"&gt;Slides made in &lt;a href="https://bookdown.org/yihui/rmarkdown/xaringan.html" target="_blank"&gt;xaringan&lt;/a&gt;.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The shape of the aroma</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Michelle Quigley, Tim Ophelders   Danelle Seymour, Elizabeth Munch, Dan Chitwood   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The shape of the aroma
+## modeling the citrus oil gland distribution
+### <strong>Erik Amézquita</strong>, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -
+### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
+### 2022-03-26<br> - <br> Submitted
+
+---
+
+
+
+class: inverse, center
+
+# When life gives you lemons...
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/khRS5AuleIM?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/HAIaektvV3Q?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/Xo2HULkkm3s?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/EwTwSNrBuIo?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Think of citrus as lego blocks
+
+![](../figs/citrus_family_tree_1.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nature25447"&gt;Wu &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+## Oil glands are closely linked to fruit development
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+&lt;iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1720809115"&gt;Smith &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+- Cross-sectional view of a navel orange peel bending to the point of jetting. 
+
+- Huge perfume and food industry behind essential oils
+
+]
+
+---
+
+class: inverse, center, middle
+
+# Scan it all!
+
+---
+
+## Raw Data: X-rays &amp;rarr; Image Processing
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg"&gt;
+    &lt;p style="text-align: center;"&gt; UCR Collaboration &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:38%; color: Navy; font-size: 15px;"&gt;
+    &lt;img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg"&gt;
+    &lt;p style="text-align: center;"&gt; 3D X-Ray CT scan &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Raw &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+--
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_spine.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Spine &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_endocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Endocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_rind.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Rind &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_exocarp.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Exocarp &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/SR01_L01_oil_glands.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Oil glands&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Allometry
+
++ Linear relationship between size-related measurements.
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:49%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/exocarp_vs_endocarp.jpg"&gt;
+    &lt;img src="../figs/whole_vs_oil_glands.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:49%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../figs/whole_vs_rind.jpg"&gt;
+    &lt;img src="../figs/oil_glands_vs_num_glands.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
++ Total number of glands seems to be decoupled
+
+---
+
+## The centers will be just fine
+
+.pull-left[
+![](../figs/SW02_L00_center_oil_glands.gif)
+- About 6K&amp;rarr;20K individual oil glands detected
+
+- Number in the right ballpark
+
+- **We have a typical point cloud in `\(\mathbb{R}^3\)`.**
+]
+
+.pull-right[
+![](../figs/oil_gland_number_vs_area.png)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1006/anbo.2001.1546"&gt;Knight &lt;em&gt;et al.&lt;/em&gt; (2001)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+## Size and average distance between closest oil glands
+
+![](../figs/knn01_panel.svg)
+
+- Smaller fruits report higher density of oil glands
+- Similar results when looking at the average distance between each oil gland and its 2nd, 3rd, ..., 25th nearest neighbors
+
+---
+
+## Average distance from each gland to its `\(k\)`-th nearest neighbor
+
+![](../figs/panel_knn25_growth.svg)
+
++ `\(\text{Avg.dist}(k) = \sqrt{Mk + B}\)`
++ Oil glands might be distributing themselves following **normal diffusion** mechanics
++ The **outliers** for citrus groups usually correspond to hybrids.
+
+---
+
+background-image: url("../ellipsoids/Li_and_Griffiths_2004.png")
+background-size: 400px
+background-position: 95% 3%
+
+# Best ellipsoid fitting
+
+- A general quadratic surface is defined by the equation
+
+`$$\eqalignno{ &amp; ax^{2}+by^{2}+cz^{2}+2fxy+2gyz+2hzy\ \ \ \ \ \ \ \ \ &amp;\hbox{(1)}\cr &amp;+2px+2qy+2rz+d=0.}$$`
+
+- Let `$$\rho = \frac{4J-I}{a^2 + b^2 + c^2},$$`
+
+`$$\eqalignno{ &amp;I = a+b+c &amp;\hbox{(2)}\cr &amp;J =ab+bc+ac-f^{2}-g^{2}-h^{2}&amp;\hbox {(3)}\cr &amp; K=\left[\matrix{ a &amp; h &amp; g \cr h &amp; b &amp; f \cr g &amp; f &amp; c }\right] &amp;\hbox{(4)}}.$$`
+
+- These values are invariant under rotation and translation and equation (1) represents an ellipsoid if `\(J &gt; 0\)` and `\(IK&gt;0\)`.
+
+---
+
+background-image: url("../ellipsoids/Li_and_Griffiths_2004.png")
+background-size: 400px
+background-position: 95% 3%
+
+# Best ellipsoid fitting
+
+With our observations `\(\{(x_i,y_i,z_i)\}_i\)`, we would ideally want a vector of parameters `\((a,b,c,f,g,h,p,q,r,d)\)` such that
+
+$$
+`\begin{pmatrix}
+x_1^2 &amp; y_1^2 &amp; z_1^2 &amp; 2x_1y_1 &amp; 2y_1z_1 &amp; 2x_1z_1 &amp; x_1 &amp; y_1 &amp; z_1 &amp; 1\\
+x_2^2 &amp; y_2^2 &amp; z_2^2 &amp; 2x_2y_2 &amp; 2y_2z_2 &amp; 2x_2z_2 &amp; x_2 &amp; y_2 &amp; z_2 &amp; 1\\
+\vdots&amp; \vdots&amp; \vdots&amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+x_n^2 &amp; y_n^2 &amp; z_n^2 &amp; 2x_ny_n &amp; 2y_nz_n &amp; 2x_nz_n &amp; x_n &amp; y_n &amp; z_n &amp; 1
+\end{pmatrix}`
+`\begin{pmatrix}
+a \\ b \\ \vdots \\ d
+\end{pmatrix}`
+=
+`\begin{pmatrix}
+0 \\ 0 \\ \vdots \\ 0
+\end{pmatrix}`
+$$
+or
+$$
+\mathbf{D}\mathbf{v} = 0
+$$
+
+The solution to the system above can be obtained via Lagrange multipliers
+
+`$$\min_{\mathbf{v}\in\mathbb{R}^{10}}\left\|\mathbf{D}\mathbf{v}\right\|^2, \quad \mathrm{s.t.}\; kJ - I^2 = 1$$`
+
+If `\(k=4\)`, the resulting vector `\(\mathbf{v}\)` is guaranteed to be an ellipsoid. 
+
+Experimental results suggest that the optimization problem also yields ellipsoids for higher `\(k\)`'s if there are enough sample points.
+
+---
+
+background-image: url("../ellipsoids/Li_and_Griffiths_2004.png")
+background-size: 200px
+background-position: 95% 3%
+
+## Model the whole fruit as an ellipsoid
+
+.pull-left[
+![](../figs/SW01_CRC3030_12B-8-5_L02_frontal_ell_projection.jpg)
+![](../figs/SR01_CRC3289_12B-19-9_L02_frontal_ell_projection.jpg)
+]
+
+.pull-right[
+![](../figs/C08C_CRC3546_18A-5-3_L00_frontal_ell_projection.jpg)
+![](../figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg)
+]
+
+---
+
+## How spherical _is_ a round orange?
+
+![](../figs/sphericity_index_distribution_white.svg)
+
+.pull-left[
+- No unique way to compute sphericity
+- Most formulas in terms of the longest, intermediate, and shortest `\(A,B,C\)` semi-axes lengths of the best-fit ellipsoid.
+- **Most citrus are highly spherical**
+]
+
+.pull-right[
++ `\(\sqrt[3]{\frac{BC}{A^2}}\)` (Krumbein, 1941)
++ `\(\frac{C}{\sqrt{AB}}\)` (Corey, 1949)
++ `\(\sqrt[3]{\frac{C^2}{AB}}\)` (Sneed and Folk, 1958)
++ `\(\frac{C}{\sqrt{\frac13 (A^2+B^2+C^2)}}\)` (Janke, 1966)
+]
+
+---
+
+## Oil gland modeling with directional statistics
+
+.left-column[
+
+&lt;p style="font-size: 14px; color: Black;"&gt;Visualize in 2D with Lambert azimuthal equal-area projections&lt;/p&gt;
+&lt;p style="font-size: 14px; color: Black;"&gt;Project from north and south poles&lt;/p&gt;
+
+![](https://upload.wikimedia.org/wikipedia/commons/4/4d/Generalized_Lambert_Equal-Area_projection.gif)
+![](https://upload.wikimedia.org/wikipedia/commons/a/a9/LambertAlt.gif)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+]
+
+.right-column[
+![](../figs/uniform_comparison_panel.jpg)
+
+- Points on the ellipsoid surface can be described in terms of ellipsoidal longitudes and latitudes.
+- Re-interpret these coordinates on a sphere
+- All **directional statistics machinery** is available!
+- E.g. oil glands **do not** distribute uniformly on the fruit surface
+]
+
+
+---
+
+background-image: url("../ellipsoids/GarciaPortugues_2013.png")
+background-size: 250px
+background-position: 95% 3%
+
+## Spherical Kernel Density Estimation
+
+![](../figs/M01_CRC3226_12B-27-1_L00_emi_kde_N.jpg)
+
+- Oil glands of a mandarin
+
+- Red arrows indicate the most significant gradient values for the density function
+
+- Statistical tool to model oil gland distribution!
+
+---
+
+# Future directions
+
+.pull-left[
+![](https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.boredpanda.com/life-cycles-pics/"&gt;BoredPanda&lt;/a&gt;&lt;/p&gt;
+
+Developing cycle of a lemon
+]
+
+.pull-right[
+- Compare differences in oil gland density distribution
+    - Between "species"
+    - Between wild types and domesticated fruits
+    
+- Propose a distribution model
+
+- Insights into fruit development
+]
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:23%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Elizabeth Munch (MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Tim Ophelders (Utrecht)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:23%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Dan Chitwood&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Michelle Quigley&lt;br&gt;(MSU)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:16%; font-size: 15px;"&gt;
+  &lt;img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh"&gt;
+  &lt;p style="text-align: center; color: White"&gt;Danelle Seymour&lt;br&gt;(UC Riverside)&lt;/p&gt;
+  &lt;img style="padding: 0 0 0 0;" src="../figs/SR01_L01_black_exocarp.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:10%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;amezqui3@msu.edu&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;egr.msu.edu/~amezqui3&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Submitted&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow;"&gt;The shape of aroma: measuring and modeling citrus oil gland distribution&lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size:12px; line-height:1.1"&gt;Slides made in xaringan and rmarkdown&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,536 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Erik Amézquita &mdash; A hodge-podge of math and plants</title>
+<meta name="description" content="Erik Amézquita webpage">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="../css/hawthorne_type1_color2.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <header>
+            <h1><a href="../index.html">Erik Amézquita</a></h1>
+            <h2><a href="../index.html">PFFFD Fellow</a></h2>
+            <h2><a href="../index.html">Plant Sciences and Mathematics @ University of Missouri</a></h2>
+            <!--
+            <div class="logo">
+                <a href="img/front_original.jpg"><img src="img/front_medium.jpg" alt="Erik_in_Chicago_2019" /></a>
+            </div>
+            -->
+        </header>
+    </div>
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <nav>
+            <ul class="inline-list-custom">
+                <li><a href="../index.html">Home [TL;DR]</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../teaching.html">Academic Resources</a></li>
+                <li><a href="../service.html">Other Resources</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../else.html">Else</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h2>Quantifying the shape of barley grains</h2>
+        <p>
+            Barley is more than just beer. It is the fourth most cultivated grain around the world,
+            behind maize, rice, and wheat. Barley is probably the most
+            adaptable crop out there. There are barley land races that are
+            originary from the warm, low-altituted, humid climate of the
+            <a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank">Moroccan Meditarrenean coast</a>; others adapted to the dry,
+            cold, high-altitude terrain of the <a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank">Tibetan plateau</a>.
+            And then there
+            are barley land races for every other climate in-between, across
+            the whole Eurasian continent, from the <a href="https://www.nationalgeographic.co.uk/travel/2020/05/photo-story-from-barley-fields-to-whisky-barrels-in-rural-scotland" target="_blank">Scottish Orkney Islands</a>,
+            to <a href="https://kizilvest.ru/20150827-v-kizilskom-rajone-nachalas-uborochnaya-strada/" target="_blank">Urals in Russia</a>; from the <a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank">Norweigian Artic circle</a> to
+            the <a href="https://thewire.in/agriculture/covid-19-lockdown-crop-harvest-farmers" target="_blank">Rajasthan praires in India</a>.
+        </p>
+        <p>
+            Even looking at the seeds, we can already see that some land races
+            have small, rounded seeds; while others have long, elongated shapes.
+            It is natural then to ask <em>How does shape correspond to this
+            climate versatility?</em> And in turn <em>How do we comprehensively
+            capture shape nuances across barley grains?</em>
+            For shape quantification, as you might guess, we drew tools from
+            <a href="../tda/description.html" target="_blank">Topological Data Analysis</a>.
+            Especifically, we used the <a href="https://doi.org/10.1093/imaiai/iau011"  target="_blank">Euler Characteristic Transform</a>.
+        </p>
+        <h3>The Euler Characteristic Transform (ECT)</h3>
+        <p>
+            The <a href="https://en.wikipedia.org/wiki/Euler_characteristic" target="_blank">Euler Characteristic</a>
+            (EC) of an object is a topological invariant. That is,
+            it is a quantity that remains unchanged if we stretch, shrink, twist, or
+            <em>smoothly</em> deform the object. However, it might change if we cut, paste, or
+            pierce the object.
+            The EC is attractive to our purposes, as it is both easy to compute
+            and intrisically connected to the topological features of an
+            object. From the Euler-Poincaré formula, we know that:
+        </p>
+        <p style="text-align:center; font-family:Lucida Console,Courier New,monospace;">
+            EC = #(connected components) - #(loops) + #(voids)
+            <br>
+            EC = #(vertices) - #(edges) + #(faces).
+        </p>
+        <p>
+            Following this formula, we see why all Platonic Solids share
+            the same EC of 2. Which in turn is the same EC of a sphere.
+        </p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+            <img src="../tda/figs/euler_characteristic_2.png" alt="Euler Characteristic"/>
+            <br>
+            Credits: <a href="https://en.wikipedia.org/wiki/Euler_characteristic">Wikipedia</a></p>
+        </p>
+        <p>
+            The EC on its own is too simple, though. We cannot tell apart
+            a pyramid from a cube based solely on their ECs. We thus turn to
+            the Euler Characteristic Transform (ECT) of objects. The ECT
+            of barley seeds in our case. First, we fix a direction,
+            say top to bottom. Then, we slice our seed across that direction
+            and we compute how the EC changes as we "add slices". This gives
+            us a topological signature, a time series on how the topology
+            changes as we traverse the seed vertically.
+        </p>
+        <p style="text-align:center;font-size: 10px; color: Grey;">
+            <img src="figs/ecc_ver2.gif" alt="Euler Characteristic Curve"/>
+        </p>
+        <p>
+            <em>How do we choose the right direction?</em> We do not. We
+            simply take <em>all</em> possible directions. For every direction, we
+            slice and dice our seeds across such direction. That gives us
+            different topological signatures, that we concatenate in a
+            single, very long vector. This whole procedure is refered to as
+            the ECT of the seed. For illustrative purposes, the animation
+            below shows the same seed being sliced across three different
+            directions and we record its ECT below.
+        </p>
+        <p style="text-align:center;font-size: 10px; color: Grey;">
+            <img src="figs/ect_ver2.gif" alt="Euler Characteristic Curve"/>
+        </p>
+        <p>
+            <em>The ECT is mathematically quite interesting.</em> In 2014,
+            <a href="https://maths.anu.edu.au/people/academics/katharine-turner" target="_blank">Turner</a>,
+            <a href="https://sayanmuk.github.io/" target="_blank">Mukherjee</a>, and
+            <a href="http://www.dougmboyer.com/" target="_blank">Boyer</a>
+            <em>mathematically</em>
+            <a href="https://doi.org/10.1093/imaiai/iau011"  target="_blank">
+                proved that the ECT is injective and that it effectively
+                summarizes <em>all</em> the morphological information
+                of an object</a>.
+            In other words, two different shapes will produce two different ECTs;
+            and if we are given two different ECTs, these must come from
+            two different shapes.
+        </p>
+        <p>
+            An important caveat is that for the mathematical theorem to hold,
+            we need to slice our seeds across <em>all</em> possible directions.
+            We cannot perform infinite computations, though. As a proof of
+            concept, we simply took a large number of directions and ran with it.
+            About 150 directions seemed to be enough for our purposes.
+            We observed that taking 200, 300, and 400 directions did not
+            improve our results.
+        </p>
+        <h3>The barley data</h3>
+        <p>
+            In collaboration with the University of California&mdash;Riverside,
+            we got access to barley panicle samples corresponding to 28 different
+            land races from 28 very different climates. These panicles were later
+            X-ray CT scanned at Michigan State University. But we want the grains.
+            After plenty of trial and error with image processing, a script
+            was developed to automatically extract <em>digitally</em> individual
+            grains from all the panicles.
+        </p>
+        <div class="row">
+            <img src="figs/S017_0_original.gif" alt="original"  style="float: left; height: 300px; margin: 0 0.25ex; vertical-align:center">
+            <img src="figs/S017_1_normal.gif" alt="normal"  style="float: left; height: 300px; margin: 0 0.25ex">
+            <img src="figs/S017_2_unair.gif" alt="unair"  style="float: left; height: 300px; margin: 0 0.25ex">
+            <img src="figs/S019_L0_1.gif" alt="clean"  style="float: left; height: 300px; margin: 0 0.25ex">
+            <img src="figs/S017_L0_seed_10_0.gif" alt="clean"  style="float: left; height: 200px; margin: 50px 0.25ex; vertical-align:center">
+        </div>
+        <p>
+            <br>
+            Once we have individual 3D grains, we measure barley grain
+            shape with two different sets of shape descriptors:
+        </p>
+        <div class="list">
+            <ul>
+                <li><strong>Traditional</strong>: length, width, volume, surface area, etc. for each grain.
+                We used 11 traditional descriptors in total.</li>
+                <li><strong>Topological</strong>: the ECT computed across 158 directions across 16 slices per direction
+                This produced a very large vector of more than 2500 dimensions per seed (!).
+                To avoid shenanigans from the <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>,
+                this large vector was later aggresively reduced to just 12 dimensions using
+                <a href="https://umap-learn.readthedocs.io/en/latest/" target="_blank">UMAP</a>.</li>
+            </ul>
+        </div>
+        <h3>Barley Classification Results</h3>
+        <p>
+            <em>How descriptive is our shape quantification?</em> As a
+            sanity check, we first test whether shape information alone
+            is enough to tell apart seeds from different accessions.
+            Now that we describe numerically the shape of every seed, we
+            can employ many machine learning classification algorithms.
+            We chose a <a href="https://en.wikipedia.org/wiki/Support_vector_machine" target="_blank">
+            support vector machine (SVM)</a> due to its simplicity and
+            the fact that we do not require large amounts of training data
+            (unlike neural networks).
+            Following a supervised learning pipeline, we chose 75% of the
+            seeds from each accession as training data. With this training,
+            the machine tries to deduce a pattern that characterizes the
+            numerical descriptors corresponding to each accession. Next,
+            we verify how good of job the machine did for pattern recognition.
+            We test such pattern recognition asking the machine to
+            predict the accession of the 25% of grains remaining based
+            solely on numerical shape description. Finally, we compute the
+            machine accuracy.
+            Below is an illustration of supervised learning with
+            3 accessions. In our experiment, we worked with 28 accessions.
+        </p>
+        <p style="text-align:center;font-size: 10px; color: Grey;">
+            <img src="../demat/figs/supervised_learning.png" alt="Supervised Learning"/>
+        </p>
+        <p>
+            We trained 3 different SVMs. One used only traditional shape
+            descriptors. The other used solely topological shape descriptors.
+            And the last one used both sets of descriptors. The classification
+            accuracy results were quite encouraging.
+        </p>
+        <style type="text/css">
+        .tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+        .tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+          border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:1em;overflow:hidden;padding:10px 5px;
+          word-break:normal;}
+        .tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+          border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:1em;font-weight:normal;overflow:hidden;
+          padding:10px 5px;word-break:normal;}
+        .tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+        .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+        .tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+        </style>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky">Shape descriptors</th>
+            <th class="tg-0pky">No. of descriptors</th>
+            <th class="tg-0pky">F1</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-2bhk">Traditional</td>
+            <td class="tg-2bhk">11</td>
+            <td class="tg-2bhk">0.55 &plusmn; 0.019</td>
+          </tr>
+          <tr>
+            <td class="tg-0pky">Topological</td>
+            <td class="tg-0pky">12</td>
+            <td class="tg-0pky">0.74 &plusmn; 0.016</td>
+          </tr>
+          <tr>
+            <td class="tg-2bhk">Combined</td>
+            <td class="tg-2bhk">23</td>
+            <td class="tg-2bhk"><strong>0.86 &plusmn; 0.010</strong></td>
+          </tr>
+        </tbody>
+        </table>
+        <p>
+            <br>
+            Just using traditional descriptors, the machine does a decent
+            job already. It correctly predicts the accession 55% of the time.
+            For comparison, if the machine were to guess randomly out of
+            28 possible accessions, it would give the correct answer less
+            than 4% of the time.
+            If we use topological shape descriptors, the machine accuracy
+            <em>improves</em>, which suggests that the ECT is capturing
+            shape nuances that are not readily seen by the naked eye.
+            Finally, combining both sources of morphological information
+            yields the <em>best</em> results.
+        </p>
+        <p>
+            A closer examination of the results shows that traditional shape
+            descriptors highlight shape similarities across barley
+            accessions. Topological shape descriptors highlight similarites
+            across <em>individual panicles</em>. Thus, their combination
+            yields exciting results at both population and individual levels (!)
+            Compare Figures 5 and 6 from <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">our
+            paper</a>.
+        </p>
+        <h3>But what does topology really measure?</h3>
+        <p>
+            One key advantage of the ECT over other TDA methods is that it
+            is relatively easy to observe how physical, shape features are
+            topologically encoded. In the ECT case, we can use a
+            <a href="https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_one-way_analysis_of_variance" target="_blank">Kruskal-Wallis
+            One Way Analysis of Variance</a> to determine which directions
+            and slices were topologically different across seeds corresponding
+            to different barley varieties. Turns out that the most significant
+            shape differences across accessions correspond to the top
+            and bottom sides of the seeds!
+        </p>
+        <p style="text-align:center;font-size: 10px; color: Grey;">
+            <img src="figs/arrow_seed_09_0.gif" alt="Seed ANOVA" width=" 55%"/>
+        </p>
+        <h3>Future directions</h3>
+        <p>
+            Now that we are convinced that our shape descriptors do a good
+            job of telling apart different barley accessions, the potential
+            future directions are exciting. To name a few:
+        </p>
+        <div class="list">
+            <ul>
+                <li>Identify specific molecular markers corresponding to
+                morphological differences across the diverse barley population.</li>
+                <li>Develop a high-throughput pipeline to produce 3D images
+                of individual barley seeds and quantify comprehensively their morphology.</li>
+                <li>Formalize a method for promising seedling selection to further crop breeeding.</li>
+                <li>Extend such pipeline and population genetics studies to other crops and grains.</li>
+            </ul>
+        </div>
+        <p>
+            Stay tuned for updates!
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+    </div>
+    <div class="small-12 medium-5 large-5 columns">
+        <p>
+            ¡<strong>Published article</strong>: Amézquita <em>et al.</em> (2021)!
+        </p>
+        <div class="thumbnail-img">
+            <div class="thumbnail-hover"><a href="https://doi.org/10.1093/insilicoplants/diab033"></a></div>
+            <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"><img src="figs/amezquita_etal_2021.png" alt="Amezquita et al 2021" style="vertical-align:bottom"/></a>
+        </div>
+        <p>
+            DOI: <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">10.1093/insilicoplants/diab033</a>
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            A general-audience brief piece was written about our paper in <a href="https://botany.one/2022/01/measuring-the-hidden-phenotype-using-novel-mathematical-techniques/" target="_blank">Botany One</a>.
+        </p>
+        <p>
+            Lee un resumen de nuestro paper para público general en <a href="https://botany.one/2022/01/midiendo-el-fenotipo-oculto-con-tecnicas-matematicas-novedosas/" target="_blank">Botany One</a>.
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            The <em>Euler Characteristic Transform</em> is our main workhorse
+            to measure and compare grain shape. Watch my following video
+            below for more details.
+        </p>
+        <p>
+            <iframe width="448" height="252" src="https://www.youtube-nocookie.com/embed/LtI6Y9ct1hc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            This is a 4min spiel on the barley project I recorded a while ago.
+        </p>
+        <p>
+            <iframe width="448" height="252" src="https://www.youtube-nocookie.com/embed/vWT3FLGvCO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <strong><a href="slides/jmm_2022.html" target="_blank">As slides</a></strong>:
+            Presented at <a href="https://www.jointmathematicsmeetings.org//jmm" target="_blank">JMM 2022</a>. April 2022.
+        </p>
+        <p>
+            <strong><a href="poster/ipps_2022_static.pdf" target="_blank">As a static poster</a></strong>:
+            Presented at <a href="https://www.plant-phenotyping.org/ipps7" target="_blank">IPPS 2022</a>. September 2022.
+        </p>
+        <p>
+            <strong><a href="poster/eccb_2021_dynamic.html" target="_blank">As a dynamic poster</a></strong>:
+            Updated from <a href="https://sites.google.com/view/aatrn-poster-session/home" target="_blank">AATRN</a>. October 2021.
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <img src="figs/4barley.jpg" alt="Amezquita et al 2021" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+        </p>
+        <p style="font-size:1.5em">
+            <strong><a href="#additional_resources">Go to additional resources</a></strong>
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+        <h3>Other research projects</h3>
+        <div class="list">
+            <ul>
+                <li><a href="../journal_diversity/description.html">Global disparities in plant biology research</a></li>
+                <li><a href="../citrus/description.html">The shape of citrus fruits and modeling their oil gland distribution</a></li>
+                <li><a href="../walnuts/description.html">The crackability of walnuts: all about shape, in a nutshell</a></li>
+                <li><a href="../tda/description.html">The intersection of Topological Data Analysis and Biology</a></li>
+                <li><a href="../demat/description.html">Archaeological artifact classification and the Euler Characteristic</a></li>
+                <li><a href="../nasrin/description.html">Mapper to unravel the shape of omics data</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-7 large-7 columns">
+        <h2 id="additional_resources">Additional Resources</h2>
+
+        <h3>Regarding the Euler Characteristic Transform (ECT)</h3>
+        <p>
+            For background material, you can first watch this video on the
+            Euler Characteristic. You can skip the "Deformation Retrack" section.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/Q6DLWJX5tbs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            My PhD advisor, <a href="https://www.elizabethmunch.com/" target="_blank">Liz Munch</a>,
+            does a pretty good job at explaining
+            the ECT and this barley project. Her seminar was prepared to
+            include a non-topology audience.
+        </p>
+        <p>
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/_-gDBosxp2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+        <p>
+            The ECT was originally proposed as the cheap cousin of the
+            Persistent Homology Transform (PHT) in the same <a href="https://doi.org/10.1093/imaiai/iau011"  target="_blank">Turner
+            <em>et al.</em> (2014)</a> paper. In fact, Turner <em>et al</em>
+            first prove that the PHT is injective. Since the proof relies
+            on keeping track of EC changes, the proof of injectivity extends
+            immediately to the ECT. Personally, I found reading Turner
+            <em>et al</em> quite challenging at first.
+            <a href="barley/slides/lab200330.pdf" target="_blank">Here are some slides</a>
+            I made with plenty of figures to ease the reading.
+        </p>
+        <h3>ECT in the math literature</h3>
+        <p>
+            As I mentioned above, the ECT is a very interesting mathematical
+            technique. There are plenty of mathematical advances that have
+            been developed recently.
+        </p>
+        <div class="list">
+            <ul>
+                <li><a href="https://doi.org/10.1090/btran/122" target="_blank">Curry,
+                Mukherjee, and Turner (2022)</a> extend the original 2014 paper.
+                They show that the injectivity of the PHT and ECT extends
+                to all dimensions. Moreover, they prove the existence of finite
+                bounds when it comes to choose directions. Good news: we do not
+                need infinite directions to mathematically guarantee the
+                injectivity of the ECT (yay). Bad news: the bound is still
+                absurdly large, and right now only works for theoretical
+                purposes.</li>
+                <li><em>If we are handed a topological signature, a string of numbers that we
+                are told come from an ECT, can we <strong>reconstruct</strong>
+                the original shape this ECT signature comes from?</em>
+                <a href="https://people.clas.ufl.edu/peterbubenik/files/Betthauser_Thesis.pdf" target="_blank">The
+                dissertation of Leo Betthauser</a> provides some insight
+                into how we can reconstruct 2D images based solely on their
+                ECT signatures.</li>
+                <li>Things get way trickier in 3D. <a href="https://arxiv.org/abs/1912.12759" target="_blank">Fasy
+                <em>et al</em> (2022)</a> provide some exciting initial insights for
+                small test cases. A computationally-feasible algorithm for
+                real-life data remamins elusive.</li>
+                <li><a href="https://doi.org/10.1080/01621459.2019.1671198" target="_blank">Crawford
+                <em>et al</em> (2020)</a> propose an alternative: the
+                Smooth Euler Characteristic Transform (SECT). This is obtained
+                by first computing the ECT as explained before, and then
+                this piecewise linear signal is integrated. This seemingly
+                simple extra step guarantees that the SECT is now a
+                continuous function that lives in the L2 space, the space
+                of all real-valued continuous functions. This in
+                turn opens the door to plenty of tools from the functional
+                analysis realm.</li>
+                <li><em>Maybe not all slices and directions should count
+                the same.</em> If we have additional information of the
+                data we are trying to characterize morphologically, then we
+                can tune the ECT to give more weight to certain directions.
+                This Weighted ECT is explored by <a href="https://openaccess.thecvf.com/content_CVPRW_2020/papers/w50/Jiang_The_Weighted_Euler_Curve_Transform_for_Shape_and_Image_Analysis_CVPRW_2020_paper.pdf" target="_blank">Jiang, Kurtek and Needham (2020)</a>.</li>
+                <li><a href="https://doi.org/10.1214/20-AOAS1430" target="_blank">Wang
+                <em>et al.</em> (2021)</a> combine the ECT with SINATRA,
+                a statistical pipeline that takes in two classes of shapes
+                and highlights the physical features that best describe
+                the variation between them.</li>
+            </ul>
+        </div>
+        <h3>Barley is more than just beer</h3>
+        <div class="list">
+            <ul>
+                <li>Barley is the <a href="https://doi.org/10.4060/cb1993en" target="_blank">fourth
+                most cultivated crop</a>, behind rice, maize, and wheat.</li>
+                <li>There are barley land races that have
+                <a href="https://doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank">adapted
+                to virtually every climated</a> across the whole
+                Eurasian continent.</li>
+                <li>In fact, this wonderful adaptability paved the way to
+                the first <a href="https://doi.org/10.1126/science.1259172" target="_blank">permanent
+                human settlements in the Tibetan plateau</a>. Barley provided
+                a reliable food source to the first inhabitants of the region.</li>
+                <li>In general, this historical and natural adaptability of
+                barley provides important insights into paleobotany. For instance,
+                charred and fossilized barley grains give important clues on
+                how the prehistoric human populations moved across
+                <a href="https://doi.org/10.1016/j.jasrep.2018.04.037" target="_blank">Central
+                Asia</a> and <a href="https://doi.org/10.1016/j.jas.2013.09.015" target="_blank">Southern
+                France</a>.</li>
+                <li>The versatility of barley makes it a crucial crop to
+                understand better <a href="https://doi.org/10.1111/nph.13266" target="_blank">climate
+                resilience</a>. The concern is even more pressing given
+                the rapidly climate change.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <li>&copy; 2023 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
+                <li>Last updated: July 2023.</li>
+                <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
+
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/amezqui3/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/erik-amezquita/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                <a href="https://www.researchgate.net/profile/Erik-Amezquita-2" target="_blank"><img src="../img/researchgate.svg" width="30" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+                <a href="https://orcid.org/0000-0002-9837-0397" target="_blank"><img src="img/orcid.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+                <a href="https://scholar.google.com/citations?user=JBCDR4cAAAAJ&hl=en" target="_blank"><img src="img/googlescholar.svg" width="35" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/hawthorne.js"></script>
+
+</body>
+</html>

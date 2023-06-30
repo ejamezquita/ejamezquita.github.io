@@ -1,0 +1,134 @@
+---
+title: "The shape of the aroma"
+subtitle: "modeling the citrus oil gland distribution"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "`r Sys.Date()`<br> - <br> IMPACTS Symposium Lightning Talk"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+class: center
+
+## When life gives you lemons, make lego blocks
+
+![](../figs/citrus_family_tree_1.jpg)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+---
+
+## Raw Data: X-rays &rarr; Image Processing
+
+<div class="row">
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
+    <p style="text-align: center;"> UCR Collaboration </p>
+  </div>
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
+    <p style="text-align: center;"> 3D X-Ray CT scan </p>
+  </div>
+  <div class="column" style="max-width:23%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif">
+    <p style="text-align: center;"> Raw </p>
+  </div>
+</div>
+
+--
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_spine.gif">
+    <p style="text-align: center;"> Spine </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_endocarp.gif">
+    <p style="text-align: center;"> Endocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_rind.gif">
+    <p style="text-align: center;"> Rind </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_exocarp.gif">
+    <p style="text-align: center;"> Exocarp </p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_oil_glands.gif">
+    <p style="text-align: center;"> Oil glands</p>
+  </div>
+</div>
+
+---
+
+## Quantifying the shape of citrus and their oil glands
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:44%; color: Navy; font-size: 15px;">
+    <img src="../figs/exocarp_vs_endocarp.jpg">
+    <img src="../figs/knn01_panel_log_density.svg">
+    <img src="../figs/M06_CRC3844_12B-31-1_L00_frontal_ell_projection.jpg">
+  </div>
+  <div class="column" style="max-width:54%; color: Navy; font-size: 15px;">
+    <img src="../figs/M01_CRC3226_12B-27-1_L00_emi_kde_N.jpg">
+    <img src="../figs/M01_L00_N.gif">
+  </div>
+</div>
+
+---
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# Thank you!
+
+<div class="row">
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <p style="text-align: center; color: White">Elizabeth Munch (MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center; color: White">Tim Ophelders (Utrecht)</p>
+  </div>
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
+  </div>
+  <div class="column" style="max-width:16%; font-size: 15px;">
+  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="../figs/SR01_L01_black_exocarp.gif">
+  </div>
+  <div class="column" style="width:10%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
+  <p style="text-align: center; color: White"><strong>Email</strong></p>
+  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
+  <p style="text-align: center; color: White"><strong>Website and slides</strong></p>
+  <p style="text-align: center; color: Yellow">egr.msu.edu/~amezqui3</p>
+  <p style="text-align: center; color: White"><strong>In preparation</strong></p>
+  <p style="text-align: center; color: Yellow;">The shape of aroma: measuring and modeling citrus oil gland distribution</p>
+  <p style="text-align: center; color: White; font-size:12px; line-height:1.1">Slides made in xaringan and rmarkdown</p>
+  </div>
+</div>
+

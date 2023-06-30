@@ -1,0 +1,976 @@
+---
+title: "Cuantificando la forma de la cebada "
+subtitle: "usando la característica de Euler"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University"
+date: "16 de junio 2020"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url("../figs/fam9_3.png")
+background-size: 150px
+background-position: 95% 5%
+
+# Cómo inició todo...
+
+- Fragmento de febrero 2016. (Énfasis propio)
+
+> Estimados Estudiantes de Licenciaturas de Demat,
+>
+> Se les hace una cordial invitación a participar como estudiantes de verano (con posibilidad de comenzar a pensar en una tesis en el futuro), en el proyecto interdisciplinario de Análisis Topológico de Datos-ATD aplicado a objetos Arqueológicos en 3D. 
+>
+> Se anticipa que partes de este proyecto requerirán de elementos de **análisis funcional, análisis armónico, topología/geometría diferencial, probabilidad y estadística, homología y programación**. Algunos elementos se tendrán que aprender sobre cómo parte de la participación.
+
+--
+
+- Fui el único que manifestó interes
+
+--
+
+- Sabía prácticamente nada de los requisitos.
+
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(engine.path = list(
+  python = '/usr/bin/python3',
+  ruby = '/usr/bin/ruby'
+))
+```
+
+class: inverse
+
+# Ahora: Morfología botánica
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/4GBgPIEDoa0?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+---
+
+# Análisis Topológico de Datos (ATD)
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 25px 0 35px 0;" src="../figs/S019_L0_1.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Datos </p>
+    <ul>
+      <li> Escanes rayos X </li>
+      <li> Nubes de puntos </li>
+      <li> Series de tiempo </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;">
+    <img src="../figs/ecc_X.gif">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Resumen Topológico </p>
+    <ul>
+      <li> Característica de Euler </li>
+      <li> Diagramas de persistencia </li>
+      <li> Mapper </li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:35%; font-size: 15px;">
+    <img src="../figs/svm_mds_canberra_algerian_everest.png">
+    <img src="../figs/svm_mds_canberra_multan_white-smyrna.png">
+    <p style="font-size: 25px; text-align: center; color: DarkRed;"> Análisis </p>
+    <ul>
+      <li> Estadística </li>
+      <li> Aprendizaje de máquina </li>
+      <li> Clasificación y predicción </li>
+    <ul>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/seed.png")
+background-size: 400px
+background-position: 99% 99%
+
+# Resumen de hoy
+
+### La charla será muy modular
+
+1. Botánica: cebada
+
+1. Genética: Zigosidad
+
+1. Procesamiento de imágenes
+
+1. Transformada de característica de Euler
+
+1. Aprendizaje de máquina y resultados
+
+---
+
+class: center, middle, inverse
+
+# 1. Botánica: Cebada
+
+---
+
+# Cebada: con nosotros desde el inicio
+
+- Es el 4to grano más cultivado, después de arroz, maíz y trigo.
+
+<div class="row">
+  <div class="column" style="max-width:35%">
+    <img src="../figs/barley_grains.png">
+    <img src="../figs/barley-spike.jpg">
+  </div>
+  <div class="column" style="max-width:30%">
+  <p style="font-size: 15px; text-align: center; color: DimGrey;"> Tabletas cuneiformes de Mesopotamia con espigas de cebada </p>
+    <img src="../figs/Ancient-Mesopotamia-tablet.jpg">
+    <img src="../figs/mesopotamian-tablet.jpg">
+  </div>
+  <div class="column" style="max-width:35%">
+    <img src="../figs/beerancientegypt.jpg">
+    <p style="font-size: 15px; text-align: center; color: DimGrey;"> Registro egipcio del consumo de cerveza </p>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/barley_domestication.jpg")
+background-size: 910px
+background-position: 50% 70%
+
+# Diversificación de la morfología floral
+
+---
+
+background-image: url("../figs/BarleyEars_2_vs_6.jpg")
+background-size: 420px
+background-position: 0% 99%
+
+# Cebada de 2 vs 6 hileras
+
+<div class="row">
+  <div class="column" style="max-width:50%; margin-left:auto; margin-right:0;">
+    <p> El evento evolutivo de 2 vs 6 hileras es de suma importancia </p>
+    <img src="../figs/barley_inflorescence.png">
+    <p style="font-size: 15px; color: DimGrey;"> Hertrich J. “Topics in Brewing: Malting Barley” MBAA TQ 50(1) 2013, pp. 29--41 </p>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/composite_hybrid_mixture.jpg")
+background-size: 400px
+background-position: 95% 5%
+
+
+# Cruce Compuesto (CC)
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <img src="../figs/composite_cross_people.jpg">
+    <p style="font-size: 15px; color: DimGrey;"> Esquina superior izquierda:  </p>
+    <p style="font-size: 15px; text-align: center; color: DimGrey;"> Mary Martini, Harry Harlan, Coit Suneson, G.A. Wiebe, Robert Allard, Dan Koenig  </p>
+  </div>
+  <div class="column" style="max-width:50%">
+    <img src="../figs/barley_world.jpg">
+    <p style="font-size: 15px; text-align: center; color: DimGrey;"> 28 especies fundadoras </p>
+  </div>
+</div>
+
+- Experimento iniciado en 1929 en Aberdeen, Idaho
+- En búsqueda del mejor cruce posible para California
+- Enfoque y mantenimiento en UC Davis y UC Riverside
+
+---
+
+background-image: url("../figs/composite_cross_experiment.jpg")
+background-size: 450px
+background-position: 95% 50%
+
+# Diseño del experimento
+
+.pull-left[
+- Consideramos todos los posibles cruces de los 28 fundadores (F1s)
+- Autopolinizamos cada uno de los híbridos (F2s)
+- Plantamos la progenie y les permitimos autopolinizarse
+- Vemos pasar casi 60 generaciones más
+- Contamos con semillas de cada generación y linaje
+    - Cuantificar la morfología
+    - Secuenciar el ADN
+    - ¿Cuáles genes fueron favorecidos?
+    - ¿Cómo cambió la morfología?
+]
+
+---
+
+class: center, middle, inverse
+
+# 2. Genética: Zigosidad
+
+---
+
+background-image: url("../figs/focus_DNA.jpg")
+background-size: 610px
+background-position: 97% 55%
+
+# Al final del día, todos somos ADN
+
+.left-column[
+El ADN se compone de 4 nucleótidos:
+- Adenina(A)
+- Citosina(C)
+- Tiamina(T)
+- Guanina(G)
+
+Complementariedad
+- $A \leftrightarrow T$
+- $C \leftrightarrow G$
+
+Mecanismo natural de replicación
+]
+
+---
+
+background-image: url("../figs/mutant_phenotypes.jpg")
+background-size: 660px
+background-position: 97% 55%
+
+# Patrones hereditarios para un único gen
+
+.left-column[
+**caraterística** = **propiedad** = **rasgo**
+
+**Fenotipo:** Forma tomada por un rasgo
+**Cruce:** Apareamiento controlado
+**Tipo silvestre:** El que se halla en la naturaleza
+**Mutante:** Organismo individual con alguna propiedad alterada
+]
+
+---
+
+background-image: url("../figs/alleles.jpg")
+background-size: 800px
+background-position: 50% 60%
+
+# Base molecular de patrones mendelianos
+
+ **Alelo:** Variación de un gen conocido. Diferencia de uno o más nucléotidos
+
+ **Mutación:** Cambio de nucleótidos en un alelo.
+ 
+---
+
+background-image: url("../figs/mitosis_meiosis_d.jpg")
+background-size: 850px
+background-position: 50% 75%
+ 
+# Base cromática hereditaria de un único gen 
+
+**Zigoto:** Huevo/óvulo fertilizado
+
+**Homozigoto:** Organismo con un par de alelos idénticos (línea pura: A/A ó a/a)
+
+**Heterozigoto:** Con diferente par de alelos (A/a)
+
+**Genotipo:** Combinación alélica (A/A, A/a, a/a)
+
+En principio, cada cromosoma tiene **la misma probabilidad** de ser heredado.
+
+---
+
+background-image: url("../figs/mendel_single_gene_ratios.jpg")
+background-size: 790px
+background-position: 50% 75%
+
+# Combinatoria para un único alelo
+ 
+---
+
+background-image: url("../figs/punnett_2_alleles_a.jpg")
+background-size: 370px
+background-position: 95% 35%
+
+# Misma idea para 2 alelos
+
+.pull-left[
+- Razón fenotípica de 9:3:3:1 suponiendo independencia
+- La razón genotípica es mucho más distinta
+- *Recordatorio:* El ser dominante/recesivo no influencia la probabilidad de ser heredado
+- *Segunda Ley de Mendel:* Pares de genes distintos en **cromosomas distintos** se agrupan de manera independiente durante la formación de gametos.
+
+![](../figs/punnett_2_alleles_b.jpg)
+]
+
+---
+
+background-image: url("../figs/tomato_varieties.jpg")
+background-size: 350px
+background-position: 90% 85%
+
+# Sintentizando líneas puras
+
+.pull-left[
+- Si seguimos autopolinizando los heterozigotos, enventualmente tendremos progenie homozigótica.
+- Los homozigotos autopolinizados serán genotípicamente (y fenotípicamente) invariantes
+- Cada alelo tiene probabilidad $\frac12$ de formar parte de una línea pura
+- No todos los homozigotos son viables
+]
+
+.pull-right[
+![](../figs/hetero2homozygote.jpg)
+]
+
+---
+
+class: inverse, center, middle
+
+# 3. Procesamiento de imágenes
+
+## Escanes 3D de rayos X
+
+---
+
+background-image: url("../figs/barley_lab_composition.jpg")
+background-size: 750px
+background-position: 99% 99%
+
+# Tomografías 3D
+
+.pull-left[
+Imágenes voxelizadas
+
+Resolución de ~30 micras
+
+En tandas de 4
+
+2Gb+ por cada escan incial
+]
+
+---
+
+class: inverse
+background-image: url("../figs/barley_hpcc.png")
+background-size: 1300px
+background-position: 0% 0%
+
+
+
+# Procesamiento de imágenes _ad-hoc_
+
+<div class="row">
+  <div class="column" style="max-width:12%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S017_0_original.gif">
+    <p style="text-align: center"> Original </p>
+  </div>
+  <div class="column" style="max-width:12%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S017_1_normal.gif">
+    <p style="text-align: center"> Estándar </p>
+  </div>
+  <div class="column" style="max-width:12%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S017_2_unair.gif">
+    <p style="text-align: center"> Limpio </p>
+  </div>
+  <div class="column" style="max-width:12%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S017_3_denoise.gif">
+    <p style="text-align: center"> Podado </p>
+  </div>
+  <div class="column" style="max-width:27%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S015_alignment.jpg">
+    <p style="text-align: center"> Etiquetado </p>
+  </div>
+  <div class="column" style="max-width:21%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S019_L0_1.gif">
+    <p style="text-align: center"> ¡Análisis! </p>
+  </div>
+</div>
+
+--
+
+- 224 escanes
+- La parte más laboriosa (hasta el momento)
+
+---
+
+# Interés en la distribución de semillas
+
+<div class="row">
+  <div class="column" style="max-width:50%; color: Yellow; font-size: 15px;">
+    <img src="../figs/seeds_batch1.png">
+    <img src="../figs/seeds_batch2.png">
+  </div>
+  <div class="column" style="max-width:50%; color: Yellow; font-size: 15px;">
+    <img src="../figs/seeds_batch3.png">
+    <img src="../figs/seeds_batch4.png">
+  </div>
+</div>
+
+- 875 espigas en total
+- Alrededor de 40,000 semillas
+
+---
+
+# Control manual de calidad
+
+<div class="row">
+  <div class="column" style="max-width:11%; color: Yellow; font-size: 15px;">
+    <img src="../figs/seed_outlier1.png">
+    <img src="../figs/seed_outlier2.png">
+    <img src="../figs/seed_outlier3.png">
+  </div>
+  <div class="column" style="max-width:11%; color: Yellow; font-size: 15px;">
+    <img src="../figs/seed_outlier4.png">
+    <img src="../figs/seed_outlier5.png">
+    <img src="../figs/seed_outlier6.png">
+  </div>
+  <div class="column" style="max-width:11%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S102_1_44_0.png">
+    <img src="../figs/S112_1_18_0.png">
+    <img src="../figs/S129_0_37_0.png">
+  </div>
+  <div class="column" style="max-width:11%; color: Yellow; font-size: 15px;">
+    <img src="../figs/S147_2_42_0.png">
+    <img src="../figs/S162_0_62_0.png">
+    <img src="../figs/S174_3_1_0.png">
+  </div>
+  <div class="column" style="max-width:40%; color: Yellow; font-size: 15px;">
+    <img src="../figs/Parents_seed_distribution.jpg">
+    <img src="../figs/F7_seed_distribution.jpg">
+  </div>
+    <div class="column" style="max-width: 15%; padding: 0 0 0 25px;">
+    <p> ~38,000 semillas limpias</p>
+    <p> Se vale descartar el 10% de la muestra.</p>
+    <p> Verificar que las aberraciones no están concentradas.</p>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/seed_mesh.png")
+background-size: 250px
+background-position: 80% 60%
+
+# Medidas tradicionales
+
+Todas las semillas son elipsoides: alineamiento basado en SVD/PCA
+
+.pull-left[
+- Longitud
+- Altura
+- Ancho
+- Área superficial
+- Volumen
+- Superficie convexa
+- Volumen convexo
+
+![](../figs/seed_orientation3.png)
+]
+
+---
+
+# Evolución morfológica y alometría
+
+<div class="row">
+  <div class="column" style="max-width:22%; color: Yellow; font-size: 15px;">
+    <img src="../figs/boxplot_all_Length.png">
+    <img src="../figs/boxplot_all_Height.png">
+  </div>
+  <div class="column" style="max-width:22%; color: Yellow; font-size: 15px;">
+    <img src="../figs/boxplot_all_Width.png">
+    <img src="../figs/boxplot_all_Area.png">
+  </div>
+  <div class="column" style="max-width:22%; color: Yellow; font-size: 15px;">
+    <img src="../figs/boxplot_all_Vol.png">
+    <img src="../figs/boxplot_all_ConvexVol.png">
+  </div>
+  <div class="column" style="max-width:35%; color: Yellow; font-size: 15px;">
+    <img src="../figs/linfit_Vol_vs_Length.jpg">
+    <img src="../figs/linfit_Vol_vs_Width.jpg">
+    <img src="../figs/linfit_Vol_vs_ConvexArea.jpg">
+  </div>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# 4. Topología
+
+## La Transformada de Característica de Euler (ECT)
+
+---
+
+background-image: url("../figs/euler_characteristic_2.png")
+background-size: 450px
+background-position: 97% 50%
+
+# La característica de Euler
+
+.pull-left[
+Figuras en 3D compuestas por $V_0$ vértices, $V_1$ arístas, y $V_2$ caras.
+
+$\chi = V_0 - V_1 + V_2$
+
+**Números de Betti:** número de "agujeros" homológicamente distintos.
+- $\beta_0$: Número de componentes conexas
+- $\beta_1$: Número de ciclos
+- $\beta_2$: Número de agujeros / vacíos
+
+$\chi = \beta_0 - \beta_1 + \beta_2$
+
+En general:
+
+$\chi = \sum_{i=0}^n (-1)^iV_i = \sum_{i=0}^n (-1)^i\beta_i$
+]
+
+---
+
+class: center
+background-image: url("../figs/euler_characteristic_variety.jpg")
+background-size: 900px
+background-position: 50% 80%
+
+# Característica de Euler para formas diferentes
+
+La característica de Euler es un invariante topológico: invariante ante transformaciones suaves
+
+.pull-left[
+Si la característica de Euler es **diferente**, los dos espacios/figuras son topológicamente distintos
+]
+
+.pull-right[
+Si los espacios son topológicamente distintos, la característica de Euler **puede ser igual.**
+]
+
+---
+
+background-image: url("../figs/ecc_X.gif")
+background-size: 300px
+background-position: 90% 60%
+
+# Curva de característica de Euler (ECC)
+
+.pull-left[
+- Un complejo simplicial finito $M\subset\mathbb{R}^d$
+- Una dirección $\nu\in S^{d-1}$
+
+- La filtración de altura
+$M(\nu)_r = \{x\in M: \langle x,\nu\rangle \leq r\}$ 
+$\simeq 	\{\Delta\in M : \langle x, \nu\rangle\leq r\:\forall	\,x\in\Delta\}$
+
+- Definimos la curva de característica de Euler $\chi(M,\nu):\mathbb{R}\to\mathbb{Z}$ 
+
+$\chi(M,\nu)(r) = \chi(M(\nu)_r).$
+]
+
+---
+
+background-image: url("../figs/ect.gif")
+background-size: 700px
+background-position: 50% 90%
+
+# Transformada de característica de Euler (ECT)
+
+- Definimos $ECT(M): S^{d-1}\to\mathbb{Z}^{\mathbb{R}}$ with $\nu\mapsto\chi(M,\nu)$
+- Concatenamos una cantidad infinita de ECCs.
+
+---
+
+# ¿Porqué la transformada ECT?
+
+--
+
+- Es fácil de calcular: una simple sucesión de sumas
+
+--
+
+[**Teorema _(Turner, Mukherjee, Boyer 2014)_**](https://doi.org/10.1093/imaiai/iau011): La ECT es inyectiva para complejos simpliciales finitos en 3D
+
+--
+
+[**Teorema _(ibid)_**](https://arxiv.org/abs/1310.1030): La ECT es una estadística suficiente para complejos simpliciales finitos en 3D
+
+--
+
+_Traducción:_ 
+
+- Dada todas las (infinitas) ECCs correspondientes a todas las direcciónes
+
+- Complejos simpliciales *distintos* corresponden a ECTs *distintas*
+
+- La ECT en efecto resume toda la información posible respecto a la forma de nuestro complejo
+
+--
+
+Avances en reconstrucción práctica: construir un complejo simplicial a partir de una colección finita de ECCs. (Turner, Curry, Fasy, Ghrist)
+
+---
+
+background-image: url("../figs/complex-good2.jpg")
+background-size: 280px
+background-position: 90% 38%
+
+# Idea de inyectividad
+
+- La demostración es constructiva: dado $PHT(M)$ reconstruiremos $M$ (con la cantidad mínima de vértices)
+
+--
+
+- Sean $x\in M$, $\nu\in S^2$, $r=\langle x,\nu\rangle$ fijos
+
+--
+
+- Consideremos subcomplejos
+    - $M(v)_r = \{z\in M: h_v(z)\leq r\}$
+    - $M(v)_r^-=\{z\in M: h_v(z)\leq r-\delta\}$
+
+- $\delta > 0$ tal que no existen valores críticos de $h_v$ en $(r-\delta, r)$
+
+- Dicha $\delta$ existe, pues $M$ es finito.
+
+--
+
+- El teorema original trabaja con la Transformada de Homología Persistente (PHT) en 3D
+
+- Sea $\mathcal{D}$ el espacio de todos los diagramas de persistencia 
+
+--
+
+- $PHT(M):\; S^{2}\to\mathcal{D}^3$ con $\nu\mapsto (X_0(M,\nu),X_1(M,\nu),X_{2}(M,\nu))$
+
+---
+
+# La sucesión exacta larga: homología relativa
+
+$$\begin{align}
+\ldots\xrightarrow{} H_i(M(\nu)_r^-)\xrightarrow{\iota_*} H_i(M(\nu)_r) \xrightarrow{\pi_*}H_i( M(\nu)_r, M(\nu)_r^- ) &\xrightarrow{\partial_*}H_{i-1}(M(\nu)^-_r)\\
+&\xrightarrow{\iota_*} H_{i-1}(M(\nu)_r)\to\ldots
+\end{align}$$
+
+- Por exactitud, $H_i(M(\nu)_r,M(\nu)_r^-) \cong \ker\partial_*\oplus\mathrm{im}\:\partial_*$
+--
+
+- Es decir,
+$$\begin{align*}
+	H_0(M(\nu)_r,M(\nu)_r^-) &\cong \mathrm{coker}\:\{H_0(M(\nu)_r^-) \to H_0(M(\nu)_r) \}\\
+	H_1(M(\nu)_r,M(\nu)_r^-) &\cong \mathrm{coker}\:\{H_1(M(\nu)_r^-) \to H_1(M(\nu)_r) \}\\
+	&\oplus\ker\{H_0(M(\nu)_r^-) \to H_0(M(\nu)_r) \}\\
+	H_2(M(\nu)_r,M(\nu)_r^-) &\cong \mathrm{coker}\:\{H_2(M(\nu)_r^-) \to H_2(M(\nu)_r) \}\\
+	&\oplus\ker\{H_1(M(\nu)_r^-) \to H_1(M(\nu)_r) \}\\
+	H_i(M(\nu)_r,M(\nu)_r^-) &=0,\quad i\geq3.
+\end{align*}$$
+
+---
+
+# Números de Betti y la característica de Euler relativa
+
+- Definimos $\tilde\beta_i(x,\nu) := \mathrm{rank}\:(H_i(M_r,M_r^-))$
+
+--
+
+- _Traducción:_ Observamos como cambia $\beta_i$
+$$\begin{align*}
+	\tilde\beta_0(x,\nu) &= \#\{\text{clases en }X_0(M_\nu)\text{ nacidas a altura }r\}\\
+	\tilde\beta_1(x,\nu) &= \#\{\text{clases en }X_1(M_\nu)\text{ nacidas a altura }r\}\\
+	&+ \#\{\text{clases en }X_0(M_\nu)\text{ que mueren a altura }r\}\\
+	\tilde\beta_2(x,\nu) &= \#\{\text{classes in }X_2(M_\nu)\text{ nacidas a altura }r\}\\
+	&+ \#\{\text{clases en }X_1(M_\nu)\text{ que mueren a altura }r\}\\
+	\tilde\beta_i(x,\nu) &= 0, \quad i\geq3.
+\end{align*}$$
+--
+
+- Resumimos los cambios homológicos en $(r-\delta, r)$ 
+$$\tilde{\chi}(x,\nu) := \tilde\beta_0(x,\nu) - \tilde\beta_1(x,\nu) + \tilde\beta_2(x,\nu).$$
+
+---
+
+# Idea de inyectividad: Vértices
+
+- Aprovechamos estabilidad de diagramas de persistencia para identificar los puntos críticos = vértices de nuestro complejo
+
+.pull-left[
+![](../figs/cotton_8a_850a_00.jpg)]
+.pull-right[
+![](../figs/cotton_8a_850a_90.jpg)]
+
+---
+
+background-image: url("../figs/north_to_south2.png")
+background-size: 350px
+background-position: 90% 50%
+
+# Idea de inyectividad: Aristas
+
+.pull-left[
+- Hallar links de los vértices $x$
+    - Aristas y caras incidentes
+    
+- Si $Lk\;x=\varnothing$, entonces una componente conexa nace a la altura $\langle x,\nu\rangle$ para toda $\nu$.
+
+- Supongamos $Lk\;x\neq\varnothing$
+
+- SPG, supongamos que $e$ es una arista incidente de $x$ apuntando hacia el polo norte.
+
+- La clave es ver como cambia la característica de Euler $\tilde\chi$ cuando $\nu$ va del hemisferio norte al hemisferio sur.
+]
+
+---
+
+background-image: url("../figs/pht_3_components1.jpg")
+background-size: 850px
+background-position: 50% 80%
+
+#### Izquierda, observamos 2 componentes. Proyectamos Lk $e$. $\tilde\chi$ aumenta 1.
+
+---
+
+background-image: url("../figs/pht_3_components2.jpg")
+background-size: 850px
+background-position: 50% 80%
+
+### Función $f_e$ en el gran círculo es determinada por cambios en $\tilde\chi$.
+
+---
+
+background-image: url("../figs/sphere_partition.png")
+background-size: 350px
+background-position: 90% 50%
+
+# Cambios en $\tilde\chi$ determinan el link de la arista
+
+.pull-left[
+- Para cada arista $e$, $f_e:S^2\to\mathbb Z$ resume los cambios en $\tilde\chi(x,\nu)$ cuando $\nu$ cruza el ecuador.
+
+- $f_e$ es equivalente a Lk $e$ con vista de pájaro.
+
+- El ecuador tiene medida 0, así que lo podemos ignorar.
+
+- Partición de la esfera de direcciones centrada en $x$ donde la homología es constante.
+
+- Con todos los vértices y sus aristas/caras incidentes, reconstruimos $M$ a partir de su ECT/PHT. QED
+]
+
+---
+
+class: inverse, center, middle
+
+# 5. Aprendizaje de máquina
+
+## Resultados de ECT
+
+---
+
+background-image: url("../figs/pole_directions_102.png")
+background-size: 350px
+background-position: 90% 50%
+
+# Calculando la ECT de cada semilla
+
+.pull-left[
+- Con los ejes alineados, podemos asociar las mismas direcciónes a las mismas imágenes
+
+- 74 direcciones
+
+- 32 umbrales por dirección
+
+- Cada semilla es asociada a un vector $74\times32=2368$ dimensional.
+
+![](../figs/ect.gif)
+]
+
+---
+
+background-image: url("../figs/pca_figure.jpg")
+background-size: 290px
+background-position: 99% 90%
+
+## No supervisado: Principal Component Analysis (PCA)
+
+- Consideremos un datos $\mathbf x_1,\ldots,\mathbf x_n\in\mathbb R^d$ (digamos $d=2368$)
+
+--
+
+- Sea $1\leq k \leq d$ fijo. Supongamos $k=2$.
+
+--
+
+- Queremos hallar la _mejor_ aproximación afín $k$-dimensional $U\beta + \mu$ tal que las columnas $U = [u_1, \ldots, u_k]\in\mathbb R^{d\times k}$ forman una base ortonormal.
+
+--
+
+- Problema de optimización:
+$$\min_{\beta,\mu, U} \sum_{i=1}^n\|x_i - (\mu + U\beta_i)\|^2$$ 
+tal que $U^\top U=I$ y $\sum_i\beta_i=0$.
+
+
+---
+
+## No supervisado: MultiDimensional Scaling (MDS)
+
+- Consideremos una matriz simétrica $D = (d_{ij}) \in\mathbb R^{n\times n}$ correspondiente a todas las distancias posibles de un conjuto de de datos $\mathbf x_1,\ldots,\mathbf x_n\in\mathbb R^d$ (digamos $d=2368$)
+
+--
+- Sea $1\leq k \leq d$ fijo. Supongamos $k=2$.
+
+- Queremos hallar puntos $\mathbf z_1,\ldots,\mathbf z_n\in\mathbb R^k$ cuyas distancias euclideanas preserven _mejor_ las distancias originales.
+
+--
+
+- Problema de optimización
+$$\min_{\mathbf z_i\in\mathbb R^k} \sum_{i,j}(\|\mathbf z_i-\mathbf z_j\|_2 - d_{ij})^2$$
+tal que $\sum_{i}\mathbf z_i = 0$
+
+--
+
+- Puede usarse para reducción de dimensiones.
+
+---
+
+background-image: url("../figs/separable-svm.jpg")
+background-size: 450px
+background-position: 50% 99%
+
+## Supervisado: Support Vector Machines (SVM)
+
+- $n$ puntos etiquetados $\{\mathbf x_i,y_i\}_{i=1}^n \subset \mathbb R^d$ con $y_i\in\{-1,+1\}$. 
+
+--
+
+- Debemos hallar el __hiperplano H__ que los separa _mejor_, con $\mathbf H = \{\mathbf x\,:\,\langle\mathbf{x,w}\rangle+b=0\}$.
+
+--
+
+- Problema de optimización
+$$\begin{align}
+	\min_{(\mathbf w,b)\in\mathbb R^d\times\mathbb R}\;\; &\frac12||\mathbf w||^2, \\
+	\textrm{tal que }\;\;& y_i(\langle \mathbf x_i,\mathbf w\rangle + b)\geq 1 \textrm{ para todo } i=1,\ldots,n.
+\end{align}$$
+
+---
+
+# MDS + SVM
+
+.pull-left[
+
+- Nos enfocaremos únicamente en pares de fundadores
+
+- Proyectamos nuestra ECT en 2D con las métricas Manhattan (L1) y Canberra.
+    - $d(\mathbf x, \mathbf z) = \sum_i |x_i-y_i|$
+    - $d(\mathbf x, \mathbf z) = \sum_i\frac{|x_i-y_i|}{|x_i|+|y_i|}$
+
+- Calculamos la separabilidad de dichas proyecciones con un SVM lineal.
+
+- Usamos el 100% de nuestros datos como entrenamiento.
+]
+
+.pull-right[
+![](../figs/svm_mds_canberra_algerian_everest.png)
+![](../figs/svm_mds_canberra_multan_white-smyrna.png)
+]
+
+---
+
+background-image: url("../figs/heatmap_svm_linear_C1_mds_canberra_k4.png")
+background-size: 450px
+background-position: 98% 50%
+
+# Heatmap de precisión
+
+.pull-left[
+
+Idea:
+
+- Si dos fundadores son fáciles de separar, su morfolología debe ser significativamente diferente.
+
+- Entonces dichos fundadores deben hallarse lejos en el árbol filogenético.
+
+- El converso también debería ser cierto
+
+
+Clusters jerárquicos
+]
+
+---
+
+background-image: url("../figs/hclust_ward.D2_svm_radial_C1_mds_manhattan_k4.png")
+background-size: 450px
+background-position: 99% 50%
+
+# Clustering jerárquico
+
+.pull-left[
+- La cebada de 2 hileras tiende a agruparse
+
+- Este comporatamiento se mantiene cuando modificamos
+    - Número de dimensiones proyectadas con MDS: $k=2,4,8$ 
+    - Uso de distancia Manhattan o Canberra para MDS
+    - SVM lineales o radiales
+    - Diferentes criterios de clusterización jerárquica (completa, promedio, ward, mcquitty)
+]
+
+---
+
+background-image: url("../figs/founders_rownums2_pca_d74_T32.png")
+background-size: 450px
+background-position: 99% 60%
+
+# PCA sugiere una asimetría ligera
+
+.pull-left[
+- Parece que la cebada de 6 hileras está ligeramente más esparcida a lo largo del eje PC2
+
+- Hipótesis: La asimetría natural en las semillas de la cebada de 6 hileras
+
+![](../figs/barley_inflorescence.png)
+]
+
+---
+
+class: inverse
+
+# Trabajo futuro
+
+- ¿Podemos usar la espiga entera?
+
+--
+
+- Hallar un vínculo más concreto entre la variación morfológica y la variación genética
+
+--
+
+- Si algo nos sobra, son imágenes botánicas
+
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/ikhuvGpJbeA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:50%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/a7JCIJRpF8U?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+---
+
+background-image: url("../figs/acknowledgements.jpg")
+background-size: 1000px
+background-position: 50% 50%
+
