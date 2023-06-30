@@ -1,0 +1,52 @@
+---
+title: Exploring the Lansing area
+subtitle: One pedal at a time
+author: '<a href="../index.html">Erik Amézquita</a>'
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    css: "../css/hawthorne_type1_color2.css"
+    self_contained: false
+    includes:
+      in_header: bike_header.html
+      after_body: footer.html
+---
+
+Physical activity has been crucial to keep my marbles through the PhD. I was pretty comfortable swimming 4-5 times a week at [MSU's indoor pool](./pics/msu_im_west_pool.jpg). Then coronavirus struck and suddenly I was without my aquatic therapy. Nonetheless, this outbreak pushed me to be a much better cyclist. The state-ordered quarantine meant a sharply reduced traffic, which helped me build confidence while sharing the road. Gradually the traffic has increased, but the confidence (and the muscle) remains. I've come to realize that the tri-county area has actually a lot to offer to a cyclist. 
+
+Eventually I bought a new bike: a gravel bike, a hybrid between a mountain and a road bike. My [Jamis Renegade Expat](./pics/east_lansing_renegade.jpg) (featured in half of my pictures) is a truly sweet ride. Slowly but surely I'm becoming a bike and outdoors enthusiast. I think I follow like 5 different biking channels in YouTube and I consume more bike porn than I should in reddit. And I keep adding toys to my toolbox. Not even [winter](./pics/lansing_hawk_island_winter.jpg) has deterred me. Moreover, I've adopted cycling as my new lifestyle, and in February 2021 I added a new member to my stable, a [Cannondale Quick](./pics/cannondale_quick.jpg), to take most of the winter beating, do most of my commuting, and take 25kg of groceries at a time.
+
+Below is a rough sketch of where I've been so far since May 2020, always starting home with my bike. You can right click each popup image for full resolution.
+
+_Disclaimer:_ I am a __much__ better cyclist than a photographer.
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(fig.align='center')
+knitr::opts_chunk$set(out.width='100%')
+knitr::opts_chunk$set(echo=FALSE)
+options(htmltools.dir.version = FALSE)
+
+library(leaflet)
+library(htmltools)
+library(readODS)
+
+width <- 300
+data <- readODS::read_ods('lansing_locations.ods')
+
+m <- leaflet::leaflet(width = 900, height = 500)
+m <- leaflet::addTiles(m)
+m <- leaflet::addScaleBar(m)
+```
+
+
+```{r map}
+## The map below was easily generated with RMarkdown and leaflet
+for(i in 1:nrow(data)){
+  m <- addMarkers(m, lat=data$latitude[i], lng=data$longitude[i], 
+                  popup=paste('<img src=\"pics/', data$filename[i], '\"></img>', sep=''),
+                  popupOptions = popupOptions(maxWidth = width, minWidth=width))
+}
+m
+```
+
+[Back to my personal page.](../else.html)

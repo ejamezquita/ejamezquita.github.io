@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Erik Amézquita" />
+
+<meta name="date" content="2021-10-10" />
+
+<title>Exploring the Lansing area</title>
+
+<script src="lansing_files/header-attrs/header-attrs.js"></script>
+<script src="lansing_files/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lansing_files/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lansing_files/bootstrap/js/bootstrap.min.js"></script>
+<script src="lansing_files/bootstrap/shim/html5shiv.min.js"></script>
+<script src="lansing_files/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lansing_files/navigation/tabsets.js"></script>
+<link href="lansing_files/highlightjs/default.css" rel="stylesheet" />
+<script src="lansing_files/highlightjs/highlight.js"></script>
+<script src="lansing_files/htmlwidgets/htmlwidgets.js"></script>
+<link href="lansing_files/leaflet/leaflet.css" rel="stylesheet" />
+<script src="lansing_files/leaflet/leaflet.js"></script>
+<link href="lansing_files/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="lansing_files/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="lansing_files/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="lansing_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="lansing_files/leaflet-binding/leaflet.js"></script>
+<style>
+.hero-image {
+  background-image: url("pics/east_lansing_welcome_winter.jpg");
+  background-color: White;
+  height: 550px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: White;
+}
+</style>
+
+<div class="hero-image">
+  <div class="hero-text">
+    <!-- <h1 style="font-size:50px; color:White;">Getting to know the Lansing area</h1> -->
+  </div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../css/hawthorne_type1_color2.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Exploring the Lansing area</h1>
+<h3 class="subtitle">One pedal at a time</h3>
+<h4 class="author"><a href="../index.html">Erik Amézquita</a></h4>
+<h4 class="date">2021-10-10</h4>
+
+</div>
+
+
+<p>Physical activity has been crucial to keep my marbles through the PhD. I was pretty comfortable swimming 4-5 times a week at <a href="./pics/msu_im_west_pool.jpg">MSU’s indoor pool</a>. Then coronavirus struck and suddenly I was without my aquatic therapy. Nonetheless, this outbreak pushed me to be a much better cyclist. The state-ordered quarantine meant a sharply reduced traffic, which helped me build confidence while sharing the road. Gradually the traffic has increased, but the confidence (and the muscle) remains. I’ve come to realize that the tri-county area has actually a lot to offer to a cyclist.</p>
+<p>Eventually I bought a new bike: a gravel bike, a hybrid between a mountain and a road bike. My <a href="./pics/east_lansing_renegade.jpg">Jamis Renegade Expat</a> (featured in half of my pictures) is a truly sweet ride. Slowly but surely I’m becoming a bike and outdoors enthusiast. I think I follow like 5 different biking channels in YouTube and I consume more bike porn than I should in reddit. And I keep adding toys to my toolbox. Not even <a href="./pics/lansing_hawk_island_winter.jpg">winter</a> has deterred me. Moreover, I’ve adopted cycling as my new lifestyle, and in February 2021 I added a new member to my stable, a <a href="./pics/cannondale_quick.jpg">Cannondale Quick</a>, to take most of the winter beating, do most of my commuting, and take 25kg of groceries at a time.</p>
+<p>Below is a rough sketch of where I’ve been so far since May 2020, always starting home with my bike. You can right click each popup image for full resolution.</p>
+<p><em>Disclaimer:</em> I am a <strong>much</strong> better cyclist than a photographer.</p>
+<div id="htmlwidget-443f341832920be0671a" style="width:900px;height:500px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-443f341832920be0671a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"topright"}]},{"method":"addMarkers","args":[42.81667,-84.44918,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/bath_school_disaster.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.84197,-84.58871,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/dewitt_glass_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6471,-84.65058,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/dimondale_danforth_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.79227,-84.44006,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/east_lansing_park_lake.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.75904,-84.7529,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/grand_ledge_oak_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.72992,-84.54678,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lansing_george_floyd.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.69331,-84.53277,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lansing_hawkeye_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.71787,-84.56169,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lansing_moorehead.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.77211,-84.59028,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lansing_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6021,-84.4737,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/mason_dart_garden.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.57977,-84.44232,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/mason_town_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.73278,-84.4767,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/msu_broad_detroit.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7215,-84.5178,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/msu_river_trail.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.80512,-84.29284,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/shaftsburg_village_market.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.9371,-84.4163,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/sleepy_hollow_ovid_island.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.0051,-84.5426,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/stjohns_tunnel.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.68922,-84.28317,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/williamston_cross.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7154,-84.3741,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/williamston_ted_black_woods.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.69507,-84.62629,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lansing_woldumar_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.82721,-84.22104,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/perry_jubilee_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.84049,-84.17839,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/morrice_village_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.55615,-84.30269,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/dansville_downtown.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.62914,-84.74401,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/potterville_city_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.66684,-84.17294,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/webberville_pagoda.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7532,-84.4051,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/east_lansing_lake_lansing.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.1037,-84.5119,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/eureka_church.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.0487,-84.4789,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/eureka_lakes.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.00342,-84.74109,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/fowler_bike_path.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.0903,-84.7328,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/maple_rapids_creek.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.1051,-84.6791,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/maple_rapids_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.8572,-84.8488,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/portland_glass_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.8703,-84.9037,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/portland_grand_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6672,-84.0737,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/fowlerville_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6878,-84.1188,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/fowlerville_red_cedar.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.9738,-84.4446,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lainsburg_maple_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.0706,-84.4133,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/elsie_maple_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.08832,-84.38783,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/elsie_corona_cow.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.00631,-84.37159,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/ovid_downtown.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.45779,-84.42753,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/lesley_town_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7978,-84.8974,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/danby_town_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.1562,-84.4675,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/ashley_maple_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.19016,-84.48269,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/ashley_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.51138,-84.65436,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/eaton_rapids_island_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.9232,-84.798,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/westphalia_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.37811,-84.54302,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/tompkins_historical_society.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.38616,-84.46161,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/rives_junction_historical_society.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.1891,-84.6006,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/pompeii_county_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[43.182,-84.6793,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/perrinton_downtown.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.43781,-84.56003,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/onondaga_baldwin_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.87375,-84.06306,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/bancroft_boeff_field.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.82112,-84.07155,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/antrim_township.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.8134,-84.1212,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/antrim_glass_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.527,-84.5219,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/aurelius_library.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7336,-83.8622,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/deerfield_townhall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.74126,-83.74494,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/tyrone_church.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7287,-83.4281,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/clarkston_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.7601,-83.9501,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/cohoctah_usps.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.3963,-85.2325,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/bedford_market.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.4465,-85.0097,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/bellevue_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.56113,-84.84021,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/charlotte_oak_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.5342,-84.2969,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/dansville_game_area.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.48114,-84.58067,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/eaton_rapids_grand_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.29513,-85.58406,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/kalamazoo_amtrak.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.3922,-85.3848,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/kbs_entrance.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.8359,-84.3657,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/laingsburg_peacock.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.8841,-84.3496,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/laingsburg_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6075,-85.0896,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/nashville_boat_launch.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.3763,-85.446,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/richland_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.37855,-84.69871,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/springport_memorial.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.45067,-84.17955,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/stockbridge_town_hall.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6424,-84.925,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/vermontville_gresham.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.6324,-85.0088,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/vermontville_welcome.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.93022,-84.07112,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/vernon_shiatown_park.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.9996,-84.1753,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/owosso_curwood_castle.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.9093,-83.9825,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/durand_train_station.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.98255,-84.11687,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/corunna_county_courthouse.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.78617,-83.84061,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/argentine_lobdell_lake.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[42.78107,-83.91091,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<img src=\"pics/argentine_shiawasee_river.jpg\"><\/img>",{"maxWidth":300,"minWidth":300,"autoPan":true,"keepInView":false,"closeButton":true,"className":""},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.29513,43.19016],"lng":[-85.58406,-83.4281]}},"evals":[],"jsHooks":[]}</script>
+<p><a href="../else.html">Back to my personal page.</a></p>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <!-- <li>Last updated: July 2020.</li> -->
+
+                <li>Powered by <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">RMarkdown</a> and <a href="http://rstudio.github.io/leaflet/" target="_blank">Leaflet for R</a></li>
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+        </footer>
+    </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

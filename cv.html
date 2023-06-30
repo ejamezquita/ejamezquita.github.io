@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Erik Amézquita" />
+    <meta name="date" content="2022-11-05" />
+    <title>Erik Amézquita’s CV</title>
+
+            <!-- dynamically load mathjax for compatibility with self-contained -->
+    <script>
+    (function() {
+      // Retrieve previous config object if defined
+      window.PagedConfig = window.PagedConfig || {};
+      let beforePaged = PagedConfig.before;
+      window.PagedConfig.before = async () => {
+        if (beforePaged) await beforePaged();
+        return new Promise((resolve, reject) => {
+          var script = document.createElement("script");
+          script.type = "text/javascript";
+          var src = `https://mathjax.rstudio.com/latest/MathJax.js` + "?config=TeX-MML-AM_CHTML";
+          if (location.protocol !== "file:" && /^https?:/.test(src))
+            src = src.replace(/^https?:/, '');
+          script.src = src;
+          window.MathJax = {
+            AuthorInit: () => {
+              MathJax.Hub.Register.StartupHook("Begin", () => {
+                MathJax.Hub.Queue(resolve);
+              });
+            }
+          };
+          document.getElementsByTagName("head")[0].appendChild(script);
+        });
+      };
+    })();
+    </script>
+        
+    <link rel='stylesheet' href='https://d33wubrfki0l68.cloudfront.net/bundles/2e18486fa627d748580c3c26fcf2ff69bce17bb9.css'/>
+    <script src='https://d33wubrfki0l68.cloudfront.net/js/81137880424bdad8c51b06a67b458ec2b9265923/jss-paged_files/paged/js/config.js'></script>
+    <script src='https://d33wubrfki0l68.cloudfront.net/bundles/6bb3be42cffca6f64e1b764fd9f0ebe535030089.js'></script>
+    
+  </head>
+  <body>
+
+<style type="text/css">
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 0rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+</style>
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>
+<style type="text/css">
+.aside {
+  padding-top: 0;
+}
+
+.aside > p:first-of-type {
+  margin-top: 0;
+}
+</style>
+<div id="aside" class="section level1">
+<h1>Aside</h1>
+<p><img src="https://www.egr.msu.edu/~amezqui3/barley/figs/S017_L3_1.gif" style="width:80.0%" /></p>
+<p><a href="cv-src/cv.pdf"><i class="fas fa-download"></i> Download a PDF of this CV</a></p>
+<div id="contact" class="section level2">
+<h2>Contact</h2>
+<ul>
+<li><i class='fa fa-building'></i> 428 S Shaw Ln <br> Engineering Bldg Rm 1515 <br> East Lansing, MI 48824</li>
+<li><i class='fa fa-envelope'></i> <a href="mailto:amezqui3@msu.edu" class="email">amezqui3@msu.edu</a></li>
+<li><i class='fa fa-github'></i> <a href="https://github.com/amezqui3/">github.com/amezqui3</a></li>
+<li><i class='fa fa-link'></i> <a href="https://egr.msu.edu/~amezqui3">egr.msu.edu/~amezqui3</a></li>
+</ul>
+</div>
+<div id="skills" class="section level2">
+<h2>Skills</h2>
+<ul>
+<li><p><strong>Programming</strong>: Python, R, C/C++, bash/unix</p></li>
+<li><p><strong>Technologies</strong>: <span class="math inline">\(\LaTeX\)</span>, RMarkdown, jupyter, vim, html/css</p></li>
+<li><p><strong>Languages</strong>: Spanish (native), English (fluent), French (elementary)</p></li>
+</ul>
+</div>
+<div id="disclaimer" class="section level2">
+<h2>Disclaimer</h2>
+<p>Made with the R package <a href="https://github.com/rstudio/pagedown"><strong>pagedown</strong></a>.</p>
+<p>Last updated on 2022-11-05.</p>
+</div>
+</div>
+<div id="main" class="section level1">
+<h1>Main</h1>
+<div id="title" class="section level2">
+<h2>Erik Amézquita</h2>
+<p>I have interdisciplinary experience working in coding and data analysis reseach projects with plant biologists, archaeologists, and astronomers.</p>
+</div>
+<div id="education" class="section level2" data-icon="graduation-cap" data-concise="true">
+<h2>Education</h2>
+<div id="phd-candidate-computational-mathematics-science-engineering" class="section level3">
+<h3>PhD Candidate, Computational Mathematics, Science &amp; Engineering</h3>
+<p>Michigan State University</p>
+<p>East Lansing, MI</p>
+<p>current - 2018</p>
+<ul>
+<li>Focused in quantifying plant morphology using topological data analysis (TDA) and X-Ray CT scans.</li>
+<li>Advisors: <a href="http://www.elizabethmunch.com/">Elizabeth Munch</a> and <a href="https://orcid.org/0000-0003-4875-1447">Dan Chitwood</a></li>
+<li>Expected graduation date: May 2023</li>
+</ul>
+</div>
+<div id="b.s.-mathematics" class="section level3">
+<h3>B.S., Mathematics</h3>
+<p>Universidad de Guanajuato</p>
+<p>Guanajuato, Gto.</p>
+<p>2018 - 2013</p>
+<ul>
+<li><a href="https://www.egr.msu.edu/~amezqui3/demat/bachelor_thesis.pdf">Thesis</a>: Efficient object classification using the Euler characteristic</li>
+<li>Advisor: <a href="https://sites.google.com/view/arieser">Antonio Rieser</a> (CONACYT-CIMAT)</li>
+</ul>
+</div>
+</div>
+<div id="research-experience" class="section level2" data-icon="laptop">
+<h2>Research Experience</h2>
+<div id="graduate-research-assistant" class="section level3">
+<h3>Graduate Research Assistant</h3>
+<p><a href="https://orcid.org/0000-0003-4875-1447">Chitwood</a>-<a href="http://www.elizabethmunch.com/">Munch</a> Lab</p>
+<p>Michigan State University</p>
+<p>current - 2018</p>
+<ul>
+<li>Exploring oil glands distribution of Citrus with directional statistics.</li>
+<li>Characterized barley spikes morphology with the Euler Characteristic Transform and Topological Data Analysis.</li>
+</ul>
+</div>
+<div id="undergraduate-research-assistant" class="section level3">
+<h3>Undergraduate Research Assistant</h3>
+<p><a href="https://sites.google.com/view/arieser">Rieser Lab</a></p>
+<p>CIMAT</p>
+<p>2018 - 2016</p>
+<ul>
+<li>Part of CIMAT-IPICYT-INAH joint research involving mathematics, computer science and archaeology.</li>
+<li>Provided a first new classification of a test set of pre-Columbian masks based on Euler characteristic curves.</li>
+</ul>
+</div>
+<div id="undergraduate-researcher" class="section level3">
+<h3>Undergraduate Researcher</h3>
+<p><a href="https://www.iau.org/administration/membership/individual/16441/">Jack Lab</a></p>
+<p>Universidad de Guanajuato</p>
+<p>2016</p>
+<ul>
+<li>Developed C/C++ code to check for presence of certain chemical elements in a supernova based on wavelength information.</li>
+</ul>
+</div>
+</div>
+<div id="peer-reviewed-work" class="section level2" data-icon="book">
+<h2>Peer-reviewed work</h2>
+<div class="aside">
+
+</div>
+<div id="the-shape-of-aroma-measuring-and-modeling-citrus-oil-gland-distribution" class="section level3">
+<h3>The shape of aroma: measuring and modeling citrus oil gland distribution</h3>
+<p><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, D. Seymour, E. Munch, D. H. Chitwood</p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li><em>Plants, People, Planet</em> DOI: <a href="https://doi.org/10.1002/ppp3.10333">10.1002/ppp3.10333</a></li>
+</ul>
+</div>
+<div id="teaching-tools-in-plant-biology.-plants-and-python-coding-from-scratch-in-the-plant-sciences" class="section level3">
+<h3>Teaching Tools in Plant Biology. Plants and Python, Coding from Scratch in the Plant Sciences</h3>
+<p>R. VanBuren, A. Rougon-Cardoso, <strong>E.J. Amézquita</strong>, E. Coss-Navarrete, A. Espinosa-Jaime, O. Gonzalez-Iturbe, A. Luckie-Duque, E. Mendoza-Galindo, J. Pardo, G. Rodríguez-Guerrero, P. Rosiles-Loeza, M. Vásquez-Cruz, S. Fernandez-Valverde, T. Hernandez-Hernandez, S. Palande, and D.H. Chitwood</p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li><em>The Plant Cell</em> 34(7) e1. DOI: <a href="https://doi.org/10.1093/plcell/koac187">10.1093/plcell/koac187</a></li>
+</ul>
+</div>
+<div id="measuring-hidden-phenotype-quantifying-the-shape-of-barley-seeds-using-the-euler-characteristic-transform" class="section level3">
+<h3>Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform</h3>
+<p><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch, D. H. Chitwood</p>
+<p>N/A</p>
+<p>2021</p>
+<ul>
+<li><em>in Silico Plants</em> 4(1) diab033. DOI: <a href="https://doi.org/10.1093/insilicoplants/diab033">10.1093/insilicoplants/diab033</a></li>
+</ul>
+</div>
+<div id="the-shape-of-things-to-come-topological-data-analysis-and-biology-from-molecules-to-organisms" class="section level3">
+<h3>The shape of things to come: Topological data analysis and biology, from molecules to organisms</h3>
+<p><strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, E. Munch, D.H. Chitwood</p>
+<p>N/A</p>
+<p>2020</p>
+<ul>
+<li>Developmental Dynamics. 249(7) pp. 816-833. DOI: <a href="https://doi.org/10.1002/dvdy.175">10.1002/dvdy.175</a></li>
+</ul>
+</div>
+</div>
+<div id="non-peer-reviewed-work" class="section level2" data-icon="newspaper">
+<h2>Non peer-reviewed work</h2>
+<div class="aside">
+
+</div>
+<div id="genomics-data-analysis-via-spectral-shape-and-topology" class="section level3">
+<h3>Genomics Data Analysis via Spectral Shape and Topology</h3>
+<p><strong>E.J. Amézquita</strong>, F. Nasrin, K.M. Storey, M. Yoshizawa</p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li>Submitted. Preprint available. DOI: <a href="https://doi.org/10.48550/arXiv.2211.00938">10.48550/arXiv.2211.00938</a></li>
+</ul>
+</div>
+<div id="global-disparities-in-plant-science-a-legacy-of-colonialism-patriarchy-and-exclusion" class="section level3">
+<h3>Global disparities in plant science: a legacy of colonialism, patriarchy, and exclusion</h3>
+<p>R.A. Marks, <strong>E.J. Amézquita</strong>, S. Percival, A. Rougon-Cardoso, C. Chibici-Revneanu, S.M. Tebele, J.M. Farrant, R. VanBuren, D.H. Chitwood</p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li>Submitted. Preprint available. DOI: <a href="https://doi.org/10.1101/2022.10.15.512190">10.1101/2022.10.15.512190</a></li>
+</ul>
+</div>
+<div id="describing-demeter" class="section level3">
+<h3>Describing Demeter</h3>
+<p><strong>E.J. Amézquita</strong></p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li>Athens Science Observer. February 2022. Zine #3: Plant Phenotyping Edition. <a href="https://athensscienceobserver.com/2022/02/28/zine-3-plant-phenotyping-edition/">Link</a>.</li>
+</ul>
+</div>
+<div id="midiendo-el-fenotipo-oculto-con-técnicas-matemáticas-novedosas" class="section level3">
+<h3>Midiendo el fenotipo oculto con técnicas matemáticas novedosas</h3>
+<p><strong>E.J. Amézquita</strong>. Edited by R. Shekar</p>
+<p>N/A</p>
+<p>2021</p>
+<ul>
+<li>Botany One. Blog entry. <a href="https://botany.one/2022/01/midiendo-el-fenotipo-oculto-con-tecnicas-matematicas-novedosas/">Link</a></li>
+</ul>
+</div>
+<div id="measuring-the-hidden-phenotype-using-novel-mathematical-techniques" class="section level3">
+<h3>Measuring the hidden phenotype using novel mathematical techniques</h3>
+<p><strong>E.J. Amézquita</strong>. Edited by R. Shekar</p>
+<p>N/A</p>
+<p>2021</p>
+<ul>
+<li>Botany One. Blog entry. <a href="https://botany.one/2022/01/measuring-the-hidden-phenotype-using-novel-mathematical-techniques/">Link</a></li>
+</ul>
+</div>
+</div>
+<div id="teaching-and-mentoring-experience" class="section level2" data-icon="chalkboard-teacher">
+<h2>Teaching and Mentoring Experience</h2>
+<div id="experience-at-michigan-state-university" class="section level3">
+<h3>Experience at Michigan State University</h3>
+<ul>
+<li>Mentor for the <a href="https://icer-acres.msu.edu/">ACRES REU</a>. Conducted weekly professional development workshops and weekly social events for an undergraduate audience. Summer 2022.</li>
+<li>TA for CMSE 201: Intro to Computational Modelling and Data Analysis. Fall 2019</li>
+</ul>
+<p>N/A</p>
+<p>Audience was mainly undergraduate students with no prior coding experience</p>
+<p>2022 - 2019</p>
+</div>
+<div id="teaching-assistant-at-other-institutions-in-the-us" class="section level3">
+<h3>Teaching Assistant at other institutions in the US</h3>
+<ul>
+<li><a href="https://sgi.mit.edu/">SGI 2022</a>. Summer Geometry Initiative REU. Massachusetts Institute of Technology.</li>
+<li><a href="https://sgi.mit.edu/">SGI 2021</a>. Summer Geometry Institute REU. Massachusetts Institute of Technology.</li>
+<li><a href="https://codeinplace.stanford.edu/">Code In Place</a>. Stanford University.</li>
+</ul>
+<p>N/A</p>
+<p>Conducted virtually</p>
+<p>2022 - 2021</p>
+</div>
+<div id="teaching-assistant-at-cimatuniversidad-de-guanajuato" class="section level3">
+<h3>Teaching Assistant at CIMAT/Universidad de Guanajuato</h3>
+<ul>
+<li>Precalculus and analytic geometry. Spring 2018</li>
+<li>Topology I (Intro to point-set topology). Fall 2017</li>
+<li>14th Calculus Problem-solving Workshop. Summer 2017</li>
+<li>Introduction to C++ and data structures (Online). Summer 2017</li>
+<li>Introduction to probability. Fall 2016</li>
+</ul>
+<p>N/A</p>
+<p>Some courses involved leading tutorials on C++ or R</p>
+<p>2018 - 2016</p>
+</div>
+</div>
+<div id="selected-talks-delivered" class="section level2" data-icon="microphone">
+<h2>Selected talks delivered</h2>
+<div id="measuring-the-shape-of-plants-and-nuts-using-topological-data-analysis" class="section level3">
+<h3>Measuring the shape of plants and nuts using topological data analysis</h3>
+<p><a href="https://www.jointmathematicsmeetings.org//jmm">JMM 2023</a>. Joint Mathematics Meeting. American Mathematical Society. Boston, MA.</p>
+<p>N/A</p>
+<p>2023</p>
+</div>
+<div id="using-topology-to-analyze-the-shape-of-plants" class="section level3">
+<h3>Using topology to analyze the shape of plants</h3>
+<p><a href="https://www.mis.mpg.de/roldan/seminars.html">Stochastic Topology and applications</a>. Max Planck Institute for Mathematics in the Sciences (MiS).</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="the-shape-of-aroma-measuring-and-modeling-citrus-oil-gland-distribution-1" class="section level3">
+<h3>The shape of aroma: measuring and modeling citrus oil gland distribution</h3>
+<p><a href="https://meetings.ams.org/math/spring2022c/meetingapp.cgi/Home/0">AMS Spring Central Sectional Meeting</a>. American Mathematical Society</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="bridging-applied-topology-and-plant-biology" class="section level3">
+<h3>Bridging applied topology and plant biology</h3>
+<p><a href="https://www.jointmathematicsmeetings.org//jmm">JMM 2022</a>. Joint Mathematics Meeting. American Mathematical Society</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="measuring-the-shape-of-plants-with-topological-data-analysis" class="section level3">
+<h3>Measuring the shape of plants with Topological Data Analysis</h3>
+<p><a href="https://www.plantphenotyping.org/conference-home">2022 NAPPN</a>. North American Plant Phenotyping Network. Athens, GA</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="measuring-the-shape-of-plants-with-the-euler-characteristic-transform" class="section level3">
+<h3>Measuring the shape of plants with the Euler Characteristic Transform</h3>
+<p><a href="https://people.clas.ufl.edu/peterbubenik/uftda2022/">UFTDA 2022</a>. University of Florida Topological Data Analysis Conference. Gainesville, FL</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="midiendo-la-forma-en-botánica-usando-análisis-topológico-de-datos" class="section level3">
+<h3>Midiendo la forma en botánica usando Análisis Topológico de Datos</h3>
+<p><a href="https://sites.google.com/view/xvisembiomat/home">XVI SEMBIOMAT</a>. Sociedad Peruana de Matemática Aplicada y Computacional</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="quantifying-barley-morphology-using-the-euler-characteristic" class="section level3">
+<h3>Quantifying barley morphology using the Euler Characteristic</h3>
+<p><a href="https://www.siam.org/conferences/cm/conference/an21">SIAM Annual Meeting 2021</a>. Society for Industrial and Applied Mathematics.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="describing-demeter-using-the-euler-characteristic-to-quantify-the-shape-and-biology" class="section level3">
+<h3>Describing <code>demeter</code>: using the Euler characteristic to quantify the shape and biology</h3>
+<p><a href="https://www.iscb.org/glbio2021">GLBIO 2021</a>. Great Lakes Bioinformatics Conference.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="analyzing-maize-leaf-angles-and-modeling-leaf-curvature" class="section level3">
+<h3>Analyzing maize leaf angles and modeling leaf curvature</h3>
+<p><a href="https://www.nappn2021.org/">2021 NAPPN</a>. North American Plant Phenotyping Network.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="quantifying-the-shape-of-barley-using-the-euler-characteristic" class="section level3">
+<h3>Quantifying the shape of barley using the Euler characteristic</h3>
+<p><a href="https://socg20.inf.ethz.ch/yrf">YRF @ SoCG</a>. Young Researcher Forum @ Symposium on Computational Geometry.</p>
+<p>N/A</p>
+<p>2020</p>
+</div>
+<div id="efficient-object-classification-using-the-euler-characteristic" class="section level3">
+<h3>Efficient object classification using the Euler characteristic</h3>
+<p><a href="https://www.cimat.mx/sites/default/files/banners/Programa_14ago%20(1).pdf">II Coloquio</a> de Desarrollo Tecnológico al Servicio del Patrimonio Cultural</p>
+<p>N/A</p>
+<p>2018</p>
+</div>
+</div>
+<div id="selected-workshops-lead" class="section level2" data-icon="wrench">
+<h2>Selected workshops lead</h2>
+<div id="the-shape-of-things-measuring-the-shape-of-plants-with-topological-data-analysis" class="section level3">
+<h3>The shape of things: Measuring the shape of plants with Topological Data Analysis</h3>
+<p><a href="https://www.plantphenotyping.org/conference-home">2022 NAPPN</a>. North American Plant Phenotyping Network. Athens, GA. <a href="https://colab.research.google.com/github/amezqui3/demeter/blob/main/tutorial/nappn2022_shape_of_things_to_come.ipynb">Check material</a>.</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="using-the-euler-characteristic-to-quantify-the-shape-in-biology" class="section level3">
+<h3>Using the Euler characteristic to quantify the shape in biology</h3>
+<p><a href="https://sites.google.com/view/aatrn-tutorial-a-thon">2021 AATRN Tutorial-a-thon</a>. Applied Algebraic Topology Research Network. <a href="https://www.youtube.com/watch?v=LtI6Y9ct1hc">Watch video</a>.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="measuring-the-shape-of-plants-with-topological-data-analysis-1" class="section level3">
+<h3>Measuring the shape of plants with Topological Data Analysis</h3>
+<p><a href="https://www.nappn2021.org/">2021 NAPPN</a>. North American Plant Phenotyping Network. <a href="https://github.com/amezqui3/ect_and_barley">Check material</a>.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+</div>
+<div id="selected-posters-presented" class="section level2" data-icon="portrait">
+<h2>Selected posters presented</h2>
+<div id="using-topology-to-analyze-the-shape-of-plants-1" class="section level3">
+<h3>Using topology to analyze the shape of plants</h3>
+<p><a href="https://www.plant-phenotyping.org/ipps7">IPPS2022</a>. International Plant Phenotyping Symposium. Wageningen, The Netherlands</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="modeling-the-shape-of-citrus-and-their-oil-gland-distribution" class="section level3">
+<h3>Modeling the shape of citrus and their oil gland distribution</h3>
+<p><a href="https://u.osu.edu/plantsciencessymposium/">OSU PSS</a>. The Ohio State University Plant Sciences Sympossium</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="using-topology-to-analyze-the-shape-of-barley" class="section level3">
+<h3>Using topology to analyze the shape of barley</h3>
+<p><a href="https://gtdaml.wixsite.com/2021">GTDAML 2021</a>. Geometry and Topology meet Data Analysis and Machine Learning.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="using-topology-to-analyze-the-shape-of-barley-1" class="section level3">
+<h3>Using topology to analyze the shape of barley</h3>
+<p><a href="https://www.imsi.institute/topological-data-analysis/">TDA Workshop</a> @ IMSI. Insititute for Mathematical and Statistical Innovation.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="using-topology-to-analyze-the-shape-of-barley-2" class="section level3">
+<h3>Using topology to analyze the shape of barley</h3>
+<p><a href="https://smb2020.org/">SMB 2020 Annual Meeting</a>. Society of Mathematical Biology.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="using-topology-to-analyze-the-shape-of-barley-3" class="section level3">
+<h3>Using topology to analyze the shape of barley</h3>
+<p><a href="https://tda-in-ml.github.io/">TDA Workshop</a> @ NeurIPS 2020. Neural Information Processing Systems.</p>
+<p>N/A</p>
+<p>2020</p>
+</div>
+<div id="object-classification-using-the-euler-characteristic" class="section level3">
+<h3>Object classification using the Euler characteristic</h3>
+<p><a href="http://www.math.utk.edu/barrett/2017/">47th Annual John H. Barrett Memorial Lectures</a>. Math Department. University of Tennessee</p>
+<p>N/A</p>
+<p>2017</p>
+</div>
+<div id="bridging-mathematics-and-archaeology" class="section level3">
+<h3>Bridging mathematics and archaeology</h3>
+<p><a href="https://atd.cimat.mx/es/tercera-escuela-atd">3a Escuela de Análisis Topológico de Datos y Topología Estocástica</a>. ABACUS. CINVESTAV</p>
+<p>N/A</p>
+<p>2017</p>
+</div>
+</div>
+<div id="selected-workshops-and-hackathons-attended" class="section level2" data-icon="lightbulb">
+<h2>Selected workshops and hackathons attended</h2>
+<div id="beyond-abstract-measures-geometry-and-computation" class="section level3">
+<h3>Beyond Abstract Measures: geometry and computation</h3>
+<p>Organized by the <a href="https://www.lorentzcenter.nl/beyond-abstract-measures-geometry-and-computation.html">Lorentz Center</a>, Leiden, The Netherlands</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="datathon4justice" class="section level3">
+<h3>Datathon4Justice</h3>
+<p><a href="https://qsideinstitute.org/datathon4justice/">D4J</a>. Organized by QSIDE. Institute for Quantitative Study of Inclusion, Diversity, and Equity.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+<div id="immersive-visualization-institute" class="section level3">
+<h3>Immersive Visualization Institute</h3>
+<p><a href="https://grad.msu.edu/news/immersive-visualization-institute-ivi-summer-institute-about-digital-display-technology">IVI2021</a>. Jointly organized by Abrams Planetarium, MSU Libraries, and MSU Museum.</p>
+<p>N/A</p>
+<p>2021</p>
+</div>
+</div>
+<div id="outreach" class="section level2" data-icon="user-plus">
+<h2>Outreach</h2>
+<div id="webinar-de-solicitudes-al-doctorado-en-estados-unidos" class="section level3">
+<h3>Webinar de Solicitudes al Doctorado en Estados Unidos</h3>
+<p>Panelist. Organized by the Coloquio de Exestudiantes CIMAT/DEMAT</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="mental-health-in-mathematics-and-computer-science" class="section level3">
+<h3>Mental Health in Mathematics and Computer Science</h3>
+<p>Panel organizer and moderator. <a href="https://sgi.mit.edu/">SGI22</a>. Massachussets Institute of Technology.</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="using-topology-to-quantify-the-shape-of-barley" class="section level3">
+<h3>Using topology to quantify the shape of barley</h3>
+<p><a href="https://mathplus.math.toronto.edu/home/ma">Summer Math Academy</a>. Math Department. University of Toronto</p>
+<p>N/A</p>
+<p>2020</p>
+</div>
+<div id="wrangling-and-presenting-data-with-pandas-and-seaborn-in-python" class="section level3">
+<h3>Wrangling and Presenting Data with Pandas and Seaborn in Python</h3>
+<p><a href="https://ssda.msu.edu/">Social Science Data Analytics Initiative</a>. Michigan State University.</p>
+<p>N/A</p>
+<p>2020</p>
+</div>
+<div id="narrating-our-data-with-rmarkdown" class="section level3">
+<h3>Narrating our data with RMarkdown</h3>
+<p><a href="https://ssda.msu.edu/">Social Science Data Analytics Initiative</a>. Michigan State University.</p>
+<p>N/A</p>
+<p>2020</p>
+</div>
+<div id="la-maldición-de-la-dimensión-y-aprendizaje-de-máquina" class="section level3">
+<h3>La maldición de la dimensión y aprendizaje de máquina</h3>
+<p>Ciencia es Cultura. Dirección de Extensión Cultural. Universidad de Guanajuato.</p>
+<p>N/A</p>
+<p>2018</p>
+</div>
+<div id="un-matemático-y-un-psicólogo-se-hallan-en-hanoi" class="section level3">
+<h3>Un matemático y un psicólogo se hallan en Hanoi</h3>
+<p>Ciencia es Cultura. Dirección de Extensión Cultural. Universidad de Guanajuato.</p>
+<p>N/A</p>
+<p>2017</p>
+</div>
+<div id="infinitos-grandes-e-infinitos-pequeños" class="section level3">
+<h3>Infinitos grandes e infinitos pequeños</h3>
+<p>Ciencia es Cultura. Dirección de Extensión Cultural. Universidad de Guanajuato.</p>
+<p>N/A</p>
+<p>2016</p>
+</div>
+</div>
+<div id="service" class="section level2" data-icon="users">
+<h2>Service</h2>
+<div id="president-of-the-cmse-graduate-student-organization" class="section level3">
+<h3>President of the CMSE Graduate Student Organization</h3>
+<p>CMSE and the Council of Graduate Students</p>
+<p>N/A</p>
+<p>2022 - 2021</p>
+<ul>
+<li>Lead department-wide events, committees, and inquiries to attend graduate students’ needs</li>
+</ul>
+</div>
+<div id="finance-comittee-chair.-pbgb-symposium" class="section level3">
+<h3>Finance Comittee Chair. <a href="https://www.canr.msu.edu/pbgb/Symposium/">PBGB symposium</a></h3>
+<p>Plant Breeding, Genetics, and Biotechnology symposium. Michigan State University.</p>
+<p>N/A</p>
+<p>2019</p>
+</div>
+<div id="student-representative" class="section level3">
+<h3>Student Representative</h3>
+<p>College of Natural and Exact Sciences Council. Universidad de Guanajuato.</p>
+<p>N/A</p>
+<p>2017 - 2016</p>
+<ul>
+<li>Logged each session minutes, such as budget or policy, and shared them with the math students.</li>
+</ul>
+</div>
+<div id="high-school-mathematics-seminar-co-organizer" class="section level3">
+<h3>High School Mathematics Seminar Co-Organizer</h3>
+<p>Escuela de Nivel Medio Superior, Guanajuato. Guanajuato.</p>
+<p>N/A</p>
+<p>2016 - 2015</p>
+<ul>
+<li>Delivered lectures on math topics usually not covered at high school levels, such as combinatorics or group theory.</li>
+</ul>
+</div>
+<div id="tutor-of-the-guatemalan-math-olympiad-team" class="section level3">
+<h3>Tutor of the Guatemalan Math Olympiad Team</h3>
+<p>Math Olympiad National Team. Guatemala.</p>
+<p>N/A</p>
+<p>2013 - 2012</p>
+<ul>
+<li>Successfully lobbied the Guatemalan Department of Education to obtain funding for 3 students to participate in the 15th Central American and Caribbean Math Olympiad.</li>
+</ul>
+</div>
+</div>
+<div id="awards" class="section level2" data-icon="award">
+<h2>Awards</h2>
+<div id="best-poster-award.-3rd-place-out-of-173-posters." class="section level3">
+<h3>Best Poster Award. 3rd Place out of 173 posters.</h3>
+<p><a href="https://www.plant-phenotyping.org/ipps7">IPPS2022</a>. International Plant Phenotyping Symposium. Wageningen, The Netherlands</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="travel-grant-eur-2000" class="section level3">
+<h3>Travel Grant (EUR 2000)</h3>
+<p><a href="https://www.plant-phenotyping.org/ipps7">IPPS2022</a>. International Plant Phenotyping Symposium. Wageningen, The Netherlands</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="fitch-h.-beach-award" class="section level3">
+<h3><a href="https://www.egr.msu.edu/graduate/fitch-h-beach-awards">Fitch H. Beach Award</a></h3>
+<p>College of Engineering. Michigan State University</p>
+<p>N/A</p>
+<p>2022</p>
+<ul>
+<li>2nd place. Most outstanding graduate research within the College of Engineering.</li>
+</ul>
+</div>
+<div id="travel-grant-us800" class="section level3">
+<h3>Travel Grant (US$800)</h3>
+<p><a href="https://www.plantphenotyping.org/conference-home">2022 NAPPN</a>. North American Plant Phenotyping Network. Athens, GA</p>
+<p>N/A</p>
+<p>2022</p>
+</div>
+<div id="travel-grant-us800-1" class="section level3">
+<h3>Travel Grant (US$800)</h3>
+<p><a href="https://icerm.brown.edu/topical_workshops/tw19-6-ammtt/">Applied Mathematical Modeling with Topological Techniques</a>. ICERM. Providence, RI</p>
+<p>N/A</p>
+<p>2019</p>
+</div>
+<div id="impacts-fellowship" class="section level3">
+<h3><a href="https://impacts.natsci.msu.edu/trainees/erik-jose-amezquitamorataya/">IMPACTS Fellowship</a></h3>
+<p>Awarded jointly by Michigan State University and the NRT-NSF program (NSF DGE-1828149).</p>
+<p>N/A</p>
+<p>2019</p>
+</div>
+<div id="sotero-prieto-medal" class="section level3">
+<h3><a href="https://www.smm.org.mx/premio-sotero-prieto">Sotero Prieto Medal</a></h3>
+<p>Sociedad Mexicana de Matemáticas</p>
+<p>N/A</p>
+<p>2018</p>
+<ul>
+<li>Best undergrad math thesis produced in Mexico during the 2017-18 academic year.</li>
+</ul>
+</div>
+<div id="francisco-aranda-ordaz-award" class="section level3">
+<h3>Francisco Aranda Ordaz Award</h3>
+<p>Asociación Mexicana de Estadística</p>
+<p>N/A</p>
+<p>2018</p>
+<ul>
+<li>3rd place. Best undergrad statistics theses produced in Mexico during the 2016-18 academic years.</li>
+</ul>
+</div>
+<div id="raymond-p.-and-marie-m.-ginther-graduate-fellowship" class="section level3">
+<h3>Raymond P. and Marie M. Ginther Graduate Fellowship</h3>
+<p>Awarded by CMSE to outstanding incoming graduate students.</p>
+<p>N/A</p>
+<p>2018</p>
+</div>
+<div id="cimat-academic-excellence-scholarship" class="section level3">
+<h3>CIMAT Academic Excellence Scholarship</h3>
+<p>Merit-based scholarship for math undergraduates.</p>
+<p>N/A</p>
+<p>2018 - 2013</p>
+</div>
+<div id="best-undergraduate-mathematics-physics-and-earth-sciences-innovation-research-project." class="section level3">
+<h3>Best Undergraduate Mathematics, Physics and Earth Sciences Innovation Research Project.</h3>
+<p>4to Congreso Interinstitucional de Jóvenes Investigadores. 3rd Place. Nationwide event.</p>
+<p>N/A</p>
+<p>2017</p>
+</div>
+<div id="best-undergraduate-engineering-research-project" class="section level3">
+<h3>Best Undergraduate Engineering Research Project</h3>
+<p>5to Encuentro de Jóvenes Investigadores. 1st Place. Statewide event</p>
+<p>N/A</p>
+<p>2017</p>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+  var i, s, j, el, els;
+  var create_el = function(type, className, content, isHTML) {
+    var el = document.createElement(type);
+    if (className) el.className = className;
+    if (content) {
+      if (isHTML) {el.innerHTML = content;} else {el.innerText = content;}
+    }
+    return el;
+  }
+
+  // replace h2 title with h1
+  var title = document.getElementById('title').querySelector('h2');
+  title.parentNode.replaceChild(create_el('h1', false, title.innerHTML, true), title);
+
+  // add the class .aside to #aside
+  el = document.getElementById('aside');
+  if (el) el.className += ' aside';
+
+  // tweak class names of sections, and add icons
+  els = document.getElementById('main').querySelectorAll('.level2');
+  for (i = 0; i < els.length; i++) {
+    el = els[i];
+    if (i === 0 && el.id === 'title') continue;
+    el.className += ' main-block';
+    if (el.dataset['concise']) el.className += ' concise';
+    // if there is no icon, add an icon:
+    if (el.firstElementChild.firstChild && el.firstElementChild.firstChild.nodeName !== 'I') {
+      s = el.dataset['icon'] || 'bookmark';
+      el.firstElementChild.insertBefore(create_el('i', 'fa fa-' + s), el.firstElementChild.firstChild);
+    }
+  }
+
+  // tweak class names of blocks in sections
+  els = document.getElementById('main').querySelectorAll('.level3');
+  for (i = 0; i < els.length; i++) {
+    el = els[i];
+    if (el.parentNode.id === 'title') continue;
+    el.className += ' blocks';
+    el.innerHTML = '<div class="date"></div>' + '<div class="decorator"></div>' +
+      '<div class="details"><header></header><div></div></div>' + el.innerHTML;
+    var ps = el.querySelectorAll('p');
+    // move the date paragraph to the date div
+    if (ps.length >= 3) {
+      s = ps[2].innerText;
+      s = s === 'N/A' ? [] : s.split(' - ');
+      el.removeChild(ps[2]);
+      for (j = 0; j < s.length && j < 2; j++) {
+        el.children[0].appendChild(create_el('span', false, s[j]))
+      }
+    }
+    // move title, description, location to the details div
+    (function(h) {
+      h.appendChild(el.children[3]);
+      var p = el.children[3];  // description
+      if (p.innerText !== 'N/A') {
+        h.appendChild(create_el('span', 'place', p.innerHTML, true));
+      }
+      el.removeChild(p);
+      p = el.children[3];  // location
+      if (p.innerText !== 'N/A') {
+        s = create_el('span', 'location', p.innerHTML, true);
+        s.innerHTML = '<i class="fa fa-map-marker-alt"></i> ' + s.innerHTML;
+        h.appendChild(s);
+      }
+      el.removeChild(p);
+    })(el.children[2].firstElementChild);
+    // move the rest of content in a block into the last div of the details div
+    s = el.children[2];
+    while (j = s.nextSibling) {
+      if (j.className === 'aside') { s = j; continue; }
+      el.children[2].lastElementChild.append(j);
+    }
+  }
+})();
+</script>
+
+
+  </body>
+</html>
