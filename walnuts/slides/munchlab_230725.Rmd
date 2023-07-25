@@ -223,6 +223,17 @@ knitr::include_graphics("../figs/vol_ratios_correlation_individual.jpg")
 
 ---
 
+## Remove the air from the consideration
+
+![](../figs/combination_hbar_correlation_wo_air.jpg)
+
+
+$$\text{Kernel Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}} + V_{\text{air}}}$$
+
+$$\text{Kernel Volume Ratio wo Air}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}}}$$
+
+---
+
 class: center, middle, inverse
 
 # Incorporating Pat's ordinal data
