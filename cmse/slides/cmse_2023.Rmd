@@ -293,19 +293,19 @@ class: inverse
 
 <div class="row" style="font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
   <div class="column" style="max-width:20%;">
-    <img src="../../citrus/figs/SR01_L01_endocarp.gif">
+    <img src="../../citrus/figs/SR01_L01_black_endocarp.gif">
     <p style="text-align: center;"> Endocarp </p>
   </div>
   <div class="column" style="max-width:20%;">
-    <img src="../../citrus/figs/SR01_L01_rind.gif">
+    <img src="../../citrus/figs/SR01_L01_black_rind.gif">
     <p style="text-align: center; padding:5px 0;"> Rind </p>
   </div>
   <div class="column" style="max-width:20%;">
-    <img src="../../citrus/figs/SR01_L01_exocarp.gif">
+    <img src="../../citrus/figs/SR01_L01_black_exocarp.gif">
     <p style="text-align: center;"> Exocarp </p>
   </div>
   <div class="column" style="max-width:20%;">
-    <img src="../../citrus/figs/SR01_L01_oil_glands.gif">
+    <img src="../../citrus/figs/SR01_L01_black_oil_glands.gif">
     <p style="text-align: center;"> Oil glands</p>
   </div>
   <div class="column" style="max-width:20%;padding: 10px 0 0 20px;">

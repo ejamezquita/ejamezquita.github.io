@@ -144,7 +144,7 @@ class: center
     <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/S017_L3_1.gif"></a>
   </div>
   <div class="column" style="max-width:25%">
-    <img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_exocarp.gif">
+    <img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_black_exocarp.gif">
   </div>
   <div class="column" style="max-width:32%">
     <img style="padding: 0 0 0 0;" src="../../arabidopsis/figs/Day7_110921_U112-3_pot0_leaf_X.gif">
@@ -765,23 +765,23 @@ Developing cycle of a lemon
 
 <div class="row" style="margin: 0 auto;">
   <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_spine.gif">
+    <img src="../../citrus/figs/SR01_L01_black_spine.gif">
     <p style="text-align: center;"> Spine </p>
   </div>
   <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_endocarp.gif">
+    <img src="../../citrus/figs/SR01_L01_black_endocarp.gif">
     <p style="text-align: center;"> Endocarp </p>
   </div>
   <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_rind.gif">
+    <img src="../../citrus/figs/SR01_L01_black_rind.gif">
     <p style="text-align: center;"> Rind </p>
   </div>
   <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_exocarp.gif">
+    <img src="../../citrus/figs/SR01_L01_black_exocarp.gif">
     <p style="text-align: center;"> Exocarp </p>
   </div>
   <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_oil_glands.gif">
+    <img src="../../citrus/figs/SR01_L01_black_oil_glands.gif">
     <p style="text-align: center;"> Oil glands</p>
   </div>
 </div>
