@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>All about cracks and shapes</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita   —   Computational Mathematics, Science, and Engineering   Michigan State University   —" />
+    <meta name="date" content="2023-07-25" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# All about cracks and shapes
+]
+.subtitle[
+## in a nutshell
+]
+.author[
+### <strong>Erik Amézquita</strong> <br> — <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> —
+]
+.date[
+### 2023-07-25
+]
+
+---
+
+
+
+
+background-image: url("../../img/endlessforms.png")
+background-size: 150px
+background-position: 89% 7%
+
+class: inverse
+
+# Plant morphology
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/Cr0B-yFcJZk?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/ikhuvGpJbeA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/lZXSpPzstF8?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/qkOjHHuoUhA?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'"&gt;Check out more 3D X-ray CT scans at &lt;a href="https://www.youtube.com/@endlessforms6756"&gt;youtube.com/@endlessforms6756&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# The wal(nu)tzing nutcracker!
+
+.pull-left[
+![](../../barley/figs/x3000_setup.jpg)
+]
+
+.pull-right[
+- 172 batches &amp;rarr; 1301 walnuts
+
+- Individual walnuts manually separated
+
+- Walnuts with empty kernels were discarded
+
+- 150 different cultivars (UCCASCD)
+]
+
+&lt;div class="row" style="margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Shell &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Air &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Packing &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;
+    &lt;p style="text-align: center;"&gt; Kernel &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Watershed segmentation
+
+![](../figs/2014SBa_R5_T20_001_w.gif)
+
+---
+
+## Shell interior protrusions
+
+![](../../walnuts/figs/2012SB_R16_T58_001_protrusion.jpg)
+
+---
+
+## Shape and size phenotypes
+
+.pull-left[
+![](../figs/walnut_trad_measurements.jpg)
+
+]
+
+.pull-right[
+![](../figs/kernel_trad_measurements.jpg)
+]
+
+&lt;img src="../figs/convexity_curves.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Shape and size phenotypes
+
+.pull-left[
+**Whole Walnut**
+
+- Length, width, height
+- Raw  and *convex* Volume
+- Raw and *convex* surface Area
+- *Convexity ratios*
+- Sphericity indices
+
+**Kernel and its *main cavity***
+
+- Length, width, height
+- Raw  and *convex* total volume
+- Volume relative to total and *without air*
+- Raw and *convex* surface area
+- *Convexity ratios*
+- *Sphericity indices*
+]
+
+.pull-right[
+**Shell**
+
+- Absolute and relative total volume
+- Absolute and relative *protruding* volume
+- Average thickness
+- *Average density* relative to kernel
+- *Average density* relative to packing tissue
+
+**Air**
+
+- Total and relative volume
+
+***Packing tissue***
+
+- *Absolute and relative total Volume*
+- *Relative density to kernel*
+]
+
+Italics for phenotypes that I haven't seen measured elsewhere
+
+---
+
+class: center, middle, inverse
+
+# Using **all** the individual nuts' phenotypes
+
+## Each point represents a different individual
+
+### Work that I did early this year
+
+---
+
+# The power of allometry: `\(\;y = e^bV_N^m\)`
+
+For most living organisms, different tissues grow at different rates with respect to each other.
+
+Growth does **not** scale linearly but following a power law.
+
+&lt;div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.jpg"&gt;
+    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut changes dramatically after its diameter is larger than 1.6cm&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="../../walnuts/figs/air_volume_vs_nut_volume.jpg"&gt;
+    &lt;p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;"&gt;If nut volume increases by 2x, then air volume increases by 2.3x&lt;/p&gt;
+    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut diameter is below 16cm&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg"&gt;
+    &lt;p style="margin: 1.1ex 0 0 0; padding: 0 2ex 0 0;"&gt;If nut volume increases by 2x, then kernel volume only increases by 1.8x&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+There are biophysical constraints at play in walnut development
+
+---
+
+## Correlation between tissues
+
+&lt;img src="../figs/vol_ratios_correlation_individual.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Correlation with traits of interest
+
+![](../../walnuts/figs/combination_hbar_correlation.jpg)
+
+.pull-left[
+**Walnuts with more kernel filling ratio have:**
+
+- Less air filling ratio
+- Smaller volume
+- Smoother shells
+- Kernel overall shape is more convex 
+- But it also has numerous deep but thin grooves.
+] 
+
+.pull-right[
+**Walnuts with thinner shells have:**
+
+- Less total shell volume and shell ratio
+- More air filling ratio
+- Smoother shells
+]
+
+---
+
+class: center, middle, inverse
+
+# Incorporating Pat's ordinal data
+
+## Averaging my morphological phenotypes per accession
+
+## Each point represents a different accession
+
+### Work I did after my defense, when I realized I messed up completely data analysis
+
+---
+
+## Comparing relative volume to relative mass
+
+&lt;img src="../figs/vol_ratios_correlation_accession.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Side by side invidual vs accession
+
+.pull-left[
+![](../figs/vol_ratios_correlation_individual.jpg)
+]
+
+.pull-right[
+![](../figs/vol_ratios_correlation_accession.jpg)
+]
+
+---
+
+## Correlation to other breeding traits
+
+![](../figs/highest_corrs_ease_of_removal_per_accession_1x5.jpg)
+
+![](../figs/highest_corrs_shell_strength_per_accession_1x5.jpg)
+
+- Now the Earliest (Himalayan) accession is a single outlying point and not much can be said about it.
+
+---
+
+## Correlation to other breeding traits
+
+![](../figs/highest_corrs_kernel_weight_ratio_per_accession_1x5.jpg)
+
+![](../figs/highest_corrs_shell_thickness_per_accession_1x5.jpg)
+
+- Now the Earliest (Himalayan) accession is a single outlying point and not much can be said about it.
+
+---
+
+## PCA (and other dim-reduction) fail
+
+![](../figs/pca_all_phenos_accession.jpg)
+
+---
+
+## Doing linear regressions
+
+- Assumes responses are normally distributed
+- Assumes traits are independent
+- I used ridge-regression, as OLS tend to overfit when conditions are not ideal
+- Linear coefficients are not really informative when conditions are not ideal
+
+
+&lt;img src="../figs/kernelfill_ridge_regression.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Training 80/20 to spot overfitting
+
+.pull-left[
+![](../figs/kernelfill_R2_train_vs_test.jpg)
+![](../figs/percentkernel_R2_train_vs_test.jpg)
+]
+
+.pull-right[
+![](../figs/shellstrength_R2_train_vs_test.jpg)
+![](../figs/easeofremoval_R2_train_vs_test.jpg)
+]
+
+- There is some overfitting going on: high variance in test results (?)
+
+---
+
+## Trying to figure out **independent** contributions
+
+![](../figs/shellstrength_R2_progression.jpg)
+
+- Shell Vol Ratio is the trait with the highest correlation, so no surprise there
+
+---
+
+## Trying to figure out **independent** contributions
+
+![](../figs/easeofremoval_R2_progression.jpg)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
