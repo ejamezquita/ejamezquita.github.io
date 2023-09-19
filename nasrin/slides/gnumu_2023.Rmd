@@ -86,7 +86,7 @@ background-position: 50% 95%
 
 ## Pick a filter function
 
-- Assign every data point a real value: lens or filter function
+- Assign every data point a **real** value: lens or filter function
 
 - We pick *height* in this case
 
@@ -98,9 +98,9 @@ background-position: 50% 95%
 
 ## Pick a number of bins and overlap percentages
 
-- Split the filter values into a series of overlapping bins
+- Split the filter values into a series of **overlapping bins**.
 
-- More bins &rarr; better topological resolution but risk of overfitting
+- More bins &rarr; better topological resolution but risk of overfitting.
 
 ---
 
@@ -122,7 +122,7 @@ background-position: 50% 95%
 
 - Check which data points correspond to the first bin based on their filter values (the preimage)
 
-- Cluster the data points in the preimage
+- **Cluster** the data points in the preimage
 
 ---
 
@@ -134,9 +134,9 @@ background-position: 50% 95%
 
 - Check which data points correspond to the first bin based on their filter values (the preimage)
 
-- Cluster the data points in the preimage
+- **Cluster** the data points in the preimage
 
-- Each cluster will form an individual node in our mapper graph
+- Each cluster will form an individual **node** in our mapper graph
 
 ---
 
@@ -168,7 +168,7 @@ background-position: 50% 95%
 
 ## Are there points shared in the overlap?
 
-- Draw an edge between mapper nodes if their corresponding clusters share data points
+- Draw an edge between mapper nodes if their corresponding clusters **share** data points
 
 - *Optional*: The edge thickness (weight) can be proportional to the number of shared points
 
@@ -226,20 +226,21 @@ class: inverse, middle, center
 
 - Different branches correspond to different molecular profiles and prognosis
 
-![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 <p style="font-size: 9px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1073/pnas.1102826108">Nicolau <em>et al.</em> (2011)</a></p>
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 
 ---
 
 # Mapper to differentiate differentiation
 
-![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig6_HTML.jpg?as=webp0)
 <p style="font-size: 9px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nbt.3854">Rivzi <em>et al.</em> (2017)</a></p>
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig3_HTML.jpg?as=webp)
 
 ---
 
-# Mapper in plants
+## The shape of gene expression across plant evolution
 
+<p style="font-size: 9px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1101/2022.09.07.506951">Palande <em>et al.</em> (2023)</a></p>
 <div class="row">
   <div class="column" style="max-width:42%">
     <img style="padding: 0 0 0 0;" src="../../tda/figs/Mapper_ColorBy_Tissue.png">
@@ -250,8 +251,6 @@ class: inverse, middle, center
     <img style="padding: 0 0 0 0;" src="../../tda/figs/family_leaf_lens.png">
   </div>
 </div>
-
-<p style="font-size: 9px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1101/2022.09.07.506951">Palande <em>et al.</em> (2023)</a></p>
 
 ---
 

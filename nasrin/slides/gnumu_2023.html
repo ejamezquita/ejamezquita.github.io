@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 ### Plant Sciencs &amp; Mathematics <br> University of Missouri <br> -
 ]
 .date[
-### 2023-09-18<br> - <br> Published in <a href="https://doi.org/10.1371/journal.pone.0284820">PLoS ONE (2023)</a>
+### 2023-09-19<br> - <br> Published in <a href="https://doi.org/10.1371/journal.pone.0284820">PLoS ONE (2023)</a>
 ]
 
 ---
@@ -95,7 +95,7 @@ background-position: 50% 95%
 
 ## Pick a filter function
 
-- Assign every data point a real value: lens or filter function
+- Assign every data point a **real** value: lens or filter function
 
 - We pick *height* in this case
 
@@ -107,9 +107,9 @@ background-position: 50% 95%
 
 ## Pick a number of bins and overlap percentages
 
-- Split the filter values into a series of overlapping bins
+- Split the filter values into a series of **overlapping bins**.
 
-- More bins &amp;rarr; better topological resolution but risk of overfitting
+- More bins &amp;rarr; better topological resolution but risk of overfitting.
 
 ---
 
@@ -131,7 +131,7 @@ background-position: 50% 95%
 
 - Check which data points correspond to the first bin based on their filter values (the preimage)
 
-- Cluster the data points in the preimage
+- **Cluster** the data points in the preimage
 
 ---
 
@@ -143,9 +143,9 @@ background-position: 50% 95%
 
 - Check which data points correspond to the first bin based on their filter values (the preimage)
 
-- Cluster the data points in the preimage
+- **Cluster** the data points in the preimage
 
-- Each cluster will form an individual node in our mapper graph
+- Each cluster will form an individual **node** in our mapper graph
 
 ---
 
@@ -177,7 +177,7 @@ background-position: 50% 95%
 
 ## Are there points shared in the overlap?
 
-- Draw an edge between mapper nodes if their corresponding clusters share data points
+- Draw an edge between mapper nodes if their corresponding clusters **share** data points
 
 - *Optional*: The edge thickness (weight) can be proportional to the number of shared points
 
@@ -235,20 +235,21 @@ class: inverse, middle, center
 
 - Different branches correspond to different molecular profiles and prognosis
 
-![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 &lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1102826108"&gt;Nicolau &lt;em&gt;et al.&lt;/em&gt; (2011)&lt;/a&gt;&lt;/p&gt;
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 
 ---
 
 # Mapper to differentiate differentiation
 
-![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig6_HTML.jpg?as=webp0)
 &lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nbt.3854"&gt;Rivzi &lt;em&gt;et al.&lt;/em&gt; (2017)&lt;/a&gt;&lt;/p&gt;
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig3_HTML.jpg?as=webp)
 
 ---
 
-# Mapper in plants
+## The shape of gene expression across plant evolution
 
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2022.09.07.506951"&gt;Palande &lt;em&gt;et al.&lt;/em&gt; (2023)&lt;/a&gt;&lt;/p&gt;
 &lt;div class="row"&gt;
   &lt;div class="column" style="max-width:42%"&gt;
     &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/Mapper_ColorBy_Tissue.png"&gt;
@@ -259,8 +260,6 @@ class: inverse, middle, center
     &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/family_leaf_lens.png"&gt;
   &lt;/div&gt;
 &lt;/div&gt;
-
-&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2022.09.07.506951"&gt;Palande &lt;em&gt;et al.&lt;/em&gt; (2023)&lt;/a&gt;&lt;/p&gt;
 
 ---
 
