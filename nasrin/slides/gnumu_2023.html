@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Genomics data analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Farzana Nasrain   Katie Storey, Masato Yoshizawa   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Genomics data analysis
+]
+.subtitle[
+## via spectral shape and topology
+]
+.author[
+### <strong>Erik Amézquita</strong>, Farzana Nasrain <br> Katie Storey, Masato Yoshizawa <br> -
+]
+.institute[
+### Plant Sciencs &amp; Mathematics <br> University of Missouri <br> -
+]
+.date[
+### 2023-09-18<br> - <br> Published in <a href="https://doi.org/10.1371/journal.pone.0284820">PLoS ONE (2023)</a>
+]
+
+---
+
+
+
+
+## RNA-seq and the curse of high dimensionality
+
+- High-dimensional spaces get really weird really fast
+
+- The 10%  of a unit cube occupies almost the whole cube at high dimensions
+
+- RNA-seq data lies in a 20,000-dimensional space.
+
+- Reducing dimension is crucial to understand the data.
+
+![](../../demat/figs/curse_of_dimensionality.png)
+---
+
+# Mapper vs t-SNE, PCA, and others
+
+- They only take high-dimensional proximity into account.
+
+- They discard shape structure in gene expression profiles. 
+
+![](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417818/bin/nihms-999822-f0002.jpg)
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1142/9789813279827_0032"&gt;Wang &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Capture intrinsic shape with Mapper
+
+- Mapper captures the shape of data by representing data as topological networks. 
+
+- Mapper is robust to noise and different platforms, while preserving the locality and data continuity.
+
+![](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6417818/bin/nihms-999822-f0003.jpg)
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1142/9789813279827_0032"&gt;Wang &lt;em&gt;et al.&lt;/em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: inverse, middle, center
+
+# Mapper: a toy example
+
+## A Topological Method for the Analysis of High Dimensional Data Sets
+
+---
+
+background-image: url("../../tda/figs/mapper_b_00.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Topological summary: exploration and visualization
+
+- We start with **lots** of data points `\(X\)` in a **high-dimensional** space
+
+- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**
+
+---
+
+background-image: url("../../tda/figs/mapper_b_01.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Pick a filter function
+
+- Assign every data point a real value: lens or filter function
+
+- We pick *height* in this case
+
+---
+
+background-image: url("../../tda/figs/mapper_b_02.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Pick a number of bins and overlap percentages
+
+- Split the filter values into a series of overlapping bins
+
+- More bins &amp;rarr; better topological resolution but risk of overfitting
+
+---
+
+background-image: url("../../tda/figs/mapper_b_03.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Consider the filter preimages and cluster
+
+- Check which data points correspond to the first bin based on their filter values (the preimage)
+
+---
+
+background-image: url("../../tda/figs/mapper_b_04.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Consider the filter preimages and cluster
+
+- Check which data points correspond to the first bin based on their filter values (the preimage)
+
+- Cluster the data points in the preimage
+
+---
+
+background-image: url("../../tda/figs/mapper_b_05.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Consider the filter preimages and cluster
+
+- Check which data points correspond to the first bin based on their filter values (the preimage)
+
+- Cluster the data points in the preimage
+
+- Each cluster will form an individual node in our mapper graph
+
+---
+
+background-image: url("../../tda/figs/mapper_b_06.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Consider the filter preimages and cluster
+
+- Do the same for the next filter bin
+
+---
+
+background-image: url("../../tda/figs/mapper_b_07.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Consider the filter preimages and cluster
+
+- Do the same for the next filter bin
+
+- We have two clusters now
+
+---
+
+background-image: url("../../tda/figs/mapper_b_08.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Are there points shared in the overlap?
+
+- Draw an edge between mapper nodes if their corresponding clusters share data points
+
+- *Optional*: The edge thickness (weight) can be proportional to the number of shared points
+
+---
+
+background-image: url("../../tda/figs/mapper_b_09.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## And so on and so forth
+
+- Cluster the data points corresponding to the preimage of a filter bin
+
+- Make nodes in the mapper graph
+
+---
+
+background-image: url("../../tda/figs/mapper_b_10.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## And so on and so forth
+
+- Cluster the data points corresponding to the preimage of a filter bin
+
+- Make nodes in the mapper graph
+
+- Draw edges whenever the clusters share points
+
+---
+
+background-image: url("../../tda/figs/mapper_b_11.jpg")
+background-size: 725px
+background-position: 50% 95%
+
+## Mapper: several moving parts
+
+- Filter function
+
+- Number of bins
+
+- Overlap percentage between bins
+
+---
+
+class: inverse, middle, center
+
+# Mapper in genomics
+
+## Brief literature survey
+
+---
+
+## Mapper to identify novel groups of breast cancer
+
+- Different branches correspond to different molecular profiles and prognosis
+
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1102826108"&gt;Nicolau &lt;em&gt;et al.&lt;/em&gt; (2011)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Mapper to differentiate differentiation
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig6_HTML.jpg?as=webp0)
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1038/nbt.3854"&gt;Rivzi &lt;em&gt;et al.&lt;/em&gt; (2017)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Mapper in plants
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:42%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/Mapper_ColorBy_Tissue.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/stress_leaf_lens.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:42%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/tissue_leaf_lens.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/family_leaf_lens.png"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2022.09.07.506951"&gt;Palande &lt;em&gt;et al.&lt;/em&gt; (2023)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+class: center, middle inverse
+
+# Case study
+
+## Lung cancer
+
+&lt;img src="../figs/amezquita_etal_2023.png" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Setup
+
+- FPKM counts of RNAseq data from human lung tissue &amp;rarr; 19,648 genes
+    - 314 healthy samples (GTEx)
+    - 500 cancerous samples (TCGA)
+
+- We need to standardize the data across subjects: consider Z-scores.
+
+- However, FPKM data tends to be bimodal 
+    - Cuttoff can be determined with ChIP-seq
+
+&lt;img src="https://media.springernature.com/full/springer-static/image/art%3A10.1186%2F1471-2164-14-778/MediaObjects/12864_2013_Article_5505_Fig1_HTML.jpg?as=webp" width="400" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1186/1471-2164-14-778"&gt;Hart &lt;em&gt;et al.&lt;/em&gt; (2013)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+
+# Setup
+
+- FPKM counts of RNAseq data from human lung tissue &amp;rarr; 19,648 genes
+    - 314 healthy samples (GTEx)
+    - 500 cancerous samples (TCGA)
+
+- We need to standardize the data across subjects: consider Z-scores.
+
+- However, FPKM data tends to be bimodal 
+    - Fit two Gaussians instead of one to account for bimodality (GMM)
+
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g002)
+
+---
+
+## Z-scores from a Gaussian Mixture Model (GMM)
+
+Let `\(y\)` be a random `\(p\)`-dimensional vector generated by a GMM of `\(K\)` components:
+
+`$$f(y) = \sum_{k=1}^K \pi_k\varphi(y | \mu_k, \Sigma_k)$$`
+
+- According to Bayes' Theorem, the posterior probability `\(w_k=P(c=k|y)\)` that `\(y\)` belongs to the `\(k\)`-th class is given by
+
+`$$w_k = \frac{\pi_k\varphi_k(y)}{\sum_{k=1}^K\pi_k\varphi_k(y)}$$`
+
+`$$T_0 = Z\cdot\mathbb{I}(\tilde{s}_1 = s_1) + (\tau^{-1}Z - \Delta_1)\cdot\mathbb{I}(\tilde{s}_1 &gt; s_1) + (\tau Z + \tau\Delta_1)\cdot\mathbb{I}(\tilde{s}_1 &lt; s_1)$$`
+
+
+![](../figs/TCGA-55-A57B-01A-12R-A39D-07-section.png)
+
+---
+
+# Filter function: mean correlation
+
+- Filter by mean correlation (average of 814 correlation values)
+  
+- Vary the number of bins `\(60 \leq b \leq 110\)`
+
+- Vary the overlap percentage `\(30 \leq p \leq 80\)`
+    
+- Color the mapper node based on the number of healthy subjects in the cluster
+    - Bright yellow: 100% cancerous samples
+    - Deep purple: 100% healthy samples
+
+.pull-left[
+![](../figs/t0_1_corr_eps1e+03_r300_g50.png)
+]
+
+.pull-right[
+![](../figs/t0_1_corr_eps1e+04_r200_g50.png)
+]
+
+---
+
+# Notice that cancerous samples are split
+
+.pull-left[
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g006)
+
+![](../figs/lung_t0_meancorr_eps7.0e+02_r40_g30.png)
+]
+
+.pull-right[
+- Mapper produced mostly strand-like graphs regardless of parameters used
+
+- Position Index for each subject: 
+    - **`-1`**: subject is part of the 13 leftmost nodes
+    - **`+1`**: subject is part of the 13 rightmost nodes
+
+- Healthy subjects tend to stay at the center
+
+- Cancerous samples are distributed at both ends
+]
+
+---
+
+# This split cannot be captured with t-SNE!
+
+- tSNE does a pretty good job separating healthy vs cancerous samples (purple vs yellow)
+
+- However, finer structural details are lost
+   - (a): Using FPKM
+   - (b): Using GMM Z-scores
+
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g008)
+
+---
+
+# Mathematical stability
+
+- When varying several parameters, the cancerous samples exhibit a much different behavior on the mapper graph than the healthy subjects.
+
+- Confidence intervals (black: superior limit, green: lower limit, red: average value)
+
+&lt;img src="https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g010" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Biological significance
+
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g009)
+
+---
+
+# Conclusions
+
+---
+
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
+background-size: 60px
+background-position: 99% 1%
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:15%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="http://math.hawaii.edu/home/board/Farzana-Nasrin.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;Farzana Nasrin (Hawaii)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:15%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://sites.lafayette.edu/storeyk/files/2022/01/ann_arbor_closer-e1641409616847.jpg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;Katie Storey (Lafayette)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:13.5%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://manoa.hawaii.edu/lifesciences/wp-content/uploads/sites/65/2021/09/MG_2781.jpeg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;Masato Yoshizawa (Hawaii)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:6.5%; font-size: 24px;"&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; font-size: 24px; line-height:1.25"&gt;
+    &lt;p style="text-align: center;"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+    &lt;p style="text-align: center; color: Blue; font-family: monospace;"&gt;eah4d@missouri.edu&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
+    &lt;p style="text-align: center; color: Blue; font-family: monospace;"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:15%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://yt3.ggpht.com/a/AGF-l78XW3rduhw9ZYiOvZAQpKarAcON8RIQtnjd1A=s900-c-k-c0xffffffff-no-rj-mo"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;COBRE &amp;mdash; P20GM125508&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:12%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://news.brown.edu/sites/default/files/styles/vertical/public/article_images/ICERM_2.jpg?itok=5pmDGGSU"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:23%; font-size: 15px;"&gt;
+    &lt;p&gt;
+      Vladislav Bukshtynov&lt;br&gt;
+      Steven Ellis&lt;br&gt;
+      Elin Farnell&lt;br&gt;
+      Hwayeon Ryu&lt;br&gt;
+      Sarah Tymochko
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; font-size: 24px; line-height:1.25"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../figs/amezquita_etal_2023.png"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+    
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
