@@ -16,7 +16,7 @@ Grey accent 2:   #AAA59F, PMS 401
 /* Package defaults that we slightly tweak */
 
 a, a > code {
-  color: #97BBD5; /* blue accent 2 */
+  color: hotpink; /* blue accent 2 */
   text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ a, a > code {
 }
 
 .inverse a:link, .inverse:visited {
-  color: #ffff00;
+  color: hotpink;
 }
 
 .inverse a:hover, .inverse a:active {
