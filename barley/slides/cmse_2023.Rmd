@@ -2,7 +2,7 @@
 title: "The shape of things to come"
 subtitle: "Exploring the mathematical shape of plants"
 author: "**Erik Amézquita** <br> &mdash; <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> &mdash;"
-date: "`r Sys.Date()`"
+date: "2023-03-22"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -148,7 +148,7 @@ class: center
   <div class="column" style="max-width:33%">
     <p style="line-height:0;font-size:28px;text-align: center;">The shape of domestication</p>
     <img style="padding: 0 35px;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"></img>
-    <img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg"></img>
+    <img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.png"></img>
     <p style="text-align: center;">Allometry of multiple tissues</p>
     <p style="text-align: center;">Convexity indices</p>
   </div>
@@ -698,16 +698,16 @@ Growth does **not** scale linearly but following a power law.
 
 <div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.png">
     <p style="padding: 0 2ex 0 0;">Walnut changes dramatically after its diameter is larger than 1.6cm</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/air_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/air_volume_vs_nut_volume.png">
     <p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then air volume increases by 2.3x</p>
     <p style="padding: 0 2ex 0 0;">Walnut diameter is below 16cm</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.png">
     <p style="margin: 1.1ex 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then kernel volume only increases by 1.8x</p>
   </div>
 </div>
@@ -786,7 +786,7 @@ background-position: 98% 2%
 
 ```{r, out.width=725, fig.align='center'}
 knitr::include_graphics(c('../../walnuts/figs/2014SBa_R5_T81_meat_2.gif',
-                          '../../walnuts/figs/kernel_volume_vs_nut_volume.jpg'))
+                          '../../walnuts/figs/kernel_volume_vs_nut_volume.png'))
 ```
 
 ]
@@ -917,7 +917,7 @@ class: inverse
 
 <div class="row" style="margin-top: -25px;">
   <div class="column" style="max-width:17.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
     <p style="text-align: center; color: White">Liz Munch<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
     <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
@@ -925,9 +925,9 @@ class: inverse
     <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
   </div>
   <div class="column" style="max-width:17.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
     <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
     <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://caes.ucdavis.edu/sites/g/files/dgvnsk1721/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=345be249&itok=77W2Yqpk">
     <p style="text-align: center; color: White">Pat Brown<br>(UC Davis)</p>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Walnut shape poster</title>
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Rasa&family=Roboto&display=swap" rel="stylesheet">
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+*{
+  box-sizing: border-box;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 48in;
+height: 36in;
+text-align: justify;
+font-size: 54px;
+background-color: gray;
+color: #000000;
+}
+.references {
+font-size: 1.5ex;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+
+.column {
+    float: left;
+    padding: 0px;
+    height: 36in;
+}
+.left{
+    width: 40%;
+}
+.right {
+    width: 30%;
+    background-color: #eeeeee;
+    font-family: 'Rasa', serif;
+    color: #000000;
+    padding: 1ex;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+a {
+    text-decoration: none;
+    color: #0484ae;
+}
+
+#title {
+    font-size: 2em;
+    text-align: left;
+    margin: 10px 0 0 0;
+    line-height: 80%;
+    border-bottom: 0;
+}
+#author {
+    color: #18453b;
+    margin: 0;
+    line-height: 90%;
+    font-size: 1.5em;
+}
+.author a{
+    color: #18453b;
+}
+
+#affiliation {
+    line-height: 95%;
+    color: #404040;
+    font-style: italic;
+    font-size: 0.75em;
+    text-align: left;
+}
+sup {
+    color: #900000;
+}
+.affiliation sup {
+    font-size: 1ex;
+}
+.affsup{
+    color: #900000;
+    font-style: normal;
+}
+
+.affiliation a{
+    color: #404040;
+    text-align: left;
+}
+.author sup {
+    font-size: 2ex;
+}
+.right h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.right h2 {
+    text-align: center;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 80%;
+}
+.right h4,h5 {
+    text-align: left;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 90%;
+}
+.right p {
+    color: #000000;
+    text-align: center;
+}
+.right ol, ul {
+    text-align: left;
+    margin-top: -1em;
+}
+.main {
+    width: calc(48in * 0.4);
+    height: 36in;
+    position: absolute;
+    color: black;
+    text-shadow: 0.25ex 0.25ex 0.75ex white;
+    font-family: Overpass;
+    background-image: linear-gradient(#f1b82d 60%, black);
+}
+.main strong {
+    color: white;
+    text-shadow: 0.25ex 0.25ex 0.75ex black;
+}
+.main p {
+    margin-top: 0.5em;
+    font-size: 3.25em;
+    text-align: left;
+}
+img.main-img-left {
+    width: 25%;
+    left: 1em;
+    bottom: 1ex;
+    position: absolute;
+}
+img.main-img-right {
+    width: 20%;
+    right: 1em;
+    bottom: 1em;
+    position: absolute;
+}
+img.main-img-subright {
+    width: 20%;
+    right: 8em;
+    bottom: 2em;
+    position: absolute;
+}
+i {
+    color: #404040;
+    font-size: 1ex;
+    text-decoration: none;
+}
+a.email {
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.75em;
+}
+
+.section {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+}
+.main p {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+
+.orcid img {
+  width: 4%;
+}
+a.left:link, a.left:visited{
+    color: #ccf5ff;
+    text-shadow: none;
+}
+a.left:hover, a.left:active{
+    color: hotpink;
+    background-color:#ccf5ff;
+    text-shadow: none;
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="column left">
+        <div class="main">
+        <p>The <strong>shape</strong> and <strong>size</strong> of shells, kernels, and cracks &mdash;in a <strong>nutshell</strong><p>
+        <p style="text-align:center; margin-top: -2em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
+            <!-- <img src="../figs/IMGA04011.jpg" style="width:28%" /> -->
+            <img src="../../img/walnuts_orange_06.jpg" style="width:57%" />
+            <img src="../figs/pat_walnut_crack_detail.jpg" style="width:42%" />
+            <span style="width:99%; padding:0; margin:0;">
+                148 accessions X-ray CT scanned
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                Qualitative crackability
+            </span>
+            <img src="../figs/shell_1_30.png" style="width:24%; margin:0; padding:0" />
+            <img src="../figs/001_air_05.png" style="width:24%" />
+            <img src="../figs/001_vein_06.png" style="width:24%" />
+            <img src="../figs/meat_2_05.png" style="width:24%" />
+            <span>
+                &nbsp;
+                Shell &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Air &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Packing Tissue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Kernel
+            </span>
+        </p>
+        <!-- <p style="text-align: center; margin-top:0; font-size:2em">Preprint</p> -->
+        <p style="text-align:center; font-family:monospace; margin-top:0; font-size:1.4em">Preprint<br>DOI: <a class="left" href="https://doi.org/10.1101/2023.09.26.559651", target="_blank">10.1101/2023.09.26.559651</a></p>
+        <p style="text-align:center; font-family:monospace; font-size:1.4em">Python Code<br><a class="left" href="github.com/amezqui3/walnut_tda", target="_blank">github.com/amezqui3/walnut_tda</a></p>
+        <img src="../figs/qr_biorxiv.png" class="main-img-left" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg" class="main-img-right" />
+        <img src="../../img/primary-logo-white.svg" class="main-img-subright" />
+        </div>
+    </div>
+    <div class="column right">
+        <div class="title section">
+            <h1 id="title"><a href="https://ejamezquita.github.io/walnut/description.html" target="_blank">Phenotyping walnuts with X-ray CT scanning</a></h1>
+
+            <h3 id="author" class="author">
+            <a class="orcid" href="https://orcid.org/0000-0002-9837-0397"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg"></img></a> <a href="https://www.egr.msu.edu/~amezqui3/index.html" target="_blank">Erik Am&eacute;zquita</a><sup>1</sup><br>
+            <i class="fas fa-envelope" style='font-size:15px'></i> <a href="mailto:amezqui3@msu.edu" class="email">eah4d@missouri</a> <br>
+            </h3>
+
+            <h5 id="author_extra" class="author_extra">
+             <a href="https://www.researchgate.net/profile/Michelle-Quigley" target="_blank">Michelle Quigley</a><sup>2</sup>
+             <a href="https://www.elizabethmunch.com/" target="_blank">Liz Munch</a><sup>3</sup>
+             <a href="https://www.plantsciences.ucdavis.edu/people/pat-brown" target="_blank">Pat Brown</a><sup>4</sup>
+             <a href="https://orcid.org/0000-0003-4875-1447" target="_blank">Dan Chitwood</a><sup>2</sup>
+            </h5>
+
+            <p id="affiliation" class="affiliation">
+            <span class="affsup">1.</span> <a href="https://pst.missouri.edu/" target="_blank">Plant Sciences &amp; Technology, University of Missouri</a><br>
+            <span class="affsup">2.</span> <a href="https://www.canr.msu.edu/hrt/index" target="_blank">Horticulture, Michigan State University</a><br>
+            <span class="affsup">3.</span> <a href="https://cmse.msu.edu/" target="_blank">Computational Math, Science &amp; Engineering, Michigan State University</a><br>
+            <span class="affsup">4.</span> <a href="https://www.plantsciences.ucdavis.edu/" target="_blank">Plant Sciences, University of California, Davis</a><br>
+            </p>
+        </div>
+        <br>
+        <div id="experimental-design" class="section level2">
+            <h2 style="margin-top:-2ex">Materials and methods</h2>
+            <p>
+                <img src="../figs/2014SBa_R5_T49_008_240_raw.jpg" width="33%"/>
+                <img src="../figs/walnut_trad_measurements.png" width="66%"/>
+                <img src="../figs/2014SBa_R5_T49_008_240_watershed.jpg" width="33%"/>
+                <img src="../figs/kernel_trad_measurements.png" width="66%"/>
+            </p>
+            <ul>
+                <li>1264 individuals &rarr; 149 accessions</li>
+                <li>49 morphological phenotypes:<br>&rarrhk; lengths, areas, absolute and relative volumes, &#8230;</li>
+                <li>12 traits of commercial interest:<br>&rarrhk; kernel weight, ease of kernel removal, shell strength</li>
+            </ul>
+        </div>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="margin-top:0">Allometry reveals biophysical limits</h2>
+            <p>
+                <img src="../figs/air_volume_vs_nut_volume.png" style="width:48%" />
+                <img src="../figs/kernel_volume_vs_nut_volume.png" style="width:50%" /></p>
+            <ul style="margin-top:-1em;">
+                <li>If nut volume increases by 2X<br>&rarrhk;Then air volume increases by 2.3X<br>&rarrhk;Walnut diameter capped at 15cm (6")<br>&rarrhk;Diameter larger than 1.6cm (&frac58;")</li>
+                <li>If nut volume increases by 2X<br>&rarrhk;Kernel volume only increases by 1.8X</li>
+            </ul>
+        </div>
+        <div id="acknowledgements" class="section">
+            <h4>Acknowledgements</h4>
+            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">This work is supported by NSF Plant Genome Research Program awards IOS-2310355, IOS-2310356, and IOS-2310357.</p>
+        </div>
+        <div id="references" class="section">
+            <h4>References</h4>
+            <div id="refs" class="references">
+                <div id="ref-Turner2014">
+                <p style="text-align:left; margin-top:5px">[1] Bernard, A., Hamdy, S., Le Corre, L. <em>et al.</em> (2020) <a href="https://doi.org/10.1186/s13007-020-00657-7" target="_blank">"3D characterization of walnut morphological traits using X-ray computed tomography,"</a> <em>Plant Methods</em>, <strong>16</strong>, 115.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column right">
+        <br>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2>Phenotyping &rarr; better walnut breeding</h2>
+            <p><img src="../figs/ols_prediction.png" width="100%" style="display: block; margin: auto;" /></p>
+            <ul style="margin-top: -2ex;">
+                <li>Stepwise linear regression to model commercial traits using only morphological traits</li>
+                <li>Determine shape traits that contribute the most to the predictive model</li>
+                <li>Perform a 70/30 train/test split to avoid overfitting</li>
+                <li>Use only traits with significant Spearman correlation</li>
+                <li><strong>Relative tissue volume and thickness is all you need!</strong></li>
+                <li>Inexpensive phenotyping platforms focused solely on volumetric analyses</li>
+            </ul>
+        </div>
+        <div id="results-traditional-ect" class="section level2">
+            <h2 style="margin-top:0">Future directions: domestication</h2>
+            <p><img src="../figs/pca_select_phenos_accession.png" width="100%" style="display: block; margin: auto;" /></p>
+            <ul style="margin-top: -2ex;">
+                <li>Earliest Himalayan accession is notoriously hard to crack open yet it is morphologically average</li>
+                <li>There must be a subtle yet fundamental morphological change when walnut was domesticated</li>
+                <li>Inexpensive platforms &rarr; More phenotyping<br>&rarr; More data &rarr; Better math models<br>&rarr; Insights into breeding and domestication</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>

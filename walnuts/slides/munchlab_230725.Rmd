@@ -97,12 +97,12 @@ class: inverse
 ## Shape and size phenotypes
 
 .pull-left[
-![](../figs/walnut_trad_measurements.jpg)
+![](../figs/walnut_trad_measurements.png)
 
 ]
 
 .pull-right[
-![](../figs/kernel_trad_measurements.jpg)
+![](../figs/kernel_trad_measurements.png)
 ]
 
 ```{r, out.width=600}
@@ -173,16 +173,16 @@ Growth does **not** scale linearly but following a power law.
 
 <div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.png">
     <p style="padding: 0 2ex 0 0;">Walnut changes dramatically after its diameter is larger than 1.6cm</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/air_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/air_volume_vs_nut_volume.png">
     <p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then air volume increases by 2.3x</p>
     <p style="padding: 0 2ex 0 0;">Walnut diameter is below 16cm</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.png">
     <p style="margin: 1.1ex 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then kernel volume only increases by 1.8x</p>
   </div>
 </div>

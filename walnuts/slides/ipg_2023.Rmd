@@ -1,11 +1,11 @@
 ---
 title: "All about cracks and shapes"
 subtitle: "in a nutshell"
-author: "**Erik Amézquita** <br> &mdash; <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> &mdash;"
-date: "`r Sys.Date()`"
+author: "**Erik Amézquita**, Michelle Quigley, Pat Brown<br>Liz Munch, Dan Chitwood <br> &mdash; <br> Plant Sciences & Mathematics <br> University of Missouri <br> &mdash;"
+date: "2023-10-12 <br> - <br> Preprint available: [10.1101/2023.09.26.559651](https://doi.org/10.1101/2023.09.26.559651)"
 output:
   xaringan::moon_reader:
-    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
     chakra: '../../js/remark-latest.min.js'
     lib_dir: libs
     nature:
@@ -47,38 +47,47 @@ class: inverse
 
 # The wal(nu)tzing nutcracker!
 
-.pull-left[
-![](../../barley/figs/x3000_setup.jpg)
-]
-
-.pull-right[
-- 172 batches &rarr; 1301 walnuts
-
-- Individual walnuts manually separated
-
-- Walnuts with empty kernels were discarded
-
-- 150 different cultivars (UCCASCD)
-]
-
-<div class="row" style="margin: 0 auto;">
-  <div class="column" style="max-width:25%; color: Navy; font-size: 15px;">
-    <img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif">
-    <p style="text-align: center;"> Shell </p>
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px">
+  <div class="column" style="max-width:25%;">
+    <img src="../figs/IMGA04011.jpg">
+    <p style="text-align: center;">148 accessions</p>
   </div>
-  <div class="column" style="max-width:25%; color: Navy; font-size: 15px;">
-    <img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif">
-    <p style="text-align: center;"> Air </p>
+  <div class="column" style="max-width:42%;">
+    <img src="../../barley/figs/x3000_setup.jpg">
+    <p style="text-align: center;">1301 walnuts scanned</p>
   </div>
-  <div class="column" style="max-width:25%; color: Navy; font-size: 15px;">
-    <img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif">
-    <p style="text-align: center;"> Packing </p>
-  </div>
-  <div class="column" style="max-width:25%; color: Navy; font-size: 15px;">
-    <img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif">
-    <p style="text-align: center;"> Kernel </p>
+  <div class="column" style="max-width:33%;">
+    <img src="../figs/pat_walnut_crack_detail4.jpg">
+    <p style="text-align: center;">Qualitative data for crackability</p>
   </div>
 </div>
+
+<div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:20%;">
+    <img src="../figs/2014SBa_R5_T81_shell_1.gif">
+    <p style="text-align: center; margin: 0.5ex;">Shell</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../figs/2014SBa_R1_T3_001_air.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Air</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../figs/2014SBa_R1_T3_001_vein.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Packing tissue</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../figs/2014SBa_R5_T81_meat_2.gif">
+    <p style="text-align: center;margin: 0.5ex;">Kernel</p>
+  </div>
+  <div class="column" style="max-width:20%; padding: 0 0 0 5px">
+    <p style="margin:5px 0 0 0; text-align:left">
+      &#9656;&ensp;Individuals separated manually<br>
+      &#9656;&ensp;Tissues separated with watershed segmentation<br>
+      &#9656;&ensp;38 traditional shape and size descriptors
+    </p>
+  </div>
+</div>
+
 
 ---
 
@@ -88,21 +97,15 @@ class: inverse
 
 ---
 
-## Shell interior protrusions
-
-![](../../walnuts/figs/2012SB_R16_T58_001_protrusion.jpg)
-
----
-
 ## Shape and size phenotypes
 
 .pull-left[
-![](../figs/walnut_trad_measurements.jpg)
+![](../figs/walnut_trad_measurements.png)
 
 ]
 
 .pull-right[
-![](../figs/kernel_trad_measurements.jpg)
+![](../figs/kernel_trad_measurements.png)
 ]
 
 ```{r, out.width=600}
@@ -111,7 +114,7 @@ knitr::include_graphics("../figs/convexity_curves.jpg")
 
 ---
 
-## Shape and size phenotypes
+# 49 image-based phenotypes!
 
 .pull-left[
 **Whole Walnut**
@@ -161,28 +164,26 @@ class: center, middle, inverse
 
 ## Each point represents a different individual
 
-### Work that I did early this year
-
 ---
 
 # The power of allometry: $\;y = e^bV_N^m$
 
-For most living organisms, different tissues grow at different rates with respect to each other.
+Different tissues grow at different rates with respect to each other.
 
-Growth does **not** scale linearly but following a power law.
+Growth does **not** scale linearly but it follows a power law.
 
 <div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.jpg">
-    <p style="padding: 0 2ex 0 0;">Walnut changes dramatically after its diameter is larger than 1.6cm</p>
+    <img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.png">
+    <p style="padding: 0 2ex 0 0;">Walnut changes dramatically after its diameter is larger than 1.6cm (&frac58;")</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/air_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/air_volume_vs_nut_volume.png">
     <p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then air volume increases by 2.3x</p>
-    <p style="padding: 0 2ex 0 0;">Walnut diameter is below 16cm</p>
+    <p style="padding: 0 2ex 0 0;">Walnut diameter cannot go beyond 15cm (6")</p>
   </div>
   <div class="column" style="max-width:33%;">
-    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg">
+    <img src="../../walnuts/figs/kernel_volume_vs_nut_volume.png">
     <p style="margin: 1.1ex 0 0 0; padding: 0 2ex 0 0;">If nut volume increases by 2x, then kernel volume only increases by 1.8x</p>
   </div>
 </div>
@@ -333,3 +334,39 @@ knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
 ## Trying to figure out **independent** contributions
 
 ![](../figs/easeofremoval_R2_progression.jpg)
+
+---
+
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
+background-size: 60px
+background-position: 99% 1%
+
+class: inverse
+
+# Thank you!
+
+<div class="row" style="margin-top: -25px;">
+  <div class="column" style="max-width:20%; font-size: 16px;">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
+    <p style="text-align: center;">Liz Munch<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
+    <p style="text-align: center;">Michelle Quigley<br>(PSU)</p>
+  </div>
+  <div class="column" style="max-width:18%; font-size: 16px;">
+    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
+    <p style="text-align: center;">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://caes.ucdavis.edu/sites/g/files/dgvnsk1721/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=345be249&itok=77W2Yqpk">
+    <p style="text-align: center;">Pat Brown<br>(UC Davis)</p>
+  </div>
+  <div class="column" style="width:12%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:50%; font-size: 24px; line-height:1.25">
+    <p style="text-align: center;"><strong>Email</strong></p>
+    <p style="text-align: center; color: Blue; font-family: monospace;">eah4d@missouri.edu</p>
+    <p style="text-align: center;"><strong>Website and slides</strong></p>
+    <p style="text-align: center; color: Blue; font-family: monospace;">ejamezquita.github.io</p>
+    <p style="text-align: center;"><strong>Preprint DOI</strong></p>
+    <p style="text-align: center; color: Blue; font-family: monospace;">10.1101/2023.09.26.559651</p>
+    <img style="padding: 0 0 0 0;" src="../../cmse/figs/institutional_logos.jpg">
+  </div>
+</div>

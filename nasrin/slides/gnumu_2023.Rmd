@@ -3,7 +3,7 @@ title: "Genomics data analysis"
 subtitle: "via spectral shape and topology"
 author: "**Erik Amézquita**, Farzana Nasrain <br> Katie Storey, Masato Yoshizawa <br> -"
 institute: "Plant Sciencs & Mathematics <br> University of Missouri <br> -"
-date: "`r Sys.Date()`<br> - <br> Published in [PLoS ONE (2023)](https://doi.org/10.1371/journal.pone.0284820)"
+date: "2023-10-11 <br> - <br> Published in [PLoS ONE (2023)](https://doi.org/10.1371/journal.pone.0284820)"
 output:
   xaringan::moon_reader:
     css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]

@@ -3,7 +3,7 @@ title: "Quantifying the shape of plants"
 subtitle: "using Topological Data Analysis"
 author: "**Erik Amézquita** <br> - <br> Fitch H. Beach Award <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> Fitch H. Beach Award Ceremony"
+date: "2022-04-24 <br> - <br> Fitch H. Beach Award Ceremony"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -388,16 +388,16 @@ class: inverse
 
 <div class="row">
   <div class="column" style="max-width:50%; font-size: 15px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
     <p style="text-align: center; color: White">Dr. Liz Munch</p>
   </div>
   <div class="column" style="max-width:50%; font-size: 15px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
     <p style="text-align: center; color: White">Dr. Dan Chitwood</p>
   </div>
 </div>
 
-![](https://anatomypubs.onlinelibrary.wiley.com/cms/asset/e38a1c55-9620-4175-aea0-dfe569cd6b6a/dvdy216-toc-0001-m.jpg)
+![](../../cmse/figs/dvdy216-toc-0001-m.jpg)
 
 <p style="text-align: center; color: White">Our research is featured on the cover of <em>Developmental Dynamics</em> <strong>249</strong>(7) 2020</p>
 

@@ -2,7 +2,7 @@
 title: "The shape of things to come"
 subtitle: "Exploring the mathematical shape of plants"
 author: "**Erik Amézquita** <br> &mdash; <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> &mdash;"
-date: "`r Sys.Date()`"
+date: "2023-04-11"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -115,7 +115,7 @@ class: center
   <div class="column" style="max-width:33%">
     <p style="line-height:0;font-size:28px;text-align: center;">The shape of domestication</p>
     <img style="padding: 0 35px;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"></img>
-    <img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.jpg"></img>
+    <img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.png"></img>
     <p style="text-align: center;">Allometry of multiple tissues</p>
     <p style="text-align: center;">Convexity indices</p>
   </div>
@@ -753,7 +753,7 @@ background-position: 98% 2%
 
 ```{r, out.width=725, fig.align='center'}
 knitr::include_graphics(c('../../walnuts/figs/2014SBa_R5_T81_meat_2.gif',
-                          '../../walnuts/figs/kernel_volume_vs_nut_volume.jpg'))
+                          '../../walnuts/figs/kernel_volume_vs_nut_volume.png'))
 ```
 
 ]
@@ -884,17 +884,17 @@ class: inverse
 
 <div class="row" style="margin-top: -25px;">
   <div class="column" style="max-width:17.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/6EBAC0B9-CD1C-405A-BDEE124CEB7AABA7_medium.jpg">
-    <p style="text-align: center; color: White">Elizabeth Munch<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
+    <p style="text-align: center; color: White">Liz Munch<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
     <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
     <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
     <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
   </div>
   <div class="column" style="max-width:17.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://cmse.msu.edu/sites/_cmse/cache/file/4CCE6CC6-6B22-47DC-A68029164AD90549_medium.jpg">
+    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
     <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
     <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://www.plantsciences.ucdavis.edu/sites/g/files/dgvnsk1736/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=9707347b&itok=gDYXMHJj">
     <p style="text-align: center; color: White">Pat Brown<br>(UC Davis)</p>

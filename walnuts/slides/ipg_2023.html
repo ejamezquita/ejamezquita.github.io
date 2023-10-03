@@ -3,11 +3,10 @@
   <head>
     <title>All about cracks and shapes</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Erik Amézquita   —   Computational Mathematics, Science, and Engineering   Michigan State University   —" />
-    <meta name="date" content="2023-10-02" />
+    <meta name="author" content="Erik Amézquita, Michelle Quigley, Pat Brown Liz Munch, Dan Chitwood   —   Plant Sciences &amp; Mathematics   University of Missouri   —" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
     <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
   </head>
   <body>
@@ -21,10 +20,10 @@ class: center, middle, inverse, title-slide
 ## in a nutshell
 ]
 .author[
-### <strong>Erik Amézquita</strong> <br> — <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> —
+### <strong>Erik Amézquita</strong>, Michelle Quigley, Pat Brown<br>Liz Munch, Dan Chitwood <br> — <br> Plant Sciences &amp; Mathematics <br> University of Missouri <br> —
 ]
 .date[
-### 2023-10-02
+### 2023-10-12 <br> - <br> Preprint available: <a href="https://doi.org/10.1101/2023.09.26.559651">10.1101/2023.09.26.559651</a>
 ]
 
 ---
@@ -56,50 +55,53 @@ class: inverse
 
 # The wal(nu)tzing nutcracker!
 
-.pull-left[
-![](../../barley/figs/x3000_setup.jpg)
-]
-
-.pull-right[
-- 172 batches &amp;rarr; 1301 walnuts
-
-- Individual walnuts manually separated
-
-- Walnuts with empty kernels were discarded
-
-- 150 different cultivars (UCCASCD)
-]
-
-&lt;div class="row" style="margin: 0 auto;"&gt;
-  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
-    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif"&gt;
-    &lt;p style="text-align: center;"&gt; Shell &lt;/p&gt;
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px"&gt;
+  &lt;div class="column" style="max-width:25%;"&gt;
+    &lt;img src="../figs/IMGA04011.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;148 accessions&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
-    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif"&gt;
-    &lt;p style="text-align: center;"&gt; Air &lt;/p&gt;
+  &lt;div class="column" style="max-width:42%;"&gt;
+    &lt;img src="../../barley/figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;1301 walnuts scanned&lt;/p&gt;
   &lt;/div&gt;
-  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
-    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif"&gt;
-    &lt;p style="text-align: center;"&gt; Packing &lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:25%; color: Navy; font-size: 15px;"&gt;
-    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;
-    &lt;p style="text-align: center;"&gt; Kernel &lt;/p&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="../figs/pat_walnut_crack_detail4.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Qualitative data for crackability&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../figs/2014SBa_R5_T81_shell_1.gif"&gt;
+    &lt;p style="text-align: center; margin: 0.5ex;"&gt;Shell&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../figs/2014SBa_R1_T3_001_air.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex; "&gt;Air&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../figs/2014SBa_R1_T3_001_vein.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex; "&gt;Packing tissue&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../figs/2014SBa_R5_T81_meat_2.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex;"&gt;Kernel&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; padding: 0 0 0 5px"&gt;
+    &lt;p style="margin:5px 0 0 0; text-align:left"&gt;
+      &amp;#9656;&amp;ensp;Individuals separated manually&lt;br&gt;
+      &amp;#9656;&amp;ensp;Tissues separated with watershed segmentation&lt;br&gt;
+      &amp;#9656;&amp;ensp;38 traditional shape and size descriptors
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
 
 ---
 
 ## Watershed segmentation
 
 ![](../figs/2014SBa_R5_T20_001_w.gif)
-
----
-
-## Shell interior protrusions
-
-![](../../walnuts/figs/2012SB_R16_T58_001_protrusion.jpg)
 
 ---
 
@@ -118,7 +120,7 @@ class: inverse
 
 ---
 
-## Shape and size phenotypes
+# 49 image-based phenotypes!
 
 .pull-left[
 **Whole Walnut**
@@ -168,25 +170,23 @@ class: center, middle, inverse
 
 ## Each point represents a different individual
 
-### Work that I did early this year
-
 ---
 
 # The power of allometry: `\(\;y = e^bV_N^m\)`
 
-For most living organisms, different tissues grow at different rates with respect to each other.
+Different tissues grow at different rates with respect to each other.
 
-Growth does **not** scale linearly but following a power law.
+Growth does **not** scale linearly but it follows a power law.
 
 &lt;div class="row" style="color: black; font-size: 20px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
   &lt;div class="column" style="max-width:33%;"&gt;
     &lt;img src="../../walnuts/figs/nut_convex_volume_vs_nut_volume.png"&gt;
-    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut changes dramatically after its diameter is larger than 1.6cm&lt;/p&gt;
+    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut changes dramatically after its diameter is larger than 1.6cm (&amp;frac58;")&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%;"&gt;
     &lt;img src="../../walnuts/figs/air_volume_vs_nut_volume.png"&gt;
     &lt;p style="margin: 3px 0 0 0; padding: 0 2ex 0 0;"&gt;If nut volume increases by 2x, then air volume increases by 2.3x&lt;/p&gt;
-    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut diameter is below 16cm&lt;/p&gt;
+    &lt;p style="padding: 0 2ex 0 0;"&gt;Walnut diameter cannot go beyond 15cm (6")&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%;"&gt;
     &lt;img src="../../walnuts/figs/kernel_volume_vs_nut_volume.png"&gt;
@@ -334,6 +334,42 @@ class: center, middle, inverse
 ## Trying to figure out **independent** contributions
 
 ![](../figs/easeofremoval_R2_progression.jpg)
+
+---
+
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
+background-size: 60px
+background-position: 99% 1%
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row" style="margin-top: -25px;"&gt;
+  &lt;div class="column" style="max-width:20%; font-size: 16px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Liz Munch&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Michelle Quigley&lt;br&gt;(PSU)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:18%; font-size: 16px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Dan Chitwood&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://caes.ucdavis.edu/sites/g/files/dgvnsk1721/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=345be249&amp;itok=77W2Yqpk"&gt;
+    &lt;p style="text-align: center;"&gt;Pat Brown&lt;br&gt;(UC Davis)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:12%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:50%; font-size: 24px; line-height:1.25"&gt;
+    &lt;p style="text-align: center;"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+    &lt;p style="text-align: center; color: Blue; font-family: monospace;"&gt;eah4d@missouri.edu&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
+    &lt;p style="text-align: center; color: Blue; font-family: monospace;"&gt;ejamezquita.github.io&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&lt;strong&gt;Preprint DOI&lt;/strong&gt;&lt;/p&gt;
+    &lt;p style="text-align: center; color: Blue; font-family: monospace;"&gt;10.1101/2023.09.26.559651&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../cmse/figs/institutional_logos.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../js/remark-latest.min.js"></script>

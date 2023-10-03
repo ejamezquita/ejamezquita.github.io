@@ -3,7 +3,7 @@ title: "Quantifying the shape of plants"
 subtitle: "using the Euler Characteristic Transform"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> In _inSilico Plants_ 4(1) 2022"
+date: "2022-02-23 <br> - <br> In _inSilico Plants_ 4(1) 2022"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]

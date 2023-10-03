@@ -3,7 +3,7 @@ title: "If life gives you lemons"
 subtitle: "analyze the shape of their aroma"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()`<br> - <br> Published in [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
+date: "2023-07-24<br> - <br> Published in [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -368,8 +368,8 @@ class: inverse
     <p style="text-align: center; color: White">Liz Munch (MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
     <p style="text-align: center; color: White">Tim Ophelders (Utrecht)</p>
-    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/4e8d0be6-a5f4-4fb0-9a64-f8bd58b3c82a/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
-    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(PSU)</p>
   </div>
   <div class="column" style="max-width:15%; font-size: 15px;">
     <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
