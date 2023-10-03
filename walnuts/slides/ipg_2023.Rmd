@@ -194,9 +194,7 @@ There are biophysical constraints at play in walnut development
 
 ## Correlation between tissues
 
-```{r, out.width=550}
-knitr::include_graphics("../figs/vol_ratios_correlation_individual.jpg")
-```
+
 
 ---
 
@@ -257,13 +255,9 @@ knitr::include_graphics("../figs/vol_ratios_correlation_accession.jpg")
 
 ## Side by side invidual vs accession
 
-.pull-left[
-![](../figs/vol_ratios_correlation_individual.jpg)
-]
-
-.pull-right[
-![](../figs/vol_ratios_correlation_accession.jpg)
-]
+```{r, out.width=580}
+knitr::include_graphics("../figs/vol_absolute_relative_correlation_accession.png")
+```
 
 ---
 
