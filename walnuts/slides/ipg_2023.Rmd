@@ -83,7 +83,7 @@ class: inverse
     <p style="margin:5px 0 0 0; text-align:left">
       &#9656;&ensp;Individuals separated manually<br>
       &#9656;&ensp;Tissues separated with watershed segmentation<br>
-      &#9656;&ensp;38 traditional shape and size descriptors
+      &#9656;&ensp;49 traditional shape and size descriptors
     </p>
   </div>
 </div>
@@ -158,11 +158,19 @@ Italics for phenotypes that I haven't seen measured elsewhere
 
 ---
 
-class: center, middle, inverse
+## Just to get out of the way
 
-# Using **all** the individual nuts' phenotypes
+- Two kinds of relative volume
 
-## Each point represents a different individual
+$$\text{Kernel Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}} + V_{\text{air}}}$$
+
+$$\text{Kernel Airless Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}}}$$
+
+- Per-individual vs per-accession
+
+    - Morphological phenotypes were averaged based on accession to make them comparable to qualitative data.
+
+- Focus on volume and thickness-related phenotypes
 
 ---
 
@@ -192,71 +200,58 @@ There are biophysical constraints at play in walnut development
 
 ---
 
-## Correlation between tissues
+## Individual-based correlation
 
-
-
----
-
-## Correlation with traits of interest
-
-![](../../walnuts/figs/combination_hbar_correlation.jpg)
-
-.pull-left[
-**Walnuts with more kernel filling ratio have:**
-
-- Less air filling ratio
-- Smaller volume
-- Smoother shells
-- Kernel overall shape is more convex 
-- But it also has numerous deep but thin grooves.
-] 
-
-.pull-right[
-**Walnuts with thinner shells have:**
-
-- Less total shell volume and shell ratio
-- More air filling ratio
-- Smoother shells
-]
-
----
-
-## Remove the air from the consideration
-
-![](../figs/combination_hbar_correlation_wo_air.jpg)
-
-
-$$\text{Kernel Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}} + V_{\text{air}}}$$
-
-$$\text{Kernel Volume Ratio wo Air}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}}}$$
-
----
-
-class: center, middle, inverse
-
-# Incorporating Pat's ordinal data
-
-## Averaging my morphological phenotypes per accession
-
-## Each point represents a different accession
-
-### Work I did after my defense, when I realized I messed up completely data analysis
-
----
-
-## Comparing relative volume to relative mass
-
-```{r, out.width=550}
-knitr::include_graphics("../figs/vol_ratios_correlation_accession.jpg")
+```{r, out.width=525}
+knitr::include_graphics("../figs/spearman_correlation.png")
 ```
 
 ---
 
-## Side by side invidual vs accession
+## Accession-based correlation
 
 ```{r, out.width=580}
 knitr::include_graphics("../figs/vol_absolute_relative_correlation_accession.png")
+```
+
+---
+
+## Accession-based correlation
+
+```{r, out.width=580}
+knitr::include_graphics("../figs/correlations_highlight_1.png")
+```
+
+---
+
+## Accession-based correlation
+
+```{r, out.width=580}
+knitr::include_graphics("../figs/correlations_highlight_2.png")
+```
+
+---
+
+## Accession-based correlation
+
+```{r, out.width=580}
+knitr::include_graphics("../figs/correlations_highlight_3.png")
+```
+
+---
+
+## Accession-based correlation
+
+```{r, out.width=580}
+knitr::include_graphics("../figs/correlations_highlight_4.png")
+```
+
+---
+
+## Accession-based correlation
+
+```{r, out.width=580}
+knitr::include_graphics("../figs/correlations_highlight_5.png")
 ```
 
 ---

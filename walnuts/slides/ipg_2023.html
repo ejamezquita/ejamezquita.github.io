@@ -91,7 +91,7 @@ class: inverse
     &lt;p style="margin:5px 0 0 0; text-align:left"&gt;
       &amp;#9656;&amp;ensp;Individuals separated manually&lt;br&gt;
       &amp;#9656;&amp;ensp;Tissues separated with watershed segmentation&lt;br&gt;
-      &amp;#9656;&amp;ensp;38 traditional shape and size descriptors
+      &amp;#9656;&amp;ensp;49 traditional shape and size descriptors
     &lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -164,11 +164,19 @@ Italics for phenotypes that I haven't seen measured elsewhere
 
 ---
 
-class: center, middle, inverse
+## Just to get out of the way
 
-# Using **all** the individual nuts' phenotypes
+- Two kinds of relative volume
 
-## Each point represents a different individual
+`$$\text{Kernel Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}} + V_{\text{air}}}$$`
+
+`$$\text{Kernel Airless Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}}}$$`
+
+- Per-individual vs per-accession
+
+    - Morphological phenotypes were averaged based on accession to make them comparable to qualitative data.
+
+- Focus on volume and thickness-related phenotypes
 
 ---
 
@@ -198,74 +206,45 @@ There are biophysical constraints at play in walnut development
 
 ---
 
-## Correlation between tissues
+## Individual-based correlation
+
+&lt;img src="../figs/spearman_correlation.png" width="525" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Accession-based correlation
 
 &lt;img src="../figs/vol_absolute_relative_correlation_accession.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Correlation with traits of interest
+## Accession-based correlation
 
-![](../../walnuts/figs/combination_hbar_correlation.jpg)
-
-.pull-left[
-**Walnuts with more kernel filling ratio have:**
-
-- Less air filling ratio
-- Smaller volume
-- Smoother shells
-- Kernel overall shape is more convex 
-- But it also has numerous deep but thin grooves.
-] 
-
-.pull-right[
-**Walnuts with thinner shells have:**
-
-- Less total shell volume and shell ratio
-- More air filling ratio
-- Smoother shells
-]
+&lt;img src="../figs/correlations_highlight_1.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Remove the air from the consideration
+## Accession-based correlation
 
-![](../figs/combination_hbar_correlation_wo_air.jpg)
-
-
-`$$\text{Kernel Volume Ratio}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}} + V_{\text{air}}}$$`
-
-`$$\text{Kernel Volume Ratio wo Air}=\frac{V_{\text{kernel}}}{V_{\text{shell}} + V_{\text{kernel}} + V_{\text{packing}}}$$`
+&lt;img src="../figs/correlations_highlight_2.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
-class: center, middle, inverse
+## Accession-based correlation
 
-# Incorporating Pat's ordinal data
-
-## Averaging my morphological phenotypes per accession
-
-## Each point represents a different accession
-
-### Work I did after my defense, when I realized I messed up completely data analysis
+&lt;img src="../figs/correlations_highlight_3.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Comparing relative volume to relative mass
+## Accession-based correlation
 
-&lt;img src="../figs/vol_ratios_correlation_accession.jpg" width="550" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/correlations_highlight_4.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Side by side invidual vs accession
+## Accession-based correlation
 
-.pull-left[
-![](../figs/vol_ratios_correlation_individual.jpg)
-]
-
-.pull-right[
-![](../figs/vol_ratios_correlation_accession.jpg)
-]
+&lt;img src="../figs/correlations_highlight_5.png" width="580" style="display: block; margin: auto;" /&gt;
 
 ---
 
