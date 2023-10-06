@@ -8,7 +8,7 @@
 # To use, simply uncomment the following lines and run them once.
 # If you need to update your data delete the "ddcv_cache.rds" file and re-run
 
-setwd('~/documents/webpage/cv-src/')
+setwd('~/documents/website/cv-src/')
 
 library(tidyverse)
 source("CV_printing_functions.R")

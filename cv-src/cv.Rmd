@@ -78,11 +78,11 @@ source("build_network_logo.R")
 ```
 
 
-![](https://www.egr.msu.edu/~amezqui3/barley/figs/S017_L3_1.gif){width=80%}
+![](https://ejamezquita.github.io/barley/figs/S017_L3_1.gif){width=80%}
 
 ```{r}
 if(params$pdf_mode){
-  cat("View this CV online at [`egr.msu.edu/~amezqui3/cv`](https://www.egr.msu.edu/~amezqui3/cv.html)")
+  cat("View this CV online at [`ejamezquita.github.io/cv`](https://ejamezquita.github.io/cv.html)")
 } else {
   cat("[<i class='fas fa-download'></i> Download this CV](https://www.egr.msu.edu/~amezqui3/cv/cv.pdf)")
 }
@@ -131,17 +131,11 @@ Erik Amézquita {#title}
 CV %<>% print_text_block("intro") 
 ```
 
-Education {data-icon=graduation-cap data-concise=true}
+Career and Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('education')
-```
-
-Research Experience {data-icon=laptop}
---------------------------------------------------------------------------------
-```{r}
-CV %<>% print_section('research_positions')
 ```
 
 Peer-reviewed work {data-icon=book}
@@ -213,7 +207,7 @@ Some courses involved leading tutorials on C++ or R
 2018 - 2016
 
 
-Selected talks delivered {data-icon=microphone}
+Invited talks {data-icon=microphone}
 --------------------------------------------------------------------------------
 
 ```{r}
@@ -248,7 +242,7 @@ Outreach {data-icon=user-plus}
 CV %<>% print_section('outreach')
 ```
 
-Service {data-icon=users}
+Select Service {data-icon=users}
 --------------------------------------------------------------------------------
 
 ```{r}

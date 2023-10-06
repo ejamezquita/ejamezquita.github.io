@@ -3,7 +3,7 @@ title: "A topologist and a plant biologist"
 subtitle: " go for a newly shaped beer"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> To appear in _inSilico Plants_"
+date: "2021-10-14 <br> - <br> To appear in _inSilico Plants_"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -344,7 +344,7 @@ background-position: 95% 90%
 
 $$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$
 ```{r, out.width=400}
-knitr::include_graphics("../figs/euler_characteristic_2.png")
+knitr::include_graphics("../../tda/figs/euler_characteristic_2.png")
 ```
 
 --
@@ -469,11 +469,11 @@ knitr::include_graphics('../figs/discerning_directions.png')
 --
 
 .pull-left[
-![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.png)
+![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.svg)
 ]
 
 .pull-right[
-![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.png)
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
 ]
 
 
