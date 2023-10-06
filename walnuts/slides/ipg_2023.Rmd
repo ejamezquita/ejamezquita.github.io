@@ -50,11 +50,11 @@ class: inverse
 <div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px">
   <div class="column" style="max-width:25%;">
     <img src="../figs/IMGA04011.jpg">
-    <p style="text-align: center;">148 accessions</p>
+    <p style="text-align: center;">149 accessions</p>
   </div>
   <div class="column" style="max-width:42%;">
     <img src="../../barley/figs/x3000_setup.jpg">
-    <p style="text-align: center;">1301 walnuts scanned</p>
+    <p style="text-align: center;">1301 (1264) walnuts scanned</p>
   </div>
   <div class="column" style="max-width:33%;">
     <img src="../figs/pat_walnut_crack_detail4.jpg">
@@ -266,63 +266,92 @@ knitr::include_graphics("../figs/correlations_highlight_5.png")
 
 ---
 
-## Correlation to other breeding traits
+background-image: url("../figs/supervised_regression.png")
+background-size: 750px
+background-position: 50% 60%
 
-![](../figs/highest_corrs_kernel_weight_ratio_per_accession_1x5.jpg)
 
-![](../figs/highest_corrs_shell_thickness_per_accession_1x5.jpg)
-
-- Now the Earliest (Himalayan) accession is a single outlying point and not much can be said about it.
-
----
-
-## PCA (and other dim-reduction) fail
-
-![](../figs/pca_all_phenos_accession.jpg)
+## Supervised linear regression: repeat 100 times
 
 ---
 
-## Doing linear regressions
-
-- Assumes responses are normally distributed
-- Assumes traits are independent
-- I used ridge-regression, as OLS tend to overfit when conditions are not ideal
-- Linear coefficients are not really informative when conditions are not ideal
+background-image: url("../figs/supervised_regression_outlier.png")
+background-size: 750px
+background-position: 50% 60%
 
 
-```{r, out.width=550}
-knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
+## Sensitivity to outliers
+
+---
+
+## Trying to figure out **independent** contributions
+
+```{r, out.width=700}
+knitr::include_graphics(c("../figs/easeofremoval_OLS_optimal_features.png",
+                          "../figs/shellstrength_OLS_optimal_features.png"))
 ```
 
 ---
 
-## Training 80/20 to spot overfitting
+## Trying to figure out **independent** contributions
+
+```{r, out.width=700}
+knitr::include_graphics(c("../figs/percentkernel_OLS_optimal_features.png",
+                          "../figs/shelltexture_OLS_optimal_features.png"))
+```
+
+---
+
+## Future directions: domestication
+
+![](../figs/pca_select_phenos_accession.png)
 
 .pull-left[
-![](../figs/kernelfill_R2_train_vs_test.jpg)
-![](../figs/percentkernel_R2_train_vs_test.jpg)
+![](../figs/pat_walnut_crack_detail3.jpg)
 ]
 
 .pull-right[
-![](../figs/shellstrength_R2_train_vs_test.jpg)
-![](../figs/easeofremoval_R2_train_vs_test.jpg)
+- Only one accession scanned is wild: Earliest Himalayan
+
+- It is notoriously difficult to crack open and extract the kernel
+
+- However, it is **morphologically average**
 ]
 
-- There is some overfitting going on: high variance in test results (?)
-
 ---
 
-## Trying to figure out **independent** contributions
+# Conclusion
 
-![](../figs/shellstrength_R2_progression.jpg)
+.pull-left[
 
-- Shell Vol Ratio is the trait with the highest correlation, so no surprise there
+**Biophysical constraints**
 
----
+```{r, out.width=200}
+knitr::include_graphics("../figs/air_volume_vs_nut_volume.png")
+```
 
-## Trying to figure out **independent** contributions
+- Inner air may play a key role in walnut development. 
 
-![](../figs/easeofremoval_R2_progression.jpg)
+- As a walnut grows, packing tissue develops at the expense of shell tissue. 
+
+- The shell undergoes a careful biochemical balance between insulation and permeability of air and water as the walnut develops
+
+]
+
+.pull-right[
+**Breed selection**
+
+```{r, out.width=200}
+knitr::include_graphics("../figs/2014SBa_R5_T49_008_240_watershed.jpg")
+```
+
+- The best linear models use only 2-3 thickness and volume-related morphological traits
+
+- It is easy and cheap to measure volumes.
+
+- More data to fine-tune the model and to understand domestication.
+
+]
 
 ---
 

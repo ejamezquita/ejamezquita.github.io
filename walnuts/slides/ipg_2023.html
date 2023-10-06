@@ -58,11 +58,11 @@ class: inverse
 &lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px"&gt;
   &lt;div class="column" style="max-width:25%;"&gt;
     &lt;img src="../figs/IMGA04011.jpg"&gt;
-    &lt;p style="text-align: center;"&gt;148 accessions&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;149 accessions&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:42%;"&gt;
     &lt;img src="../../barley/figs/x3000_setup.jpg"&gt;
-    &lt;p style="text-align: center;"&gt;1301 walnuts scanned&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;1301 (1264) walnuts scanned&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%;"&gt;
     &lt;img src="../figs/pat_walnut_crack_detail4.jpg"&gt;
@@ -258,61 +258,82 @@ There are biophysical constraints at play in walnut development
 
 ---
 
-## Correlation to other breeding traits
+background-image: url("../figs/supervised_regression.png")
+background-size: 750px
+background-position: 50% 60%
 
-![](../figs/highest_corrs_kernel_weight_ratio_per_accession_1x5.jpg)
 
-![](../figs/highest_corrs_shell_thickness_per_accession_1x5.jpg)
-
-- Now the Earliest (Himalayan) accession is a single outlying point and not much can be said about it.
-
----
-
-## PCA (and other dim-reduction) fail
-
-![](../figs/pca_all_phenos_accession.jpg)
+## Supervised linear regression: repeat 100 times
 
 ---
 
-## Doing linear regressions
-
-- Assumes responses are normally distributed
-- Assumes traits are independent
-- I used ridge-regression, as OLS tend to overfit when conditions are not ideal
-- Linear coefficients are not really informative when conditions are not ideal
+background-image: url("../figs/supervised_regression_outlier.png")
+background-size: 750px
+background-position: 50% 60%
 
 
-&lt;img src="../figs/kernelfill_ridge_regression.jpg" width="550" style="display: block; margin: auto;" /&gt;
+## Sensitivity to outliers
 
 ---
 
-## Training 80/20 to spot overfitting
+## Trying to figure out **independent** contributions
+
+&lt;img src="../figs/easeofremoval_OLS_optimal_features.png" width="700" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/shellstrength_OLS_optimal_features.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Trying to figure out **independent** contributions
+
+&lt;img src="../figs/percentkernel_OLS_optimal_features.png" width="700" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/shelltexture_OLS_optimal_features.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Future directions: domestication
+
+![](../figs/pca_select_phenos_accession.png)
 
 .pull-left[
-![](../figs/kernelfill_R2_train_vs_test.jpg)
-![](../figs/percentkernel_R2_train_vs_test.jpg)
+![](../figs/pat_walnut_crack_detail3.jpg)
 ]
 
 .pull-right[
-![](../figs/shellstrength_R2_train_vs_test.jpg)
-![](../figs/easeofremoval_R2_train_vs_test.jpg)
+- Only one accession scanned is wild: Earliest Himalayan
+
+- It is notoriously difficult to crack open and extract the kernel
+
+- However, it is **morphologically average**
 ]
 
-- There is some overfitting going on: high variance in test results (?)
-
 ---
 
-## Trying to figure out **independent** contributions
+# Conclusion
 
-![](../figs/shellstrength_R2_progression.jpg)
+.pull-left[
 
-- Shell Vol Ratio is the trait with the highest correlation, so no surprise there
+**Biophysical constraints**
 
----
+&lt;img src="../figs/air_volume_vs_nut_volume.png" width="200" style="display: block; margin: auto;" /&gt;
 
-## Trying to figure out **independent** contributions
+- Inner air may play a key role in walnut development. 
 
-![](../figs/easeofremoval_R2_progression.jpg)
+- As a walnut grows, packing tissue develops at the expense of shell tissue. 
+
+- The shell undergoes a careful biochemical balance between insulation and permeability of air and water as the walnut develops
+
+]
+
+.pull-right[
+**Breed selection**
+
+&lt;img src="../figs/2014SBa_R5_T49_008_240_watershed.jpg" width="200" style="display: block; margin: auto;" /&gt;
+
+- The best linear models use only 2-3 thickness and volume-related morphological traits
+
+- It is easy and cheap to measure volumes.
+
+- More data to fine-tune the model and to understand domestication.
+
+]
 
 ---
 
