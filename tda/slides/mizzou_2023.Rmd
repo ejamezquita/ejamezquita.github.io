@@ -1,12 +1,12 @@
 ---
-title: "Challenges in Topological Object Data Analysis"
-subtitle: "Patrangenaru et al. (2018)"
+title: "Topological Data Analysis"
+subtitle: "A primer"
 author: "**Erik Amézquita**"
-institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()`"
+institute: "Division of Plant Sciences & Technology<br>Department of Mathematics<br>University of Missouri<br> -"
+date: "2023-10-26"
 output:
   xaringan::moon_reader:
-    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
     chakra: '../../js/remark-latest.min.js'
     lib_dir: libs
     nature:
@@ -17,7 +17,6 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-library(reticulate)
 library(knitr)
 
 # <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->

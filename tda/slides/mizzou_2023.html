@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Topological Data Analysis</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita" />
+    <meta name="date" content="2023-10-26" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Topological Data Analysis
+]
+.subtitle[
+## A primer
+]
+.author[
+### <strong>Erik Amézquita</strong>
+]
+.institute[
+### Division of Plant Sciences &amp; Technology<br>Department of Mathematics<br>University of Missouri<br> -
+]
+.date[
+### 2023-10-26
+]
+
+---
+
+
+
+class: inverse
+
+# Hot takes
+
+- Spent a couple of days reading [Patrangenaru _et al._ (2018)](https://doi.org/10.1007/s13171-018-0137-7).
+
+--
+
+- It feels like two different papers put into one. 
+
+--
+
+- The first half is TDA: points close to the diagonal in a persistent diagram encode **geometric** information.
+
+--
+
+- The second half goes hard into DASS (Data Analysis of Sample Spaces), so I will not really go into details here
+
+--
+
+- However, last year I dabbled into GMM (Geometric Modern Morphometrics), which (I think) is closely related
+
+--
+
+- The conclusion basically says _Here are two different ways to describe the objects depending if you care about the shape (TDA) or landmark position (Frechet means)._
+
+--
+
+- Back to the more familiar TDA realm, I also spent some time going through [Bubenik _et al_ (2020)](https://doi.org/10.1088/1361-6420/ab4ac0).
+
+
+- Explores the idea that persistent landscapes capture curvature, a geometric property.
+
+---
+
+class: inverse, center, middle
+
+# A morphometrics detour
+
+## Slides by [Thomas Fletcher (Utah)](https://tomfletcher.github.io/GeometryOfData/lectures/L09-ShapeManifolds.pdf)
+
+---
+
+&lt;embed src="https://tomfletcher.github.io/GeometryOfData/lectures/L09-ShapeManifolds.pdf" width="825px" height="650px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+# Object Data Analysis
+
+- Objects represented as points on some manifold or stratified space
+
+--
+
+### Three steps to do ODA
+
+1. Understand the object space of images of continuous functions from planar graphs to 3D.
+
+--
+
+1. Estimate points in the object space.
+
+--
+
+1. Perform statistical analysis in the object space.
+
+---
+
+# Use TDA instead: Persistence landscapes
+
+- TDA provides summaries that are Lipschitz stable
+
+- Vietoris-Rips filtration + Persistence landscapes
+
+--
+
+- Metric equivalence of the object space and its image
+
+--
+
+- Vector space as a proxy for statistical analysis in the object space.
+
+--
+
+### Paradigm shift
+
+- Short bars are geometric signal and carry important nuanced shape information
+
+- Long bars are outliers and are best if ignored
+
+--
+
+[Slides](https://people.clas.ufl.edu/peterbubenik/files/abacus_1.pdf) from [Peter Bubenik](https://icerm.brown.edu/materials/Slides/tri17-1-gtd/Persistence_Landscapes_and_the_Geometry_of_Data_]_Peter_Bubenik,_University_of_Florida.pdf)
+
+---
+
+&lt;embed src="https://people.clas.ufl.edu/peterbubenik/files/abacus_1.pdf" width="825px" height="650px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+class: inverse, middle, center
+
+# Death vectors and Persistence Landscapes
+
+## Leaf application
+
+---
+
+background-image: url("../figs/patrangenaru_2018-11.jpg")
+background-size: 675px
+background-position: 50% 90%
+
+# Two different leaves from the same tree
+
+- 20 pictures of the same leaf, taken from different points of view.
+
+- No statistical differences were found with traditional geometric tools.
+
+&lt;img src="../figs/patrangenaru_2018-10.jpg" width="675px" style="display: block; margin: auto;" /&gt;
+---
+
+background-image: url("../figs/patrangenaru_2018-12.jpg")
+background-size: 675px
+background-position: 50% 90%
+
+# Sample 4300 (?) points from the border
+
+- Some boundary pixels are noise &amp;rarr; persistent connected components.
+
+- Small bars &amp;rarr; shape nuances that characterize the leaf shape.
+
+---
+
+# Death Vectors and Persistence Landscapes
+
+&lt;img src="../figs/patrangenaru_2018-07.jpg" width="525px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/patrangenaru_2018-08.jpg" width="525px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Shape signature for every image
+
+&lt;img src="../figs/patrangenaru_2018-13.jpg" width="750px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# SVM Classification
+
+- Death Vector for `\(H_0\)`: `\(R^{4300}\)` descriptor
+
+- Persistent Landscape for `\(H_1\)`: Consider the first `\(\lambda_1, \ldots, \lambda_{60}\)` landscape functions.
+
+- Discretize them with a grid a values `\(0.0, 0.1, 0.2, \ldots, 39.9, 40.0\)` (?)
+
+- Produce `\(60\times401=24060\)`-dimensional vectors.
+
+- Concatenate both signals to account for the whole shape.
+
+--
+
+- Remove the three most persistent death points
+
+- Remove the first 20 landscape functions
+
+--
+
+- 90% classification accuracy with 10-fold cross validation. (90/10 training/test)
+
+---
+
+class: middle, center, inverse
+
+# Understanding curvature via persistence
+
+## Based on [Bubenik _et al_ (2020)](https://doi.org/10.1088/1361-6420/ab4ac0)
+
+### Slides from [here](https://people.clas.ufl.edu/peterbubenik/files/abacus_3.pdf)
+
+---
+
+# Main results
+
+**Theorem 1**: Let `\(p(K)\)` denote the maximum (Čech) persistence for three points on a surface of constant curvature `\(K\)` with pairwise distances at most some fixed constant. Then `\(p(K)\)` is an invertible function.
+
+--
+
+**Theorem 13**: Suppose `\(T\)` is not an equilateral triangle. Then there exists an equilateral triangle `\(T'\)` such that `\(b(T') = b(T)\)` and `\(d(T') &gt; d(T)\)`.
+
+**Theorem 14**. Let `\(T_{K,a}\)` be an equilateral triangle in `\(M_K\)` with side length `\(a\)`.
+`$$p(T_{K,a}) = 
+\begin{cases} 
+\frac2{a\sqrt{-K}}\sinh^{-1}\left(\frac2{\sqrt3}\sinh\left(\frac{a\sqrt{-K}}2\right)\right) &amp; K&lt;0,\\
+\frac2{\sqrt3} &amp; K=0,\\
+\frac2{a\sqrt K}\sin^{-1}\left(\frac2{\sqrt3}\sin\left(\frac{a\sqrt K}2\right)\right) &amp; K&gt;0.
+\end{cases}$$`
+
+**Corollary 15**. Let `\(a&gt;0\)`. Let `\(p_a(K)\)` denote the persistence of an equilateral triangle of side length a in a surface of constant curvature `\(K\)`. Then `\(p_a(K)\)` is a continuous and increasing function.
+
+---
+
+&lt;embed src="https://people.clas.ufl.edu/peterbubenik/files/abacus_3.pdf" width="825px" height="650px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+## Regression results
+
+- For `\(K\in\{-2.00,-1.96,\ldots,1.96,2.00\}\)`, sample 1000 points from the unit disk in the surface of constant curvature `\(K\)` uniformly with respect to the area measure.
+
+- Compute VR-persistence landscape and death vector
+
+- Repeat sampling 100 times to obtain the average death vector and persistence landscape
+
+- Concatenate both `\(H_0\)` and `\(H_1\)` related vectors
+
+- Use these 50 curvature signals as training data
+
+--
+
+- Pick uniformly `\(K\in[-2,2]\)` and compute the average death vector and persistence landscape.
+
+---
+
+## Regression results
+
+&lt;img src="../figs/bubenik_2020-07.jpg" width="750px" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
