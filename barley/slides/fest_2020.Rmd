@@ -3,7 +3,7 @@ title: "Demeter y Euler van por una cerveza"
 subtitle: "Cuantificando la forma de la cebada con ATD"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> Diapositivas: `https://bit.ly/cebada_fest` "
+date: "2020-12-15 <br> - <br> Diapositivas: `https://bit.ly/cebada_fest` "
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -492,7 +492,7 @@ Si los espacios son topológicamente distintos, la característica de Euler **pu
 
 $$S_d:=\left\{\sum_{i=0}^d\lambda_i\mathbf v_i\,:\,\lambda_i\geq0,\;\sum_{i=0}^d\lambda=1\right\}$$
 ```{r,  out.width="300px"}
-knitr::include_graphics("../../tda/figs/simplices.png")
+knitr::include_graphics("../../tda/figs/simplices.svg")
 ```
 
 --
@@ -503,14 +503,14 @@ knitr::include_graphics("../../tda/figs/simplices.png")
 
 .pull-left[
 ```{r, out.width="250px"}
-knitr::include_graphics("../../tda/figs/complex-good.png")
+knitr::include_graphics("../../tda/figs/complex-good.svg")
 ```
 - Bien pegados
 ]
 
 .pull-right[
 ```{r, out.width="250px"}
-knitr::include_graphics("../../tda/figs/complex-bad.png")
+knitr::include_graphics("../../tda/figs/complex-bad.svg")
 ```
 - Mal pegados
 ]
@@ -533,7 +533,7 @@ knitr::include_graphics("../../tda/figs/complex-bad.png")
 --
 
 ```{r, out.width="600px"}
-knitr::include_graphics("../../tda/figs/cubical_complex.jpg", auto_pdf = TRUE)
+knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_es.svg", auto_pdf = TRUE)
 ```
 
 
@@ -669,7 +669,7 @@ background-position: 90% 50%
 - Datos súper esparsos cuando la dimensión incrementa
 
 ```{r, out.width="600px"}
-knitr::include_graphics("../../demat/figs/curse_of_dimensionality.png")
+knitr::include_graphics("../../demat/figs/curse_of_dimensionality.svg")
 ```
 
 --
@@ -691,7 +691,7 @@ knitr::include_graphics("../../demat/figs/curse_of_dimensionality.png")
 - Los puntos tienden a concentrarse en una esfera
 
 ```{r, out.width="270px"}
-knitr::include_graphics("../../demat/figs/concentration-circle.png")
+knitr::include_graphics("../../demat/figs/concentration-circle.svg")
 ```
 
 --
@@ -753,7 +753,7 @@ background-position: 50% 90%
 
 ---
 
-background-image: url("../../demat/figs/separable-svm.jpg")
+background-image: url("../../demat/figs/separable-svm.svg")
 background-size: 450px
 background-position: 50% 99%
 

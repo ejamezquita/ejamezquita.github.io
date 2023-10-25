@@ -35,7 +35,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - Reducing dimension **and clustering** is crucial to understand the data.
 
-![](../../demat/figs/curse_of_dimensionality.png)
+```{r, out.width=600, fig.align='center'}
+knitr::include_graphics(c('../../demat/figs/curse_of_dimensionality.svg'))
+```
+
 ---
 
 # Mapper **is not** t-SNE, PCA, MDS, etc.
@@ -59,7 +62,7 @@ class: inverse, middle, center
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_00.jpg")
+background-image: url("../../tda/figs/mapper_b_00.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -71,7 +74,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_01.jpg")
+background-image: url("../../tda/figs/mapper_b_01.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -83,7 +86,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_02.jpg")
+background-image: url("../../tda/figs/mapper_b_02.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -95,7 +98,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_03.jpg")
+background-image: url("../../tda/figs/mapper_b_03.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -105,7 +108,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_04.jpg")
+background-image: url("../../tda/figs/mapper_b_04.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -117,7 +120,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_05.jpg")
+background-image: url("../../tda/figs/mapper_b_05.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -131,7 +134,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_06.jpg")
+background-image: url("../../tda/figs/mapper_b_06.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -141,7 +144,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_07.jpg")
+background-image: url("../../tda/figs/mapper_b_07.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -153,7 +156,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_08.jpg")
+background-image: url("../../tda/figs/mapper_b_08.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -165,7 +168,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_09.jpg")
+background-image: url("../../tda/figs/mapper_b_09.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -177,7 +180,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_10.jpg")
+background-image: url("../../tda/figs/mapper_b_10.svg")
 background-size: 725px
 background-position: 50% 95%
 
@@ -191,7 +194,7 @@ background-position: 50% 95%
 
 ---
 
-background-image: url("../../tda/figs/mapper_b_11.jpg")
+background-image: url("../../tda/figs/mapper_b_11.svg")
 background-size: 725px
 background-position: 50% 95%
 

@@ -266,7 +266,7 @@ knitr::include_graphics("../figs/correlations_highlight_5.png")
 
 ---
 
-background-image: url("../figs/supervised_regression.png")
+background-image: url("../../demat/figs/supervised_regression.png")
 background-size: 750px
 background-position: 50% 60%
 
@@ -275,7 +275,7 @@ background-position: 50% 60%
 
 ---
 
-background-image: url("../figs/supervised_regression_outlier.png")
+background-image: url("../../demat/figs/supervised_regression_outlier.png")
 background-size: 750px
 background-position: 50% 60%
 

@@ -17,6 +17,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+library(tibble)
+library(magrittr)
+library(glue)
 library(knitr)
 
 # <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
@@ -24,240 +27,191 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
+
 class: inverse
 
-# Hot takes
+# Shape has data, and data has shape
 
-- Spent a couple of days reading [Patrangenaru _et al._ (2018)](https://doi.org/10.1007/s13171-018-0137-7).
-
---
-
-- It feels like two different papers put into one. 
-
---
-
-- The first half is TDA: points close to the diagonal in a persistent diagram encode **geometric** information.
-
---
-
-- The second half goes hard into DASS (Data Analysis of Sample Spaces), so I will not really go into details here
-
---
-
-- However, last year I dabbled into GMM (Geometric Modern Morphometrics), which (I think) is closely related
-
---
-
-- The conclusion basically says _Here are two different ways to describe the objects depending if you care about the shape (TDA) or landmark position (Frechet means)._
-
---
-
-- Back to the more familiar TDA realm, I also spent some time going through [Bubenik _et al_ (2020)](https://doi.org/10.1088/1361-6420/ab4ac0).
-
-
-- Explores the idea that persistent landscapes capture curvature, a geometric property.
+<div class="row">
+  <div class="column" style="max-width:19%">
+    <img src="../../barley/figs/S019_L0_1.gif"></img>
+    <img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"></img>
+  </div>
+  <div class="column" style="max-width:39%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/LxNSbrfq3kY?si=Qw9qv3Og1XcPIUyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <img src="../figs/Mapper_ColorBy_Tissue.png"></img>
+  </div>
+  <div class="column" style="max-width:41%">
+    <img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"></img>
+    <img src="../figs/g86.png"></img>
+  </div>
+</div>
 
 ---
 
-class: inverse, center, middle
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
 
-# A morphometrics detour
+# From MX to MI to MO at MU
 
-## Slides by [Thomas Fletcher (Utah)](https://tomfletcher.github.io/GeometryOfData/lectures/L09-ShapeManifolds.pdf)
+.left-column[
+![](../../cmse/figs/dvdy216-toc-0001-m.jpg)
+]
 
----
+.right-column[
+- 2013 - 2018 : Math @ at the Universidad de Guanajuato and CIMAT.
 
-```{r morphometrics, out.width="825px", out.height="650px"}
-knitr::include_graphics("https://tomfletcher.github.io/GeometryOfData/lectures/L09-ShapeManifolds.pdf")
-```
+- 2016 - 2018 : Bachelor thesis: **Math + Archaeology**. Use TDA to quantify and classify the shape of pre-Columbian masks found in the Templo Mayor in Mexico City.
 
----
+- 2018 - 2023 : CMSE @ Michigan State University. **Came for the math. Stayed for the plants.**
 
-# Object Data Analysis
+- 2023 - ???? : PFFIE Postdoc Fellow @ Division of Plant Sciences & Department of Mathematics at Mizzou
 
-- Objects represented as points on some manifold or stratified space
+]
 
---
+&mdash;&mdash;&mdash;&mdash;&mdash;
 
-### Three steps to do ODA
-
-1. Understand the object space of images of continuous functions from planar graphs to 3D.
-
---
-
-1. Estimate points in the object space.
-
---
-
-1. Perform statistical analysis in the object space.
-
----
-
-# Use TDA instead: Persistence landscapes
-
-- TDA provides summaries that are Lipschitz stable
-
-- Vietoris-Rips filtration + Persistence landscapes
-
---
-
-- Metric equivalence of the object space and its image
-
---
-
-- Vector space as a proxy for statistical analysis in the object space.
-
---
-
-### Paradigm shift
-
-- Short bars are geometric signal and carry important nuanced shape information
-
-- Long bars are outliers and are best if ignored
-
---
-
-[Slides](https://people.clas.ufl.edu/peterbubenik/files/abacus_1.pdf) from [Peter Bubenik](https://icerm.brown.edu/materials/Slides/tri17-1-gtd/Persistence_Landscapes_and_the_Geometry_of_Data_]_Peter_Bubenik,_University_of_Florida.pdf)
+<div class="row">
+  <div class="column" style="max-width:49%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/oM9kAq0PBvw?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="column" style="max-width:49%">
+    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/V39K58evWlU?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
 
 ---
 
-```{r bubenik1, out.width="825px", out.height="650px"}
-knitr::include_graphics("https://people.clas.ufl.edu/peterbubenik/files/abacus_1.pdf")
-```
+# Roadmap for today
+
+- **I promise you the bulk of slides are just stills from time-lapses**
+
+- It is impossible to cover all there is to know about Topological Data Analysis in a single session
+
+- Go over some basic lingo and applications
+
+- Leave plenty of pointers
+
+- Slides available
 
 ---
 
 class: inverse, middle, center
 
-# Death vectors and Persistence Landscapes
+# 1. Motivating Persistence
 
-## Leaf application
-
----
-
-background-image: url("../figs/patrangenaru_2018-11.jpg")
-background-size: 675px
-background-position: 50% 90%
-
-# Two different leaves from the same tree
-
-- 20 pictures of the same leaf, taken from different points of view.
-
-- No statistical differences were found with traditional geometric tools.
-
-```{r, out.width="675px"}
-knitr::include_graphics("../figs/patrangenaru_2018-10.jpg")
-```
----
-
-background-image: url("../figs/patrangenaru_2018-12.jpg")
-background-size: 675px
-background-position: 50% 90%
-
-# Sample 4300 (?) points from the border
-
-- Some boundary pixels are noise &rarr; persistent connected components.
-
-- Small bars &rarr; shape nuances that characterize the leaf shape.
+## Single-linkage clustering
 
 ---
 
-# Death Vectors and Persistence Landscapes
+background-image: url("../figs/circs2kiss_just_points.svg")
+background-size: 500px
+background-position: 50% 95%
 
-```{r, out.width="525px"}
-knitr::include_graphics(c("../figs/patrangenaru_2018-07.jpg", "../figs/patrangenaru_2018-08.jpg"))
-```
+# How many connected componets you see?
 
----
+- Infer the underlying topology of a *sampled* finite metric space
 
-# Shape signature for every image
-
-```{r, out.width="750px"}
-knitr::include_graphics(c("../figs/patrangenaru_2018-13.jpg"))
-```
+- Beyond the naive discrete topology
 
 ---
 
-# SVM Classification
+background-image: url("../figs/circs2kiss_just_points.svg")
+background-size: 500px
+background-position: 50% 95%
 
-- Death Vector for $H_0$: $R^{4300}$ descriptor
+# Single linkage clustering of $X$
 
-- Persistent Landscape for $H_1$: Consider the first $\lambda_1, \ldots, \lambda_{60}$ landscape functions.
+- For $R\geq0$, consider the relation $\sim_R$
+$$x\sim_Rx'\Leftrightarrow d(x,x')\leq R.$$
+- Let $\simeq_R$ be the equivalence relation generated by $\sim_R$.
+- The equivalence classes under $\simeq_R$ partition $X$ into connected components
+- Different $R$s can generate different partitions
 
-- Discretize them with a grid a values $0.0, 0.1, 0.2, \ldots, 39.9, 40.0$ (?)
-
-- Produce $60\times401=24060$-dimensional vectors.
-
-- Concatenate both signals to account for the whole shape.
-
---
-
-- Remove the three most persistent death points
-
-- Remove the first 20 landscape functions
-
---
-
-- 90% classification accuracy with 10-fold cross validation. (90/10 training/test)
+- *"What is the right $R$?"*: Ill-posed question
 
 ---
 
-class: middle, center, inverse
+```{r include=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:19, digits=2, format='d', flag='0'))
 
-# Understanding curvature via persistence
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  background-image: url(\"../figs/circs2kiss_vr0_{first}.svg\")
+  background-size: 800px
+  background-position: 50% 75%
 
-## Based on [Bubenik _et al_ (2020)](https://doi.org/10.1088/1361-6420/ab4ac0)
+  # Compatibility accross changes in $R$
 
-### Slides from [here](https://people.clas.ufl.edu/peterbubenik/files/abacus_3.pdf)
+  $$x\\sim_Rx'\\Leftrightarrow d(x,x')\\leq R.$$
 
----
-
-# Main results
-
-**Theorem 1**: Let $p(K)$ denote the maximum (Čech) persistence for three points on a surface of constant curvature $K$ with pairwise distances at most some fixed constant. Then $p(K)$ is an invertible function.
-
---
-
-**Theorem 13**: Suppose $T$ is not an equilateral triangle. Then there exists an equilateral triangle $T'$ such that $b(T') = b(T)$ and $d(T') > d(T)$.
-
-**Theorem 14**. Let $T_{K,a}$ be an equilateral triangle in $M_K$ with side length $a$.
-$$p(T_{K,a}) = 
-\begin{cases} 
-\frac2{a\sqrt{-K}}\sinh^{-1}\left(\frac2{\sqrt3}\sinh\left(\frac{a\sqrt{-K}}2\right)\right) & K<0,\\
-\frac2{\sqrt3} & K=0,\\
-\frac2{a\sqrt K}\sin^{-1}\left(\frac2{\sqrt3}\sin\left(\frac{a\sqrt K}2\right)\right) & K>0.
-\end{cases}$$
-
-**Corollary 15**. Let $a>0$. Let $p_a(K)$ denote the persistence of an equilateral triangle of side length a in a surface of constant curvature $K$. Then $p_a(K)$ is a continuous and increasing function.
-
----
-
-```{r bubenik2, out.width="825px", out.height="650px"}
-knitr::include_graphics("https://people.clas.ufl.edu/peterbubenik/files/abacus_3.pdf")
+  - If $R\\leq R'$, then the partition $X_R$ by $\\simeq_R$ is coarser than the partition $X_{{R'}}$ by $\\simeq_{{R'}}$
+  "
+)
 ```
 
----
-
-## Regression results
-
-- For $K\in\{-2.00,-1.96,\ldots,1.96,2.00\}$, sample 1000 points from the unit disk in the surface of constant curvature $K$ uniformly with respect to the area measure.
-
-- Compute VR-persistence landscape and death vector
-
-- Repeat sampling 100 times to obtain the average death vector and persistence landscape
-
-- Concatenate both $H_0$ and $H_1$ related vectors
-
-- Use these 50 curvature signals as training data
-
---
-
-- Pick uniformly $K\in[-2,2]$ and compute the average death vector and persistence landscape.
+`r slides_text %>% paste(collapse = "\n---\n")`
 
 ---
 
-## Regression results
+# Definition: Persistent set
 
-```{r, out.width="750px"}
-knitr::include_graphics(c("../figs/bubenik_2020-07.jpg"))
+- A *persistent set* is a family of sets $\{X_R\}_{R\in\mathbb{R}}$ together with set maps
+$$\varphi_R^{R'}\;:\;X_R\to X_{R'}\quad\text{for all}\quad R\leq R',$$
+- so that
+$$\varphi_{R'}^{R''}\varphi_{R}^{R'} = \varphi_{R}^{R''}\quad\text{for all}\quad R\leq R'\leq R''.$$
+
+- The $X_R$s can be simplicial complexes, vector spaces, topological spaces, etc. 
+
+---
+
+class: inverse, center, middle
+
+# Persistent Homology
+
+## Your good, ol' simplicial homology but parameterized by $\mathbb{R}_{\geq0}$.
+
+---
+
+# Basic Simplicial Homology
+
+- Take $\mathbf v_0, \ldots,\mathbf v_d\in\mathbb{R}^d$ vertices in  general position.
+		
+- The *d-simplex* is the convex hull of these vertices:
+$$S_d:=\left\{\sum_{i=0}^d\lambda_i\mathbf v_i\,:\,\lambda_i\geq0,\;\sum_{i=0}^d\lambda=1\right\}$$
+
+```{r, out.width=600}
+knitr::include_graphics("../figs/simplices.svg")
 ```
+
+- Simplices as $\sigma = (\mathbf v_0, \mathbf v_1, \ldots, \mathbf v_d)$.
+
+- Refer to $\tau = (\mathbf v_0, \mathbf v_1, \ldots,\mathbf v_{d-1})$ as a face of $\sigma$.
+
+---
+
+# Simplicial complexes
+
+- A simplicial complex is a collection of nicely glued simplices.
+    - Every simplex comes will all its faces.
+    - Any two neighboring simplices share a whole face.
+
+.pull-left[
+```{r, out.width=400}
+knitr::include_graphics("../figs/complex-good.svg")
+```
+
+Good complex
+]
+
+.pull-right[
+```{r, out.width=400}
+knitr::include_graphics("../figs/complex-bad.svg")
+```
+
+Bad complex
+]
+
+- The dimension of a simplicial complex is the dimension of its highest dimensional simplex.

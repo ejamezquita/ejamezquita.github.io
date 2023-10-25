@@ -558,7 +558,7 @@ knitr::include_graphics("../../demat/figs/curse_of_dimensionality.png")
 
 ---
 
-background-image: url("../../demat/figs/separable-svm.jpg")
+background-image: url("../../demat/figs/separable-svm.svg")
 background-size: 650px
 background-position: 50% 90%
 

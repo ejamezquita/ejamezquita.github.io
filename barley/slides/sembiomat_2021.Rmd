@@ -3,7 +3,7 @@ title: "Midiendo la forma en botánica"
 subtitle: "usando Análsis Topológico de Datos"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> Slides: [`https://bit.ly/cebada_atd`](https://www.egr.msu.edu/~amezqui3/barley/slides/sembiomat_2021.html)"
+date: "2021-12-15 <br> - <br> Slides: [`https://bit.ly/cebada_atd`](https://www.egr.msu.edu/~amezqui3/barley/slides/sembiomat_2021.html)"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -152,17 +152,18 @@ Componentes conexas | Ciclos | Vacíos
     
 .pull-left[
 ```{r, out.width="250px"}
-knitr::include_graphics("../../tda/figs/simplicial_complex.jpg")
+knitr::include_graphics("../../tda/figs/complex-good.svg")
 ```
 - 3 componentes, 1 ciclo, 1 vacío
 ]
 
 .pull-right[
 ```{r, out.width="250px"}
-knitr::include_graphics("../../tda/figs/cubical_complex.jpg")
+knitr::include_graphics("../../tda/figs/cubical_complex_example.svg")
 ```
 - 2 componentes, 3 ciclos, 1 vacío
 ]
+
 
 ---
 
@@ -468,7 +469,7 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/composite_cross_v_05.png")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 425px
 background-position: 95% 90%
 

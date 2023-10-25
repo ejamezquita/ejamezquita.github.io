@@ -266,7 +266,7 @@ Connected components | Loops | Voids
 - Example with 2 connected components, 1 loop, 0 voids
 
 ```{r, out.width=500}
-knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_textless.png")
+knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_textless.svg")
 ```
 
 ---
@@ -477,7 +477,7 @@ class: inverse, middle, center
     <a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/barley_world.jpg"></a>
   </div>
   <div class="column" style="max-width:44%">
-    <a href="https://doi.org/10.2134/agronj1929.00021962002100040014x" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/composite_cross_v_05.png"></a>
+    <a href="https://doi.org/10.2134/agronj1929.00021962002100040014x" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/composite_cross_v_05.svg"></a>
     <div class="row">
       <div class="column" style="max-width:46%">
         <img src="../figs/S019_L0_1.gif">

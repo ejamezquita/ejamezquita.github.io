@@ -3,7 +3,7 @@ title: "Demeter y Euler van por una cerveza"
 subtitle: "Cuantificando la forma de la cebada con ATD"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> Diapositivas: `https://bit.ly/cebada_fest` "
+date: "2021-02-18 <br> - <br> Diapositivas: `https://bit.ly/cebada_fest` "
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -469,14 +469,14 @@ class: inverse, middle, center
     
 .pull-left[
 ```{r, out.width="250px"}
-knitr::include_graphics("../figs/complex-good.png")
+knitr::include_graphics("../../tda/figs/complex-good.svg")
 ```
 - 3 componentes, 1 ciclo, 1 vacío
 ]
 
 .pull-right[
 ```{r, out.width="250px"}
-knitr::include_graphics("../figs/cubical_complex_example.jpg")
+knitr::include_graphics("../../tda/figs/cubical_complex_example.svg")
 ```
 - 2 componentes, 3 ciclos, 1 vacío
 ]
@@ -507,7 +507,7 @@ knitr::include_graphics(c("../figs/eccentricity_filter.gif", "../figs/vrips_ver2
 
 $$\chi = \#(\text{Vértices}) - \#(\text{Aristas}) + \#(\text{Caras}).$$
 ```{r, out.width=400}
-knitr::include_graphics("../figs/euler_characteristic_2.png")
+knitr::include_graphics("../../tda/figs/euler_characteristic_2.png")
 ```
 
 - Resumimos todos los rasgos topológicos con la fórmula de Euler-Poincaré,
@@ -525,13 +525,13 @@ $$\chi = \#(\text{Componentes Conexas}) - \#(\text{Ciclos}) + \#(\text{Vacíos})
 --
 
 ```{r, out.width="600px"}
-knitr::include_graphics("../figs/cubical_complex_es.png", auto_pdf = TRUE)
+knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_es.svg", auto_pdf = TRUE)
 ```
 
 ---
 
 class: center
-background-image: url("../figs/euler_characteristic_variety.jpg")
+background-image: url("../../tda/figs/euler_characteristic_variety.jpg")
 background-size: 900px
 background-position: 50% 80%
 
@@ -617,7 +617,7 @@ Avances en reconstrucción práctica: construir un complejo simplicial a partir 
 # Idea de inyectividad
 
 ```{r, out.width="775px", out.height="475px"}
-knitr::include_graphics("lab200330.pdf")
+knitr::include_graphics("../../tda/slides/lab200330.pdf")
 ```
 
 ---
@@ -655,7 +655,7 @@ background-position: 90% 50%
 - Datos súper esparsos cuando la dimensión incrementa
 
 ```{r, out.width="600px"}
-knitr::include_graphics("../figs/curse_of_dimensionality.png")
+knitr::include_graphics("../../demat/figs/curse_of_dimensionality.svg")
 ```
 
 --
@@ -677,7 +677,7 @@ knitr::include_graphics("../figs/curse_of_dimensionality.png")
 - Los puntos tienden a concentrarse en una esfera
 
 ```{r, out.width="270px"}
-knitr::include_graphics("../figs/concentration-circle.png")
+knitr::include_graphics("../../demat/figs/concentration-circle.svg")
 ```
 
 --
@@ -719,7 +719,7 @@ tal que $U^\top U=I$ y $\sum_i\beta_i=0$.
 
 ---
 
-background-image: url("../figs/kernel_trick.png")
+background-image: url("../../demat/figs/kernel_trick.png")
 background-size: 500px
 background-position: 50% 90%
 
@@ -739,7 +739,7 @@ background-position: 50% 90%
 
 ---
 
-background-image: url("../figs/separable-svm.jpg")
+background-image: url("../../demat/figs/separable-svm.svg")
 background-size: 450px
 background-position: 50% 99%
 
