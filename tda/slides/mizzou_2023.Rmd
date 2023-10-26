@@ -215,3 +215,28 @@ Bad complex
 ]
 
 - The dimension of a simplicial complex is the dimension of its highest dimensional simplex.
+
+
+---
+
+class: inverse, middle, center
+
+# Applied Topology $\oplus$ Plant Biology
+
+## Current projects in the works
+
+---
+
+## Quantifying the movement of plants and genes
+
+<div style="text-align:center;">
+<video width="500" controls>
+  <source src="../../cuscuta/video/4pm_rep7_plant_00.mp4" type="video/mp4">
+</video>
+</div>
+<p style="font-size: 9px; text-align: right; color: Grey;"> Credits: Park Lab. <em>In progress</em></p>
+
+```{r, out.width=500}
+knitr::include_graphics("../../mcarto/figs/A1_-_CYP93A1_kde_0.25.jpg")
+```
+<p style="font-size: 9px; text-align: right; color: Grey;"> Credits: Libault Lab. <em>In progress</em></p>

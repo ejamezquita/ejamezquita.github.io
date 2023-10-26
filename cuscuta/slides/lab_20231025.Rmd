@@ -1,0 +1,60 @@
+---
+title: "Cuscuta image processing"
+author: "Max Bentelspacher, **Erik Amézquita**, Supral Adhikari, <br>&mdash;<br>Asha Mudalige, Jaime Barros, So-Yon Park"
+date: "2023-10-25"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+library(knitr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# A video says more than a 1000 images
+
+<video width="900" controls>
+  <source src="../video/4pm_rep7_plant_00.mp4" type="video/mp4">
+</video>
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0265_full_h.jpg)
+
+--
+
+![](../figs/4pm_rep7_plant2_v02_0265_h.jpg)
+
+---
+
+## Isolating cuscuta to the best of our abilities
+
+.pull-left[
+![](../figs/4pm_rep7_plant2_v04_0266_h.jpg)
+]
+
+.pull-right[
+![](../figs/4pm_rep7_plant2_v04_0681_h.jpg)
+![](../figs/4pm_rep7_plant2_v04_0881_h.jpg)
+]
+
+---
+
+background-image: url("../figs/cuscuta_tracking.jpg")
+background-size: 725px
+background-position: 50% 92%
+
+# Keep track of positions and angles
