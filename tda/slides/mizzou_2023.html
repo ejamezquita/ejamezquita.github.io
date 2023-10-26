@@ -4,7 +4,6 @@
     <title>Topological Data Analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita" />
-    <meta name="date" content="2023-10-26" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
@@ -27,11 +26,24 @@ class: center, middle, inverse, title-slide
 ### Division of Plant Sciences &amp; Technology<br>Department of Mathematics<br>University of Missouri<br> -
 ]
 .date[
-### 2023-10-26
+### 2023-10-26 <br> - <br> Published Review <a href="https://doi.org/10.1002/dvdy.175">10.1002/dvdy.175</a>
 ]
 
 ---
 
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+&lt;/style&gt;
 
 
 
@@ -344,6 +356,14 @@ background-position: 50% 75%
 
 ---
 
+class: inverse, middle, center
+
+# Persistence set
+
+## Why take one value when you can take all of them?
+
+---
+
 # Definition: Persistent set
 
 - A *persistent set* is a family of sets `\(\{X_R\}_{R\in\mathbb{R}}\)` together with set maps
@@ -353,57 +373,418 @@ background-position: 50% 75%
 
 - The `\(X_R\)`s can be simplicial complexes, vector spaces, topological spaces, etc. 
 
+###  Persistent Homology
+
+- Your good, ol' simplicial homology but parameterized by `\(\mathbb{R}\)`.
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedra
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topologically invariant features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 3 connected components, 1 loop, 1 voids
+
+&lt;img src="../figs/complex-good.svg" width="350" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each cell is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+&lt;img src="../../barley/figs/eigcurv_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/gaussian_density_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="../../barley/figs/eccentricity_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/vrips_ver2.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
 ---
 
 class: inverse, center, middle
 
 # Persistent Homology
 
-## Your good, ol' simplicial homology but parameterized by `\(\mathbb{R}_{\geq0}\)`.
+## Your good, ol' simplicial homology but parameterized by `\(\mathbb{R}\)`.
 
 ---
 
-# Basic Simplicial Homology
+# Ye olde simplicial homology
 
-- Take `\(\mathbf v_0, \ldots,\mathbf v_d\in\mathbb{R}^d\)` vertices in  general position.
-		
-- The *d-simplex* is the convex hull of these vertices:
-`$$S_d:=\left\{\sum_{i=0}^d\lambda_i\mathbf v_i\,:\,\lambda_i\geq0,\;\sum_{i=0}^d\lambda=1\right\}$$`
+- A `\(d\)`-dimensional simplex `\(\sigma\)` is the convex hulls of `\(d\)` vertices in general position.
 
-&lt;img src="../figs/simplices.svg" width="600" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/simplices.svg" width="300" style="display: block; margin: auto;" /&gt;
 
-- Simplices as `\(\sigma = (\mathbf v_0, \mathbf v_1, \ldots, \mathbf v_d)\)`.
-
-- Refer to `\(\tau = (\mathbf v_0, \mathbf v_1, \ldots,\mathbf v_{d-1})\)` as a face of `\(\sigma\)`.
-
----
-
-# Simplicial complexes
-
-- A simplicial complex is a collection of nicely glued simplices.
-    - Every simplex comes will all its faces.
-    - Any two neighboring simplices share a whole face.
+- Simplicial complexes **K** are collections of nicely glued simplices.
 
 .pull-left[
-&lt;img src="../figs/complex-good.svg" width="400" style="display: block; margin: auto;" /&gt;
-
-Good complex
+&lt;img src="../figs/complex-good.svg" width="300" style="display: block; margin: auto;" /&gt;
+- Good complex
 ]
 
 .pull-right[
-&lt;img src="../figs/complex-bad.svg" width="400" style="display: block; margin: auto;" /&gt;
-
-Bad complex
+&lt;img src="../figs/complex-bad.svg" width="300" style="display: block; margin: auto;" /&gt;
+- Bad complex
 ]
 
-- The dimension of a simplicial complex is the dimension of its highest dimensional simplex.
+- Define *q-chains* `\(C_q = \left\{\sum_{k=1}^r \lambda_k\sigma_k\,:\,\lambda_k\in\mathbb{Z_2},\,\sigma_k \textrm{ a } q\textrm{-simplex}\right\}\)`.
 
+- Favor the use `\(\mathbb{Z_2}\)` instead of `\(\mathbb{Z}\)` to keep things manageable.
+
+---
+
+# Ye olde groups of homology
+
+- `\(\partial_q:C_q\to C_{q-1}\)` with `\(\partial\sigma= \sum_{i=0}^q (-1)^i(\mathbf v_0,\ldots,\mathbf v_{i-1},\mathbf v_{i+1}, \ldots, \mathbf v_{n}).\)`
+
+- Recall that `\(\partial^2 = \partial_q\circ\partial_{q-1}=0\)`.
+
+&lt;img src="../figs/boundary-example.svg" width="500" style="display: block; margin: auto;" /&gt;
+
+- `\(\partial_2(\partial_3(K)) = \mathbf{(v-u)+(w-v)+(x-w)+(y-x)+(u-y)=0}\)`.
+
+- Group of *q-cycles* `\(Z_q(K) = \ker\partial_q\)`.
+
+- Group of *q-boundary cycles* `\(B_q(K) = \text{im}\:\partial_{q+1}\)`
+
+- The *q-th group of homology* is `\(H_q(K)=Z_q(K)/B_q(K)\)`
+
+- The *q-th Betti number* is `\(\beta_q(K)=\dim(H_q(K))\)`
+	
+---
+
+# Now throw in persistence
+
+- A *filtration* of simplicial complex `\(\mathbf K\)` is a collection of nested subcomplexes `\(\mathbf K_0\subset\mathbf K_0\subset\ldots\subset\mathbf K_m=\mathbf K\)`.
+
+&lt;img src="https://www.frontiersin.org/files/Articles/637684/fphys-12-637684-HTML/image_m/fphys-12-637684-g003.jpg" width="400" style="display: block; margin: auto;" /&gt;
+
+- We have canonical inclusions `\(\iota_{i,j}:\mathbf K_i\to\mathbf K_j\)`.
+
+- We see that `\(\iota_{i,k} = \iota_{j,k}\circ\iota_{i,j}\)` for any `\(0\leq i\leq j\leq k\leq m\)`.
+
+- (Abusing notation) These correspond to inclusions `\(\iota_{i,j}:H_q(\mathbf K_i)\to H_q(\mathbf K_j)\)` for `\(q=0,1,2,\ldots\)`.
+
+- The `\((i,j)\)`-th persistent `\(q\)`-th homology group is `\(H_{i,j;q}(\mathbf K) = \text{Im}\,(\iota_{i,j})\)`.
+
+- It's dimension is the `\((i,j)\)`-th persistent `\(q\)`-th Betti number, `\(\beta_{i,j;q}(\mathbf K)\)`.
+
+- A class `\(\alpha\in H_q(\mathbf K_i)\)` *is born* at time `\(i\)` if `\(\alpha\notin H_{i-1,i;q}(\mathbf K)\)`.
+
+- This class `\(\alpha\in H_q(\mathbf K_j)\)` *dies* at time `\(j+1\)` if `\(\iota_{j,j+1}(\alpha)\in H_{i,j;q}(\mathbf K)\)`.
+
+---
+
+
+
+background-image: url("../figs/vr1_00.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_01.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_02.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_03.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_04.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_05.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_06.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+---
+background-image: url("../figs/vr1_07.svg")
+background-size: 500px
+background-position: 50% 90%
+
+# A toy Vietoris-Rips filtration example
+
+Consider a collection of vertices `\(\{v_\lambda\}_{\lambda\in\Lambda}\)` and `\(r\geq0\)`. The subset `\(\{v_0,\ldots,v_n\}\)` is a simplex in the `\(VR(r)\)` simplicial complex iff
+`$$d(v_i,v_j)\leq r\quad\text{ for all }\quad i,j\in\{0,\ldots,n\}.$$`
+
+
+---
+
+background-image: url("../figs/barcode_vr1.svg")
+background-size: 600px
+background-position: 50% 90%
+  
+# Summarizing results in a barcode
+
+.pull-left[
+&lt;img src="../figs/vr1_summary.svg" width="400" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- Five connected components are born from the get-go
+
+- Four of them merge into one at `\(r_4\)`
+
+- A hole is born with this merge
+
+- This hole eventually is filled with triangles at `\(r_6\)`.
+]
+
+---
+
+# Persistence diagrams
+
+
+.pull-left[
+&lt;img src="../figs/persistence_diagrams.svg" width="400" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- Consider `\(C_{i,j;q}\)` all the `\(q\)`-classes that are born at time `\(i\)` and die at time `\(j\)`
+
+- The associated persistence diagram `\(\text{dgm}(\mathcal{F})\)` is a multiset
+
+`\(\text{dgm}(\mathcal{F}) = \bigcup_{q=0}^{n}\{(i,j) : \alpha_{i,j;q}\in C_{i,j;q}\}\cup\textrm{diag}\)`
+
+]
+
+---
+
+background-image: url("../figs/bottleneck_diagram.svg")
+background-size: 600px
+background-position: 50% 90%
+
+# Bottleneck distance and stability
+
+- Consider `\(\text{dgm}_1\)`, `\(\text{dgm}_2\)` two persistence diagrams. The *bottleneck distance$ between them is
+
+`$$d_B(\text{dgm}_1,\text{dgm}_2) = \inf_\gamma\sup_{p\in\text{dgm}_1}\|p-\gamma(p)\|_\infty.$$`
+
+- Where `\(\gamma\)` is a bijection between the `\(q\)`-th `\(\text{dgm}_1\)` and `\(\text{dgm}_2\)`
+
+- **Persistence diagrams are stable under the bottleneck distance!**
+
+---
+
+class: inverse, center, middle
+
+# A word on statistical caution
+
+&lt;img src="../figs/vr2_summary.svg" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("https://anatomypubs.onlinelibrary.wiley.com/cms/asset/affff43e-32c2-4f91-ade4-e1d3020ed4ee/dvdy175-fig-0005-m.jpg")
+background-size: 500px
+background-position: 50% 90%
+
+# The underbelly
+
+- The space of persistence diagrams is notoriously difficult to work with
+
+- Hard to deal with Hausdorff noise
+
+- Plenty of open questions on multiparameter persistence (parameterizing simplicial homology with `\(\mathbb{R}^m\)`).
+
+- Unclear on how to distinguish noise from nuanced signal
+
+- **Interpretability** of the results: what does a persistent diagram really represents?
+
+
+---
+
+background-image: url("../figs/mapper_b_11.svg")
+background-size: 425px
+background-position: 50% 95%
+
+# Plenty of topics left to cover
+
+- Persistence landscapes, persistence images, and other more amenable representations of persistent topological features.
+
+- Bootstraping to distinguish noise from signal.
+
+- Density-based bi-parameter persistence to deal with Hausdorff noise.
+
+- A central-limit-theorem-like theorem for persistence for different classic topological spaces and other probabilistic insights.
+
+- Persistent Homology Transform and the Euler Characteristic Transform.
+
+- Reducing and clustering high-dimensional data with Mapper.
 
 ---
 
 class: inverse, middle, center
 
-# Topology `\(\oplus\)` Plant Biology
+# Literature examples
+
+---
+
+### Detecting holes &amp;rarr; detect cancerous tissue
+
+.pull-left[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg)
+]
+
+.pull-right[
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### Detect holes &amp;rarr; detect reassortment and horizontal evolution
+
+.pull-left[
+![](https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/ce30e9df-d595-4520-a68a-74f3c6f151d1/assets/graphic/pnas.1313480110fig01.jpeg)
+]
+
+.pull-right[
+![](https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/b733c3a3-00f2-43d5-b372-9da25f3d33c9/assets/graphic/pnas.1313480110fig02.jpeg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1313480110"&gt;Chan &lt;em&gt;et al.&lt;/em&gt; (2013)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### Detect holes &amp;rarr; detect open and closed conformations
+
+.pull-left[
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_001.jpg)
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_012.jpg)
+]
+
+.pull-right[
+![](https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_010.jpg)
+]
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1515/sagmb-2015-0057"&gt;Kovacev-Nikolic &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### Detect componets across the morphospace &amp;rarr; detect leaf development
+
+&lt;img src="../figs/g86.png" width="450" style="display: block; margin: auto;" /&gt;
+
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2023.07.14.549010"&gt;Percival &lt;em&gt;et al.&lt;/em&gt; (2023)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+### Detect changes in Euler characteristics &amp;rarr; detect different barley varieties
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%; font-size: 15px;"&gt;
+    &lt;img style="padding: 25px 0 35px 0;" src="../../barley/figs/S019_L0_1.gif"&gt;
+    &lt;p style="font-size: 20px; text-align: center; color: DarkRed;"&gt;X-ray CT scans&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; padding: 0 25px 0 25px; font-size: 15px;"&gt;
+    &lt;img src="../../barley/figs/ecc_X.gif"&gt;
+    &lt;p style="font-size: 20px; text-align: center; color: DarkRed;"&gt;Euler Characteristic Transform&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 15px;"&gt;
+    &lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Shape descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;No. of descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Traditional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Topological + UMAP&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Combined&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.86 &amp;plusmn; 0.010&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    &lt;p style="font-size: 20px; text-align: center; color: DarkRed;"&gt;Classify 28 different accessions&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1093/insilicoplants/diab033"&gt;Amézquita &lt;em&gt;et al.&lt;/em&gt; (2023)&lt;/a&gt;&lt;/p&gt;
+
+
+---
+
+
+class: inverse, middle, center
+
+# Applied Topology `\(\oplus\)` Plant Biology
 
 ## Current projects in the works
 
@@ -420,6 +801,79 @@ class: inverse, middle, center
 
 &lt;img src="../../mcarto/figs/A1_-_CYP93A1_kde_0.25.jpg" width="500" style="display: block; margin: auto;" /&gt;
 &lt;p style="font-size: 9px; text-align: right; color: Grey;"&gt; Credits: Libault Lab. &lt;em&gt;In progress&lt;/em&gt;&lt;/p&gt;
+
+---
+
+class: inverse, middle, center
+
+# Where to go now?
+
+---
+
+# Literature review and growing community
+
+&lt;img src="../figs/amezquita_etal_2020.png" width="500" style="display: block; margin: auto;" /&gt;
+
+.pull-left[
+![](https://lh6.googleusercontent.com/UJMl4_Q2ccGdwrwg7R9-7LlcehV6eCq-sVs_mCPODqxH0vpzDBCjnBlI1s-t9JGe40Li0bkLCXU7DmTOeIrWr72MtT7bRWOa5tIwQrzQGXMDTX8c1KiGOmbOSqiHHVax_Q=w1280)
+]
+
+.pull-right[
+![](../figs/gtml_slack.png)
+- Applied Algebraic Topology Research Network
+]
+
+---
+
+background-image: url("https://lh5.googleusercontent.com/vYDMaU7pTcgKtQ3WqwqBVWcL4ckz5k8Mfseh3KzN53O7nUDUUKox-ISPBIloXZDoi6_a5XNfQanQ6dRGhU7A1-w=w16383")
+background-size: 100px
+background-position: 99% 1%
+
+# AATRN
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="500" src="https://www.aatrn.net/home" title="AATRN"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;&lt;a href="https://www.aatrn.net/home" target="_blank"&gt;Original link&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Actively mantained C/C++ and python
+
+.pull-left[
+![](https://gudhi.inria.fr/assets/img/home.png)
+- [gudhi](https://gudhi.inria.fr/)
+
+&lt;img src="https://scikit-tda.org/_images/ripser.png" width="200" style="display: block; margin: auto;" /&gt;
+- [ripser](https://github.com/Ripser/ripser)
+]
+
+.pull-right[
+![](https://raw.githubusercontent.com/giotto-ai/giotto-tda/master/doc/images/tda_logo.svg)
+- [giotto-tda](https://github.com/giotto-ai/giotto-tda)
+
+&lt;img src="https://scikit-tda.org/_static/logo.png" width="200" style="display: block; margin: auto;" /&gt;
+- [scikit-tda](https://scikit-tda.org/)
+]
+
+---
+
+class: inverse
+
+# Thanks!
+
+- eah4d@missouri.edu
+
+- 240a Bond Life Sciences Center Building
+
+- [https://ejamezquita.github.io/](https://ejamezquita.github.io/)
+
+- Slides: https://ejamezquita.github.io/tda/slides/mizzou_2023.html
+
+## Questions?
+
+&lt;img src="https://64.media.tumblr.com/895f079d8cc1128b5ce3ca7aacf57389/9ff35c052f5d8802-16/s500x750/55486cc6b04f5f7192d0002707ca8b7e550e4db8.gifv" width="200" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../js/remark-latest.min.js"></script>
