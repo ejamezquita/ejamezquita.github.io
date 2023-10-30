@@ -1,0 +1,451 @@
+---
+title: "Premio Sotero Prieto"
+author: "Compilación de Ganadores"
+date: 'Actualizado por última vez: `r Sys.Date()`'
+output:
+  html_document:
+    highlight: pygments
+    self_contained: no
+    lib_dir: libs
+  pdf_document:
+    number_sections: false
+geometry: margin=3.3cm
+linkcolor: pink
+urlcolor: blue
+citecolor: grey
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Premio de la Sociedad Matemática Mexicana a la(s) mejor(es) tesis nivel licenciatura en matemáticas y temas relacionados. La tesis debió haber sido defendida en una institución de educación superior en México durante el año escolar indicado. A falta de una lista o historial oficial, esta lista fue compilada tras una tarde de búsqueda en google y duckduckgo a lo largo de varios sitios web. Se trató establecer un historial de galardonados, tanto medallas como menciones de honor. Se trató de añadir institución de procedencia y título del trabajo de tesis. Se trata de una compilación personal sin relación directa a la SMM u otra institución. Cualquier error u omisión, favor comunicarla a `eah4d(arroba)missouri(punto)edu`. 
+
+```{r output}
+if(knitr::is_latex_output()){
+  foo <- 'Listado en [versión HTML aquí](./soteroprieto.html).'
+}
+
+if(knitr::is_html_output()){
+  foo <- 'Listado en [versión PDF aquí](./soteroprieto.pdf).'
+}
+```
+
+`r foo`
+
+## 2023
+
+### Medalla
+
+- Fernando Olivie Méndez Méndez (UASLP)
+- Violeta Abigail López López (ESFM-IPN)
+    - Rectas contenidas en una superficie cúbica suaves y cómo éstas la determinan
+- José Alfredo Issa Barbará (ITAM)
+- Myriam Hernández Ketchul (UGto)
+    - Graph and string representation of trivalent 2-stratifolds with trivial fundamental group
+
+### Mención Honorífica:
+
+- Víctor Hugo Almendra Hernández (FC-UNAM)
+- Carlos Galeana Hernández (ITAM)
+- Edgar Colín Cruz (FC-UNAM)
+- Luis Atzin Franco Reyna (FC-UNAM)
+
+## 2022
+
+### Medalla
+
+- María José Domenzain Acevedo (ITAM)
+- Mauricio Islas Gómez (UAEH)
+- Sofía de la Mora Tostado (ITAM)
+
+### Mención Honorífica:
+
+- Laura Alejandra Franco Solorio (ITAM)
+- Ileana Areli González Escalante (FC-UNAM)
+- Eduardo León Rodríguez (FC-UNAM)
+
+## 2021
+
+### Medalla
+
+- Sandra Lisett Rodríguez Villalobos (FC-UNAM)
+    - Invariantes en característica prima
+- Jorge Eduardo Gaspar Lara (FC-UNAM)
+    - K-teoría y representaciones invariantes bajo fusión
+
+### Mención Honorífica
+
+- Jesús Jorge Armenta Segura (FC-UNAM)
+    - Modelos de topología combinatoria para problemas de cartas rusas
+- Cesar Zarco Romero (FC-UNAM)
+    - La teoría de límites de gráficas y el lema de regularidad de Szemerédi
+- Shalom Cristina Echalaz Álvarez (UJAT)
+    - Frobenius over valuation rings
+- Edgar Mosqueda Camacho (UADY)
+    - Polígonos de Newton p-ádicos y la racionalidad de la función zeta de una variedad algebraica sobre un campo finito
+
+## 2020
+
+### Medalla
+
+- Ema Laura Guzmán, (FC-UNAM)
+    - Conjuntos dominantes transversales de independientes máximos
+- Omar R. Urquídez (UGto)
+    - Cálculo de nuevas métricas para diagramas de persistencia y aplicaciones a conjuntos de datos
+    
+### Mención Honorífica
+
+- Héctor J. Sotelo (UAZ)
+    - Haces vectoriales sobre curvas elípticas
+- Miguel Ángel Prado Godoy (UGto)
+    - Grupos de Galois en problemas enumerativos
+- Mariana Harris (ITAM)
+    - Modelo matemáticos de la dinámica de autoinducción
+- Sandra I. García (UTM)
+    - Bifurcación hacia atrás en un modelo ecoepidemiológico tipo simbiosis
+- Sandra M. Sandoval (UGto)
+    - Symbolic powers of ideals
+- Carlos M. Madrid (UGto)
+    - Análisis basado en matrices aleatorias y probablidad libre de la dinámica de generalización de redes neuronales
+- Eduardo Sealtiel Martínez Mendoza (ITAM)
+    - Teoría de las posibles cofinalidades de Shela
+
+## 2019
+
+### Medalla
+
+- Felipe Hernandez Lorenzana (FC-UNAM)
+- Tonatiuh Velazquez Ceciliano (FC-UNAM)
+
+### Mención Honorífica
+
+- Sebastian Gutierrez Hernandez (ESFM-IPN)
+- Víctor Andrés Amaya Carvajal (UGto)
+    - Análisis topológico de datos y aprendizaje estadístico para clasificación de galaxias
+- Ramón Iván García Álvarez (UGto)
+    - Polinomios de Tutte en Probabilidad no Conmutativa
+- Manuel Alejandro Garcia Acosta (FC-UNAM)
+- Tania Gabriela Perez Quijano (FC-UNAM)
+- Cesar Ernesto Rodriguez Angon (FC-UNAM)
+- Daniel Green Tripp (FC-UNAM)
+
+## 2018
+
+### Medalla
+
+- Erik José Amézquita Morataya (UGto)
+    - Efficient object classification using the Euler Characteristic
+- Eduardo Campos Moreno (ESFM-IPN)
+- Jorge Garza Vargas (FC-UNAM)
+
+### Mención Honorífica
+
+- Marco Antonio Flores Martínez (UGto)
+    - Curvas Algebraicas y Configuraciones de Puntos en IPˆ1
+- Rangel Hernández Ortiz (FC-UNAM)
+- Daniel Gregorio Longino (FC-UNAM)
+- Jorge Rubén Ruvalcaba (FC-UNAM)
+- Gerardo Zago Yáñez (FC-UNAM)
+
+## 2017
+
+### Medalla
+
+- José Luis Miranda Olvera (FC-UNAM)
+    - Carcajes con potencial no degenerados asociados a triangulaciones de superficies: Existencia y unicidad
+     
+### Mención Honorífica
+
+- Adrián de Jesús Celestino Rodríguez (UGto)
+    - Cumulantes en Probabilidad Libre Tipo B
+- Ricardo Yadel Murillo Pérez (FC-UNAM)
+    - Compresión, Ergodicidad y el Teorema de Shannon-McMillan Breiman
+- Daniel Perales Anaya (FC-UNAM)
+    - Cumulantes en Probabilidad Libre Finita
+    
+## 2016
+
+### Medalla
+
+- Juan Pablo Aguilera Ozuna (ITAM)
+    - Lógica Matemática
+- Jose Maria Ibarra Rodriguez (UGto)
+    - Modelos de homología persistente en filogenética
+- Gilberto Bruno Perez (FC-UNAM)
+    - Ecuaciones integrales y transversalidad del infinito
+
+### Mención Honorífica
+
+- Edgar Alamilla Jimenez (UJAT)
+- Mauricio Enrique Elizalde Mejia (FC-UNAM)
+- Cecilia Neve Jimenez, (FC-UNAM)
+- Ilan Morgenstern Kaplan (ITAM)
+    - Modelos de Bancarrotas
+
+## 2015
+
+### Medalla
+
+- Ramon Eduardo Ronzon Lavie (UGto)
+    - Estratificacion del espacio de foliaciones en el plano proyectivo de grado tres
+
+### Mención Honorífica
+
+- Carlos Erick Culebro Martınez (UNACH)
+     - Sobre espacios homogeneos
+- Luis Eduardo Garcıa Hernandez (FC-UNAM)
+     - Topicos en teorıa de locales
+- Lorena Morales Callejas (FC-UNAM)
+     - Las Q-algebras y algunas de sus generalizaciones
+- Lizbeth Sanchez Flores (UAEH)
+     - Estabilidad robusta y síntesis de ciclos lımite en sistemas controlables de orden n
+     
+## 2014
+
+### Medalla
+
+- Malors Emilio Espinosa Lara (UGto)
+    - Estructuras spin torcidas
+- José Juan Zacarías (FC-UNAM)
+
+### Mención Honorífica
+
+- Jesús Alberto Palma Márquez (FC-UNAM)
+- Manuel Alejandro Juárez Camacho (FC-UNAM)
+- Alejandro Bravo Doddoli (FC-UNAM)
+- Citlali Zamora Mejía (UAEM)
+
+## 2013
+
+### Medalla
+
+- Emmanuel Antonio Naal Olán (UNACH)
+    - Mapas Monomiales
+
+## 2012
+
+### Mención Honorífica
+
+- Pedro Mercado (ITAM)
+    - Agrupamiento espectral con restricciones con aplicación a base de datos musical
+
+## 2011
+
+### Medalla
+
+- Pablo Manuel Tejada Bassols (FC-UNAM)
+    - Topologías de álgebra
+- José Eduardo Simental Rodríguez (FC-UNAM)
+    - Álgebras hereditarias de endomorfismos de módulos sobre el álgebra triangular
+
+### Mención Honorífica
+
+- Adolfo Arroyo Rabasa (FC-UNAM) 
+    - El teorema del punto fijo de Schauder y existencia de soluciones de osciladores no lineales de segundo orden
+- Julio Arnoldo Prado Saavedra (FC-UNAM)
+    - Funciones elípticas y el espacio de subgrupos cerrados de R²
+- Leonardo Ignacio Martínez Sandoval (FC-UNAM) 
+    - El problema del ángel de Conway y gráficas angelicales
+- Faustino Agustin Romano Velázquez (BUAP) 
+    - Singularidades casi homogéneas polares
+
+## 2010
+
+### Medalla
+
+- Isabel Urrutia Schroeder (FC-UNAM)
+- Gustavo Jasso (FC-UNAM)
+    - Álgebras de Lie de tipo afín extendido y formas cuadráticas
+- Cynthia Dennise García Beltrán (UASLP)
+    - Estructuras algebraicas relacionadas con algebroides de Loday
+
+### Mención Honorífica
+
+- Fernando Fontove Herrera (UGto)
+    - Operadores de Hausdorff
+- Guillermo Basulto Elías (UGto)
+    - Sobre los números de Borel y algunas extensiones
+- Adriana González Urquiza (FC-UNAM)
+    - Densidad de soluciones de ecuaciones diferenciales analíticos.
+
+## 2009
+
+### Medalla
+
+- Octavio Arizmendi Echegaray (UGto)
+    - Medidas de Probabilidad Infinitamente Divisibles Libres
+- Luis Núñez Betancourt (UGto)
+    - Índice Homológico de un Campo Vectorial
+
+## 2008
+
+### Medalla
+
+- Imelda Trejo (UAEH)
+    - Some Mathematical Aspects of Computed Tomography
+- Andrés Lara Maldonado (UGto)
+    - Clasificación de Haces Vectoriales de Rango Dos
+
+### Mención Honorífica
+
+- Sofía Ortega Castillo (UGto)
+    
+## 2007
+
+### Medalla
+
+- Omar Antolín Camarena (FC-UNAM)
+    - Critically Connected Matroids
+- Hugo Villanueva Méndez (BUAP)
+    - Promedios en continuos encadenables
+
+### Mención Honorífica
+
+- Santiago Vargas Valente (FC-UNAM)
+    - Elementos de algebra homologica en categorias abelianas y el Teorema de Inmersion en la categoria de grupos abelianos
+
+## 2005
+
+### Medalla
+
+- Alfredo Hubard (FC-UNAM)
+- David Mireles Morales (UNAM-Morelia)
+    - El ataque MOV sobre el logaritmo discreto en curvas elípticas
+
+## 2004
+
+- Daniel Labardini (UNAM)
+    - La latiz de caras de un cono de dimensión finita
+
+### Mención Honorífica
+
+- Johanna Denise Garcia Saldaña (UJED)
+    - Sobre la estructura de campos vectoriales y sus aplicaciones
+- Diego Antonio González Moreno (UNAM)
+    - Conexidad en jaulas
+- Fernando Galaz García (UGto)
+	- El Teorema del Alma
+
+## 2003
+
+### Medalla
+
+- María Isabel Hernández (UGto)
+    - Clasificación de álgebras de Lie de dimensión 3
+
+### Mención Honorífica
+
+- Jose Luis Gómez Rueda (UNAM)
+    - Funciones inducidas entre continuos
+- Francisco Javier Santillán Covarrubias (UNAM)
+    - Sobre clases de módulos cerradas bajo extensiones
+- Juan Pablo Medina-Mora López (ITAM)
+    - Modelos para Seleccionar Carteras Óptimas de Inversión Evaluadas Contra una Cartera Sombra
+
+## 2002
+
+### Medalla
+
+- Isabel Alicia Hubard Escalera (UNAM)
+    - Poliedros coloreados con órdenes cíclicos
+- Edgar Jasso Rodríguez (UNAM)
+    - Superficies incompresibles en complementos de enlaces
+- Adriana Merino Sánchez (UNAM)
+    - Locales, gavillas y morfismos ultrafinitos
+
+### Mención Honorífica
+
+- Félix E. González Solano (UNAM)
+- Guadalupe Rafael Molina Rincón (UNAM)
+    - Endomorfismos naturales del funtor anillo de Burnside (tesis conjunta)
+- Luis José Yúdico Anaya (UNAM)
+    - Estructuras conformes y de Mobius en variedades
+
+## 2001
+
+### Medalla
+
+- Homero Geovani Diaz Marín (UMSNH)
+    - Sobre la realización de estructuras planas singulares
+- Rogelio Pérez Buendía (FC-UNAM)
+    - Las conjeturas de Weil para hipersuperficies de Fermat
+
+## 1999
+
+### Medalla 
+
+- Luis David García (UNAM)
+
+## 1998
+
+### Medalla
+
+- Jorge Luis López López (UMSNH)
+    - Dinámica de separatrices campos vectoriales holomorfos
+    
+### Mención Honorífica
+
+- Emigdio Martínez Ojeda
+    
+## 1996
+
+### Medalla
+
+- Rosa María García de la Rosa
+
+### Mención Honorífica
+
+- Pablo Brena Z.
+    - The spectral radius of the Galois coverings of graphs
+
+## 1995
+
+### Medalla
+
+- Bernardo Abrego Lerma
+
+### Mención Honorífica
+
+- Ricardo Gómez Aíza
+
+## 1994
+
+### Medalla
+
+- Miguel Angel Zárate Reyes
+
+### Mención Honorífica
+
+- Jesús E. Pérez Terrazas
+- Gerardo Acosta García
+
+## 1993
+
+### Medalla
+
+- Déborah Oliveros Braniff
+- Arturo Magidin Viso
+
+### Mención Honorífica
+
+- Edith Adán Bante
+    
+## 1992
+
+### Medalla
+
+- Marıa de los Angeles Morinelli (ITAM)
+- José Martínez León
+- Concepción Alida Casales Núñez
+
+## 1991
+
+### Medalla
+
+- Rita Esther Zuazua Vega (UMSNH)
+    - Álgebras de Duffin-Kemmer: representaciones en dimensiones bajas medio siglo después.
+    
+---
+
+Actualizado por última vez: `r Sys.Date()`.

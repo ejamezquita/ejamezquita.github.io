@@ -1,0 +1,265 @@
+---
+title: "The Gulag Archipelago I-II"
+subtitle: "Selected excerpts" # only for html output
+author: "Aleksandr Solzhenitsyn"
+date: "Thomas P. Whitney (translator)"
+output:
+  tufte::tufte_html:
+    tufte_variant: 'envisioned'
+    self_contained: false
+    lib_dir: libs
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+# Part 1: The Prison Industry
+
+> "In the period of dictatorship, surrounded on all sides by enemies, we sometimes manifested unnecessary leniency and unnecessary softheartedness."
+
+KRYLENKO,
+_speech at the Promparty trial_
+
+## Chapter 1: Arrest
+
+Why, then, should you run away? And how can you resist right then? After all, you'll only make your situation worse; you'll make it more difficult for them to sort out the mistake. And it isn't just that you don't put up any resistance; you even walk down the stairs on tiptoe, as you are ordered to do, so your neighbors won't hear.[^1-5]
+
+[^1-5]: And how we burned in the camps later, thinking: What would things have been like if every Security operative, when he went out at night to make an arrest, had been uncertain whether he would return alive and had to say good-bye to his family? Or if, during periods of mass arrests, as for example in Leningrad, when they arrested a quarter of the entire city, people had not simply sat there in their lairs, paling with terror at every bang of the downstairs door and at every step on the staircase, but had understood they had nothing left to lose and had boldly set up in the downstairs hall an ambush of half a dozen people with axes, hammers, pokers, or whatever else was at hand? After all, you knew ahead of time that those bluecaps were out at night for no good purpose. And you could be sure ahead of time that you'd be cracking the skull of a cutthroat. Or what about the Black Maria sitting out there on the street with one lonely chauffeur-what if it had been driven off or its tires spiked? The Organs would very quickly have suffered a shortage of officers and transport and, notwithstanding all of Stalin's thirst, the cursed machine would have ground to a halt!
+<br><br>
+If... if... We didn't love freedom enough. And even more&mdash;we had no awareness of the real situation. We spent ourselves in one unrestrained outburst in 1917, and then we hurried to submit. We submitted _with pleasure!_ (Arthur Ransome describes a workers' meeting in Yaroslavl in 1921. Delegates were sent to the workers from the Central Committee in Moscow to confer on the substance of the argument about trade unions. The representative of the opposition, Y. Larin, explained to the workers that their trade union must be their defense against the administration, that they possessed rights which they had won and upon which no one else had any right to infringe. The workers, however, were completely indifferent, simply _not comprehending_ whom they still needed to be defended against and why they still needed any rights. When the spokesman for the Party line rebuked them for their laziness and for getting out of hand, and demanded sacrifices from them&mdash;overtime work without pay, reductions in food, military discipline in the factory administration&mdash;this aroused great elation and applause.) We purely and simply _deserved_ everything that happened afterward.
+    
+Every man always has handy a dozen glib little reasons why he is right not to sacrifice himself. 
+
+Some still have hopes of a favorable outcome to their case and are afraid to ruin their chances by an outcry. (For, after all, we get no news from that other world, and we do not realize that from the very moment of arrest our fate has almost certainly been decided in the worst possible sense and that we cannot make it any worse.) Others have not yet attained the mature concepts on which a shout of protest to the crowd must be based. Indeed, only a revolutionary has slogans on his lips that are crying to be uttered aloud; and where would the uninvolved, peaceable average man come by such slogans? He simply _does not know what_ to shout. And then, last of all, there is the person whose heart is too full of emotion, whose eyes have seen too much, for that whole ocean to pour forth in a few disconnected cries.
+
+As for me, I kept silent for one further reason: because those Muscovites thronging the steps of the escalators were too few for me, _too few!_ Here my cry would be heard by 200 or twice 200, but what about the 200 million? Vaguely, unclearly, I had a vision that someday I would cry out to the 200 million. 
+
+But for the time being I did not open my mouth, and the escalator dragged me implacably down into the nether world. 
+
+And when I got to Okhotny Ryad, I continued to keep silent. 
+
+Nor did I utter a cry at the Metropole Hotel. 
+
+Nor wave my arms on the Golgotha of Lubyanka Square .
+
+## Chapter 2: The History of Our Sewage Disposal System
+
+It would have been impossible to carry out this hygienic purging, especially under wartime conditions, if they had had to follow outdated legal processes and normal judicial procedures. And so an entirely new form was adopted: _extrajudicial reprisal_, and this thankless job was self-sacrificingly assumed by the Cheka, the Sentinel of the Revolution, which was the only punitive organ in human history that combined in one set of hands investigation, arrest, interrogation, prosecution, trial, and execution of the _verdict._
+
+There is also no little difficulty in deciding whether we should classify among the prison waves or on the balance sheets of the Civil War those tens of thousands of _hostages_, i.e., people not personally accused of anything, those peaceful citizens not even listed by name, who were taken off and destroyed simply to terrorize or wreak vengeance on a military enemy or a rebellious population. After August 30, 1918, the NKVD ordered the localities "to arrest immediately all Right Socialist Revolutionaries and to take _a significant number of hostages_ from the bourgeoisie and military officers."6 (This was just as if, for example, after the attempt of Aleksandr Ulyanov's group to assassinate the Tsar, not only its members but all the students in Russia and _a significant number of zemstvo officials_ had been arrested.) By a decree of the Defense Council of February 15, 1919&mdash;apparently with Lenin in the chair&mdash;the Cheka and the NKVD were ordered to take hostage _peasants_ from those localities where the removal of snow from railroad tracks "was not proceeding satisfactorily," and "if the snow removal did not take place they were to be shot." (At the end of 1920, by decree of the Council of People's Commissars, permission was given to take Social Democrats as hostages too.)
+
+True, they were supposedly being arrested and tried not for their actual faith but for openly declaring their convictions and for bringing up their children -in the same spirit. As Tanya Khodkevich wrote:
+
+> You can pray _freely_
+>
+> But just so God alone can hear.
+
+(She received a ten-year sentence for these verses.) A person convinced that he possessed spiritual truth was required to conceal it from his own children! In the twenties the religious education of children was classified as a political crime under Article 58-10 of the Code&mdash;in other words, counterrevolutionary propaganda! True, one was still permitted to renounce one's religion at one's trial: it didn't often happen but it nonetheless did happen that the father would renounce his religion and remain at home to raise the children while the mother went to the Solovetsky Islands. (Throughout all those years women manifested great firmness in their faith.) All persons convicted of religious activity received _tenners_, the longest term then given.
+
+And so the waves rolled on&mdash;for "concealment of social origin" and for "former social origin." This received the widest interpretation. They arrested members of the nobility for their social origin. They arrested members of their families. Finally, unable to draw even simple distinctions, they arrested members of the _"individual nobility"&mdash;I.e., anybody who had simply graduated from a university. And once they had been arrested, there was no way back. You can't undo what has been done! The Sentinel of the Revolution never makes a mistake!
+
+As always happened when there were incidents of disturbance or tension, they arrested former people: Anarchists, SR's, Mensheviks, and also _the intelligentsia_ as such. Indeed, who else was there to arrest in the cities? Not the working class!
+
+Once again Mayakovsky came to the rescue:
+
+```
+Think
+    about the Komsomol
+        for days and for weeks!
+
+Look over
+    your ranks,
+        watch them with care.
+        
+Are all of them
+    really
+        Komsomo1s?
+
+Or are they
+    only
+        pretending to be?
+```
+A convenient world outlook gives rise to a convenient juridical term: _social prophylaxis_. It was introduced and accepted, and it was immediately understood by all. (Lazar Kogan, one of the bosses of the White Sea Canal construction, would, in fact, soon say: "I believe that you personally were not guilty of anything. But, as an educated person, you have to understand that social prophylaxis was being widely applied!") And when else, in fact, should unreliable fellow travelers, all that shaky intellectual rot, be arrested, if not on the eve of the war for world revolution? When the big war actually began, it would be too late.
+
+And what accomplished villains these old engineers were! What diabolical ways to sabotage they found! Nikolai Karlovich von Meck, of the People's Commissariat of Railroads, pretended to be terribly devoted to the development of the new economy, and would hold forth for hours on end about the economic problems involved in the construction of socialism, and he loved to give advice. One such pernicious piece of advice was to increase the size of freight trains and not worry about heavier than average loads. The GPU exposed von Meck, and he was shot: his objective had been to wear out rails and roadbeds, freight cars and locomotives, so as to leave the Republic without railroads in case of foreign military intervention! When, not long afterward, the new People's Commissar of Railroads, Comrade Kaganovich, ordered that average loads should be increased, and even doubled and tripled them (and for this discovery received the Order of Lenin along with others of our leaders)&mdash;the malicious engineers who protested became known as _limiters_. They raised the outcry that this was too much, and would result in the breakdown of the rolling stock, and they were rightly shot for their lack of faith in the possibilities of socialist transport.
+
+(These were the years when all the norms of folk psychology were turned inside out: the circumspect folk wisdom expressed in such a proverb as "Haste makes waste" was ridiculed, and the ancient saying that "The slower you go, the farther you'll get" was turned inside out.)
+
+And suddenly Stalin "reconsidered."
+
+The White Sea folk say of the tide, the water _reconsiders_, meaning the moment just before it begins to fall. Well, of course, it is inappropriate to compare the murky soul of Stalin with the water of the White Sea. And perhaps he didn't reconsider anything whatever. Nor was there any ebb tide. But one more miracle happened that year. In 1931, following the trial of the Promparty, a grandiose trial of the Working Peasants Party was being prepared&mdash;on the grounds that they existed (never, in actual fact!) as an enormous organized underground force among the rural intelligentsia, including leaders of consumer and agricultural cooperatives and the more advanced upper layer of the peasantry, and supposedly were preparing to overthrow the dictatorship of the proletariat. At the trial of the Promparty this Working Peasants Party&mdash;the TKP&mdash;was referred to as if it were already well known and under detention. The interrogation apparatus of the GPU was working flawlessly: _thousands_ of defendants had already fully _confessed_ their adherence to the TKP and participation in its criminal plans. And no less than _two hundred thousand_ "members" altogether were promised by the GPU. Mentioned as "heading" the party were the agricultural economist Aleksandr Vasilyevich Chayanov; the future "Prime Minister" N. D. Kondratyev; L. N. Yurovsky; Makarov; and Aleksei Doyarenko, a professor from the Timiryazev Academy (future Minister of Agriculture)[^23]
+
+Then all of a sudden, one lovely night, Stalin _reconsidered._ Why? Maybe we will never know. Did he perhaps wish to save his soul? Too soon for that, it would seem. Did his sense of humor come to the fore&mdash;was it all so deadly, monotonous, so bitter-tasting? But no one would ever dare accuse Stalin of having a sense of humor! Likeliest of all, Stalin simply figured out that the whole countryside, not just 200,000 people, would soon die of famine anyway, so why go to the trouble? And instantly the whole TKP trial was called off. All those who had "confessed" were told they could _repudiate_ their confessions (one can picture their happiness!). And instead of the whole big catch, only the small group of Kondratyev and Chayanov was hauled in and tried.[^24] (In 1941, the charge against the tortured Vavilov was that the TKP had existed and he had been its head.)
+
+[^23]: He might well have been a better one than those who held the job for the next forty years! But how strange is human fate! As a matter of principle, Doyarenko was always nonpolitical! When his daughter used to bring home fellow students who expressed opinions savoring of Socialist Revolutionary views, he made them leave!
+
+[^24]: Kondratyev, sentenced to solitary confinement, became mentally ill there and died. Yurovsky also died. Chayanov was exiled to Alma-Ata after five years in solitary and was arrested again there in 1948.
+
+There was an economic purpose to the development of the NEPmen wave. The state needed property and gold, and there was as yet no Kolyma. The famous gold fever began at the end of 1929, only the fever gripped not those looking for gold but those from whom it was being shaken loose. The particular feature of this new, "gold" wave was that the GPU was not actually accusing these rabbits of anything, and was perfectly willing not to send them off to Gulag country, but wished only to take away their gold by main force. So the prisons were packed, the interrogators were worn to a frazzle, but the transit prisons, prisoner transports, and camps received only relatively minor reinforcements.
+
+But new waves rolled from the collectivized villages: one of them was a wave of agricultural _wreckers_. Everywhere they began to discover _wrecker_ agronomists who up until that year had worked honestly all their lives but who now purposely sowed weeds in Russian fields (on the instructions, of course, of the Moscow institute, which had now been totally exposed; indeed, there were those same 200,000 unarrested members of the Working Peasants Party, the TKP!). Certain agronomists failed to put into effect the profound instructions of Lysenko&mdash;and in one such wave, in 1931, Lorkh, the so-called "king" of the potato, was sent to Kazakhstan. Others carried out the Lysenko directives too precisely and thus exposed their absurdity. (In 1934 Pskov agronomists sowed flax on the snow--exactly as Lysenko had ordered. The seeds swelled up, grew moldy, and died. The big fields lay empty for a year. Lysenko could not say that the snow was a kulak or that he himself was an ass. He accused the agronomists of being kulaks and of distorting his technology. And the agronomists went off to Siberia.) Beyond all this, in almost every Machine and Tractor Station wrecking in the repairing of tractors was discovered&mdash;and that is how the failures of the first collective farm years were explained!
+
+Who among us has not experienced its all-encompassing embrace? In all truth, there is no step, thought, action, or lack of action under the heavens which could not be punished by the heavy hand of Article 58.
+
+The article itself could not be worded in such broad terms, but it proved possible to interpret it this broadly.
+
+From 1934 on, when we were given back the term _Motherland_, subsections were inserted on _treason to the Motherland_&mdash;1a, 1b, 1c, 1d. According to these subsections, all actions directed against the military might of the U.S.S.R. were punishable by execution (1b), or by ten years' imprisonment (1a), but the lighter penalty was imposed only when mitigating circumstances were present and upon civilians only.
+
+Broadly interpreted: when our soldiers were sentenced to only ten years for allowing themselves to be taken prisoner (action injurious to Soviet military might), this was humanitarian to the point of being illegal. According to the Stalinist code, they should all have been shot on their return home.
+
+One important additional broadening of the section on treason was its application "via Article 19 of the Criminal Code"&mdash;"via intent." In other words, no treason had taken place; but the interrogator envisioned an _intention_ to betray&mdash;and that was enough to justify a full term, the same as foractual treason. True, Article 19 proposes that there be no penalty for intent, but only for _preparation_, but given a dialectical reading one can understand intention as preparation. And "preparation is punished in the same way [i.e., with the same penalty] as the crime itself" (Criminal Code). In general, "we draw no distinction between _intention_ and the crime itself, and this is an instance of the _superiority_ of Soviet legislation to bourgeois legislation."
+
+Section 2 listed armed rebellion, seizure of power in the capital or in the provinces, especially for the purpose of severing any part of the U.S.S.R. through the use of force. For this the penalties ranged up to and included execution (as in _every_ succeeding section).
+
+Section 3 was "assisting in any way or by any means a foreign state at war with the U.S.S.R."
+
+This section made it possible to condemn _any_ citizen who had been in occupied territory&mdash;whether he had nailed on the heel of a German soldier's shoe or sold him a bunch of radishes. And it could be applied to any citizeness who had helped lift the fighting spirit of an enemy soldier by dancing and spending the night with him. Not everyone _was_ actually sentenced under this section&mdash;because of the huge numbers who had been in occupied territory. But everyone who had been in occupied territory _could_ have been sentenced under it.
+
+Section 4 spoke about (fantastic!) aid to the international bourgeoisie.
+
+Section 5 was inciting a foreign state to declare war against the U.S.S.R.
+
+A chance was missed to apply this section against Stalin and his diplomatic and military circle in 1940-1941. Their blindness and insanity led to just that. Who if not they drove Russia into shameful, unheard-of defeats, incomparably worse than the defeats of Tsarist Russia in 1904 or 1915? Defeats such as Russia had never known since the thirteenth century. 
+
+Section 6 was espionage.
+
+This section was interpreted so broadly that if one were to count up all those sentenced under it one might conclude that during Stalin's time our people supported life not by agriculture or industry, but only by espionage on behalf of foreigners, and by living on subsidies from foreign intelligence services. Espionage was very convenient in its simplicity, comprehensible both to an undeveloped criminal and to a learned
+jurist, to a journalist and to public opinion.[^29]
+
+[^29]: And very likely spy mania was not merely the narrow-minded predilection of Stalin alone. It was very useful for everyone who possessed any privileges. It became the natural justification for increasingly widespread secrecy, the withholding of information, closed doors and security passes, fenced-off dachas and secret, restricted special shops. People had no way of penetrating the armor plate of spy mania and learning how the bureaucracy made its cozy arrangements, loafed, blundered, ate, and took its amusements.
+
+The breadth of interpretation of Section 6 lay further in the fact that people were sentenced not only for actual espionage but also for: PSh&mdash;Suspicion of Espionage&mdash;or NSh&mdash;Unproven Espionage&mdash;for which they gave the whole works.
+
+And even SVPSh&mdash;Contacts Leading to (!) Suspicion of Espionage.
+
+Section 7 applied to subversion of industry, transport, trade, and the circulation of money.
+
+In the thirties, extensive use was made of this section to catch masses of people&mdash;under the simplified and widely understood catchword _wrecking_.
+
+Section 8 covered terror (not that terror from above for which the Soviet Criminal Code was supposed to "provide a foundation and basis in legality," but terrorism from below).
+
+The _murder_ of an activist, especially, was always treated more seriously than the murder of an ordinary person (as in the Code of Hammurabi in the eighteenth century B.C.). 
+
+An even more important extension of the concept was attained by interpreting Section 8 in terms of that same Article 19, i.e., intent in the sense of _preparation_, to include not only a direct threat against an activist uttered near a beer hall ("Just you wait!") but also the quick-tempered retort of a peasant woman at the market ("Oh, drop dead!"). Both qualified as TN&mdash;Terrorist Intent&mdash;and provided a basis for applying the article in all its severity.[^31]
+
+[^31]: This sounds like an exaggeration, a farce, but it was not I who invented that farce. I was in prison with these individuals.
+
+Section 9 concerned "diversion"&mdash;in other words, sabotage.
+
+The expansion of this section was based on the fact that the counterrevolutionary purpose could be discerned by the interrogator, who knew best what was going on in the criminal's mind.
+
+But there was no section in Article 58 which was interpreted as broadly and with so ardent a revolutionary conscience as Section 10. Its definition was: "Propaganda or agitation, containing an appeal for the overthrow, subverting, or weakening of the Soviet power... and, equally, the dissemination or preparation or possession of literary materials of similar content." For this section in _peacetime_ a minimum penalty only was set (not any less! not too light!); _no upper limit_ was set for the maximum penalty.
+
+After all, anything which _does not strengthen_ must _weaken_: Indeed, anything which does not completely fit in, coincide, _subverts!_
+
+```
+And he who sings not with us today
+    is against
+        us!
+            -MAYAKOVSKY
+```
+
+Section 11 was a special one; it had no independent content of its own, but provided for an aggravating factor in any of the preceding ones: if the action was undertaken by an organization or if the criminal joined an organization.
+
+_Two_ of us had secretly exchanged thoughts&mdash;_in other words_ we were the beginnings of an organization, _in other words_ an organization!
+
+Section 12 concerned itself closely with the conscience of our citizens: it dealt with the _failure to make a denunciation_ of any action of the types listed. And the penalty for the mortal sin of failure to make a denunciation _carried no maximum limit!_
+
+Section 13, presumably long since out of date, had to do with service in the Tsarist secret police-the Okhrana.[^32]
+
+[^32]: There are psychological bases for suspecting I. Stalin of having been liable under this section of Article 58 also. By no means all the documents relating to this type of service survived February, 1917, to become matters of public knowledge. V. F. Dzhunkovsky a former Tsarist police director, who died in the Kolyma, declared that the hasty burning of police archives in the first days of the February Revolution was a joint effort on the part of certain self-interested revolutionaries.
+
+Section 14 stipulated the penalties for "conscious failure to carry out defined duties or intentionally careless execution of same." In brief this was called "sabotage" or "economic counterrevolution"&mdash;and the penalties, of course, included execution.
+
+It was only the interrogator who, after consulting his revolutionary sense of justice, could separate what was intentional from what was unintentional.
+
+Such was the last rib of the fan of Article 58&mdash;a fan whose spread encompassed all human existence.
+
+There is hardly any need to repeat here what has already been widely written, and will be written many times more, about 1937: that a crushing blow was dealt the upper ranks of the Party, the government, the military command, and the GPU-NKVD itself.[^35]
+
+[^35]: These days, as we observe the Chinese Cultural Revolution at the same stage-in the seventeenth year after its final victory-we can begin to consider it very likely that there exists a fundamental law of historical development. And even Stalin himself begins to seem only a blind and perfunctory executive agent.
+
+Here is one vignette from those years as it actually occurred. A district Party conference was under way in Moscow Province. It was presided over by a new secretary of the District Party Committee, replacing one recently _arrested_. At the conclusion of the conference, a tribute to Comrade Stalin was called for. Of course, everyone stood up (just as everyone had leaped to his feet during the conference at every mention of his name). The small hall echoed with "stormy applause, rising to an ovation." For three minutes, four minutes, five minutes, the "stormy applause, rising to an ovation," continued. But palms were getting sore and raised arms were already aching. And the older people were panting from exhaustion. It was becoming insufferably silly even to those who really adored Stalin. However, who would dare be the _first_ to stop? The secretary of the District Party Committee could have done it. He was standing on the platform, and it was he who had just called for the ovation. But he was a newcomer. He had taken the place of a man who'd been arrested. He was afraid! After all, NKVD men were standing in the hall applauding and watching to see _who_ quit first! And in that obscure, small hall, unknown to the Leader, the applause went on&mdash;six, seven, eight minutes! They were done for! Their goose was cooked! They couldn't stop now till they collapsed with heart attacks! At the rear of the hall, which was crowded, they could of course cheat a bit, clap less frequently, less vigorously, not so eagerly-but up there with the presidium where everyone could see them? The director of the local paper factory, an independent and strong-minded man, stood with the presidium. Aware of all the falsity and all the impossibility of the situation, he still kept on applauding! Nine minutes! Ten! In anguish he watched the secretary of the District Party Committee, but the latter dared not stop. Insanity! To the last man! With make-believe enthusiasm on their faces, looking at each other with faint hope, the district leaders were just going to go on and on applauding till they fell where they stood, till they were carried out of the hall on stretchers! And even then those who were left would not falter... Then, after eleven minutes, the director of the paper factory assumed a businesslike expression and sat down in his seat. And, oh, a miracle took place! Where had the
+universal, uninhibited, indescribable enthusiasm gone? To a man, everyone else stopped dead and sat down. They had been saved! The squirrel had been smart enough to jump off his revolving wheel.
+
+That, however, was how they discovered who the independent people were. And that was how they went about eliminating them. That same night the factory director was arrested. They
+easily pasted ten years on him on the pretext of something quite different. But after he had signed Form 206, the final document of the interrogation, his interrogator reminded him:
+
+"Don't ever be the first to stop applauding!" [^36]
+
+[^36]: Told me by N. G&mdash; &mdash;ko.
+
+(And just what are we supposed to do? How are we supposed to stop?)
+
+Now that's what Darwin's natural selection is. And that's also how to grind people down with stupidity.
+
+The composition of the hordes who were arrested in that powerful wave and lugged off, hruf-dead, to the Archipelago was of such fantastic diversity that anyone who wants to deduce the rationale for it scientifically will rack his brain a long time for the answer. (To the contemporaries of the purge it was still more incomprehensible. )
+
+The real law underlying the arrests of those years was the _assignment of quotas_, the norms set, the planned allocations.
+
+Six geologists (the Kotovich group) were sentenced to ten years under 58-7 "for intentionally concealing reserves of tin ore in underground sites in anticipation of the arrival of the Germans." (In other words, they had failed to find the deposits.)
+
+A half-literate stovemaker used to enjoy writing his name in his free time. This raised his self-esteem. There was no blank paper around, so he wrote on newspapers. His neighbors found his newspaper in the sack in the communal toilet, with pen-and-ink flourishes across the countenance of the Father and Teacher. Anti-Soviet Agitation-ten years.
+
+Another peasant, with six children, met a different fate. Because he had six mouths to feed he devoted himself whole-heartedly to collective farm work, and kept hoping he would getsome return for his labor. And he did&mdash;they awarded him a decoration. They awarded it at a special assembly, made speeches. In his reply, the peasant got carried away. He said, "Now if I could just have a sack of flour instead of this decoration! Couldn't I somehow?" A wolflike laugh rocketed through the hall, and the newly decorated hero went off to exile, together with all six of those dependent mouths.
+
+The reverse wave of 1939 was an unheard-of incident in the history of the Organs, a blot on their record! It was not large, but it was put to effective use. It was like giving back one kopeck change from a ruble, but it was necessary in order to heap all the blame on that dirty Yezhov, to strengthen the newcomer, Beria, and to cause the Leader himself to shine more brightly. With this kopeck they skillfully drove the ruble right into the ground. After all, if "they had sorted things out and freed some people" (and even the newspapers wrote intrepidly about individual 'cases of persons who had been slandered), it meant that the rest of those arrested were indeed scoundrels! 
+
+But for that matter they soon took that kopeck back&mdash;during those same years and via those same sections of the boundless Article 58. Well, who in 1940 noticed the wave of wives arrested for _failure to renounce_ their husbands?
+
+It was obvious that a wave had also to roll in high places&mdash;of those to blame for the retreat. (After all, it was not the Great Strategist who was at fault!)
+
+Sentences under 58-10 were handed out to evacuees who talked about the horrors of the retreat (it was clear from the newspapers that the retreat was proceeding according to plan) ; to those in the rear who were guilty of the slanderous rumor that rations were meager; to those at the front who were guilty of the slanderous rumor that the Germans had excellent equipment; and to those everywhere who, in 1942, were guilty of the slanderous rumor that people were dying of starvation in blockaded Leningrad.
+
+To arrest all such persons would have been, from the economic point of view, irrational,
+because it would have depopulated such enormous areas. All that was required in order to heighten the general consciousness was to arrest a certain percentage&mdash;of those guilty, those half-guilty, those quarter-guilty, and those who had hung out their footcloths to dry on "the same branch as the Germans.
+
+After all, even one percent of just one million fills up a dozen full-:blooded camps.
+
+And dismiss the thought that honorable participation in an underground anti-German organization would surely protect one from being arrested in this wave.
+
+They let them go their different ways and then pasted them with Anti-Soviet Agitation for their lovely stories in praise of freedom and good eating in capitalist Sweden. (This was the Kadenko group.) [^43]
+
+[^43]: What happened to this group later makes an anecdote. In camp they kept their mouths shut about Sweden, fearing they'd get a second term. But people in Sweden somehow found out about their fate and published slanderous reports in the press. By that time the boys were scattered far and near among various camps. Suddenly, on the strength of special orders, they were all yanked out and taken to the Kresty Prison in Leningrad. There they were fed for two months as though for slaughter and allowed to let their hair grow. Then they were dressed with modest elegance, rehearsed on what to say and to whom, and warned that any bastard who dared to squeak out of turn would get a bullet in his skull&mdash;and they were led off to a press conference for selected foreign journalists and some others who had known the entire crew in Sweden. The former internees bore themselves cheerfully described where they were living, studying, and working, and expressed their indignation at the bourgeois slander they had _read_ about not long before in the Western press (after all Western papers are sold in the Soviet Union at every corner newsstand!). And so they had written to one another and decided to gather in Leningrad. (Their travel expenses didn't bother them in the least.) Their fresh, shiny appearance completely gave the lie to the newspaper canard. The discredited journalists went off to write their apologies. It was wholly inconceivable to the Western imagination that there could be any other explanation. And the men who had been the subjects of the interview were taken off to a bath, had their hair cut off again, were dressed in their former rags, and sent back to the same camps. But because they had conducted themselves properly, none of them was given a second term.
+
+But, having reached 1947, we cannot remain silent about one of the most grandiose of Stalin's decrees. We have already mentioned the famous law of "Seven-Eight" or "Seven-eighths," on the basis of which they arrested people right and left&mdash;for taking a stalk of grain, a cucumber, two small potatoes, a chip of wood, a spool of thread&mdash;all of whom got ten years.[^46]
+
+[^46]: In the actual documents of the "spool of thread" case, they wrote down
+"200 meters of sewing material." The fact remains that they were ashamed to
+write "a spool of thread."
+
+But the requirements of the times, as Stalin understood them, had changed, and the _tenner_, which had seemed adequate on the eve of a terrible war, seemed now, in the wake of a world-wide historical victory, inadequate. And so again, in complete disregard of the Code, and totally overlooking the fact that many different articles and decrees on the subject of thefts and robberies already existed, on June 4, 1947, a decree was issued which outdid them all. It was instantly christened "Four-sixths" by the undismayed prisoners.
+
+And then, at long last, an ancient shortcoming of the law was corrected. Previously the only failure to make a denunciation which qualified as a crime against the state had been in connection with political offenses. But now simple failure to report the theft of state or collective farm property earned three years of camp or seven years of exile.
+
+Stalin's new line, suggesting that it was necessary, in the wake of the victory over fascism, to _jail_ more people more energetically and for longer terms than ever before, had immediate repercussions, of course, on political prisoners. 
+
+That is what, in the language of Gulag, they called those still undestroyed unfortunates of 1937 vintage, who had succeeded in surviving ten impossible, unendurable years, and who in 1947-1948, had timidly stepped forth onto the land of _freedom_... worn out, broken in health, but hoping to live out in peace what little of their lives remained. But some sort of savage fantasy (or stubborn malice, or unsated vengeance) pushed the Victorious Generalissimo into issuing the order to arrest all those cripples over again, without any new charges! It was even disadvantageous, both economically and politically, to clog the meat grinder with its own refuse. But Stalin issued the order anyway. Here was a case in which a historical personality simply behaved capriciously toward historical necessity.
+
+These waves were not unlike those of 1937, but the _sentences_ were different. The standard sentence was no longer the patriarchal _ten-ruble bill_, but the new Stalinist twenty-five. By now the _tenner_ was for _juveniles_.
+
+And I think this exposition proves that the _Organs_ always earned their pay.
+
+## Chapter 3: The Interrogation
+
+After so many decades have they not taught us that people do not return _from there_? Except for the small, brief, intentional reverse wave of 1939, one hears only the rarest, isolated stories of someone being turned loose as the result of an interrogation. And in such cases, the person was either imprisoned soon again or else he was let out so he could be kept under surveillance. That is how the tradition arose that the _Organs do not make mistakes_. Then what about those who were innocent?
+
+On, sacred simplicity! The Organs have never heard of such a thing as an _inquiry_! Lists of names prepared up above, or an initial suspicion, or a denunciation by an informer, or anyanonymous denunciation,[^5] were all that was needed to bring about the arrest of the suspect, followed by the inevitable formal charge.
+
+[^5]: Article 93 of the Code of Criminal Procedure has this to say: "An anonymous declaration _can_ serve as reason for beginning a criminal case"! (And there is no need to be surprised at the word "criminal" here, since all "politicals" were considered criminals, too, under the Code.)
+
+It turns out that in that terrible year Andrei Yanuaryevich (one longs to blurt out, "Jaguaryevich") Vyshinsky, availing himself of the most flexible dialectics (of a sort nowadays not permitted either Soviet citizens or electronic calculators, since to them _yes_ is _yes_ and _no_ is _no_), pointed out in a report which became famous in certain circles that it is never possible for mortal men to establish absolute truth, but relative truth only. He then proceeded to a further step, which jurists of the last two thousand years had not been willing to take: that the truth established by interrogation and trial could not be _absolute_, but only, so to speak, relative. Therefore, when we sign a sentence ordering someone to be shot we can never be absolutely certain, but only approximately, in view of certain hypotheses, and in a certain sense, that we are punishing a _guilty person_[^8]. Thence arose the most practical conclusion: that it was useless to seek absolute evidence&mdash;for evidence is always relative-or unchallengeable witnesses&mdash;for they can say different things at different times. The proofs of guilt were _relative_, approximate, and the interrogator could find them, even when there was no evidence and no witness, without leaving his office, "basing his conclusions not only on his own intellect but also on his Party sensitivity, his _moral forces_" (in other words, the superiority of someone who has slept well, has been well fed, and has not been beaten up) "and on his _character_" (i.e. his willingness to apply cruelty!).
+
+[^8]: Perhaps Vyshinsky, no less than his listeners, needed this ideological comfort at this time. When he cried out from the prosecutor's platform: "Shoot them all like mad dogs!" he, at least, who was both evil and quick of mind, understood that the accused were innocent. And in all probability he and that whale of Marxist dialectics, the defendant Bukharin, devoted themselves with all the greater passion to the dialectical elaboration of the judicial lie: for Bukharin it was too stupid and futile to die if he was altogether innocent (thus he _needed_ to find his own guilt!); and for Vyshinsky it was more agreeable to see himself as a logician than as a plain downright scoundrel. 
+
+In only one respect did Vyshinsky fail to be consistent and retreat from dialectical logic: for some reason, the executioner's _bullet_ which he allowed was not relative but _absolute_...
+
+

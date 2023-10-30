@@ -268,7 +268,7 @@ knitr::include_graphics('https://media.springernature.com/original/springer-stat
 ### Detect componets across the morphospace &rarr; detect leaf development
 
 ```{r, out.width=450}
-knitr::include_graphics('https://www.egr.msu.edu/~amezqui3/tda/figs/g86.png')
+knitr::include_graphics('../../tda/figs/g86.png')
 ```
 
 <p style="font-size: 10px; text-align: right; color: Grey;"> Credits: Percival <em>et al.</em> (in preparation)</p>

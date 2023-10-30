@@ -1,0 +1,160 @@
+---
+title: "Premio Mixbaal"
+author: "Compilación de Ganadores"
+date: 'Actualizado por última vez: `r Sys.Date()`'
+output:
+  pdf_document:
+    number_sections: false
+  html_document:
+    highlight: pygments
+    self_contained: no
+    lib_dir: libs
+geometry: margin=3.3cm
+linkcolor: pink
+urlcolor: blue
+citecolor: grey
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Premio de la Sociedad Mexicana de Computación Científica y sus Aplicaciones A.C. (SMCCA) a la(s) mejor(es) tesis nivel licenciatura en matemáticas aplicadas y ramas afines. La tesis debió haber sido defendida en una institución de educación superior en México durante el año escolar indicado. Esta lista fue compilada tras una tarde de búsqueda en google y duckduckgo a lo largo de varios sitios web. Se trató establecer un historial de galardonados, tanto medallas como menciones de honor. Se trató de añadir institución de procedencia y título del trabajo de tesis. Se trata de una compilación personal sin relación directo a la SMCCA u otra institución. Cualquier error u omisión, favor comunicarla a  `eah4d(arroba)missouri(punto)edu`. 
+
+```{r output}
+if(knitr::is_latex_output()){
+  foo <- 'Listado en [versión HTML aquí](./soteroprieto.html).'
+}
+
+if(knitr::is_html_output()){
+  foo <- 'Listado en [versión PDF aquí](./soteroprieto.pdf).'
+}
+```
+
+`r foo`
+
+## 2022
+
+- Luis Ramón Munive Hernández (UAChapingo)
+    - Análisis del proceso espaciotemporal de los incendios forestales en el Estado de México
+
+## 2021
+
+- Fernando Javier Aguilar Canto (UADY)
+   - Métodos de ajuste paramétrico e hiperparamétrico de Redes Neuronales con algoritmos biológicamente inspirados
+   
+### Mención Honorífica
+
+- Jessica Pereda Méndez (UACM/UNAM)
+   - Estudio de tráfico vehicular mediante redes complejas y cadenas de Markov discretas
+
+## 2020
+
+No hubo edición de este premio
+
+## 2019
+
+- Emmanuel Romero Ruiz (UGto)
+    - Algoritmo memético para el problema de particionado de grafos en ejecuciones a largo plazo
+
+## 2018
+
+- Martha Leticia Ruíz Zavala (UMSNH)
+    - Solución numérica de la ecuación vectorial de Saint-Venant utilizando métodos Híbridos
+
+## 2017
+
+- Olivia Resendiz Flores (UAEH)
+    - Control parcial de un sistema caótico de especies
+
+### Mención Honorifica
+
+- Enrique Vázquez Mendoza (UAEH)
+    - Efecto de la desnutrición sobre la composición y organización de las fibras de los fascículos del músculo extensor digitorum longus de la rata (Rattus norvegicus)
+
+## 2015
+
+-  Saydeth Lili Ledesma Molinero (UAQ)
+    - Estudio sobre los operadores de transmutación y sus aplicaciones
+
+- Mayra Guadalupe García (UAZ)
+    - Análisis de la población de VIH/SIDA en México de 1983 a 2012: un estudio retrospectivo y prospectivo
+    
+### Mención Honorífica
+
+- Gerardo Tinoco Guerrero (UMSNH)
+
+## 2014
+
+- Guillermo Olicón (UNAM-FC)
+
+## 2013 	
+
+- Carlos Enrique Améndola Cerón (ITAM)
+    - Una introducción a la estadística algebraica
+
+## 2012
+
+- Gustavo Adolfo García Cano (UNAM-FC)
+
+### Mención Honorífica
+
+- Cid Reyes Bustos (ITAM)
+    - Criptografía con Grupos de Trenzas
+
+## 2011
+
+- Luis Daniel Blanco Cocom (UADY)
+    - Modelación Matemática para un Sistema en Continuo de Generación de Hidrógeno o en Fase Líquida
+    
+- Carlos Armando de Jesús Cantú García (ITAM)
+    - Modelo de redes de circulación para el problema de arbitraje de tipo de cambio
+
+## 2010
+
+- Mario Barrientos (UAChapingo)
+
+### Mención Honorífica
+
+- Jose Carlos Méndez de la Torre (UAZ)
+    - Construcción de Unidades Electorales Autosimilares Utilizando Mapeos Autoorganizados
+
+- Rubalcava García Iraís (BUAP)
+
+## 2009
+
+- Jesús Castañeda Rivera (UNID - Morelia)
+
+## 2008 
+
+- Víctor Breña Medina (FC-UNAM)
+    - Ordered Structures in Some Reaction-Diffusion-Advection Systems
+
+## 2006
+
+- Marisol Flores Garrido (UAChapingo)
+    - Una visión en la solución numérica de problemas con valores en la frontera
+    
+## 2004
+
+### Mención Honorífica
+
+- Consuelo  Isabel  Doddoli  de  la  Machorra (UNAM-FC)
+
+## 2003
+
+- Luis Zapata Gonzalez (UAChapingo)
+
+## 2002
+
+- Edgar Omar Reséndiz (UAChapingo)
+    - Interpolación, wavelets y B-splines
+
+### Mención Honorífica
+
+- Juan Pablo Medina Mora (ITAM)
+    - Modelos para seleccionar carteras óptimas de inversión evaluadas contra una cartera sombra
+    
+---
+
+Actualizado por última vez: `r Sys.Date()`.

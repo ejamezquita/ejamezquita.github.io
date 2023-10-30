@@ -8,7 +8,7 @@ output:
   xaringan::moon_reader:
     css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
     chakra: '../../js/remark-latest.min.js'
-    lib_dir: libs
+    lib_dir: '../../libs'
     nature:
       highlightStyle: github
       highlightLines: true

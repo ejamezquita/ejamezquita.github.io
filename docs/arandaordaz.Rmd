@@ -1,0 +1,535 @@
+---
+title: "Premio Francisco Aranda Ordaz"
+author: "Compilación de Ganadores"
+date: 'Actualizado por última vez: `r Sys.Date()`'
+output:
+  html_document:
+    highlight: pygments
+    self_contained: no
+    lib_dir: libs
+  pdf_document:
+    number_sections: false
+geometry: margin=3.3cm
+linkcolor: pink
+urlcolor: blue
+citecolor: grey
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Premio de la Asociación Mexicana de Estadística (AME) a la(s) mejor(es) tesis nivel licenciatura y maestría en estadística y ramas afines. El premio se otorga cada dos años. La tesis debió haber sido defendida en una institución de educación superior en México durante los años escolares indicados. Esta lista fue compilada tras una tarde de búsqueda en google y duckduckgo a lo largo de varios sitios web. Se trató establecer un historial de galardonados, tanto medallas como menciones de honor. Se trató de añadir institución de procedencia y título del trabajo de tesis. Se trata de una compilación personal sin relación directo a la AME u otra institución. Cualquier error u omisión, favor comunicarla a `eah4d(arroba)missouri(punto)edu`.
+
+```{r output}
+if(knitr::is_latex_output()){
+  foo <- 'Listado en [versión HTML aquí](./arandaordaz.html).'
+}
+
+if(knitr::is_html_output()){
+  foo <- 'Listado en [versión PDF aquí](./arandaordaz.pdf).'
+}
+```
+
+`r foo`
+
+# 2023
+
+## Maestría
+
+### Primer Lugar
+
+- Luis Fernando Escárcega Ríos (CIMAT)
+    - *Extensión del Teorema de Breuer-Major*
+    - Asesor: Arturo Jaramillo Gil
+
+### Segundo Lugar
+
+- Aideé Violeta Enroth Ortiz (IIMAS, UNAM)
+    - *Hierarchies of Dependent Random Measure*
+    - Asesor: Ramsés Mena Chávez
+
+### Tercer Lugar
+
+- Eduardo Pérez Castro
+    - _Construcción y Validación de Índices de Síndrome Metabólico Para Cada Sexo en Adultos Mexicanos: Un Análisis Factorial Confirmatorio_
+    - Asesores: Cruz Vargas de León y Flaviano Godínez Jaimes
+
+## Licenciatura
+
+### Primer Lugar
+
+- José Pliego San Martín (ITAM)
+    - *Modelo de Supervivencia Bivariado Basado en Cópulas*
+    - Asesor: Luis Enrique Nieto Barajas
+
+### Segundo Lugar
+
+- Angel Emmanuel Rodríguez Moreno (UNAM)
+    - *Redes Neuronales Bayesianas Usando Inferencia Variacional: Una Aplicación en la Clasificación de Imágenes*
+    - Asesor: Lizbeth Naranjo Albarrán
+
+### Tercer Lugar
+
+- Carlos Fernando Vázquez Guerra (UNAM)
+    - *Aplicación de Distintos Métodos de Agrupamiento en Piezas Musicales*
+    - Ruth Selene Fuentes García
+
+# 2021
+
+## Maestría
+
+### Primer Lugar
+
+- Melina Nohemí del Ángel Martínez (CIMAT)
+    - *Estimación de traslape entre nichos climáticos para dilucidar la relación suculencia-aridez*
+    - Asesor: Miguel Nakamura Savoy
+
+### Segundo Lugar
+
+- Roberto Cabal López (CIMAT)
+    - _Robust estimation of the mean of a random matrix: a non-asymptotic study_
+    - Asesor: Emilien Joly
+
+### Tercer Lugar
+
+- Lizette Lemus González (CIMAT)
+    - _Distribution regression and its application to ecological inference_
+    - Asesor: Johan van Horebeek
+
+## Licenciatura
+
+### Primer Lugar
+
+- Fernando Antonio Zepeda Herrera (ITAM)
+    - *Análisis Bayesiano de las configuraciones sociales del Front National en la elecciones presidenciales de 2012*
+
+### Segundo Lugar
+
+- Mauricio Villanueva Domínguez (ITAM)
+    - *Análisis de la burbuja del precio del Bitcoin bajo un modelo log-periódico con término de error AR-GARCH*
+    
+### Tercer Lugar
+
+- Alejandro Olaya Gómez (ITAM)
+    - *Caracterización de grupos con modelos bayesianos no paramétricos*
+- Daniela Portillo del Valle (FC-UNAM)
+
+# 2018
+
+## Maestría
+
+### Primer Lugar
+
+Desierto
+
+### Segundo Lugar
+
+* Román Aguirre Pérez (IIMAS, UNAM) 
+    - _Mapas de Mortalidad Bayesianos_
+    - Asesor: Eduardo Arturo Gutiérrez Peña
+    
+### Tercer Lugar
+
+* Araceli Ramírez López (UAM-Iztapalapa) 
+    - _Modelos de Markov Ocultos para Describir los Niveles de Ozono en la Atmósfera de la Ciudad de México_
+    - Asesor: Blanca Rosa Pérez Salvador
+
+## Licenciatura
+
+### Primer Lugar
+
+* Roberto Cabal López (UADY)
+    - _Inferencia Estadística para el Proceso de Poisson Modulado_
+    - Asesores: José Luis Batún Cutz y Henry Gaspar Pantí Trejo
+
+### Segundo Lugar
+
+* Sergio Daniel Raya Rios (FC-UNAM)
+    - _Temas Selectos de Minería de Textos_
+    - Asesores: Amparo López Gaona y Lizbeth Naranjo Albarrán
+
+### Tercer Lugar
+
+* Erik Amézquita Morataya (UG) 
+    - _Efficient Object Classification using the Euler Characteristic_
+    - Asesor: Antonio Rieser
+* Eduardo Selim Martínez Mayorga (FC-UNAM)
+    - _Simulación y Estimación en tres Procesos de Difusión Fundamentales: Ornstein-Uhlenbeck, Cox-Ingersoll-Ross y Wright Fisher_
+    - Director: Ramsés Humberto Mena Chávez
+
+# 2016
+
+## Maestría
+
+### Primer Lugar
+
+* Israel Emmanuel Ambriz Lobato (CIMAT)
+    - _Modelos gráficos no dirigidos vía cópulas condicionales no paramétricas_
+    - Asesores: Rogelio Ramos Quiroga y Rolando José Biscay Lirio
+
+### Segundo Lugar
+
+* Carlos Minutti Martínez (FC-UNAM)
+    - _Generación de una metodología para la caracyerizaación de yacimientos petroleros mediante métodos estadísticos y numéricos_
+    - Asesor: Susana Gómez Gómez
+    
+### Tercer Lugar
+
+* Wilfrido Jacobo Paredes García (UAQ) 
+    - _Diseño estadístico experimental para la discriminación entre dos modelos sobre el comportamiento en la toma de decisión_
+    - Asesor: Eduardo Castaño Tostado
+
+## Licenciatura
+
+### Primer Lugar
+
+* David Alejandro Martell Juárez (ITAM)
+    _Implementación computacional y aplicaciones de un modelo bayesiano no paramétrico para agrupación de series de tiempo_
+    - Asesor: Luis Enrique Nieto Barajas
+
+### Segundo Lugar
+
+* Edgar Alamilla Jiménez (UJAT) 
+    - _Reducción de la dimensionalidad de microarreglos ADN para estimar la función de supervivencia_
+    - Asesor: Addy Margarita Bolívar Cimé
+    
+### Tercer Lugar
+
+* Angel Daniel Ojeda Jiménez (FC-UNAM)
+    - _Tratamiento de la No Respuesta en Encuestas por Muestreo Probabilístico_
+    - Asesor: Patricia I. Romero Mares
+
+# 2014
+
+## Maestría
+
+### Primer Lugar
+
+Desierto
+
+### Segundo Lugar
+
+* Jesús Iván Beltrán Beltrán (UAM-Iztapalapa)
+    - _Cálculo del p-valor en Pruebas de Bondad de Ajuste_
+    - Asesores: Blanca Rosa Pérez Salvador y Federico O'Reilly
+* María Naturaleza Isaura Cossío Vital (UAM-Iztapalapa)
+    - _Diseño e Implementación de un Simulador Dinámico del Sistema Metro de la Ciudad de México_
+    - Asesores: Patricia Saavedra Barrera y Blanca Rosa Pérez Salvador
+
+### Tercer Lugar
+
+* Arnaldo Andrés Rebolledo Peba (UADY)
+    - _Un Modelo Garch Multivariado Elíptico y su Aplicación al Riesgo en Portafolios_
+    - Asesor: José Luis Batún Cutz
+
+### Mención Honorífica
+
+* Xóchitl Itxel Popoca Jiménez (UAM-Iztapalapa)
+    - _Optimalidad de Pruebas de Hipótesis Secuenciales con Grupos de Tamaño Aleatorio_
+    - Asesor: Andrey Novikov
+
+## Licenciatura
+
+### Primer Lugar
+
+* María Andrea Usi López (ITAM)
+    - _Análisis Bayesiano de la Influencia en México_
+    - Asesor: Luis Enrique Nieto Barajas
+    
+### Segundo Lugar
+
+* Jonathan Martínez Martínez (FC-UNAM)
+    - _Modelos de Volatilidad Estocástica y su Aplicación a la Administración de Riesgos Financieros_
+    - Asesor: María Asunción Begoña Fernández Fernández
+* Eduardo Selim Martínez Mayorga (FC-UNAM)
+    - _Estimación Basada en Cadenas de Markov Monte Carlo para el Análisis de Series de Tiempo Enteras_
+    - Asesor: Ruth Fuentes García
+
+### Tercer Lugar
+
+* Rodrigo Antonio Hernández Hernández (ITAM)
+    - _Modelos Bayesianos para el Análisis de Pacientes con VIH en México_
+    - Asesor: Luis Enrique Nieto Barajas
+
+# 2012
+
+## Maestría
+
+### Primer Lugar
+
+* Asael Fabián Martínez Martínez (FC-UNAM)
+    - _Métodos Computacionales para Modelos de Mezclas No Paramétricas_
+    - Asesor: Ramsés Mena Chávez
+
+### Segundo Lugar
+
+* Daniel Alba Cuellar (CIMAT)
+    - _Detección de Registros Duplicados entre Dos Archivos Digitales_
+    - Asesor: Johan van Horebeek
+    
+### Tercer Lugar
+
+* Luis Alejandro Escobar López (UAA)
+    - _Coeficiente de Determinación y Análisis de Varianza, para Regresión Polinomial Local, en Muestreo de Poblaciones Finitas_
+    - Asesor: José Elías Rodríguez Muñoz
+
+## Licenciatura
+
+### Primer Lugar
+
+* Miguel Ángel Contreras Ortíz (FC-UNAM)
+    - _Construcción de un Modelo AR-ARCH vía Variables Latentes_
+    - Asesor: Alberto Contreras Cristán
+
+### Segundo Lugar
+
+* Gilberto Molina Aguilar (UNISON) 
+    - _Teoría de Valores de Extremos Aplicada a la Gestión de Riesgos en Inundaciones_
+    - Asesor: José Arturo Montoya Laos
+
+### Tercer Lugar
+
+* Alejandro Ramírez Núñez (UAGro)
+    - _Análisis Espectral Singular de Series de Tiempo_
+    - Asesores: Sergio Francisco Juárez Cerrillo y Francisco Julián Ariza Hernández
+
+### Mencion Honorífica
+
+* Pedro Regueiro Martínez (ITAM)
+    - _Análisis Jerárquico Bayesiano del Futbol Mexicano_
+    - Asesor: Manuel Mendoza Ramírez
+* Fabián Sánchez Valdovinos (FC-UNAM)
+    - _Formación y Evaluación del número de Conglomerados Usando Modelos Basados en Mezclas_
+    - Asesor: Ruth Selene Fuentes García
+* Claudia Rocío Solís Lemus
+    - *Propuesta de una medida de dispersión generalizada*
+
+# 2010
+
+## Maestría
+
+### Primer Lugar
+
+Desierto
+
+### Segundo Lugar
+
+* Soraida Nieto Murillo (UAM-Iztapalapa)
+    - _Crédito al consumo: La estadística aplicada a un problema de riesgo crediticio_
+    - Asesora: Blanca Rosa Pérez Salvador
+    
+### Tercer Lugar
+
+* Francisco Javier Rubio Alvarez (CIMAT)
+    - _Modelación Estadística del Cociente de Medias beta de dos Variables Aleatorias Normales_
+    - Asesora: Eloísa Díaz-Francés Murguía
+
+## Licenciatura
+
+### Primer Lugar
+
+Desierto
+
+### Segundo Lugar
+
+* María Fernanda de la Vega Duque (ITAM)
+    - _¿De qué depende la calidad de la educación primaria en México?_
+    - Asesor: Gonzalo Hernández Licona
+* Susana Hernández Alquicira (FC-UNAM)
+    - _Análisis secuencial en estudios observacionales_
+    - Asesor: Inocencio Rafael Madrid Ríos
+
+### Tercer Lugar
+
+* Guillermo Basulto Elías (UGto)
+    - _Sobre los números normales de Borel y algunas variantes_
+    - Asesor: Víctor Manuel Pérez-Abreu Carrión
+
+### Mención Honorífica
+
+* Roberto Bárcenas Curtis (FC-UNAM)
+    - _Modelos de Volatilidad Multivariados_
+    - Asesor: Ruth Selene Fuentes García
+
+* Claudia Rocío Solís Lemus (ITAM)
+    - _Propuesta de una medida de dispersión generalizada_
+    - Asesor: Víctor M. Guerrero Guzmán
+
+# 2008
+
+## Maestría
+
+### Primer Lugar
+
+* Isadora Antoniano Villalobos (IIMAS-UNAM)
+    - _El Proceso Fleming-Viot de Mutación Neutral desde una Perspectiva Bayesiana_
+    - Asesor: Ramsés H. Mena Chávez
+
+### Segundo Lugar
+
+* Lidia Ery Toledo Rodríguez (CIMAT) 
+    - _Modelación de Poblaciones de Cerambícidos en Cultivos de Agave_
+    - Asesor: Miguel Nakamura Savoy
+
+### Tercer Lugar
+
+* Addy Margarita Bolívar Cimé (CIMAT)
+    - _Intervalos de Estimación Bootstrap para Cuantiles en Teoría de Valores Extremos_
+    - Asesores: Eloísa Díaz Francés y Joaquín Ortega Sánchez
+
+## Licenciatura
+
+### Primer Lugar
+
+* Marco Aurelio Ramírez Corzo (ITAM)
+    - _Análisis Bayesiano de una Poisson sobre-Dispersa para la Estimación de SONR_
+    - Asesor: Enrique de Alba Guerra
+
+### Segundo Lugar
+
+* Alejandro Cruz Marcelo (FC-UNAM)
+    - _Estimación de Intervalo en el Análisis de Máximos por Bloques. Un Estudio Basado en Simulaciones_
+    - Asesor: Joaquín Ortega Sánchez
+
+### Tercer Lugar
+
+* Erik Armando Vázquez Rivera (FC-UNAM)
+    - _Series de Tiempo con Valores Discretos_
+    - Asesor: Ramsés H. Mena Chávez
+    
+### Mención Honorífica
+
+* Sahari Cabello Galicia (ITAM) 
+    - _Análisis de Supervivencia; Modelos Frailty_
+    - Asesor: Luis E. Nieto Barajas
+* José Antonio Parra Téllez (ITAM)
+    - _Análisis Bayesiano Semiparamétrico de Regresión_
+    - Asesor: Luis E. Nieto Barajas
+* Carla Ysusi Mendoza
+    - _Estimation of the Variation of Prices using High-Frequency Financial Data_
+
+# 2006
+
+## Maestría
+
+* Juan Carlos Martínez Ovando (UNAM)
+   - Asesor: Eduardo Gutiérez Peña
+
+## Licenciatura
+
+### Segundo Lugar
+
+- Francisco Rivera Hernández (ITAM)
+    - _Estudio del Desempeño de Remuestreo bajo Diseños Muestrales Complejos_
+    
+### Tercer Lugar
+
+- Carlos V. Rodríguez Caballero (FC-UNAM)
+    - Asesor: Ramsés H. Mena
+* Leonardo Kuba Dorfsman (UNAM)
+
+# 2004
+
+## Maestría
+
+* Víctor Manuel Alvarado Castro (CIMAT)
+
+## Licenciatura
+
+* Hadid Vera Llamas Cruz (ITAM)
+
+### Mención Honorífica
+
+* Gerónimo Uribe Bravo (FC-UNAM)
+
+# 2002
+
+## Maestría
+
+Desierto
+
+## Licenciatura
+
+* Blanca Rosa Sainz López (ITAM)
+    - _Desagregación mensual del PIB trimestral de México (1993-2000). Un método directo, recursivo y de pronóstico_
+    - Asesor: Víctor Manuel Guerrero Guzmán
+    
+### Mención Honorífica
+
+- Leonardo Rojas Nandayapa (ITAM)
+    - *Máxima Verosimilitud MCMC en Modelos Autologísticos*
+
+# 2000
+
+## Maestría
+
+* Alberto Molina Escobar (IIMAS-UNAM)
+
+## Licenciatura
+
+### Primer Lugar
+
+- María Esther Pérez Trejo (ITAM)
+    - _Detección de efectos activos en experimentos factoriales no replicados_
+    
+### Tercer Lugar
+
+- Karim A. Anaya Izquierdo (ITAM) 
+    - _Comparación de métodos de inferencia sobre probabilidades condicionales_
+
+# 1998
+
+## Maestría
+
+* Luis Enrique Nieto Barajas (IIMAS-UNAM)
+    - _Inferencia Bayesiana a partir de distribuciones finales multimodales_
+    - Asesor: Eduardo Gutiérrez Peña
+
+## Licenciatura
+
+* Jaime Vázquez Alamilla (FC-UNAM)
+
+# 1996
+
+Desierto en ambas categorías
+
+# 1994
+
+## Maestría
+
+* Gabriel Huerta Gómez (IIMAS-UNAM)
+
+## Licenciatura
+
+### Tercer Lugar
+- Alejandro Ríos Curiel (ITAM)
+    - _Pruebas de bondad de ajuste ji-cuadrada bajo diseños muestrales complejos_
+    
+* Ana María Madrigal Gómez (ITAM)
+
+# 1992
+
+## Maestría
+
+* Eduardo Arturo Gutiérrez Peña (IIMAS-UNAM)
+
+## Licenciatura
+
+* Amelia Lorena Rosas Matínez (ITAM)
+    - _Pronósticos con restricciones en modelos de suavizamiento exponencial_
+    - Asesor: Víctor Manuel Guerrero Guzmán
+
+# 1990
+
+## Maestría
+
+* José Mendoza Blanco (IIMAS-UNAM)
+
+## Licenciatura
+
+* Eduardo Arturo Gutiérrez Peña (FC-UNAM)
+    
+---
+
+Actualizado por última vez: `r Sys.Date()`.
