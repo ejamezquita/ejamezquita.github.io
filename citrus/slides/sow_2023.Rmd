@@ -1,0 +1,273 @@
+---
+title: "Un botánico y un matemático"
+subtitle: "van por una limonada"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
+institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
+date: "2023-11-07<br> - <br> Publicado in [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      ratio: '4:3'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+
+# <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+background-image: url(https://imagensemoldes.com.br/wp-content/uploads/2020/07/Imagem-Lego-PNG.png)
+background-size: 300px
+background-position: 100% 0%
+
+## Los cítricos son como los legos
+
+![](../figs/citrus_family_tree_1.jpg)
+<p style="font-size: 8px; text-align: right; color: Grey;">Fuente: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+---
+
+class: inverse, middle, center
+
+# Cuando la vida te da limones...
+
+## No es parte de mi investigación
+
+## (pero los cítricos son geniales en general)
+
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/south_coast_field_station_citron.jpg")
+```
+
+---
+
+background-image: url("../crc_pics/palestine_sweet_lime.jpg")
+background-size: 250px
+background-position: 100% 0%
+
+
+# Medicina occidental y nutrición
+
+<div class="row">
+  <div class="column" style="max-width:50%; font-size: 15px;">
+    <img style="padding: 0;" src="https://i.natgeofe.com/n/6ea07420-2e0d-48cf-9ece-59e6c75c363d/book-talk-scurvy-4_3x4.jpg">
+  </div>
+  <div class="column" style="max-width:50%; font-size: 15px;">
+    <img style="padding: 0;" src="https://ichef.bbci.co.uk/news/776/cpsprodpb/D597/production/_91097645_jameslind.jpg">
+    <img style="padding: 0;" src="https://encoredocs.com/wp-content/uploads/2020/02/Limey.jpg">
+  </div>
+</div>
+
+---
+
+background-image: url("../crc_pics/rubidoux_trifoliate.jpg")
+background-size: 250px
+background-position: 100% 0%
+
+## El origen de la Mafia
+
+
+<div class="row">
+  <div class="column" style="max-width:50%; font-size: 15px;">
+    <img style="padding: 0;" src="https://epsilon.aeon.co/images/5f81de79-9102-448d-9fd4-d9b202bb8cc7/header_v2-essay-53374480_master.jpg">
+    <img style="padding: 0;" src="https://scx2.b-cdn.net/gfx/news/hires/2018/queensresear.jpg">
+  </div>
+  <div class="column" style="max-width:50%; font-size: 15px;">
+    <img style="padding: 0;" src="https://ih1.redbubble.net/image.1275527310.7746/flat,750x,075,f-pad,750x1000,f8f8f8.jpg">
+  </div>
+</div>
+
+---
+
+background-image: url(https://citrusvariety.ucr.edu/sites/default/files/IMG_8379_0.JPG)
+background-size: 950px
+background-position: 50% 0%
+
+# Citrus Variety Collection @ UC Riverside
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc4.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc3.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc2.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc5.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc1.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc6.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc8.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc9.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc10.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc11.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
+  </div>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# Ahora sí
+
+## Algo de matemáticas
+
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/nagami_kumquat.jpg")
+```
+
+---
+
+## Datos: Tomografías &rarr; Procesamiento de Imágenes
+
+<div class="row">
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
+    <p style="text-align: center;">Colaboración con UCR</p>
+  </div>
+  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
+    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
+    <p style="text-align: center;">Tomografías 3D</p>
+  </div>
+  <div class="column" style="max-width:23%; color: Navy; font-size: 15px;">
+    <img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif">
+    <p style="text-align: center;">Original</p>
+  </div>
+</div>
+
+<div class="row" style="margin: 0 auto;">
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_spine.gif">
+    <p style="text-align: center;">Centro</p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_endocarp.gif">
+    <p style="text-align: center;">Carnaza</p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_rind.gif">
+    <p style="text-align: center;">Rind</p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_exocarp.gif">
+    <p style="text-align: center;">Cáscara</p>
+  </div>
+  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
+    <img src="../figs/SR01_L01_black_oil_glands.gif">
+    <p style="text-align: center;"><strong>Glándulas</strong></p>
+  </div>
+</div>
+
+---
+
+## Glándulas de aceite y el desarrollo de la fruta
+
+.pull-left[
+![](`r "https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg"`)
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://www.boredpanda.com/life-cycles-pics/">BoredPanda</a></p>
+
+Desarrollo de un limón
+]
+
+.pull-right[
+![](../figs/SR01_L01_black_oil_glands.gif)
+]
+
+---
+
+background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
+background-size: 150px
+background-position: 98% 1%
+
+
+# Comparemos ~~peras y manzanas~~ limones y naranjas
+
+
+```{r, out.width=800, fig.align='center'}
+knitr::include_graphics(c('../../citrus/figs/SR01_CRC3289_12B-19-9_L00_lambproj.jpg',
+                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj.jpg'))
+```
+
+---
+
+# Densidad esférica (spherical KDE)
+
+![](../figs/WR19_CRC3842_18B-18-5_L00_emi_kde_N.jpg)
+
+
+- Una probadita de estadística direccional
+
+---
+
+background-image: url("../../citrus/figs/ppp3.png")
+background-size: 225px
+background-position: 95% 3%
+
+# Resumen
+
+.left-column[
+
+```{r, out.width=150, fig.align='center'}
+knitr::include_graphics(c('../../citrus/crc_pics/citrus_amblycarpa.jpg',
+                          '../../citrus/figs/SR01_L01_black_exocarp.gif',
+                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg'))
+```
+
+]
+
+.right-column[
+- Es posible **comparar** limas con naranjas sin importar formas ni tamaños.
+
+- Podemos modelar la **distribución** de las glándulas de aceite en los cítricos.
+
+- **Primera** vez que se describe la forma de cítricos con tomografía.
+
+- También la **primera** vez que se usa estadística direccional en botánica.
+]
+
+---
+
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# ¡Muchas gracias!
+
+<div class="row">
+  <div class="column" style="max-width:15%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://impacts.natsci.msu.edu/sites/_impacts/cache/file/88B73780-59CE-416F-92FF20D18DD8F4DC_medium.jpg">
+    <p style="text-align: center; color: White">Liz Munch (MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center; color: White">Tim Ophelders (Utrecht)</p>
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
+    <p style="text-align: center; color: White">Michelle Quigley<br>(PSU)</p>
+  </div>
+  <div class="column" style="max-width:15%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
+  </div>
+  <div class="column" style="max-width:65%; font-size: 24px; line-height:1.25; margin-left:auto;margin-right:auto;">
+  <p style="text-align: center; color: White"><strong>Email</strong>: <span style="color: Yellow">eah4d@missouri.edu</span></p>
+  <p style="text-align: center; color: White"><strong>Diapositivas</strong>: <span style="color: Yellow">ejamezquita.github.io</span></p>
+  <img style="padding: 0 0 0 0;" src="../figs/citrus_diagnostic.gif">
+  </div>
+</div>
