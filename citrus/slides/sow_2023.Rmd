@@ -204,44 +204,6 @@ knitr::include_graphics(c('../../citrus/figs/SR01_CRC3289_12B-19-9_L00_lambproj.
 
 ---
 
-# Densidad esférica (spherical KDE)
-
-![](../figs/WR19_CRC3842_18B-18-5_L00_emi_kde_N.jpg)
-
-
-- Una probadita de estadística direccional
-
----
-
-background-image: url("../../citrus/figs/ppp3.png")
-background-size: 225px
-background-position: 95% 3%
-
-# Resumen
-
-.left-column[
-
-```{r, out.width=150, fig.align='center'}
-knitr::include_graphics(c('../../citrus/crc_pics/citrus_amblycarpa.jpg',
-                          '../../citrus/figs/SR01_L01_black_exocarp.gif',
-                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg'))
-```
-
-]
-
-.right-column[
-- Es posible **comparar** limas con naranjas sin importar formas ni tamaños.
-
-- Podemos modelar la **distribución** de las glándulas de aceite en los cítricos.
-
-- **Primera** vez que se describe la forma de cítricos con tomografía.
-
-- También la **primera** vez que se usa estadística direccional en botánica.
-]
-
----
-
-
 background-image: url("../../cmse/figs/institutional_logos.jpg")
 background-size: 500px
 background-position: 95% 5%
