@@ -89,37 +89,6 @@ background-position: 100% 0%
 
 ---
 
-background-image: url(https://citrusvariety.ucr.edu/sites/default/files/IMG_8379_0.JPG)
-background-size: 950px
-background-position: 50% 0%
-
-# Citrus Variety Collection @ UC Riverside
-
-<div class="row">
-  <div class="column" style="max-width:25%; font-size: 15px;">
-    <img style="padding: 0;" src="../crc_pics/cvc4.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc3.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc2.jpg">
-  </div>
-  <div class="column" style="max-width:25%; font-size: 15px;">
-    <img style="padding: 0;" src="../crc_pics/cvc5.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc1.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc6.jpg">
-  </div>
-  <div class="column" style="max-width:25%; font-size: 15px;">
-    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc8.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc9.jpg">
-  </div>
-  <div class="column" style="max-width:25%; font-size: 15px;">
-    <img style="padding: 0;" src="../crc_pics/cvc10.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc11.jpg">
-    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
-  </div>
-</div>
-
----
-
 class: inverse, middle, center
 
 # Ahora sí
@@ -231,5 +200,36 @@ class: inverse
   <p style="text-align: center; color: White"><strong>Email</strong>: <span style="color: Yellow">eah4d@missouri.edu</span></p>
   <p style="text-align: center; color: White"><strong>Diapositivas</strong>: <span style="color: Yellow">ejamezquita.github.io</span></p>
   <img style="padding: 0 0 0 0;" src="../figs/citrus_diagnostic.gif">
+  </div>
+</div>
+
+---
+
+background-image: url(https://citrusvariety.ucr.edu/sites/default/files/IMG_8379_0.JPG)
+background-size: 950px
+background-position: 50% 0%
+
+# Citrus Variety Collection @ UC Riverside
+
+<div class="row">
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc4.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc3.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc2.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc5.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc1.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc6.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc8.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc9.jpg">
+  </div>
+  <div class="column" style="max-width:25%; font-size: 15px;">
+    <img style="padding: 0;" src="../crc_pics/cvc10.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc11.jpg">
+    <img style="padding: 0;" src="../crc_pics/cvc12.jpg">
   </div>
 </div>
