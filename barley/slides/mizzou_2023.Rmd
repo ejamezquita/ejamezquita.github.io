@@ -1,9 +1,9 @@
 ---
 title: "Quantifying the shape of plants"
 subtitle: "using the Euler Characteristic Transform"
-author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis, Danelle Seymour <br> -"
+author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "2022-03-16<br>-<br>In _inSilico Plants_ **4**(1) 2022"
+date: "`r Sys.Date()` <br> - <br> In [_inSilico Plants_ **4**(1) 2022](https://doi.org/10.1093/insilicoplants/diab033)"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -306,25 +306,10 @@ knitr::include_graphics("../../tda/figs/euler_characteristic_2.png")
 
 $$\chi = \#(\text{Connected Components}) - \#(\text{Loops}) + \#(\text{Voids}).$$
 
---
-
 - The Euler characteristic is a **topological invariant**.
 
 ---
 
-# Euler Characteristic Curve (ECC)
-
-- Consider a cubical complex $X\subset\mathbb{R}^d$
-
-
-- And a unit-length direction $\nu\in S^{d-1}$
-
-- And the subcomplex containing all cubical cells below height $h$ in the direction $\nu$
-$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ for all }x\in\Delta\}$$
-
-- The Euler Characteristic Curve (ECC) of direction $\nu$ is defined as the sequence $$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}$$
-
----
 
 background-image: url("../figs/ecc_ver2.gif")
 background-size: 750px
@@ -495,25 +480,6 @@ background-position: 95% 90%
   </div>
 </div>
 
----
-
-# Raw Data: X-rays &rarr; Image Processing
-
-<div class="row">
-  <div class="column" style="max-width:51%; color: Navy; font-size: 15px;">
-    <img style="padding: 2px 0 2px 0;" src="../figs/x3000_setup.jpg">
-    <p style="text-align: center;"> Proprietary X-Ray CT scan reconstruction </p>
-  </div>
-  <div class="column" style="max-width:17.5%; color: Navy; font-size: 15px;">
-    <img src="../figs/S019_L0_1.gif">
-    <p style="text-align: center;"> 975 spikes </p>
-  </div>
-  <div class="column" style="max-width:20.5%; color: Navy; font-size: 15px;">
-    <img src="../figs/S017_L0_seed_10_0.gif">
-    <p style="text-align: center;"> 38,000 seeds </p>
-  </div>
-</div>
-
 <div class="row">
   <div class="column" style="max-width:35%; color: Navy; font-size: 15px;">
     <img style="padding: 2px 0 2px 0;" src="../figs/seed_orientation1.png">
@@ -556,46 +522,35 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/S012_L2_Blue_33.png")
-background-size: 150px
-background-position: 99% 50%
+background-image: url("../figs/ect_ver2.gif")
+background-size: 600px
+background-position: 50% 98%
 
-# Game plan
-
-- **Goal:** Classify 28 barley parental accessions using solely grain morphology information.
-
-- **3121** grains in total
-
---
+# Topological shape descriptors
 
 .pull-left[
-```{r, out.width=150}
+```{r, out.width=250}
 knitr::include_graphics('../figs/pole_directions_p7_m12_crop.jpg')
 ```
 ]
 
 .pull-right[
 - 158 directions
-- 16 thresholds per direction
+
+- 16 slices per direction
+
 - Every seed is associated a $158\times16=2528$-dim vector
-- Dimensions reduced with UMAP
+
+- Reduced to 12 dimensions with UMAP
 ]
 
---
 
-- Compare **3** sets of morphological descriptors
+---
 
-Descriptor | No. of descriptors
------------|--------------------
-Traditional | 11
-Topological (ECT &rarr; UMAP) | ~~2528~~ &rarr; 12
-Combined (Trad &oplus; Topo) | 23
+# Supervised Learning
 
---
+![](../../demat/figs/supervised_learning.png)
 
-- Sample randomly 75/25 training/testing sample for each accession.
-
-- Repeat the sampling and SVM computation 100 times and consider the average.
 
 ---
 
@@ -688,7 +643,13 @@ knitr::include_graphics(c('../figs/discerning_directions.png'))#, '../figs/arrow
 
 ---
 
-# Into semi-supervised territory
+# Predicting with Semi-Supervised Learning
+
+![](../../demat/figs/semisupervised_learning.png)
+
+---
+
+# Prediction into semi-supervised territory
 
 - Train an SVM with 100% of the founders $(F_0)$
 
@@ -704,293 +665,30 @@ knitr::include_graphics(c('../figs/discerning_directions.png'))#, '../figs/arrow
 
 ---
 
-class: center, inverse, middle
+background-image: url("../figs/comparison_lines_combined_topounscaled_d158_T16_horz.png")
+background-size: 900px
+background-position: 50% 70%
 
-# 5. If life gives you lemons...
-
-## Looking to strike some oil
-
-### Modeling citrus oil gland distribution
+## Observe shape distribution across lines
 
 ---
 
-## Think of citrus as lego blocks
-
-![](../../citrus/figs/citrus_family_tree_1.jpg)
-<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
-
----
-
-## Oil glands are closely linked to fruit development
-
-.pull-left[
-![](`r "https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg"`)
-<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://www.boredpanda.com/life-cycles-pics/">BoredPanda</a></p>
-
-Developing cycle of a lemon
-]
-
-.pull-right[
-<iframe width="560" height="300" src="https://static-movie-usa.glencoesoftware.com/webm/10.1073/956/d916befc88029defb1ecef6c4a2fd83db89428d9/pnas.1720809115.sm02.webm" frameborder="0" allowfullscreen></iframe>
-<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1073/pnas.1720809115">Smith <em>et al.</em> (2018)</a></p>
-
-- Cross-sectional view of a navel orange peel bending to the point of jetting. 
-
-- Huge perfume and food industry behind essential oils
-
-]
-
----
-
-## Raw Data: X-rays &rarr; Image Processing
-
-<div class="row">
-  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
-    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/crc_diversity.jpg">
-    <p style="text-align: center;"> UCR Collaboration </p>
-  </div>
-  <div class="column" style="max-width:38%; color: Navy; font-size: 15px;">
-    <img style="padding: 2px 0 2px 0;" src="../../citrus/crc_pics/citrus_xrayct_scanning.jpeg">
-    <p style="text-align: center;"> 3D X-Ray CT scan </p>
-  </div>
-  <div class="column" style="max-width:23%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_CRC3289_12B-19-9_L01_raw.gif">
-    <p style="text-align: center;"> Raw </p>
-  </div>
-</div>
-
---
-
-<div class="row" style="margin: 0 auto;">
-  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_black_spine.gif">
-    <p style="text-align: center;"> Spine </p>
-  </div>
-  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_black_endocarp.gif">
-    <p style="text-align: center;"> Endocarp </p>
-  </div>
-  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_black_rind.gif">
-    <p style="text-align: center;"> Rind </p>
-  </div>
-  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_black_exocarp.gif">
-    <p style="text-align: center;"> Exocarp </p>
-  </div>
-  <div class="column" style="max-width:20%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/SR01_L01_black_oil_glands.gif">
-    <p style="text-align: center;"> Oil glands</p>
-  </div>
-</div>
-
----
-
-# Allometry
-
-+ Linear relationship between size-related measurements.
-
-<div class="row" style="margin: 0 auto;">
-  <div class="column" style="max-width:49%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/exocarp_vs_endocarp.jpg">
-    <img src="../../citrus/figs/whole_vs_oil_glands.jpg">
-  </div>
-  <div class="column" style="max-width:49%; color: Navy; font-size: 15px;">
-    <img src="../../citrus/figs/whole_vs_rind.jpg">
-    <img src="../../citrus/figs/oil_glands_vs_num_glands.jpg">
-  </div>
-</div>
-
-+ Total number of glands seems to be decoupled
-
----
-
-## The centers will be just fine
-
-.pull-left[
-![](../../citrus/figs/SW02_L00_center_oil_glands.gif)
-- About 6K&rarr;20K individual oil glands detected
-
-- Number in the right ballpark
-
-- **We have a typical point cloud in $\mathbb{R}^3$.**
-]
-
-.pull-right[
-![](../../citrus/figs/oil_gland_number_vs_area.png)
-<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1006/anbo.2001.1546">Knight <em>et al.</em> (2001)</a></p>
-]
-
----
-
-## Size and average distance between closest oil glands
-
-![](../../citrus/figs/knn01_panel.svg)
-
-- Smaller fruits report higher density of oil glands
-- Similar results when looking at the average distance between each oil gland and its 2nd, 3rd, ..., 25th nearest neighbors
-
----
-
-## Average distance from each gland to its $k$-th nearest neighbor
-
-![](../../citrus/figs/panel_knn25_growth.svg)
-
-+ $\text{Avg.dist}(k) = \sqrt{Mk + B}$
-+ Oil glands might be distributing themselves following **normal diffusion** mechanics
-+ The **outliers** for citrus groups usually correspond to hybrids.
-
----
-
-background-image: url("../../citrus/ellipsoids/Li_and_Griffiths_2004.png")
-background-size: 400px
-background-position: 95% 3%
-
-# Best ellipsoid fitting
-
-- A general quadratic surface is defined by the equation
-
-$$\eqalignno{ & ax^{2}+by^{2}+cz^{2}+2fxy+2gyz+2hzy\ \ \ \ \ \ \ \ \ &\hbox{(1)}\cr &+2px+2qy+2rz+d=0.}$$
-
-- Let $$\rho = \frac{4J-I}{a^2 + b^2 + c^2},$$
-
-$$\eqalignno{ &I = a+b+c &\hbox{(2)}\cr &J =ab+bc+ac-f^{2}-g^{2}-h^{2}&\hbox {(3)}\cr & K=\left[\matrix{ a & h & g \cr h & b & f \cr g & f & c }\right] &\hbox{(4)}}.$$
-
-- These values are invariant under rotation and translation and equation (1) represents an ellipsoid if $J > 0$ and $IK>0$.
-
----
-
-background-image: url("../../citrus/ellipsoids/Li_and_Griffiths_2004.png")
-background-size: 400px
-background-position: 95% 3%
-
-# Best ellipsoid fitting
-
-With our observations $\{(x_i,y_i,z_i)\}_i$, we would ideally want a vector of parameters $(a,b,c,f,g,h,p,q,r,d)$ such that
-
-$$
-\begin{pmatrix}
-x_1^2 & y_1^2 & z_1^2 & 2x_1y_1 & 2y_1z_1 & 2x_1z_1 & x_1 & y_1 & z_1 & 1\\
-x_2^2 & y_2^2 & z_2^2 & 2x_2y_2 & 2y_2z_2 & 2x_2z_2 & x_2 & y_2 & z_2 & 1\\
-\vdots& \vdots& \vdots& \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
-x_n^2 & y_n^2 & z_n^2 & 2x_ny_n & 2y_nz_n & 2x_nz_n & x_n & y_n & z_n & 1
-\end{pmatrix}
-\begin{pmatrix}
-a \\ b \\ \vdots \\ d
-\end{pmatrix}
-=
-\begin{pmatrix}
-0 \\ 0 \\ \vdots \\ 0
-\end{pmatrix}
-$$
-or
-$$
-\mathbf{D}\mathbf{v} = 0
-$$
-
-The solution to the system above can be obtained via Lagrange multipliers
-
-$$\min_{\mathbf{v}\in\mathbb{R}^{10}}\left\|\mathbf{D}\mathbf{v}\right\|^2, \quad \mathrm{s.t.}\; kJ - I^2 = 1$$
-
-If $k=4$, the resulting vector $\mathbf{v}$ is guaranteed to be an ellipsoid. 
-
-Experimental results suggest that the optimization problem also yields ellipsoids for higher $k$'s if there are enough sample points.
-
----
-
-background-image: url("../../citrus/ellipsoids/Li_and_Griffiths_2004.png")
-background-size: 200px
-background-position: 95% 3%
-
-## Model the whole fruit as an ellipsoid
-
-.pull-left[
-![](../../citrus/figs/SW01_CRC3030_12B-8-5_L02_frontal_ell_projection.jpg)
-![](../../citrus/figs/SR01_CRC3289_12B-19-9_L02_frontal_ell_projection.jpg)
-]
-
-.pull-right[
-![](../../citrus/figs/C08C_CRC3546_18A-5-3_L00_frontal_ell_projection.jpg)
-![](../../citrus/figs/WR11_CR3228_12B-30-9_L02_frontal_ell_projection.jpg)
-]
-
----
-
-## How spherical _is_ a round orange?
-
-![](../../citrus/figs/sphericity_index_distribution_white.svg)
-
-.pull-left[
-- No unique way to compute sphericity
-- Most formulas in terms of the longest, intermediate, and shortest $A,B,C$ semi-axes lengths of the best-fit ellipsoid.
-- **Most citrus are highly spherical**
-]
-
-.pull-right[
-+ $\sqrt[3]{\frac{BC}{A^2}}$ (Krumbein, 1941)
-+ $\frac{C}{\sqrt{AB}}$ (Corey, 1949)
-+ $\sqrt[3]{\frac{C^2}{AB}}$ (Sneed and Folk, 1958)
-+ $\frac{C}{\sqrt{\frac13 (A^2+B^2+C^2)}}$ (Janke, 1966)
-]
-
----
-
-## Oil gland modeling with directional statistics
-
-.left-column[
-
-<p style="font-size: 14px; color: Black;">Visualize in 2D with Lambert azimuthal equal-area projections</p>
-<p style="font-size: 14px; color: Black;">Project from north and south poles</p>
-
-![](https://upload.wikimedia.org/wikipedia/commons/4/4d/Generalized_Lambert_Equal-Area_projection.gif)
-![](https://upload.wikimedia.org/wikipedia/commons/a/a9/LambertAlt.gif)
-<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://en.wikipedia.org/wiki/Lambert_azimuthal_equal-area_projection">Wikipedia</a></p>
-]
-
-.right-column[
-![](../../citrus/figs/uniform_comparison_panel.jpg)
-
-- Points on the ellipsoid surface can be described in terms of ellipsoidal longitudes and latitudes.
-- Re-interpret these coordinates on a sphere
-- All **directional statistics machinery** is available!
-- E.g. oil glands **do not** distribute uniformly on the fruit surface
-]
-
-
----
-
-background-image: url("../../citrus/ellipsoids/GarciaPortugues_2013.png")
-background-size: 250px
-background-position: 95% 3%
-
-## Spherical Kernel Density Estimation
-
-![](../../citrus/figs/M01_CRC3226_12B-27-1_L00_emi_kde_N.jpg)
-
-- Oil glands of a mandarin
-
-- Red arrows indicate the most significant gradient values for the density function
-
-- Statistical tool to model oil gland distribution!
-
----
 
 # Future directions
 
-.pull-left[
-![](../../citrus/figs/SW02_L00_center_oil_glands.gif)
+.left-column[
+![](../figs/seeds_batch2_2_transp.png)
+![](../figs/seeds_batch2_3_transp.png)
 ]
 
-.pull-right[
-- **Quantify oil gland distribution using persistence homology** (or any other TDA tools)
+.right-column[
+- Identify specific molecular markers corresponding to morphological differences across the diverse barley population.
 
-- Compare differences in oil gland density distribution
-    - Between "species"
-    - Between wild types and domesticated fruits
-    
-- Propose a distribution model
+- Develop a high-throughput pipeline to produce 3D images of individual barley seeds and quantify comprehensively their morphology.
 
-- Insights into fruit development
+- Formalize a method for promising seedling selection to further crop breeeding.
+
+- Extend such pipeline and population genetics studies to other crops and grains.
 ]
 
 ---
@@ -1009,41 +707,29 @@ class: inverse
     <p style="text-align: center; color: White">Liz Munch<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
     <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
-    <img style="padding: 0 0 0 0;" src="../figs/S017_L0_seed_10_0.gif">
   </div>
   <div class="column" style="max-width:19.5%; font-size: 13px;">
     <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
     <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
-    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
-    <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
+    <p style="text-align: center; color: White">Michelle Quigley<br>(PSU)</p>
   </div>
-  <div class="column" style="max-width:14%; font-size: 13px;">
+  <div class="column" style="max-width:16.5%; font-size: 13px;">
   <img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p">
   <p style="text-align: center; color: White">Dan Koenig<br>(UC Riverside)</p>
-  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
-  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
-  <img style="padding: 0 0 0 0;" src="../../citrus/figs/SR01_L01_black_exocarp.gif">
+  <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
+    <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
   </div>
-  <div class="column" style="width:10%; font-size: 24px;">
+  <div class="column" style="width:3%; font-size: 24px;">
   </div>
-  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25; padding: 0 0 0 0;">
+  <div class="column" style="max-width:40%; font-size: 24px; line-height:1.25">
   <p style="text-align: center; color: White"><strong>Email</strong></p>
-  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
-  <p style="text-align: center; color: White"><strong>Website/slides</strong></p>
-  <p style="text-align: center; color: Yellow"><a href="https://egr.msu.edu/~amezqui3/aboutme.html" target="_blank">egr.msu.edu/~amezqui3</a></p>
+  <p style="text-align: center; color: Yellow">eah4d@missouri.edu</p>
+  <p style="text-align: center; color: White"><strong>Slides and Website</strong></p>
+  <p style="text-align: center; color: Yellow">ejamezquita.github.io</p>
   <p style="text-align: center; color: White"><strong>References</strong></p>
-  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
-  <strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, J.B. Landis, D. Koenig, E. Munch, D.H. Chitwood (2022) <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform"</a>. <em>in Silico Plants</em> 4(1); diab033
-  </p>
-  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
-  <strong>E.J. Amézquita</strong>, M.Y. Quigley, T. Ophelders, D. Seymour, E. Munch, D.H. Chitwood <a href="" target="_blank">The shape of aroma: measuring and modeling citrus oil gland distribution"</a>. In preparation. 
-  </p>
-  <p style="font-size: 15px; color: Yellow; line-height:1.1; font-family: 'Yanone Kaffeesatz'">
-      K. Turner, S. Mukherjee, D.M. Boyer (2014) <a href="https://doi.org/10.1093/imaiai/iau011" target="_blank">"Persistent homology transform for modeling shapes and surfaces,"</a> <em>Information and Inference</em>, 3(4) 310–344
-  </p>
-  <p style="text-align: center; color: White; font-size:10px; line-height:1.1">Slides made in xaringan and rmarkdown</p>
-  
+  <img style="padding: 0 0 0 0;" src="../figs/amezquita_etal_2021.png">
+  <p style="text-align: center; color: White; font-size:15px; line-height:1.1">Amézquita et al (2021) <em>in silico Plants</em><br>DOI: <a href="https://doi.org/10.1093/insilicoplants/diab033">10.1093/insilicoplants/diab033</a></p>
+  <p style="text-align: center; color: White; font-size:15px; line-height:1.1">Slides made in <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html" target="_blank">xaringan</a>.</p>
   </div>
 </div>
