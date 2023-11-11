@@ -167,7 +167,7 @@ knitr::include_graphics("../figs/amezquita_etal_2021.png")
     <p style="text-align: center;">28 accessions around the world</p>
   </div>
   <div class="column" style="max-width:50%; color: Navy; font-size: 15px;">
-    <img style="padding: 2px 0 2px 0;" src="../figs/composite_cross_collection.jpg">
+    <img style="padding: 2px 0 2px 0;" src="../figs/composite_cross_collection_06.svg">
     <p style="text-align: center;">58 generations in California</p>
   </div>
 </div>

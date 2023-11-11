@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Erik Amézquita Division of Plant Sciences &amp; Technology, University of Missouri" />
+
+<meta name="date" content="2023-11-10" />
+
+<title>Data visualization in ggplot2 in R</title>
+
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="libs/navigation/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Data visualization in <code>ggplot2</code>
+in R</h1>
+<h3 class="subtitle">With a shoutout to RMarkdown</h3>
+<h4 class="author">Erik Amézquita<br>Division of Plant Sciences &amp;
+Technology, University of Missouri</h4>
+<h4 class="date">2023-11-10</h4>
+
+</div>
+
+
+<div id="the-art-of-data-viz" class="section level1">
+<h1>The art of data viz</h1>
+<ul>
+<li>Data viz is both a science and an art</li>
+<li>For starters, you need to choose the right plot for the right kind
+of data</li>
+<li>Always keep the <a href="https://www.data-to-viz.com/">data to
+viz</a> decision chart close to you</li>
+</ul>
+<hr />
+<ul>
+<li>For this tutorial, I will do mostly bar plots with
+<code>geom_col</code> in <code>ggplot2</code>.</li>
+<li>However, I will point out several tips that are applicable to any
+kind of ggplot.</li>
+<li>That’s the beauty of <code>ggplot2</code>: once you understand one
+kind of plot, you’ve mastered all of them.</li>
+</ul>
+</div>
+<div id="some-context-of-the-data-that-will-be-used"
+class="section level1">
+<h1>Some context of the data that will be used</h1>
+<p>Data comes from semi-supervised classification results of barley
+seeds according solely to their morphology. We used a combination of
+traditional and topological shape descriptors. More information in <a
+href="https://doi.org/10.1093/insilicoplants/diab033">Améquita et al
+(2021)</a>.</p>
+<div id="tl-dr" class="section level2">
+<h2>TL; DR</h2>
+<ul>
+<li>Back in the late 1920s, 28 different barley landraces representative
+of 28 different climates in the Euroasian and North African continents
+were brought to California.</li>
+<li>These seeds constituted the <span
+class="math inline">\(F_0\)</span>s, or parental seeds.</li>
+<li>All of them were pairwised crossed to form <span
+class="math inline">\(F_1\)</span>s and <span
+class="math inline">\(F_2\)</span>s.</li>
+<li>These were planted in separate plots in a single field.</li>
+<li>Nature be nature for 58 generations.</li>
+</ul>
+<p><img src="https://ejamezquita.github.io/barley/figs/composite_cross_collection_06.svg" width="750" style="display: block; margin: auto;" /></p>
+<ul>
+<li>For this experiment, we only had access to seeds from <span
+class="math inline">\(F_0\)</span>, <span
+class="math inline">\(F_{18}\)</span>, and <span
+class="math inline">\(F_{58}\)</span>.</li>
+<li>For some odd reason, it was originally labeled as 0, 1, 7
+respectively —the rest of file naming and wrangling rolled with it.</li>
+<li>A machine learning algorithm was trained on all the parental
+seeds.</li>
+<li>Then this model was used to classify the rest of the progeny based
+on their shape alone.</li>
+<li>Observe how shape changes over time.</li>
+</ul>
+<p><img src="https://ejamezquita.github.io/demat/figs/supervised_learning.png" width="750" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>We want to plot nicely all these classification
+results</strong></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="now-for-the-actual-workshop" class="section level1">
+<h1>Now for the actual workshop</h1>
+<div id="first-a-word-on-housekeeping" class="section level2">
+<h2>First, a word on housekeeping</h2>
+<ul>
+<li>Keeping your files organized will go a long way: your future self
+will deeply appreciate it.</li>
+<li>Naming your folders and files right is quite important:
+<ul>
+<li>Only lowercase</li>
+<li>No spaces; use <code>_</code> underscores instead</li>
+<li>No symbols: <code>~, #, @, ?, ", (, ], &gt;</code> etc.</li>
+<li>No accents or non-standard characters: <code>é, ß, æ, ¢, º</code>
+etc.</li>
+</ul></li>
+<li>Keep all the files related to your project in a single folder.</li>
+<li>Inside that folder, create all the necessary subfolders
+<ul>
+<li><code>code</code>
+<ul>
+<li>Name your scripts with a number that indicates which step they are
+part of in the overall pipeline</li>
+</ul></li>
+<li><code>raw</code>
+<ul>
+<li>Raw data.</li>
+<li>You never modify files in here</li>
+</ul></li>
+<li><code>proc</code>
+<ul>
+<li>Processed data e.g. PCA of the raw data</li>
+</ul></li>
+<li>And so on and so forth</li>
+</ul></li>
+<li>Once all our project files are nicely structured, it is convenient
+to always root our RStudio session to wherever we stored our
+scripts.</li>
+<li>Define a source <code>src</code> directory (where data is
+store)</li>
+<li>And a destination <code>dst</code> directory (where data/plots will
+be stored)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>src <span class="ot">&lt;-</span> <span class="st">&#39;../data/&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>dst <span class="ot">&lt;-</span> <span class="st">&#39;../results/&#39;</span></span></code></pre></div>
+</div>
+<div id="load-the-necessary-libraries" class="section level2">
+<h2>Load the necessary libraries</h2>
+<ul>
+<li><code>ggplot2</code>: the basis of all pretty plots.</li>
+<li><code>reshape2</code>: to <code>melt</code> stuff, ie. switch from
+short to long dataframe formats.</li>
+<li><code>dplyr</code>: to sort the dataframe</li>
+</ul>
+<p>You can also load <code>tidyverse</code> to make sure you have all
+you need. <code>magrittr</code> might come handy (although personally I
+don’t know how to use it properly.)</p>
+<hr />
+</div>
+<div id="lets-define-some-color-palettes" class="section level2">
+<h2>Let’s define some color palettes</h2>
+<ul>
+<li>These are some of the color palettes I tend to use.</li>
+<li>These are all color-blind friendly</li>
+<li>You should check mor color-blind friendly palettes from <a
+href="https://davidmathlogic.com/colorblind/#%23332288-%23117733-%2344AA99-%2388CCEE-%23DDCC77-%23CC6677-%23AA4499-%23882255">here</a>.</li>
+<li>I will switch to maize-inspired palettes soon (also color-blind
+friendly, I was told) with <a
+href="https://github.com/AndiKur4/MaizePal">MaizePal</a>.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Bang Wong</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>colors_wong <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#E69F00&#39;</span>,<span class="st">&#39;#52ADE0&#39;</span>,<span class="st">&#39;#009E73&#39;</span>,<span class="st">&#39;#F0E442&#39;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                 <span class="st">&#39;#0072B2&#39;</span>,<span class="st">&#39;#D55E00&#39;</span>,<span class="st">&#39;#CC79A7&#39;</span>,<span class="st">&#39;#444444&#39;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>colors_def <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#D81B60&#39;</span>, <span class="st">&#39;#1E88E5&#39;</span>, <span class="st">&#39;#FFC107&#39;</span>, <span class="st">&#39;#004D40&#39;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># Paul Tol</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>colors_tol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#332288&#39;</span>, <span class="st">&#39;#117733&#39;</span>, <span class="st">&#39;#44AA99&#39;</span>, <span class="st">&#39;#88CCEE&#39;</span>, <span class="st">&#39;#DDCC77&#39;</span>, <span class="st">&#39;#CC6677&#39;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>colors_bright <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#4477AA&#39;</span>, <span class="st">&#39;#66CCEE&#39;</span>, <span class="st">&#39;#228833&#39;</span>, <span class="st">&#39;#CCBB44&#39;</span>, <span class="st">&#39;#EE6677&#39;</span>, <span class="st">&#39;#AA3377&#39;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>colors_high <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#F0E442&#39;</span>, <span class="st">&#39;#0005FF&#39;</span>, <span class="st">&#39;#D50000&#39;</span>, <span class="st">&#39;#FFFFFF&#39;</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>colors_high <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#F0E442&#39;</span>, <span class="st">&#39;#0072B2&#39;</span>,<span class="st">&#39;#D55E00&#39;</span>, <span class="st">&#39;#FFFFFF&#39;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>colors_high <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#66CCEE&#39;</span>, <span class="st">&#39;#CCBB44&#39;</span>,<span class="st">&#39;#AA3377&#39;</span>, <span class="st">&#39;#444444&#39;</span>)</span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="load-the-metadata" class="section level1">
+<h1>Load the metadata</h1>
+<ul>
+<li>This file only has metadata regarding the land races, field,
+generation, scan number, and other stuff for the specific file to plot
+later</li>
+<li>Don’t worry much about it.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>founders <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">paste</span>(src, <span class="st">&#39;corrected_barley_metadata.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>founders_names_original <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(founders<span class="sc">$</span>Founder))[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">print</span>(founders_names_original)</span></code></pre></div>
+<pre><code>##  [1] &quot;Algerian&quot;                 &quot;Alpha&quot;                   
+##  [3] &quot;Arequipa&quot;                 &quot;Atlas&quot;                   
+##  [5] &quot;California Mariout (81A)&quot; &quot;Club Mariout&quot;            
+##  [7] &quot;Everest&quot;                  &quot;Flynn&quot;                   
+##  [9] &quot;Glabron&quot;                  &quot;Golden Pheasant&quot;         
+## [11] &quot;Good Delta (104)&quot;         &quot;Han River&quot;               
+## [13] &quot;Hannchen&quot;                 &quot;Horn&quot;                    
+## [15] &quot;Lion&quot;                     &quot;Lyallpur&quot;                
+## [17] &quot;Maison Carree (Carre 42)&quot; &quot;Manchuria&quot;               
+## [19] &quot;Meloy&quot;                    &quot;Minia&quot;                   
+## [21] &quot;Multan&quot;                   &quot;Oderbrucker&quot;             
+## [23] &quot;Orel&quot;                     &quot;Palmella Blue (79B)&quot;     
+## [25] &quot;Sandrel&quot;                  &quot;Trebi&quot;                   
+## [27] &quot;White Smyrna&quot;             &quot;Wisconsin Winter&quot;</code></pre>
+<p><strong>Big <code>ggplot2</code> tip</strong></p>
+<ul>
+<li>It is much easier to <strong>change the original dataframe</strong>
+than to make changes in the ggplot</li>
+<li>For example, let’s change the name of some of the original land
+races.</li>
+<li>Keep the original names around, though</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>founders_names <span class="ot">&lt;-</span> founders_names_original</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>founders_names[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">&#39;CA Mariout&#39;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>founders_names[<span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="st">&#39;Good Delta&#39;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>founders_names[<span class="dv">17</span>] <span class="ot">&lt;-</span> <span class="st">&#39;Maison Carree&#39;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>founders_names[<span class="dv">24</span>] <span class="ot">&lt;-</span> <span class="st">&#39;Palmella Blue&#39;</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>founders_names[<span class="dv">28</span>] <span class="ot">&lt;-</span> <span class="st">&#39;WI Winter&#39;</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">print</span>(founders_names)</span></code></pre></div>
+<pre><code>##  [1] &quot;Algerian&quot;        &quot;Alpha&quot;           &quot;Arequipa&quot;        &quot;Atlas&quot;          
+##  [5] &quot;CA Mariout&quot;      &quot;Club Mariout&quot;    &quot;Everest&quot;         &quot;Flynn&quot;          
+##  [9] &quot;Glabron&quot;         &quot;Golden Pheasant&quot; &quot;Good Delta&quot;      &quot;Han River&quot;      
+## [13] &quot;Hannchen&quot;        &quot;Horn&quot;            &quot;Lion&quot;            &quot;Lyallpur&quot;       
+## [17] &quot;Maison Carree&quot;   &quot;Manchuria&quot;       &quot;Meloy&quot;           &quot;Minia&quot;          
+## [21] &quot;Multan&quot;          &quot;Oderbrucker&quot;     &quot;Orel&quot;            &quot;Palmella Blue&quot;  
+## [25] &quot;Sandrel&quot;         &quot;Trebi&quot;           &quot;White Smyrna&quot;    &quot;WI Winter&quot;</code></pre>
+<hr />
+</div>
+<div id="choose-a-specific-file-to-plot" class="section level1">
+<h1>Choose a specific file to plot</h1>
+<ul>
+<li>Let’s load a file that has the classification results based on the
+machine learning model trained with founder seeds.</li>
+<li>Specify a generation from the metadata (say <code>gen 7</code>)</li>
+<li>We know that that <code>gen 7</code> actually means
+<code>gen 58</code>, so keep another variable for that</li>
+<li><code>d</code> , <code>TT</code>, <code>info_type</code>, and
+<code>scaled</code> are variables from hyperparameters used by the
+machile learning model. You can ignore these</li>
+<li>Make sure it is a dataframe structure.</li>
+</ul>
+<p><strong>Big <code>ggplot2</code> tip</strong></p>
+<ul>
+<li><code>ggplot</code> <strong>hates</strong> matrices: it is built to
+take dataframes instead.</li>
+<li><code>ggplot</code> also <strong>ignores</strong> named rows: have
+an extra column as name of rows instead.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>gen <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>genn <span class="ot">&lt;-</span> <span class="dv">58</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">158</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>TT <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>info_type <span class="ot">&lt;-</span> <span class="st">&#39;combined&#39;</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>scaled <span class="ot">&lt;-</span> <span class="st">&#39;topounscaled&#39;</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(src, <span class="st">&#39;gen&#39;</span>, gen, <span class="st">&#39;_svm_&#39;</span>, info_type, <span class="st">&#39;_d&#39;</span>, d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>progeny <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(filename)</span></code></pre></div>
+<hr />
+</div>
+<div id="first-plot-a-simple-bar-plot" class="section level1">
+<h1>First plot: a simple bar plot</h1>
+<ul>
+<li>We want to visualize the percentage of seeds classified according to
+each land race.</li>
+<li>Put those percentages into a matrix with named rows</li>
+<li>The named rows are important, as they will help us later in the
+plot</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">nrow=</span><span class="fu">length</span>(founders_names))</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">rownames</span>(counts) <span class="ot">&lt;-</span> founders_names</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(founders_names_original))</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    counts[i,<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">sum</span>(progeny<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[i])</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>counts[,<span class="dv">2</span>] <span class="ot">&lt;-</span> (counts[,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">dim</span>(progeny)[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>)</span></code></pre></div>
+<ul>
+<li>Say we want the bar plot to be ordered from highest percentage to
+lowest</li>
+<li>As the tip/rule says, <strong>order the data</strong> now instead of
+dealing with the plot order later</li>
+<li>As the other tip/rule says, <strong>make an extra column</strong>
+with the names of the corresponding accession</li>
+</ul>
+<p><strong>Big <code>ggplot2</code> tip</strong></p>
+<ul>
+<li>Whenever you have categorical data that you want to plot separately,
+<strong>make it a factor type</strong></li>
+<li>The order of the <strong>factor levels</strong> will determine the
+order in which those categorical variables will be plotted</li>
+<li>In this case, the land race name is categorical</li>
+<li>And we want to plot each land race as an individual bar</li>
+<li>And the levels are ordered from highest to lowest land race
+percentage</li>
+<li>Also define a vector of colors, one per land race (bar)</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ordered <span class="ot">&lt;-</span> counts[base<span class="sc">::</span><span class="fu">order</span>(counts[,<span class="dv">1</span>], <span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">rownames</span>(ordered) <span class="ot">&lt;-</span> founders_names[<span class="fu">rank</span>(<span class="fu">rownames</span>(ordered))]</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>genotypes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(ordered)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ordered)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>df<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>df<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Line, <span class="at">levels=</span>genotypes)</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>fcolors <span class="ot">&lt;-</span> <span class="fu">rep</span>(colors_wong, <span class="at">length.out =</span> <span class="fu">nrow</span>(df))</span></code></pre></div>
+<div id="finally-the-plot" class="section level2">
+<h2>Finally, the plot</h2>
+<ul>
+<li><p>Do a <code>ggplot(df)</code> to tell ggplot what dataframe to
+plot</p></li>
+<li><p>The <code>aes</code> aesthetics tell it important
+information</p></li>
+<li><p>Everything is set with the name of the columns of your
+dataframe</p></li>
+<li><p>Always check the relevant details from the <a
+href="https://ggplot2.tidyverse.org/reference/geom_bar.html">official
+ggplot documentation</a> on what is an aesthetic and what not.</p></li>
+<li><p>In this case, we set the x-axis to be land races</p></li>
+<li><p>y-axis are the total percentages</p></li>
+<li><p><code>geom_col</code> makes column plots (not to be confused with
+<code>geom_bar</code> specifically made for histograms)</p></li>
+<li><p>Color each bar according to the land-race</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Line, <span class="at">y=</span>V2)) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>     <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line)) </span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>q</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Once you have the kind of plot you want, you can go crazy with the
+rest - Specific colors/palette to use - Theme - Tightness of the axis -
+Legends - Labels - etc.</p>
+<p><strong><code>ggplot2</code> works layer by layer</strong></p>
+<ul>
+<li>Also: It is convenient to script titling/file naming if you will be
+generating several plots of the same kind</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;Gen &#39;</span>, genn, <span class="st">&#39; distribution (UMAP &#39;</span>, stringr<span class="sc">::</span><span class="fu">str_to_title</span>(info_type),<span class="st">&#39;, &#39;</span>, scaled,<span class="st">&#39;)&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> q <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>     <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>     <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>     <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust=</span><span class="fl">0.5</span>, <span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>      <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&#39;Accession&#39;</span>) </span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="save-your-pretty-plot" class="section level2">
+<h2>Save your pretty plot</h2>
+<ul>
+<li>Use <code>ggsave</code> and you favorite format</li>
+<li>Loseless (pdf, svg) vs lossy (png, jpg)</li>
+<li>Automate also the naming of the plot file</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst,<span class="st">&#39;histogram_&#39;</span>,info_type, <span class="st">&#39;_gen&#39;</span>,gen,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_vert&#39;</span>,<span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/histogram_combined_gen7_d158_T16_topounscaled_vert&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst,<span class="st">&#39;histogram_&#39;</span>,info_type, <span class="st">&#39;_gen&#39;</span>,gen,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_horz&#39;</span>,<span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/histogram_combined_gen7_d158_T16_topounscaled_horz&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+</div>
+</div>
+<div id="second-plot-stacked-bar-plot" class="section level1">
+<h1>Second plot: stacked bar plot</h1>
+<ul>
+<li>The plots above gives us the distribution of land races across the
+whole field.</li>
+<li>We want to plot the percentage of land race shape <em>for each</em>
+parcel.</li>
+<li>Each parcel is a <em>selection</em> in the original data</li>
+<li>Create a matrix of percentages</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>selection <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(progeny<span class="sc">$</span>Selection))</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow=</span><span class="fu">length</span>(selection), <span class="at">ncol=</span><span class="fu">length</span>(founders_names))</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(counts)){</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>    foo <span class="ot">&lt;-</span> progeny[progeny<span class="sc">$</span>Selection <span class="sc">==</span> selection[i], ]</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(counts)){</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>        counts[i,j] <span class="ot">&lt;-</span> (<span class="fu">sum</span>(foo<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[j])<span class="sc">/</span><span class="fu">nrow</span>(foo)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>    }</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>}</span></code></pre></div>
+<ul>
+<li>Remember the tip: we want a data frame instead</li>
+<li>And a column with the names of the parcels</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>dg <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(counts)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">colnames</span>(dg) <span class="ot">&lt;-</span> founders_names</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">rownames</span>(dg) <span class="ot">&lt;-</span> selection</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>dg<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">rownames</span>(dg)</span></code></pre></div>
+<ul>
+<li>Remember the tip: sort the data before plotting</li>
+<li>We will sort the parcel based on their content of the <em>Mariout
+Carree</em> land race</li>
+<li>Make sure the parcels are treated as categorical data by declaring
+them factors</li>
+<li>The levels of the factors are sorted as we want</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(dg, dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="fu">data.frame</span>(base<span class="sc">::</span><span class="fu">rowSums</span>(dg[genotypes[<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>]]))))</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>dga<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">factor</span>(dga<span class="sc">$</span>Selection, <span class="at">levels=</span>dga<span class="sc">$</span>Selection[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dga)])</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dga, <span class="fu">c</span>(<span class="fu">colnames</span>(dga)[<span class="fu">rank</span>(genotypes)], <span class="st">&#39;Selection&#39;</span>))</span></code></pre></div>
+<p><strong>Big <code>ggplot2</code> tip</strong></p>
+<ul>
+<li><code>ggplot2</code> prefers long format over the short format</li>
+<li>Each row has a single numerical value to plot with several
+qualifiers</li>
+<li>We use <code>melt</code> to do this by telling it what stuff is
+numerical and what categorical and how to name columns</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>dgm <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(dga, <span class="at">id.vars=</span><span class="st">&#39;Selection&#39;</span>, <span class="at">variable.name=</span><span class="st">&#39;Line&#39;</span>, <span class="at">value.name=</span><span class="st">&#39;Percentage&#39;</span>)</span></code></pre></div>
+<div id="finally-the-plot-1" class="section level2">
+<h2>Finally, the plot</h2>
+<ul>
+<li>Similar to the one before
+<ul>
+<li>x-axis are parcels</li>
+<li>y-axis are percentages</li>
+<li>Declare a non-histogram bar plot with <code>geom_col</code></li>
+<li>Color the columns based on the land race</li>
+<li>Stack the columns based on the x-axis/parcel (default behavior)</li>
+<li>Stack them with the largest bar at the bottom
+(<code>reverse=TRUE</code>)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dgm, <span class="fu">aes</span>(<span class="at">x=</span>Selection, <span class="at">y=</span>Percentage)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>     <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>q</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Then customize the rest</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;Gen &#39;</span>, genn, <span class="st">&#39; distribution (UMAP &#39;</span>, stringr<span class="sc">::</span><span class="fu">str_to_title</span>(info_type),<span class="st">&#39;, &#39;</span>, scaled,<span class="st">&#39;)&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> q <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>     <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors, <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>     <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>     <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>            <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.75</span>, <span class="st">&#39;cm&#39;</span>),</span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span></span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>      <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&#39;Selection&#39;</span>) <span class="sc">+</span></span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Accession&quot;</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-20-1.png" width="1344" style="display: block; margin: auto;" /></p>
+<ul>
+<li>And also save the plots</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">14</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="dv">8</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst, <span class="st">&#39;selection_&#39;</span>,info_type,<span class="st">&#39;_gen&#39;</span>,gen,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/selection_combined_gen7_d158_T16_topounscaled&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+</div>
+</div>
+<div id="third-plot-compare-two-bar-plots" class="section level1">
+<h1>Third plot: compare two bar plots</h1>
+<ul>
+<li>Load both classification results of <span
+class="math inline">\(F_{18}\)</span> and <span
+class="math inline">\(F_{58}\)</span></li>
+<li>Notice that I am loading the same file from above, so I am
+duplicating data</li>
+<li>Trade-off of memory waste vs code readability.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>gen <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>genn <span class="ot">&lt;-</span> <span class="dv">18</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(src,<span class="st">&#39;gen&#39;</span>, gen, <span class="st">&#39;_svm_&#39;</span>, info_type, <span class="st">&#39;_d&#39;</span>, d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>progeny1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(filename)</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>gen <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>genn <span class="ot">&lt;-</span> <span class="dv">58</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(src,<span class="st">&#39;gen&#39;</span>, gen, <span class="st">&#39;_svm_&#39;</span>, info_type, <span class="st">&#39;_d&#39;</span>, d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>progeny7 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(filename)</span></code></pre></div>
+<ul>
+<li>Do the same counts as above but save the final results in different
+dataframes</li>
+<li>The land races are made factor data</li>
+<li>Notice that the factor levels are the same for both cases</li>
+<li>Each data frame will have an extra column indicating its
+generation</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">nrow=</span><span class="fu">length</span>(founders_names))</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">rownames</span>(counts) <span class="ot">&lt;-</span> founders_names_original</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(founders_names_original))</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>    counts[i,<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">sum</span>(progeny1<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[i])</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>counts[,<span class="dv">2</span>] <span class="ot">&lt;-</span> (counts[,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">dim</span>(progeny1)[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>ordered <span class="ot">&lt;-</span> counts[base<span class="sc">::</span><span class="fu">order</span>(counts[,<span class="dv">1</span>], <span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a><span class="fu">rownames</span>(ordered) <span class="ot">&lt;-</span> founders_names[<span class="fu">rank</span>(<span class="fu">rownames</span>(ordered))]</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ordered)</span>
+<span id="cb27-10"><a href="#cb27-10" tabindex="-1"></a>df1<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df1)</span>
+<span id="cb27-11"><a href="#cb27-11" tabindex="-1"></a>df1<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">factor</span>(df1<span class="sc">$</span>Line, <span class="at">levels=</span>genotypes)</span>
+<span id="cb27-12"><a href="#cb27-12" tabindex="-1"></a>df1<span class="sc">$</span>Gen <span class="ot">&lt;-</span> <span class="dv">18</span></span>
+<span id="cb27-13"><a href="#cb27-13" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(founders_names_original))</span>
+<span id="cb27-15"><a href="#cb27-15" tabindex="-1"></a>    counts[i,<span class="dv">1</span>] <span class="ot">=</span> <span class="fu">sum</span>(progeny7<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[i])</span>
+<span id="cb27-16"><a href="#cb27-16" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" tabindex="-1"></a>counts[,<span class="dv">2</span>] <span class="ot">&lt;-</span> (counts[,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">dim</span>(progeny7)[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb27-18"><a href="#cb27-18" tabindex="-1"></a>ordered <span class="ot">&lt;-</span> counts[base<span class="sc">::</span><span class="fu">order</span>(counts[,<span class="dv">1</span>], <span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span>
+<span id="cb27-19"><a href="#cb27-19" tabindex="-1"></a><span class="fu">rownames</span>(ordered) <span class="ot">&lt;-</span> founders_names[<span class="fu">rank</span>(<span class="fu">rownames</span>(ordered))]</span>
+<span id="cb27-20"><a href="#cb27-20" tabindex="-1"></a>df7 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ordered)</span>
+<span id="cb27-21"><a href="#cb27-21" tabindex="-1"></a>df7<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">rownames</span>(df7)</span>
+<span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a>df7<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">factor</span>(df7<span class="sc">$</span>Line, <span class="at">levels=</span>genotypes)</span>
+<span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a>df7<span class="sc">$</span>Gen <span class="ot">&lt;-</span> <span class="dv">58</span></span></code></pre></div>
+<p><strong>Big <code>ggplot2</code> tip</strong></p>
+<ul>
+<li>You can only plot one dataframe at a time</li>
+<li>Combine data frames into a single one if necessary</li>
+<li>Row bind (<code>rbind</code>) works easily if all your dataframes
+have the same structure and columns</li>
+<li>Convert the generation to factor so it is treated as a categorical
+variable</li>
+<li>Remember the order of the levels determines the order in the
+plot</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">rbind</span>(df1, df7)</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>df<span class="sc">$</span>Gen <span class="ot">=</span> base<span class="sc">::</span><span class="fu">factor</span>(df<span class="sc">$</span>Gen, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">58</span>,<span class="dv">18</span>))</span></code></pre></div>
+<div id="now-the-plot" class="section level2">
+<h2>Now the plot</h2>
+<ul>
+<li>I want two stacked bars instead this time, one per generation
+<ul>
+<li>x-axis are the percentages</li>
+<li>y-axis are the generations</li>
+<li>color the bars according to the landrace</li>
+<li>stack the columns, with the largest percentage on the left</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y=</span>Gen, <span class="at">x=</span>V2)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>q</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>And now make a bunch of aesthetic changes</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;Comparison of Generation distributions (UMAP &#39;</span>, </span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>                    stringr<span class="sc">::</span><span class="fu">str_to_title</span>(info_type), <span class="st">&#39;, &#39;</span>, </span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>                    scaled, <span class="st">&#39;)&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>p<span class="ot">&lt;-</span> q <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors, <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle=</span><span class="dv">0</span>),</span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb30-10"><a href="#cb30-10" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb30-11"><a href="#cb30-11" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb30-12"><a href="#cb30-12" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span></span>
+<span id="cb30-13"><a href="#cb30-13" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb30-14"><a href="#cb30-14" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb30-15"><a href="#cb30-15" tabindex="-1"></a>    <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb30-16"><a href="#cb30-16" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Generation&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb30-17"><a href="#cb30-17" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Accession&quot;</span>)</span>
+<span id="cb30-18"><a href="#cb30-18" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-26-1.png" width="960" style="display: block; margin: auto;" /></p>
+<ul>
+<li>And save the plots</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst, <span class="st">&#39;comparison_generations_&#39;</span>,info_type,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_horz&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/comparison_generations_combined_topounscaled_d158_T16_horz&quot;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+<ul>
+<li>The same plot but now vertical
+<ul>
+<li>Notice that we simply changed the <code>x</code> and <code>y</code>
+values at the beginning</li>
+<li>The titlename was shortened</li>
+<li>The titlename has a <code>\n</code> that indicates to break the
+line</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="st">&#39;Comparison of</span><span class="sc">\n</span><span class="st">Generation distributions&#39;</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x=</span>Gen, <span class="at">y=</span>V2)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors, <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">reverse=</span><span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle=</span><span class="dv">0</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a>    <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;Generation&#39;</span>) <span class="sc">+</span></span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Accession&quot;</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-28-1.png" width="384" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Save the plot</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="dv">8</span></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst,<span class="st">&#39;comparison_generations_&#39;</span>,info_type,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_vert&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/comparison_generations_combined_topounscaled_d158_T16_vert&quot;</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+</div>
+</div>
+<div id="fourth-plot-bar-plots-representing-annotated-differences"
+class="section level1">
+<h1>Fourth plot: bar plots representing annotated differences</h1>
+<ul>
+<li>Make a new dataframe with percentage differences between generations
+for each land race</li>
+<li>Consider only land races that differ by at least 0.1%</li>
+<li>Sort by absolute difference values</li>
+<li>As the tip says, make sure the dataframe reflects exactly what we
+want before even considering plotting</li>
+<li>It will be useful to keep track how we shift indices around when
+sorting</li>
+<li>As the tip says, the land races must be factors</li>
+</ul>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a>dindx <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">which</span>(base<span class="sc">::</span><span class="fu">abs</span>(df7<span class="sc">$</span>V2 <span class="sc">-</span> df1<span class="sc">$</span>V2) <span class="sc">&gt;</span> <span class="fl">0.1</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a>oindx <span class="ot">&lt;-</span> base<span class="sc">::</span><span class="fu">order</span>(<span class="fu">abs</span>(df7<span class="sc">$</span>V2 <span class="sc">-</span> df1<span class="sc">$</span>V2)[dindx])</span>
+<span id="cb38-3"><a href="#cb38-3" tabindex="-1"></a>diff <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">val=</span>(df7<span class="sc">$</span>V2 <span class="sc">-</span> df1<span class="sc">$</span>V2)[dindx][oindx], <span class="at">Line=</span>genotypes[oindx])</span>
+<span id="cb38-4"><a href="#cb38-4" tabindex="-1"></a>diff<span class="sc">$</span>Line <span class="ot">&lt;-</span> <span class="fu">factor</span>(diff<span class="sc">$</span>Line, <span class="at">levels=</span>diff<span class="sc">$</span>Line)</span></code></pre></div>
+<ul>
+<li>Basis plot as usual:
+<ul>
+<li>x-axis are the percentage differences</li>
+<li>y-axis are the land races (only those that reflect a percentage
+difference larger than 0.1%)</li>
+<li>Color by land race</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(diff, <span class="fu">aes</span>(<span class="at">x=</span>val, <span class="at">y=</span>Line)) <span class="sc">+</span> </span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a>     <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line))</span>
+<span id="cb39-3"><a href="#cb39-3" tabindex="-1"></a>q</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Now add all the artistic modifications</li>
+<li>Notice that the colors in <code>scale_fill_manual</code> follow the
+sorting indices from above</li>
+<li>That way colors stay consistent</li>
+<li>Give extra space around the x-axis with
+<code>scale_x_continuous</code> (it will be handy later)</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;Percentage changes from Gen 18 to Gen 58 (UMAP &#39;</span>,</span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>                   stringr<span class="sc">::</span><span class="fu">str_to_title</span>(info_type), <span class="st">&#39;, &#39;</span>, </span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>                   scaled, <span class="st">&#39;)&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> q <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>     <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors[dindx][oindx]) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>     <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>     <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.01</span>)), <span class="at">limits=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>),</span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>),</span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a>            <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&#39;Accession&#39;</span>) <span class="sc">+</span></span>
+<span id="cb40-15"><a href="#cb40-15" tabindex="-1"></a>      <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb40-16"><a href="#cb40-16" tabindex="-1"></a>      <span class="fu">xlab</span>(<span class="st">&#39;Difference of percentages across generations&#39;</span>) </span>
+<span id="cb40-17"><a href="#cb40-17" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Annotate the rounded values of each bar for easier read</li>
+<li>Color the number depending on whether it is positive or
+negative</li>
+<li>Create an additional vector of <code>'black'</code>s and
+<code>'red'</code>s depending on the value sign</li>
+<li>Round the difference values to 2 digits with <code>round</code></li>
+<li>Convert the values to text using <code>paste</code></li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(diff<span class="sc">$</span>val <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>     <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">round</span>(val,<span class="dv">2</span>)),</span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>                   <span class="at">hjust =</span> <span class="fu">ifelse</span>(val <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.03</span>)),</span>
+<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>               <span class="at">color =</span> cols)</span>
+<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-33-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Save the plots</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">16</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="fl">7.5</span></span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst, <span class="st">&#39;diff_&#39;</span>,info_type, <span class="st">&#39;_&#39;</span>, scaled, <span class="st">&#39;_d&#39;</span>, d,<span class="st">&#39;_T&#39;</span>,TT,<span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/diff_combined_topounscaled_d158_T16&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+</div>
+<div id="fifth-plot-compare-the-percentage-differences-for-each-parcel"
+class="section level1">
+<h1>Fifth plot: compare the percentage differences for each parcel</h1>
+<ul>
+<li>Some parcels were lost over time</li>
+<li>Plot only the parcels from <span
+class="math inline">\(F_{58}\)</span> (if we had seed there 58
+generations later is because we had seed for the <span
+class="math inline">\(F_{18}\)</span>; notice that the other way around
+is not necessarily true.)</li>
+<li>Similar code when looking at the parcels of a single generation</li>
+<li>We just end up with two different melted dataframes</li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a>selection7 <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(progeny7<span class="sc">$</span>Selection))</span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow=</span><span class="fu">length</span>(selection7), <span class="at">ncol=</span><span class="fu">length</span>(founders_names))</span>
+<span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(counts)){</span>
+<span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>    foo <span class="ot">&lt;-</span> progeny1[progeny1<span class="sc">$</span>Selection <span class="sc">==</span> selection7[i], ]</span>
+<span id="cb45-5"><a href="#cb45-5" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(counts)){</span>
+<span id="cb45-6"><a href="#cb45-6" tabindex="-1"></a>        counts[i,j] <span class="ot">&lt;-</span> (<span class="fu">sum</span>(foo<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[j])<span class="sc">/</span><span class="fu">nrow</span>(foo)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>    }</span>
+<span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>}</span>
+<span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>dg <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(counts)</span>
+<span id="cb45-10"><a href="#cb45-10" tabindex="-1"></a><span class="fu">colnames</span>(dg) <span class="ot">&lt;-</span> founders_names</span>
+<span id="cb45-11"><a href="#cb45-11" tabindex="-1"></a><span class="fu">rownames</span>(dg) <span class="ot">&lt;-</span> selection7</span>
+<span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a>dg<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">rownames</span>(dg)</span>
+<span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(dg, dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="fu">data.frame</span>(base<span class="sc">::</span><span class="fu">rowSums</span>(dg[genotypes[<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>]]))))</span>
+<span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a>dga<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">factor</span>(dga<span class="sc">$</span>Selection, <span class="at">levels=</span>dga<span class="sc">$</span>Selection[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dga)])</span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dga, <span class="fu">c</span>(<span class="fu">colnames</span>(dga)[<span class="fu">rank</span>(genotypes)], <span class="st">&#39;Selection&#39;</span>))</span>
+<span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>dgm1 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(dga, <span class="at">id.vars=</span><span class="st">&#39;Selection&#39;</span>, <span class="at">variable.name=</span><span class="st">&#39;Line&#39;</span>, <span class="at">value.name=</span><span class="st">&#39;Percentage&#39;</span>)</span>
+<span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a><span class="co"># Repeat for F58</span></span>
+<span id="cb45-19"><a href="#cb45-19" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow=</span><span class="fu">length</span>(selection7), <span class="at">ncol=</span><span class="fu">length</span>(founders_names))</span>
+<span id="cb45-20"><a href="#cb45-20" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(counts)){</span>
+<span id="cb45-21"><a href="#cb45-21" tabindex="-1"></a>    foo <span class="ot">&lt;-</span> progeny7[progeny7<span class="sc">$</span>Selection <span class="sc">==</span> selection7[i], ]</span>
+<span id="cb45-22"><a href="#cb45-22" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(counts)){</span>
+<span id="cb45-23"><a href="#cb45-23" tabindex="-1"></a>        counts[i,j] <span class="ot">&lt;-</span> (<span class="fu">sum</span>(foo<span class="sc">$</span>Founder <span class="sc">==</span> founders_names_original[j])<span class="sc">/</span><span class="fu">nrow</span>(foo)<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb45-24"><a href="#cb45-24" tabindex="-1"></a>    }</span>
+<span id="cb45-25"><a href="#cb45-25" tabindex="-1"></a>}</span>
+<span id="cb45-26"><a href="#cb45-26" tabindex="-1"></a>dg <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(counts)</span>
+<span id="cb45-27"><a href="#cb45-27" tabindex="-1"></a><span class="fu">colnames</span>(dg) <span class="ot">&lt;-</span> founders_names</span>
+<span id="cb45-28"><a href="#cb45-28" tabindex="-1"></a><span class="fu">rownames</span>(dg) <span class="ot">&lt;-</span> selection7</span>
+<span id="cb45-29"><a href="#cb45-29" tabindex="-1"></a>dg<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">rownames</span>(dg)</span>
+<span id="cb45-30"><a href="#cb45-30" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(dg, dplyr<span class="sc">::</span><span class="fu">desc</span>(<span class="fu">data.frame</span>(base<span class="sc">::</span><span class="fu">rowSums</span>(dg[genotypes[<span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>]]))))</span>
+<span id="cb45-31"><a href="#cb45-31" tabindex="-1"></a>dga<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">factor</span>(dga<span class="sc">$</span>Selection, <span class="at">levels=</span>dga<span class="sc">$</span>Selection[<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dga)])</span>
+<span id="cb45-32"><a href="#cb45-32" tabindex="-1"></a>dga <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dga, <span class="fu">c</span>(<span class="fu">colnames</span>(dga)[<span class="fu">rank</span>(genotypes)], <span class="st">&#39;Selection&#39;</span>))</span>
+<span id="cb45-33"><a href="#cb45-33" tabindex="-1"></a>dgm7 <span class="ot">&lt;-</span> reshape2<span class="sc">::</span><span class="fu">melt</span>(dga, <span class="at">id.vars=</span><span class="st">&#39;Selection&#39;</span>, <span class="at">variable.name=</span><span class="st">&#39;Line&#39;</span>, <span class="at">value.name=</span><span class="st">&#39;Percentage&#39;</span>)</span></code></pre></div>
+<ul>
+<li>Add an extra column indicating generation for each dataframe</li>
+<li>Concatenate both dataframes</li>
+</ul>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>dgm1<span class="sc">$</span>Gen <span class="ot">&lt;-</span> <span class="dv">18</span></span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a>dgm7<span class="sc">$</span>Gen <span class="ot">&lt;-</span> <span class="dv">58</span></span>
+<span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a>dgm <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dgm1, dgm7)</span>
+<span id="cb46-4"><a href="#cb46-4" tabindex="-1"></a>dgm<span class="sc">$</span>Gen <span class="ot">&lt;-</span> <span class="fu">factor</span>(dgm<span class="sc">$</span>Gen, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">58</span>))</span>
+<span id="cb46-5"><a href="#cb46-5" tabindex="-1"></a>dgm<span class="sc">$</span>Selection <span class="ot">&lt;-</span> <span class="fu">factor</span>(dgm<span class="sc">$</span>Selection, <span class="at">levels =</span> selection7)</span></code></pre></div>
+<div id="a-big-plot" class="section level2">
+<h2>A big plot</h2>
+<p>We will add an extra dimension through <code>facet_wrap</code>: this
+allows multiplots - x-axis are the generations - y-axis are the
+percentages of each land race - each subplot (facet) corresponds to a
+different parcel - <code>facet_wrap</code> uses <code>vars()</code>
+instead of <code>aes()</code> but works pretty much the same</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(dgm, <span class="fu">aes</span>(<span class="at">y=</span>Percentage, <span class="at">x=</span>Gen)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="at">facet=</span><span class="fu">vars</span>(Selection), <span class="at">ncol=</span><span class="dv">17</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" tabindex="-1"></a>q</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>And once again, we then refine the labels and titles and colors and
+…</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a>titlename <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;Comparison of lines across generations (UMAP &#39;</span>, </span>
+<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a>                    stringr<span class="sc">::</span><span class="fu">str_to_title</span>(info_type), <span class="st">&#39;, &#39;</span>, </span>
+<span id="cb48-3"><a href="#cb48-3" tabindex="-1"></a>                    scaled, <span class="st">&#39;)&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" tabindex="-1"></a>p <span class="ot">&lt;-</span>q <span class="sc">+</span></span>
+<span id="cb48-6"><a href="#cb48-6" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors, <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb48-7"><a href="#cb48-7" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb48-8"><a href="#cb48-8" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle=</span><span class="dv">0</span>),</span>
+<span id="cb48-9"><a href="#cb48-9" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb48-10"><a href="#cb48-10" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb48-11"><a href="#cb48-11" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb48-12"><a href="#cb48-12" tabindex="-1"></a>            <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.75</span>, <span class="st">&#39;cm&#39;</span>),</span>
+<span id="cb48-13"><a href="#cb48-13" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb48-14"><a href="#cb48-14" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span></span>
+<span id="cb48-15"><a href="#cb48-15" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb48-16"><a href="#cb48-16" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb48-17"><a href="#cb48-17" tabindex="-1"></a>    <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb48-18"><a href="#cb48-18" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;Generation&#39;</span>) <span class="sc">+</span></span>
+<span id="cb48-19"><a href="#cb48-19" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Accession&quot;</span>)</span>
+<span id="cb48-20"><a href="#cb48-20" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-38-1.png" width="1536" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Save the plot</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">16</span></span>
+<span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst, <span class="st">&#39;comparison_lines_&#39;</span>,info_type,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_horz&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/comparison_lines_combined_topounscaled_d158_T16_horz&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+<ul>
+<li>Same but rotated</li>
+<li>Notice that we only have to switch <code>y</code> and <code>x</code>
+in <code>ggplot</code></li>
+<li>And modify the number of columns in the <code>facet_wrap</code></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(dgm, <span class="fu">aes</span>(<span class="at">y=</span>Gen, <span class="at">x=</span>Percentage)) <span class="sc">+</span></span>
+<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill=</span>Line), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="at">facet=</span><span class="fu">vars</span>(Selection), <span class="at">ncol=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> fcolors, <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a>            <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a>            <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb52-8"><a href="#cb52-8" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb52-9"><a href="#cb52-9" tabindex="-1"></a>            <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">11</span>),</span>
+<span id="cb52-10"><a href="#cb52-10" tabindex="-1"></a>            <span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.75</span>, <span class="st">&#39;cm&#39;</span>),</span>
+<span id="cb52-11"><a href="#cb52-11" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="fl">0.5</span>, <span class="at">hjust=</span><span class="fl">0.5</span>),</span>
+<span id="cb52-12"><a href="#cb52-12" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span></span>
+<span id="cb52-13"><a href="#cb52-13" tabindex="-1"></a>            ) <span class="sc">+</span></span>
+<span id="cb52-14"><a href="#cb52-14" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&#39;No. of predicted seeds (%)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb52-15"><a href="#cb52-15" tabindex="-1"></a>    <span class="fu">ggtitle</span>(titlename) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="#cb52-16" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Generation&#39;</span>) <span class="sc">+</span></span>
+<span id="cb52-17"><a href="#cb52-17" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Accession&quot;</span>)</span>
+<span id="cb52-18"><a href="#cb52-18" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="16_progeny_classification_analysis_files/figure-html/unnamed-chunk-40-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Save and enjoy</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a>w <span class="ot">=</span> <span class="dv">11</span></span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a>h <span class="ot">=</span> <span class="dv">16</span></span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="fu">paste</span>(dst, <span class="st">&#39;comparison_lines_&#39;</span>,info_type,<span class="st">&#39;_&#39;</span>,scaled,<span class="st">&#39;_d&#39;</span>,d,<span class="st">&#39;_T&#39;</span>,TT,<span class="st">&#39;_vert&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a><span class="fu">print</span>(filename)</span></code></pre></div>
+<pre><code>## [1] &quot;../results/comparison_lines_combined_topounscaled_d158_T16_vert&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.pdf&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;pdf&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(filename, <span class="st">&#39;.png&#39;</span>, <span class="at">sep=</span><span class="st">&#39;&#39;</span>), <span class="at">plot=</span>p, <span class="at">device=</span><span class="st">&#39;png&#39;</span>, <span class="at">width=</span>w, <span class="at">height=</span>h)</span></code></pre></div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 title: "Making slides in xaringan"
 subtitle: "The best of both worlds"
 author: "**Erik Amézquita** <br> &mdash; <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> &mdash;"
-date: "`r Sys.Date()`"
+date: "2022-11-18"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -547,7 +547,7 @@ background-position: 90% 2%
     <p style="text-align: center;">28 accessions around the world</p>
   </div>
   <div class="column" style="max-width:50%;">
-    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection.jpg"></img>
+    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection_06.svg"></img>
     <p style="text-align: center;">58 generations in California</p>
   </div>
 </div>
@@ -578,7 +578,7 @@ background-position: 90% 2%
     <p style="text-align: center;">28 accessions around the world</p>
   </div>
   <div class="column" style="max-width:50%;">
-    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection.jpg"></img>
+    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection_06.svg"></img>
     <p style="text-align: center;">58 generations in California</p>
   </div>
 </div>

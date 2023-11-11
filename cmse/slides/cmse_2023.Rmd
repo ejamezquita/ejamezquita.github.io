@@ -155,8 +155,6 @@ class: center
 
 ---
 
-class: inverse
-
 ## Evolution in real time &rarr; X-rays &rarr; Image Processing
 
 <div class="row">
@@ -165,7 +163,7 @@ class: inverse
     <p style="text-align: center;">28 accessions around the world</p>
   </div>
   <div class="column" style="max-width:50%; font-size: 15px;">
-    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection.jpg">
+    <img style="padding: 2px 0 2px 0;" src="../../barley/figs/composite_cross_collection_06.svg">
     <p style="text-align: center;">58 generations in California</p>
   </div>
 </div>
