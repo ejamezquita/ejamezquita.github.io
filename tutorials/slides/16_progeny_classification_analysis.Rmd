@@ -23,7 +23,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 - For starters, you need to choose the right plot for the right kind of data
 - Always keep the [data to viz](https://www.data-to-viz.com/) decision chart close to you
 
----
+# Grab the source Rmd file [here](https://ejamezquita.github.io/tutorials/slides/16_progeny_classification_analysis.Rmd).
 
 - For this tutorial, I will do mostly bar plots with `geom_col` in `ggplot2`. 
 - However, I will point out several tips that are applicable to any kind of ggplot.
