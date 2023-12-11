@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The early dodder gets the host</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Max Bentelspacher, Erik Amézquita, Supral Adhikari Asha Mudalige, Jaime Barros, So-Yon Park — Division of Plant Sciences &amp; Technology University of Missouri —" />
+    <meta name="date" content="2023-12-12" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The early dodder gets the host
+]
+.subtitle[
+## Decoding the Circumnutation Patterns of <em>Cuscuta campestris</em>
+]
+.author[
+### Max Bentelspacher, <strong>Erik Amézquita</strong>, Supral Adhikari<br>Asha Mudalige, Jaime Barros, So-Yon Park<br>—<br>Division of Plant Sciences &amp; Technology<br>University of Missouri<br>—
+]
+.date[
+### 2023-12-12
+]
+
+---
+
+
+
+
+# Studying how a vampire plant wiggles
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../video/9am_Inc_Rep_3_redone.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# The early dodder gets the host
+
+![](../figs/cuscuta_standstill_3x3.jpg)
+
+---
+
+class: inverse, center, middle
+
+# Image processing FTW
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_raw.jpg)
+
+- Raw standstill image
+- One every 96 seconds (900 images = 24 hours)
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc1.jpg)
+
+- Identify tapes (inoculation points)
+- Identify skewers
+- Linear approximation for the center of the skewers'
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc2.jpg)
+
+- Consider 5 subimages, one per skewer, from hereafter
+- Discard the rest of the image
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_full_h.jpg)
+
+--
+
+![](../figs/4pm_rep7_plant0_v02_0330_h.jpg)
+
+---
+
+
+
+# Analyzing sub-images
+
+&lt;div class="row"&gt;
+&lt;div class="column" style="max-width:40%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant0_v03_0330_v.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant0_v06_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant0_v08_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+---
+# Analyzing sub-images
+
+&lt;div class="row"&gt;
+&lt;div class="column" style="max-width:40%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant1_v03_0330_v.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant1_v06_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant1_v08_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+---
+# Analyzing sub-images
+
+&lt;div class="row"&gt;
+&lt;div class="column" style="max-width:40%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant2_v03_0330_v.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant2_v06_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant2_v08_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+---
+# Analyzing sub-images
+
+&lt;div class="row"&gt;
+&lt;div class="column" style="max-width:40%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant3_v03_0330_v.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant3_v06_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant3_v08_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+---
+# Analyzing sub-images
+
+&lt;div class="row"&gt;
+&lt;div class="column" style="max-width:40%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant4_v03_0330_v.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant4_v06_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;div class="column" style="max-width:30%"&gt;
+  &lt;img src="../figs/4pm_rep7_plant4_v08_0330.jpg"&gt;&lt;/img&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Putting it all together
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../video/4pm_rep7_plant_00.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Automated phenotyping
+
+![](../figs/cuscuta_tracking.jpg)
+
+---
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:100%"&gt;
+    &lt;img src="../figs/4pm_rep7_plant_02_v4.svg"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style="font-size:28px; font-family: 'Yanone Kaffeesatz'" class="row"&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align:center"&gt;
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0255_h.jpg"&gt;&lt;/img&gt;
+      6.8 HAI
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0582_h.jpg"&gt;&lt;/img&gt;
+      15.5 HAI
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align:center"&gt;
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0290_h.jpg"&gt;&lt;/img&gt;
+      7.7 HAI
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0630_h.jpg"&gt;&lt;/img&gt;
+      16.8 HAI
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align:center"&gt;
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0401_h.jpg"&gt;&lt;/img&gt;
+      10.7 HAI
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0725_h.jpg"&gt;&lt;/img&gt;
+      19.3 HAI
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align:center"&gt;
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0501_h.jpg"&gt;&lt;/img&gt;
+      13.3 HAI
+      &lt;img src="../figs/4pm_rep7_plant2_v09_0902_h.jpg"&gt;&lt;/img&gt;
+      24.0 HAI
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+
+# Automated phenotyping
+
+![](../figs/cuscuta_tracking.jpg)
+
+---
+
+class: center, middle, inverse
+
+# Results
+
+---
+
+# Manual vs Automated comparison
+
+![](../figs/manual_timepoints.jpg)
+
+- 3 timepoints originally considered whenever doing manual video observation
+
+![](../figs/automated_timepoints.jpg)
+
+- 6+ timepoints can be quickly extracted from the automated pipeline
+
+---
+
+# Differences: Coiling rate
+
+&lt;img src="../figs/coil_percentage.svg" width="500" style="display: block; margin: auto;" /&gt;
+
+- The early dodder gets to coil
+
+---
+
+# Differences: Intiation and completion
+
+&lt;img src="../figs/time_after_inoculation.svg" width="575" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/time_to_complete_coiling.svg" width="575" style="display: block; margin: auto;" /&gt;
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+---
+
+# No differences: position
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:65%"&gt;
+    &lt;img src="../figs/final_position.svg"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:35%"&gt;
+    &lt;img src="../figs/coil_tightness.svg"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

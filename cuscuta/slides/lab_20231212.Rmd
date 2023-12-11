@@ -1,0 +1,224 @@
+---
+title: "The early dodder gets the host"
+subtitle: "Decoding the Circumnutation Patterns of *Cuscuta campestris*"
+author: "Max Bentelspacher, **Erik Amézquita**, Supral Adhikari<br>Asha Mudalige, Jaime Barros, So-Yon Park<br>&mdash;<br>Division of Plant Sciences & Technology<br>University of Missouri<br>&mdash;"
+date: "2023-12-12"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# Studying how a vampire plant wiggles
+
+<video width="900" controls>
+  <source src="../video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
+</video>
+
+---
+
+# The early dodder gets the host
+
+![](../figs/cuscuta_standstill_3x3.jpg)
+
+---
+
+class: inverse, center, middle
+
+# Image processing FTW
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_raw.jpg)
+
+- Raw standstill image
+- One every 96 seconds (900 images = 24 hours)
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc1.jpg)
+
+- Identify tapes (inoculation points)
+- Identify skewers
+- Linear approximation for the center of the skewers'
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc2.jpg)
+
+- Consider 5 subimages, one per skewer, from hereafter
+- Discard the rest of the image
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_full_h.jpg)
+
+--
+
+![](../figs/4pm_rep7_plant0_v02_0330_h.jpg)
+
+---
+
+```{r include=FALSE, evaluate=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:4, digits=0, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  # Analyzing sub-images
+  
+  <div class=\"row\">
+  <div class=\"column\" style=\"max-width:40%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v03_0330_v.jpg\"></img>
+  </div>
+  <div class=\"column\" style=\"max-width:30%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v06_0330.jpg\"></img>
+  </div>
+  <div class=\"column\" style=\"max-width:30%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v08_0330.jpg\"></img>
+  </div>
+  </div>
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+# Putting it all together
+
+<video width="900" controls>
+  <source src="../video/4pm_rep7_plant_00.mp4" type="video/mp4">
+</video>
+
+---
+
+# Automated phenotyping
+
+![](../figs/cuscuta_tracking.jpg)
+
+---
+
+<div class="row">
+  <div class="column" style="max-width:100%">
+    <img src="../figs/4pm_rep7_plant_02_v4.svg"></img>
+  </div>
+</div>
+
+<div style="font-size:28px; font-family: 'Yanone Kaffeesatz'" class="row">
+  <div class="column" style="width:25%;">
+    <p style="text-align:center">
+      <img src="../figs/4pm_rep7_plant2_v09_0255_h.jpg"></img>
+      6.8 HAI
+      <img src="../figs/4pm_rep7_plant2_v09_0582_h.jpg"></img>
+      15.5 HAI
+    </p>
+  </div>
+  <div class="column" style="width:25%;">
+    <p style="text-align:center">
+      <img src="../figs/4pm_rep7_plant2_v09_0290_h.jpg"></img>
+      7.7 HAI
+      <img src="../figs/4pm_rep7_plant2_v09_0630_h.jpg"></img>
+      16.8 HAI
+    </p>
+  </div>
+  <div class="column" style="width:25%;">
+    <p style="text-align:center">
+      <img src="../figs/4pm_rep7_plant2_v09_0401_h.jpg"></img>
+      10.7 HAI
+      <img src="../figs/4pm_rep7_plant2_v09_0725_h.jpg"></img>
+      19.3 HAI
+    </p>
+  </div>
+  <div class="column" style="width:25%;">
+    <p style="text-align:center">
+      <img src="../figs/4pm_rep7_plant2_v09_0501_h.jpg"></img>
+      13.3 HAI
+      <img src="../figs/4pm_rep7_plant2_v09_0902_h.jpg"></img>
+      24.0 HAI
+    </p>
+  </div>
+</div>
+
+---
+
+
+# Automated phenotyping
+
+![](../figs/cuscuta_tracking.jpg)
+
+---
+
+class: center, middle, inverse
+
+# Results
+
+---
+
+# Manual vs Automated comparison
+
+![](../figs/manual_timepoints.jpg)
+
+- 3 timepoints originally considered whenever doing manual video observation
+
+![](../figs/automated_timepoints.jpg)
+
+- 6+ timepoints can be quickly extracted from the automated pipeline
+
+---
+
+# Differences: Coiling rate
+
+```{r, out.width=500}
+knitr::include_graphics(c('../figs/coil_percentage.svg'))
+```
+
+- The early dodder gets to coil
+
+---
+
+# Differences: Intiation and completion
+
+```{r, out.width=575}
+knitr::include_graphics(c('../figs/time_after_inoculation.svg',
+                          '../figs/time_to_complete_coiling.svg'))
+```
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+---
+
+# No differences: position
+
+<div class="row">
+  <div class="column" style="max-width:65%">
+    <img src="../figs/final_position.svg"></img>
+  </div>
+  <div class="column" style="max-width:35%">
+    <img src="../figs/coil_tightness.svg"></img>
+  </div>
+</div>
