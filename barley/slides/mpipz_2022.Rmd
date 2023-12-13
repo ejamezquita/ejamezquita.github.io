@@ -211,7 +211,7 @@ Connected components | Loops | Voids
 - Example with 2 connected components, 1 loop, 0 voids
 
 ```{r, out.width=500}
-knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_textless.png")
+knitr::include_graphics("../../tda/figs/binary_to_cubical_complex_textless.svg")
 ```
 
 ---
@@ -861,7 +861,7 @@ class: inverse
     <img style="padding: 0 0 0 0;" src="../figs/S017_L0_seed_10_0.gif">
   </div>
   <div class="column" style="max-width:19.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
     <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
     <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>

@@ -1,12 +1,12 @@
 ---
-title: "The shape of the aroma"
-subtitle: "modeling the citrus oil gland distribution"
+title: "Si la vida te da limones"
+subtitle: "modela la distribución de sus glándulas y aroma"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
-institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "2023-01-07<br> - <br> Published in [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
+institute: "Division of Plant Sciences & Technology<br>University of Missouri<br> -"
+date: "2023-12'13<br> - <br> Publicado en [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
 output:
   xaringan::moon_reader:
-    css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
     chakra: '../../js/remark-latest.min.js'
     lib_dir: libs
     nature:
@@ -44,9 +44,100 @@ class: inverse
   </div>
 </div>
 
-<p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'">Check out more 3D X-ray CT scans at <a href="https://www.youtube.com/@endlessforms6756">youtube.com/@endlessforms6756</a></p>
+<p style="font-size: 24px; text-align: right; font-family: 'Yanone Kaffeesatz'">More X-ray CT 3D scans at <a href="https://www.youtube.com/@endlessforms6756">youtube.com/@endlessforms6756</a></p>
 
 ---
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
+
+# From MX to MI to MO at MU
+
+.left-column[
+![](../../cmse/figs/dvdy216-toc-0001-m.jpg)
+]
+
+.right-column[
+- 2013 - 2018 : Math @ at the Universidad de Guanajuato and CIMAT (Mexico).
+
+- 2016 - 2018 : Bachelor thesis: **Math + Archaeology**. Use TDA to quantify and classify the shape of pre-Columbian masks found in the Templo Mayor in Mexico City.
+
+- 2018 - 2023 : CMSE @ Michigan State University. **Came for the math. Stayed for the plants.**
+
+- 2023 - present : PFFIE Postdoc Fellow @ Division of Plant Sciences & Department of Mathematics at Mizzou
+
+]
+
+![](../../barley/figs/ecc_ver2.gif)
+
+---
+
+# My main past projects
+
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:25px;">
+  <div class="column" style="max-width:25%">
+    <p style="text-align: center;">The shape of<br>adaptability</p>
+    <img style="padding: 0 40px;" src="../../barley/figs/S017_L3_1.gif"></img>
+    <img style="padding: 0 30px;" src="../../barley/figs/ecc_X.gif"></img>
+    <p style="text-align: center; font-size:20px;">Topological Data Analysis<br>Euler Characteristic Transform</p>
+  </div>
+  <div class="column" style="max-width:25%">
+    <p style="text-align: center;">The shape of<br>development</p>
+    <img style="padding: 0 25px;" src="../../citrus/figs/SR01_L01_black_exocarp.gif"></img>
+    <img style="padding: 0 10px;" src="../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg"></img>
+    <p style="text-align: center; font-size:20px">Ellipsoidal modeling<br>Directional statistics</p>
+  </div>
+  <div class="column" style="max-width:25%">
+    <p style="text-align: center;">The shape of<br>breeding</p>
+    <img style="padding: 0;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"></img>
+    <img style="padding: 0;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.png"></img>
+    <p style="text-align: center; font-size:20px">Allometry of multiple tissues<br>Convexity indices</p>
+  </div>
+  <div class="column" style="max-width:25%">
+    <p style="text-align: center;">The shape of<br>omics</p>
+    <img style="padding: 0;" src="../../nasrin/figs/fpkm_raw_3.png"></img>
+    <img style="padding: 0 10px;" src="../../nasrin/figs/lung_t0_meancorr_eps7.0e+02_r40_g40.png"></img>
+    <img style="padding: 0 10px;" src="../../nasrin/figs/lung_tpm_maxcorr_eps7.0e+04_r40_g30.png"></img>
+    <p style="text-align: center; font-size:20px">Mapper<br>Spectral analysis</p>
+  </div>
+</div>
+
+---
+
+# Roadmap for today
+
+.left-column[
+![](../figs/SR01_L01_black_exocarp.gif)
+![](../figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg)
+]
+
+.right-column[
+1. Brief overview of citrus biology and cultural history
+
+1. Experimental setup
+
+1. Allometry 
+
+1. Normal diffusion mechanics
+
+1. Ellipsoidal approximation and directional statistics
+
+1. Future directions with TDA (?)
+]
+
+---
+
+class: inverse, middle, center
+
+# More than just oranges
+
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/south_coast_field_station_citron.jpg")
+```
+
+---
+
 
 ## Think of citrus as lego blocks
 

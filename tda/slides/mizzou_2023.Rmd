@@ -8,7 +8,7 @@ output:
   xaringan::moon_reader:
     css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
     chakra: '../../js/remark-latest.min.js'
-    lib_dir: '../../libs'
+    lib_dir: 'libs'
     nature:
       highlightStyle: github
       highlightLines: true
@@ -16,18 +16,7 @@ output:
 
 ---
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
-.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
-  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
-  word-break:normal;}
-.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
-  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
-  padding:10px 5px;word-break:normal;}
-.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
-</style>
+class: inverse
 
 ```{r setup, include=FALSE}
 library(tibble)
@@ -40,8 +29,6 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
-
-class: inverse
 
 # Shape has data, and data has shape
 
@@ -595,7 +582,11 @@ knitr::include_graphics("../figs/amezquita_etal_2020.png")
 ```
 
 .pull-left[
-![](https://lh6.googleusercontent.com/UJMl4_Q2ccGdwrwg7R9-7LlcehV6eCq-sVs_mCPODqxH0vpzDBCjnBlI1s-t9JGe40Li0bkLCXU7DmTOeIrWr72MtT7bRWOa5tIwQrzQGXMDTX8c1KiGOmbOSqiHHVax_Q=w1280)
+
+```{r, out.width=200}
+knitr::include_graphics("../figs/logo_aatrn_black_transparent_background.png")
+```
+
 ]
 
 .pull-right[
@@ -609,7 +600,7 @@ background-image: url("https://lh5.googleusercontent.com/vYDMaU7pTcgKtQ3WqwqBVWc
 background-size: 100px
 background-position: 99% 1%
 
-# AATRN
+# www.AATRN.net
 
 <p align="center">
 <iframe width="800" height="500" src="https://www.aatrn.net/home" title="AATRN">

@@ -371,7 +371,7 @@ class: inverse
     <p style="text-align: center;">Michelle Quigley<br>(PSU)</p>
   </div>
   <div class="column" style="max-width:18%; font-size: 16px;">
-    <img style="padding: 0 0 0 0;" src="https://directory.natsci.msu.edu/media/Directory/Profiles/dhchitwood20230719102707.jpg">
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
     <p style="text-align: center;">Dan Chitwood<br>(MSU)</p>
     <img style="padding: 0 0 0 0;" src="https://caes.ucdavis.edu/sites/g/files/dgvnsk1721/files/styles/sf_profile/public/images/person/pjbrown_1.jpg?h=345be249&itok=77W2Yqpk">
     <p style="text-align: center;">Pat Brown<br>(UC Davis)</p>
