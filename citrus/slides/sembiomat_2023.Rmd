@@ -3,7 +3,7 @@ title: "Si la vida te da limones"
 subtitle: "modela la distribución de sus glándulas y aroma"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Danelle Seymour, Elizabeth Munch, Dan Chitwood <br> -"
 institute: "Division of Plant Sciences & Technology<br>University of Missouri<br> -"
-date: "2023-12'13<br> - <br> Publicado en [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
+date: "2023-12-13<br> - <br> Publicado en [Plants, People, Planet (2022)](https://doi.org/10.1002/ppp3.10333)"
 output:
   xaringan::moon_reader:
     css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
@@ -18,6 +18,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(knitr)
+library(magrittr)
 
 # <!-- Copies an HTML dependency to a subdirectory of the given directory. The subdirectory name willbename-version(for example, "outputDir/jquery-1.11.0"). You may setoptions(htmltools.dir.version= FALSE)to suppress the version number in the subdirectory name. -->
 options(htmltools.dir.version = FALSE)
@@ -73,6 +74,10 @@ background-position: 98% 2%
 
 ---
 
+background-image: url("../../img/primary-logo-forestgreen.svg")
+background-size: 100px
+background-position: 98% 2%
+
 # My main past projects
 
 <div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:25px;">
@@ -115,15 +120,14 @@ background-position: 98% 2%
 .right-column[
 1. Brief overview of citrus biology and cultural history
 
-1. Experimental setup
-
-1. Allometry 
-
-1. Normal diffusion mechanics
+1. Experimental setup and quick results
 
 1. Ellipsoidal approximation and directional statistics
 
-1. Future directions with TDA (?)
+The last 20 slides are a crash course into Topological Data Analysis.
+
+Will **not** get there unless there is ample time.
+
 ]
 
 ---
@@ -138,7 +142,6 @@ knitr::include_graphics("../crc_pics/south_coast_field_station_citron.jpg")
 
 ---
 
-
 ## Think of citrus as lego blocks
 
 ![](../figs/citrus_family_tree_1.jpg)
@@ -146,10 +149,41 @@ knitr::include_graphics("../crc_pics/south_coast_field_station_citron.jpg")
 
 ---
 
+background-image: url("../crc_pics/cvc3.jpg")
+background-size: 350px
+background-position: 100% 0%
+
+## Citrus originated 8M* years ago
+
+Originated in South and South East Asia, and Australia.
+
+```{r, out.width=570, fig.align='center'}
+knitr::include_graphics(c('../figs/precursor_citrus_geo_distribution.jpg'))
+```
+<p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+---
+
+background-image: url("../crc_pics/cvc2.jpg")
+background-size: 850px
+background-position: 50% 40%
+
+
+## Genetic distances between citrus
+
+```{r, out.width=550, fig.align='left'}
+knitr::include_graphics(c('../figs/../figs/precursor_citrus_phylogenetic.jpg'))
+```
+<p style="font-size: 8px; text-align: center; color: Grey;"> Credits: <a href="https://doi.org/10.1038/nature25447">Wu <em>et al.</em> (2018)</a></p>
+
+10* _fundamental_ citrus gave rise to all citrus diversity we see today
+
+---
+
 ## Oil glands are closely linked to fruit development
 
 .pull-left[
-![](`r "https://www.boredpanda.com/blog/wp-content/uploads/2020/06/5eec755907306_07f29bfovq551-png__700.jpg"`)
+![](../figs/lemon_development.jpg)
 <p style="font-size: 8px; text-align: right; color: Grey;"> Credits: <a href="https://www.boredpanda.com/life-cycles-pics/">BoredPanda</a></p>
 
 Developing cycle of a lemon
@@ -164,6 +198,18 @@ Developing cycle of a lemon
 - Huge perfume and food industry behind essential oils
 
 ]
+
+---
+
+class: inverse, middle, center
+
+# Experimental setup
+
+## And some quick results
+
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/citrus_webberii.jpg")
+```
 
 ---
 
@@ -231,14 +277,6 @@ Developing cycle of a lemon
 
 ---
 
-class: inverse, center, middle
-
-# Looking to strike some oil
-
-## Phenotyping all the citrus
-
----
-
 # Allometry
 
 + Linear relationship between size-related measurements.
@@ -276,7 +314,9 @@ class: inverse, center, middle
 
 ## Directional statistics to compare fruit surfaces
 
-![](../figs/SR01_CRC3289_12B-19-9_L00_Geocentric.jpg)
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/nagami_kumquat.jpg")
+```
 
 ---
 
@@ -385,13 +425,14 @@ background-position: 98% 1%
 ```{r, out.width=550, fig.align='center'}
 knitr::include_graphics('../figs/WR02_CRC3877_12B-44-13_L00_geocentric_lazi.jpg')
 ```
+
 ---
 
 background-image: url("../../citrus/figs/lambert_equal_area_N.gif")
 background-size: 150px
 background-position: 98% 1%
 
-# Citrus modeling: Finger lime
+## Citrus modeling: Finger lime
 
 ![](../figs/WR08_CRC3661_18B-16-5_L00_Geocentric.jpg)
 
@@ -423,6 +464,10 @@ class: inverse, center, middle
 # But then, what distribution do oil glands follow?
 
 ## Spherical Kernel Density Estimates FTW
+
+```{r, out.width=400}
+knitr::include_graphics("../crc_pics/finger_lime.jpg")
+```
 
 ---
 
@@ -488,11 +533,221 @@ background-position: 95% 3%
 
 ---
 
+background-image: url("../../citrus/figs/ppp3.png")
+background-size: 225px
+background-position: 95% 3%
+
+# Summary
+
+.left-column[
+
+```{r, out.width=150, fig.align='center'}
+knitr::include_graphics(c('../../citrus/crc_pics/citrus_amblycarpa.jpg',
+                          '../../citrus/figs/SR01_L01_black_exocarp.gif',
+                          '../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg'))
+```
+
+]
+
+.right-column[
+- It is possible to **compare** ~~apples~~ limes to oranges, despite diversity in shapes and sizes.
+
+- We can define the non-parametrical **distribution** of oil glands for most of the citrus.
+
+- **First** time citrus shape has been examined using X-ray CT scans.
+
+- AFAIK, this is also the **first** time directional statistics have been **applied** to plant biology.
+]
+
+---
+
+
+background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 5%
+
+class: inverse
+
+# Thank you!
+
+<div class="row">
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
+    <p style="text-align: center;">Liz Munch (MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
+    <p style="text-align: center;">Tim Ophelders (Utrecht)</p>
+  </div>
+  <div class="column" style="max-width:23%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
+    <p style="text-align: center;">Dan Chitwood<br>(MSU)</p>
+    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
+    <p style="text-align: center;">Michelle Quigley<br>(MSU)</p>
+  </div>
+  <div class="column" style="max-width:16%; font-size: 15px;">
+  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
+  <p style="text-align: center;">Danelle Seymour<br>(UC Riverside)</p>
+  <img style="padding: 0 0 0 0;" src="../figs/SR01_L01_black_exocarp.gif">
+  </div>
+  <div class="column" style="width:10%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
+  <p style="text-align: center;"><strong>Email</strong></p>
+  <p style="text-align: center; color: Blue">amezqui3@msu.edu</p>
+  <p style="text-align: center;"><strong>Website and slides</strong></p>
+  <p style="text-align: center; color: Blue">egr.msu.edu/~amezqui3</p>
+  <img style="padding: 0 0 0 0;" src="../figs/ppp3.png">
+  </div>
+</div>
+
+---
+
+class: inverse, center, middle
+
+# Do I still have time?
+
+```{r, out.width=300}
+knitr::include_graphics("../crc_pics/cvc12.jpg")
+```
+
+---
+
 class: inverse, center, middle
 
 # Future topological directions
 
-## Obligatory TDA plugin
+## A crash course in Topological Data Analysis
+
+```{r, out.width=300}
+knitr::include_graphics("../crc_pics/interdonato_lemon.jpg")
+```
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedra
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topologically invariant features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 3 connected components, 1 loop, 1 voids
+
+```{r, out.width=350}
+knitr::include_graphics("../../tda/figs/complex-good.svg")
+```
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each cell is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eigcurv_filter.gif", "../../barley/figs/gaussian_density_filter.gif"))
+```
+]
+
+.pull-right[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eccentricity_filter.gif", "../../barley/figs/vrips_ver2.gif"))
+```
+]
+
+---
+
+```{r include=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:7, digits=1, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  background-image: url(\"../../tda/figs/vr1_{first}.svg\")
+  background-size: 475px
+  background-position: 50% 90%
+
+  # A toy Vietoris-Rips filtration example
+  
+  - Consider a collection of vertices $\\{{v_\\lambda\\}}_{{\\lambda\\in\\Lambda}}$ and $r\\geq0$. 
+  - The subset $\\{{v_0,\\ldots,v_n\\}}$ is a simplex in the $VR(r)$ simplicial complex iff
+  $$d(v_i,v_j)\\leq r\\quad\\text{{ for all }}\\quad i,j\\in\\{{0,\\ldots,n\\}}.$$
+  
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+background-image: url("../../tda/figs/barcode_vr1.svg")
+background-size: 600px
+background-position: 50% 90%
+  
+# Summarizing results in a barcode
+
+.pull-left[
+```{r, out.width=400}
+knitr::include_graphics("../../tda/figs/vr1_summary.svg")
+```
+]
+
+.pull-right[
+- Five connected components are born from the get-go
+
+- Four of them merge into one at $r_4$
+
+- A hole is born with this merge
+
+- This hole eventually is filled with triangles at $r_6$.
+]
+
+---
+
+# Persistence diagrams
+
+
+.pull-left[
+```{r, out.width=400}
+knitr::include_graphics("../../tda/figs/persistence_diagrams.svg")
+```
+]
+
+.pull-right[
+- Consider $C_{i,j;q}$ all the $q$-classes that are born at time $i$ and die at time $j$
+
+- The associated persistence diagram $\text{dgm}(\mathcal{F})$ is a multiset
+
+$\text{dgm}(\mathcal{F}) = \bigcup_{q=0}^{n}\{(i,j) : \alpha_{i,j;q}\in C_{i,j;q}\}\cup\textrm{diag}$
+
+]
+
+---
+
+background-image: url("../../tda/figs/bottleneck_diagram.svg")
+background-size: 600px
+background-position: 50% 90%
+
+# Bottleneck distance and stability
+
+- Consider $\text{dgm}_1$, $\text{dgm}_2$ two persistence diagrams. The *bottleneck distance$ between them is
+
+$$d_B(\text{dgm}_1,\text{dgm}_2) = \inf_\gamma\sup_{p\in\text{dgm}_1}\|p-\gamma(p)\|_\infty.$$
+
+- Where $\gamma$ is a bijection between the $q$-th $\text{dgm}_1$ and $\text{dgm}_2$
+
+- **Persistence diagrams are stable under the bottleneck distance!**
 
 ---
 
@@ -521,16 +776,16 @@ Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
 
 <div class="row">
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L00_phlifetime.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L00_frontpic.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L00_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L01_phlifetime.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L01_frontpic.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L01_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L02_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/M01_CRC3226_12B-27-1_L02_phlifetime.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L02_frontpic.jpg">
+    <img src="../figs/M01_CRC3226_12B-27-1_L02_phlifetime.jpg">
   </div>
 </div>
 
@@ -541,16 +796,16 @@ Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
 
 <div class="row">
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L00_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L00_phlifetime.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L00_frontpic.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L00_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L01_phlifetime.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L01_frontpic.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L01_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L02_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/C02_CRC3919_18A-24-1_L02_phlifetime.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L02_frontpic.jpg">
+    <img src="../figs/C02_CRC3919_18A-24-1_L02_phlifetime.jpg">
   </div>
 </div>
 
@@ -561,16 +816,16 @@ Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
 
 <div class="row">
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L00_phlifetime.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L00_frontpic.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L00_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L01_phlifetime.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L01_frontpic.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L01_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L02_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR02_CRC3877_12B-44-13_L02_phlifetime.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L02_frontpic.jpg">
+    <img src="../figs/WR02_CRC3877_12B-44-13_L02_phlifetime.jpg">
   </div>
 </div>
 
@@ -581,84 +836,17 @@ Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
 
 <div class="row">
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L00_phlifetime.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L00_frontpic.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L00_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L01_phlifetime.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L01_frontpic.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L01_phlifetime.jpg">
   </div>
   <div class="column" style="max-width:30%">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L02_frontpic.jpg">
-    <img style="padding: 0 0 0 0;" src="../figs/WR08_CRC3661_18B-16-5_L02_phlifetime.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L02_frontpic.jpg">
+    <img src="../figs/WR08_CRC3661_18B-16-5_L02_phlifetime.jpg">
   </div>
 </div>
 
 Persistent Homology ( $H_0$ and $H_1$) computed with Ripser in `scikit-tda`.
----
-
-# Future directions
-
-.left-column[
-![](../crc_pics/citrus_amblycarpa.jpg)
-![](../crc_pics/citrus_hystrix.jpg)
-![](../crc_pics/citrus_macrophylla.jpg)
-]
-
-.right-column[
-
-- Locate, segment, and phenotype seed tissue.
-
-- Explore more on normal diffusion mechanics and their possible relationship to oil gland distribution.
-
-- Define a measure of similarity of oil gland distributions and compute a pairwise distance matrix for all citrus fruits.
-
-- **My $H_1$ PD have ~5000 points, and computing bottleneck-like distances is far too consuming.** Alternatives must be explored (persistence images, heat kernels, etc)
-
-- Compare such distances between distributions to phylogenetic distances.
-
-- Explore alternative ellipsoid-to-sphere algorithms to minimize distortion.
-
-
-
-]
-
-
----
-
-background-image: url("../../cmse/figs/institutional_logos.jpg")
-background-size: 500px
-background-position: 95% 5%
-
-class: inverse
-
-# Thank you!
-
-<div class="row">
-  <div class="column" style="max-width:23%; font-size: 15px;">
-    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
-    <p style="text-align: center; color: White">Liz Munch (MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
-    <p style="text-align: center; color: White">Tim Ophelders (Utrecht)</p>
-  </div>
-  <div class="column" style="max-width:23%; font-size: 15px;">
-    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
-    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
-    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
-  </div>
-  <div class="column" style="max-width:16%; font-size: 15px;">
-  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
-  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
-  <img style="padding: 0 0 0 0;" src="../figs/SR01_L01_black_exocarp.gif">
-  </div>
-  <div class="column" style="width:10%; font-size: 24px;">
-  </div>
-  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
-  <p style="text-align: center; color: White"><strong>Email</strong></p>
-  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
-  <p style="text-align: center; color: White"><strong>Website and slides</strong></p>
-  <p style="text-align: center; color: Yellow">egr.msu.edu/~amezqui3</p>
-  <img style="padding: 0 0 0 0;" src="../figs/ppp3.png">
-  </div>
-</div>
