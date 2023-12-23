@@ -592,9 +592,9 @@ class: inverse
   </div>
   <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
   <p style="text-align: center;"><strong>Email</strong></p>
-  <p style="text-align: center; color: Blue">amezqui3@msu.edu</p>
+  <p style="text-align: center; color: Blue">eah4d@missouri.edu</p>
   <p style="text-align: center;"><strong>Website and slides</strong></p>
-  <p style="text-align: center; color: Blue">egr.msu.edu/~amezqui3</p>
+  <p style="text-align: center; color: Blue">ejamezquita.github.io</p>
   <img style="padding: 0 0 0 0;" src="../figs/ppp3.png">
   </div>
 </div>
