@@ -203,7 +203,7 @@ There are biophysical constraints at play in walnut development
 ## Individual-based correlation
 
 ```{r, out.width=525}
-knitr::include_graphics("../figs/spearman_correlation.png")
+knitr::include_graphics("../figs/spearman_correlation.svg")
 ```
 
 ---
@@ -211,7 +211,7 @@ knitr::include_graphics("../figs/spearman_correlation.png")
 ## Accession-based correlation
 
 ```{r, out.width=580}
-knitr::include_graphics("../figs/vol_absolute_relative_correlation_accession.png")
+knitr::include_graphics("../figs/vol_absolute_relative_thick_correlation_accession.svg")
 ```
 
 ---
@@ -287,8 +287,8 @@ background-position: 50% 60%
 ## Trying to figure out **independent** contributions
 
 ```{r, out.width=700}
-knitr::include_graphics(c("../figs/easeofremoval_OLS_optimal_features.png",
-                          "../figs/shellstrength_OLS_optimal_features.png"))
+knitr::include_graphics(c("../figs/ease_of_removal_OLS_optimal_features.svg",
+                          "../figs/shell_strength_OLS_optimal_features.svg"))
 ```
 
 ---
@@ -296,15 +296,15 @@ knitr::include_graphics(c("../figs/easeofremoval_OLS_optimal_features.png",
 ## Trying to figure out **independent** contributions
 
 ```{r, out.width=700}
-knitr::include_graphics(c("../figs/percentkernel_OLS_optimal_features.png",
-                          "../figs/shelltexture_OLS_optimal_features.png"))
+knitr::include_graphics(c("../figs/kernel_weight_ratio_OLS_optimal_features.svg",
+                          "../figs/shell_strength_OLS_optimal_features.svg"))
 ```
 
 ---
 
 ## Future directions: domestication
 
-![](../figs/pca_select_phenos_accession.png)
+![](../figs/pca_select_phenos_accession.svg)
 
 .pull-left[
 ![](../figs/pat_walnut_crack_detail3.jpg)
