@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Cuscuta tracking poster</title>
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Rasa&family=Roboto&display=swap" rel="stylesheet">
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+*{
+  box-sizing: border-box;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 48in;
+height: 36in;
+text-align: justify;
+font-size: 54px;
+background-color: gray;
+color: #000000;
+}
+.references {
+font-size: 1.5ex;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+
+.column {
+    float: left;
+    padding: 0px;
+    height: 36in;
+}
+.left{
+    width: 40%;
+}
+.right {
+    width: 30%;
+    background-color: #eeeeee;
+    font-family: 'Rasa', serif;
+    color: #000000;
+    padding: 1ex;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+a {
+    text-decoration: none;
+    color: #0484ae;
+}
+
+#title {
+    font-size: 2em;
+    text-align: left;
+    margin: 10px 0 0 0;
+    line-height: 80%;
+    border-bottom: 0;
+}
+#author {
+    color: #18453b;
+    margin: 0;
+    line-height: 90%;
+    font-size: 1.5em;
+}
+.author a{
+    color: #18453b;
+}
+
+#affiliation {
+    line-height: 95%;
+    color: #404040;
+    font-style: italic;
+    font-size: 0.75em;
+    text-align: left;
+}
+sup {
+    color: #900000;
+}
+.affiliation sup {
+    font-size: 1ex;
+}
+.affsup{
+    color: #900000;
+    font-style: normal;
+}
+
+.affiliation a{
+    color: #404040;
+    text-align: left;
+}
+.author sup {
+    font-size: 2ex;
+}
+.right h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.right h2 {
+    text-align: center;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 80%;
+}
+.right h4,h5 {
+    text-align: left;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 90%;
+}
+.right p {
+    color: #000000;
+    text-align: center;
+}
+.right ol, ul {
+    text-align: left;
+    margin-top: -1em;
+}
+.main {
+    width: calc(48in * 0.4);
+    height: 36in;
+    position: absolute;
+    color: black;
+    text-shadow: 0.25ex 0.25ex 0.75ex white;
+    font-family: Overpass;
+    background-image: linear-gradient(#f1b82d 75%, black);
+}
+.main strong {
+    color: white;
+    text-shadow: 0.25ex 0.25ex 0.75ex black;
+}
+.main p {
+    margin-top: 0.5em;
+    font-size: 3.25em;
+    text-align: left;
+}
+img.main-img-left {
+    width: 25%;
+    left: 1em;
+    bottom: 1ex;
+    position: absolute;
+}
+img.main-img-right {
+    width: 20%;
+    right: 1em;
+    bottom: 1em;
+    position: absolute;
+}
+img.main-img-subright {
+    width: 20%;
+    right: 8em;
+    bottom: 2em;
+    position: absolute;
+}
+i {
+    color: #404040;
+    font-size: 1ex;
+    text-decoration: none;
+}
+a.email {
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.75em;
+}
+
+.section {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+}
+.main p {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+
+.orcid img {
+  width: 4%;
+}
+a.left:link, a.left:visited{
+    color: #ccf5ff;
+    text-shadow: none;
+}
+a.left:hover, a.left:active{
+    color: hotpink;
+    background-color:#ccf5ff;
+    text-shadow: none;
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="column left">
+        <div class="main">
+        <p><strong>Tracking</strong> the <strong>wiggle</strong> of a <strong>vampire</strong> plant<p>
+        <p style="text-align:center; margin-top: -2em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
+            <!-- <img src="../figs/IMGA04011.jpg" style="width:28%" /> -->
+            <img src="../figs/4pm_rep7_plant2_v09_0255_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0290_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0401_h.jpg" style="width:32%" />
+            <span style="width:99%; padding:0; margin:0;">
+                &nbsp;&nbsp;&nbsp;
+                6.8 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                7.7 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                10.8 HAI
+                &nbsp;&nbsp;&nbsp;
+            </span>
+            <img src="../figs/4pm_rep7_plant2_v09_0463_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0501_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0582_h.jpg" style="width:32%" />
+            <span style="width:99%; padding:0; margin:0;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                12.0 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                13.3 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                15.5 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <img src="../figs/4pm_rep7_plant2_v09_0630_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0725_h.jpg" style="width:32%" />
+            <img src="../figs/4pm_rep7_plant2_v09_0902_h.jpg" style="width:32%" />
+            <span style="width:99%; padding:0; margin:0;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                16.8 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                19.3 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                24.0 HAI
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+        </p>
+        <!-- <p style="text-align: center; margin-top:0; font-size:2em">Preprint</p> -->
+        <p style="text-align:center; font-family:monospace; margin-top:0; font-size:1.5em; color:navy;">Python, preprint, and videos<br><a class="left" href="https://ejamezquita.github.io/cuscuta/description.html", target="_blank">bit.ly/cuscuta [QR below]</a></p>
+        <img src="../figs/bitly_cuscuta.svg" class="main-img-left" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg" class="main-img-right" />
+        </div>
+    </div>
+    <div class="column right">
+        <div class="title section">
+            <h1 id="title"><a href="https://ejamezquita.github.io/cuscuta/description.html" target="_blank">Decoding <em>Cuscuta</em> coiling with image processing</a></h1>
+
+            <h3 id="author" class="author">
+            <a class="orcid" href="https://orcid.org/0000-0002-9837-0397"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg"></img></a> <a href="https://ejamezquita.github.io" target="_blank">Erik Am&eacute;zquita</a><sup>1,2</sup><br>
+            <i class="fas fa-envelope"></i> <a href="mailto:eah4d@missouri.edu" class="email">eah4d@missouri</a> <br>
+            </h3>
+
+            <h5 id="author_extra" class="author_extra">
+             Max Bentelspacher<sup>1</sup>
+             Supral Adhikari<sup>1</sup>
+             Jaime Barros<sup>1</sup>
+             So-Yon Park<sup>1</sup>
+            </h5>
+
+            <p id="affiliation" class="affiliation">
+            <span class="affsup">1.</span> <a href="https://pst.missouri.edu/" target="_blank">Division of Plant Sciences &amp; Technology, University of Missouri</a><br>
+            <span class="affsup">2.</span> <a href="https://math.missouri.edu/" target="_blank">Department of Mathematics, University of Missouri</a><br>
+            </p>
+        </div>
+        <br>
+        <div id="experimental-design" class="section level2">
+            <h2 style="margin-top:-2ex">Materials and methods</h2>
+            <p>
+                <img src="../figs/4pm_rep7_0330_raw.jpg" width="99%"/>
+            </p>
+            <ul>
+                <li>Mature <em>Cuscuta</em> stem segments grown in greenhouse.</li>
+                <li>Inoculated on skewers at 9AM, 12PM, and 4PM.</li>
+                <li>900 camera snapshots &times; 96 seconds = 24 hours.</li>
+                <li>5 skewers &times; 7 repetitions = 35 samples per time.</li>
+                <li><strong>Manual</strong> and <strong>automated</strong> observations:<br>&rarrhk; Coiling success rates.<br>&rarrhk; Initiation and completion times.</li>
+            </ul>
+        </div>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="margin-top: 1ex">More data extracted automatically</h2>
+            <p>
+                <img src="../figs/4pm_rep7_plant_02_posang.png" style="width:99%" />
+                <img src="../figs/cuscuta_tracking.png" style="width:99%" /></p>
+            <ul style="margin-top:-1em;">
+                <li>
+                    Keep track of coil position and angle as a time series:<br>
+                    &rarrhk; Observe <strong>nuanced</strong> coiling stages.<br>
+                    &rarrhk; Consider Coil 1 and Coil 2 individually.<br>
+                    &rarrhk; More <strong>accurate</strong> representation.
+                </li>
+                <li>Based on color contrast <em>Cuscuta</em> vs skewer.<br></li>
+            </ul>
+        </div>
+    </div>
+    <div class="column right">
+        <br>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2>The early dodder gets the host</h2>
+            <p>
+                <img src="../figs/time_after_inoculation.svg" width="99%"/>
+                <img src="../figs/time_to_complete_coiling.svg" width="99%"/>
+                <img src="../figs/final_angle.svg" width="45%"/>
+                <img src="../figs/time_btwn_initiation_and_completion.svg" width="45%"/>
+            </p>
+            <ul style="margin-top: -2ex;">
+                <li>
+                    <em>Cuscuta</em> inoculated in the <strong>morning</strong> coiled <strong>better</strong>:<br>
+                    &rarrhk; Higher coiling success rate.<br>
+                    &rarrhk; Coiling started sooner.<br>
+                    &rarrhk; Coiling was completed sooner.
+                </li>
+                <li>However, once coiling initiated, coiling stages lasted the <strong>same</strong>, <strong>regardless</strong> of inoculation time.</li>
+                <li>Inoculation time did <strong>not</strong> influence twinning speed, angle, position, or coiling stage durations.</li>
+                <li>Nonetheless, Coil 2 is <strong>more stable</strong> than Coil 1.</li>
+            </ul>
+            <h2 style="margin-top: 1ex">Circadian clock model and conclusions</h2>
+            <p><img src="../figs/cuscuta_circadian_model.png" width="100%" style="display: block; margin: auto;" /></p>
+            <ul style="margin-top: -2ex;">
+                <li><em>Cuscuta</em> can tell time despite lacking photoreceptors.</li>
+                <li>It prefers to act in the morning/early afternoon.</li>
+                <li>
+                    Our pipeline is ready to collect more data:<br>
+                    &rarrhk; Phenotype the wiggle as a whole.
+                </li>
+                <li>Improve parasitic plant control treatments.</li>
+            </ul>
+        </div>
+        <div id="acknowledgements" class="section">
+            <h4 style="margin-top: 1ex">Acknowledgements</h4>
+            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">This research was supported by USDA-AFRI (2023-67013-39896), the Research Council, the College of Agriculture, Food, and Natural Resources (CAFNR), and the Interdisciplinary Plant Group (IPG) at the University of Missouri.</p>
+        </div>
+    </div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>
