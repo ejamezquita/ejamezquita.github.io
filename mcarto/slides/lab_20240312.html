@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Characterizing transcriptome spatial patterns in soybean tissues</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Sutton Tennant, Erik Amézquita, Marc Libault - Division of Plant Science &amp; Technology -" />
+    <meta name="date" content="2024-03-12" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Characterizing transcriptome spatial patterns in soybean tissues
+]
+.subtitle[
+## Topological Data Analysis and molecular cartography
+]
+.author[
+### Sutton Tennant, <strong>Erik Amézquita</strong>, Marc Libault<br>-<br>Division of Plant Science &amp; Technology<br>-
+]
+.date[
+### 2024-03-12
+]
+
+---
+
+
+
+
+background-image: url("../figs/D2_molecular_cartography.jpg")
+background-size: 600px
+background-position: 99% 99%
+
+# Molecular cartography
+
+.left-column[
+- 3.8M individual transcripts
+- Coordinates `\((x, y, z)\)` for each of them
+- Transcripts corresponding to 97 genes
+- ~2400 cells in the nodule cross section
+- Cross-sections from nodule and root soybean tissues
+]
+
+---
+
+# Variety of transcript distribution
+
+![](../figs/D2_distribution_example.jpg)
+
+- Different cells, different shapes and sizes
+- Beyond density: How to quantify and compare patterns?
+- Patterns across the whole cross section? Patterns within cells?
+
+---
+
+class: inverse, middle, center
+
+# Kernel Density Estimators (KDEs)
+
+## The continuous version of a histogram
+
+### Think of heatmaps
+
+---
+
+# KDE: Estimate an unknown probability density function
+
+![](https://www.statsmodels.org/dev/_images/examples_notebooks_generated_kernel_density_12_0.png)
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.statsmodels.org/dev/examples/notebooks/generated/kernel_density.html"&gt;Statsmodels&lt;/a&gt;&lt;/p&gt;
+
+- Green is unknown
+- We only know the samples (red points)
+
+---
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="600" src="https://mathisonian.github.io/kde/" title="KDEs"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: Matthew Conlen. &lt;a href="https://mathisonian.github.io/kde/"&gt;Source&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Caveat: Reflect the borders
+
+![](../figs/D2_GLYMA_05G092200_1767_1765_distance_transform.jpg)
+
+![](../figs/D2_GLYMA_05G092200_1749_1748_distance_transform.jpg)
+
+---
+
+# KDEs: One per cell
+
+
+&lt;img src="../figs/D2_GLYMA_05G092200_1767_1765_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/D2_GLYMA_05G092200_1749_1748_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, middle, center
+
+# Quantify the shape of these heatmaps
+
+## Detour into Topological Data Analysis (TDA) and statistical learning
+
+---
+
+&lt;embed src="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Sophia2017/slidesSophia2017/PersistenceForTDA2.pdf" width="825px" height="650px" style="display: block; margin: auto;" type="application/pdf" /&gt;
+
+---
+
+# Bottleneck distance to measure topological similarity
+
+![](../../tda/figs/bottleneck_diagram.svg)
+
+For persistence diagrams `\(D_1,D_2\)`, their bottleneck distance is
+
+`$$d_B(D_1,D_2) = \inf_{\gamma\in\Gamma}\sup_{p\in D_1}\left\|p - \gamma(p)\right\|_\infty$$`
+
+for `\(\Gamma\)` the set of all bijections `\(\gamma:D_1\to D_2\)`.
+
+---
+
+# Multidimensional scaling (MDS)
+
+![](../../demat/figs/geodesic_earth_distances_km.png)
+
+- Another form of dimension reduction
+
+- We only have pairwise distances/similarities between points
+
+- Optimization problem: We want to project them to 2D such that similar points remain close
+
+---
+
+background-image: url("../../demat/figs/mds_reconstructed.svg")
+background-size: 800px
+background-position: 50% 70%
+
+# Using geodesic distances
+
+---
+
+# General TDA pipeline
+
+![](../../tda/figs/chazal_tda_shape_classification_overview.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: Frédéric Chazal. &lt;a href="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Sophia2017/slidesSophia2017/PersistenceForTDA2.pdf"&gt;Source&lt;/a&gt;&lt;/p&gt;
+
+- Encode shapes and patterns as persistence diagrams via sublevel set persistence
+
+- Similar shapes &amp;rarr; Similar topological signatures &amp;rarr; Similar points in MDS
+
+---
+
+class: inverse, middle, center
+
+# Bringing it back to the transcriptome
+
+## 1. Determine transcript distribution pattern via KDE
+
+## 2. Use TDA to encode the shape of the pattern
+
+## 3. Compute pairwise distances between patterns
+
+## 4. Assess those distances in 2D
+ 
+
+---
+
+# Back to the transcriptome
+
+.pull-left[
+![](../figs/D2_GLYMA_05G092200_1767_1765_plain_kde.jpg)
+
+]
+
+.pull-right[
+
+- Normalize the KDE accordingly (per cell)
+
+- Extract the topological shape signature of every KDE via sublevel set persistence
+
+- Compare the similarities of these topological shape signatures
+
+![](https://user-images.githubusercontent.com/85555218/121733939-5d932280-cb09-11eb-9ff4-56bec59e0cf9.jpg)
+
+- &amp;#8593;&amp;#8593; ¡Remember: 2D this time! &amp;#8593;&amp;#8593;
+]
+
+---
+
+background-image: url("../figs/D2_GLYMA_05G092200_1767_1765_sublevel_persistence_diagram.svg")
+background-size: 305px
+background-position: 10% 95%
+
+# Sublevel set persistence
+
+.pull-left[
+```
+[(1, (0.0, 192.0)),
+ (1, (11.0, 72.0)),
+ (1, (93.0, 106.0)),
+ (1, (25.0, 36.0)),
+ (1, (95.0, 105.0)),
+ (1, (8.0, 13.0)),
+ (1, (14.0, 18.0)),
+ (0, (0.0, inf)),
+ (0, (0.0, 76.0))]
+ ```
+]
+
+.pull-right[
+![](../figs/D2_GLYMA_05G092200_1767_1765_sublevel_sets.jpg)
+]
+
+---
+
+background-image: url("../figs/D2_GLYMA_05G092200_1749_1748_sublevel_persistence_diagram.svg")
+background-size: 305px
+background-position: 10% 95%
+
+# Sublevel set persistence
+
+.pull-left[
+```
+[(1, (0.0, 194.0)),
+ (1, (94.0, 126.0)),
+ (1, (21.0, 48.0)),
+ (1, (22.0, 45.0)),
+ (1, (119.0, 139.0)),
+ (0, (0.0, inf)),
+ (0, (0.0, 73.0)),
+ (0, (4.0, 10.0))]
+ ```
+]
+
+.pull-right[
+![](../figs/D2_GLYMA_05G092200_1749_1748_sublevel_sets.jpg)
+]
+
+---
+
+# Sublevel set persistence
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'"&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_296_295_plain_kde.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_297_286_plain_kde.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_572_570_plain_kde.jpg"&gt;
+  &lt;/div&gt;
+    &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_2150_2149_plain_kde.jpg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'"&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_296_295_sublevel_persistence_diagram.svg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_297_286_sublevel_persistence_diagram.svg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_572_570_sublevel_persistence_diagram.svg"&gt;
+  &lt;/div&gt;
+    &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
+    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_2150_2149_sublevel_persistence_diagram.svg"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Putting it all together
+
+![](../figs/CYP93A1_-_sublevel_bottleneck_00133_c2355.png)
+
+- Left: Cross-section
+    - Brighter color &amp;rarr; higher transcript density within cell's cytoplasm
+- Center: MDS based on bottleneck distances of sublevel persistence diagrams
+    - Corresponding coloring
+- Right: KDE of the cell
+    - Brighter color &amp;rarr; higher transcript density wrt total cross section
+
+---
+
+# Putting it all together
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../videos/CYP93A1_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Putting it all together
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../videos/BAC51072_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Putting it all together
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../videos/GLYMA_02G003700_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Putting it all together
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../videos/GLYMA_05G092200_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# To-do list
+
+.left-column[
+![](../figs/D2_GLYMA_05G092200_2196_2195_plain_kde.jpg)
+![](../figs/D2_GLYMA_05G092200_1776_1774_plain_kde.jpg)
+]
+
+.right-column[
+- Repeat the pipeline to use 3D data instead
+
+- Compare how different transcripts are distributed within the same cell
+
+- Analyze root tissue as well
+
+- Compare how the same transcript tends to be distributed between different tissues
+
+- Compare plant vs bacterial transcripts, especially at the infection zone
+]
+
+---
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:23%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/09/53236203232_6f6a6cf3cb_c-e1696541660151-370x371.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Marc Libault&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/09/53236204247_c28b052604_c-e1697731257686-370x316.jpg"&gt;
+    &lt;p style="text-align: center";&gt;Sutton Tennant&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:6%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;eah4d@missouri.edu&lt;/p&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -68,7 +68,7 @@ a, a > code {
 
 /* Two-column layout (slightly wider for aspect ration) */
 .left-column {
-  color: #777;
+  color: black;
   width: 25%;
   height: 92%;
   float: left;
