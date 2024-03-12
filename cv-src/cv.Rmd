@@ -73,7 +73,6 @@ Aside
 ```{r}
 # Build interactive network of positions colored by section
 # and connected if they occurred in the same year
-source("build_network_logo.R")
 #build_network_logo(CV$entries_data)
 ```
 
