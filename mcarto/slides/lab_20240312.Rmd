@@ -1,7 +1,7 @@
 ---
 title: "Characterizing transcriptome spatial patterns in soybean tissues"
 subtitle: "Topological Data Analysis and molecular cartography"
-author: "Sutton Tennant, **Erik Amézquita**, Marc Libault<br>-<br>Division of Plant Science &amp; Technology<br>-"
+author: "Sutton Tennant, **Erik Amézquita**, Marc Libault<br>-<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>-"
 date: "2024-03-12"
 output:
   xaringan::moon_reader:

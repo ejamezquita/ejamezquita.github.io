@@ -4,7 +4,7 @@
     <title>All about cracks and shapes</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita   —   Computational Mathematics, Science, and Engineering   Michigan State University   —" />
-    <meta name="date" content="2023-10-02" />
+    <meta name="date" content="2024-03-13" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### <strong>Erik Amézquita</strong> <br> — <br> Computational Mathematics, Science, and Engineering <br> Michigan State University <br> —
 ]
 .date[
-### 2023-10-02
+### 2024-03-13
 ]
 
 ---
@@ -206,7 +206,7 @@ There are biophysical constraints at play in walnut development
 
 ## Correlation with traits of interest
 
-![](../../walnuts/figs/combination_hbar_correlation.jpg)
+![](../../walnuts/figs/combination_hbar_correlation.svg)
 
 .pull-left[
 **Walnuts with more kernel filling ratio have:**
@@ -291,7 +291,7 @@ class: center, middle, inverse
 
 ## PCA (and other dim-reduction) fail
 
-![](../figs/pca_all_phenos_accession.jpg)
+![](../figs/pca_all_phenos_accession.svg)
 
 ---
 
@@ -303,7 +303,7 @@ class: center, middle, inverse
 - Linear coefficients are not really informative when conditions are not ideal
 
 
-&lt;img src="../figs/kernelfill_ridge_regression.jpg" width="550" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/kernel_fill_ridge_regression.svg" width="550" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -311,12 +311,12 @@ class: center, middle, inverse
 
 .pull-left[
 ![](../figs/kernelfill_R2_train_vs_test.jpg)
-![](../figs/percentkernel_R2_train_vs_test.jpg)
+![](../figs/shell_strength_optimal_lasso_R2_train_vs_test.svg)
 ]
 
 .pull-right[
-![](../figs/shellstrength_R2_train_vs_test.jpg)
-![](../figs/easeofremoval_R2_train_vs_test.jpg)
+![](../figs/kernel_weight_ratio_optimal_lasso_R2_train_vs_test.svg)
+![](../figs/ease_of_removal_optimal_lasso_R2_train_vs_test.svg)
 ]
 
 - There is some overfitting going on: high variance in test results (?)
@@ -325,7 +325,7 @@ class: center, middle, inverse
 
 ## Trying to figure out **independent** contributions
 
-![](../figs/shellstrength_R2_progression.jpg)
+![](../figs/ease_of_removal_OLS_optimal_features.svg)
 
 - Shell Vol Ratio is the trait with the highest correlation, so no surprise there
 
@@ -333,7 +333,7 @@ class: center, middle, inverse
 
 ## Trying to figure out **independent** contributions
 
-![](../figs/easeofremoval_R2_progression.jpg)
+![](../figs/shell_strength_OLS_optimal_features.svg)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../js/remark-latest.min.js"></script>

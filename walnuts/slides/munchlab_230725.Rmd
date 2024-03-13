@@ -201,7 +201,7 @@ knitr::include_graphics("../figs/vol_ratios_correlation_individual.jpg")
 
 ## Correlation with traits of interest
 
-![](../../walnuts/figs/combination_hbar_correlation.jpg)
+![](../../walnuts/figs/combination_hbar_correlation.svg)
 
 .pull-left[
 **Walnuts with more kernel filling ratio have:**
@@ -288,7 +288,7 @@ knitr::include_graphics("../figs/vol_ratios_correlation_accession.jpg")
 
 ## PCA (and other dim-reduction) fail
 
-![](../figs/pca_all_phenos_accession.jpg)
+![](../figs/pca_all_phenos_accession.svg)
 
 ---
 
@@ -301,7 +301,7 @@ knitr::include_graphics("../figs/vol_ratios_correlation_accession.jpg")
 
 
 ```{r, out.width=550}
-knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
+knitr::include_graphics("../figs/kernel_fill_ridge_regression.svg")
 ```
 
 ---
@@ -310,12 +310,12 @@ knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
 
 .pull-left[
 ![](../figs/kernelfill_R2_train_vs_test.jpg)
-![](../figs/percentkernel_R2_train_vs_test.jpg)
+![](../figs/shell_strength_optimal_lasso_R2_train_vs_test.svg)
 ]
 
 .pull-right[
-![](../figs/shellstrength_R2_train_vs_test.jpg)
-![](../figs/easeofremoval_R2_train_vs_test.jpg)
+![](../figs/kernel_weight_ratio_optimal_lasso_R2_train_vs_test.svg)
+![](../figs/ease_of_removal_optimal_lasso_R2_train_vs_test.svg)
 ]
 
 - There is some overfitting going on: high variance in test results (?)
@@ -324,7 +324,7 @@ knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
 
 ## Trying to figure out **independent** contributions
 
-![](../figs/shellstrength_R2_progression.jpg)
+![](../figs/ease_of_removal_OLS_optimal_features.svg)
 
 - Shell Vol Ratio is the trait with the highest correlation, so no surprise there
 
@@ -332,4 +332,4 @@ knitr::include_graphics("../figs/kernelfill_ridge_regression.jpg")
 
 ## Trying to figure out **independent** contributions
 
-![](../figs/easeofremoval_R2_progression.jpg)
+![](../figs/shell_strength_OLS_optimal_features.svg)

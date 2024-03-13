@@ -293,7 +293,7 @@ The Vietoris-Rips complex, $VR(X, r)$, is a simplicial complex where:
 
 ## Compare PDs via the Bottleneck distance
 
-![](../../tda/figs/bottleneck_diagram.png)
+![](../../tda/figs/bottleneck_diagram.svg)
 
 Given two persistence diagrams $\text{dgm}_1$ and $\text{dgm}_2$, consider $\Gamma$ the set of all bijections between these two multisets and
 

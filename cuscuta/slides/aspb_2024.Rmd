@@ -60,12 +60,6 @@ knitr::include_graphics(c('https://ars.els-cdn.com/content/image/1-s2.0-S1369526
 
 ---
 
-# The early dodder gets the host
-
-![](../figs/cuscuta_standstill_3x3.jpg)
-
----
-
 class: inverse, center, middle
 
 # Methods
@@ -169,24 +163,11 @@ knitr::include_graphics(c('../figs/4pm_rep7_plant_02_posang.png',
 
 ---
 
-# Manual vs Automated comparison
-
-![](../figs/manual_timepoints.jpg)
-
-- 3 timepoints originally considered whenever doing manual video observation
-
-![](../figs/automated_timepoints.jpg)
-
-- 6+ timepoints can be quickly extracted from the automated pipeline
-
----
-
 class: center, middle, inverse
 
-# Results
+# Results: The early dodder gets the host
 
-## Certain differences between coils and inoculation times
-
+![](../figs/cuscuta_standstill_3x3.jpg)
 
 ---
 
@@ -212,6 +193,7 @@ knitr::include_graphics(c('../figs/time_after_inoculation.svg',
 
 ---
 
+
 background-image: url("../figs/time_btwn_initiation_and_completion.svg")
 background-size: 350px
 background-position: 50% 99%
@@ -229,27 +211,16 @@ background-position: 50% 99%
 
 ---
 
-# No differences: position
-
-<div class="row">
-  <div class="column" style="max-width:65%">
-    <img src="../figs/final_position.svg"></img>
-  </div>
-  <div class="column" style="max-width:35%">
-    <img src="../figs/coil_tightness.svg"></img>
-  </div>
-</div>
-
----
-
-# No differences: tightening and completing
+# No differences: process and position
 
 <div class="row">
   <div class="column" style="max-width:50%">
-    <img src="../figs/wiggling_time.svg"></img>
+    <img style="padding: 0 25px;" src="../figs/completion_time.svg"></img>
+    <img style="padding: 0 100px;" src="../figs/coil_tightness.svg"></img>
   </div>
   <div class="column" style="max-width:50%">
-    <img src="../figs/completion_time.svg"></img>
+    <img style="padding: 0 25px;" src="../figs/wiggling_time.svg"></img>
+    <img style="padding: 0 25px;" src="../figs/final_position.svg"></img>
   </div>
 </div>
 

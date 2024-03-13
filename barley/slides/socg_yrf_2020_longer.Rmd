@@ -95,7 +95,7 @@ class: center, middle, inverse
 <div class="row">
   <div class="column" style="max-width:35%">
     <img src="../figs/barley_grains.png">
-    <img src="../figs/barley-spike.jpg">
+    <img src="../figs/barley_scotland.jpg">
   </div>
   <div class="column" style="max-width:30%">
   <p style="font-size: 15px; text-align: center; color: DimGrey;"> Cuneiform tablets from Mesopotamia depicting barley </p>
