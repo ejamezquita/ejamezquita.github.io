@@ -3,7 +3,7 @@ title: "When life gives you lemons"
 subtitle: "model the citrus oil gland distribution"
 author: "**Erik Amézquita** <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()`"
+date: "2022-02-19"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -263,7 +263,7 @@ Joint work with:
 - Dan Chitwood (MSU Hort/CMSE)
 
 ```{r, out.width=200}
-knitr::include_graphics(c('../../cmse/figs/cmse_image002.jpg'))
+knitr::include_graphics(c('../../cmse/figs/cmse logo file-01.svg'))
 ```
 ]
 --

@@ -3,7 +3,7 @@ title: "Quantifying barley morphology "
 subtitle: "using Euler characteristic curves"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University"
-date: "`r Sys.Date()`"
+date: "2020-06-15"
 output:
   xaringan::moon_reader:
     css: [default, default-fonts, "../css/gallery.css"]
@@ -159,7 +159,7 @@ background-position: 95% 5%
 
 ---
 
-background-image: url("../figs/composite_cross_experiment.jpg")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 450px
 background-position: 95% 50%
 
@@ -541,6 +541,6 @@ class: inverse
 
 ---
 
-background-image: url("../figs/acknowledgements.jpg")
+background-image: url("../figs/acknowledgments.jpg")
 background-size: 1000px
 background-position: 50% 50%

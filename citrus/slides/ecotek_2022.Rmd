@@ -3,7 +3,7 @@ title: "Plant biology meets mathematics"
 subtitle: "modeling and measuring shape"
 author: "**Erik Amézquita** <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()`"
+date: "2023-02-15"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -222,7 +222,7 @@ background-position: 50% 70%
     <p style="text-align: center;"> Leaf cells </p>
   </div>
   <div class="column" style="max-width:24%; color: Navy; font-size: 15px;">
-    <img src="../../tda/figs/protein_vr.gif">
+    <img style="padding: 30px 0 0 0;" src="../../proteins/figs/protein_vr_rsz.gif">
     <p style="text-align: center;"> Proteins </p>
   </div>
 </div>

@@ -202,7 +202,7 @@ background-position: 95% 5%
 
 ---
 
-background-image: url("../figs/composite_cross_experiment.jpg")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 450px
 background-position: 95% 50%
 
@@ -228,7 +228,7 @@ class: center, middle, inverse
 
 ---
 
-background-image: url("../figs/focus_DNA.jpg")
+background-image: url("../../biology/figs/focus_DNA.jpg")
 background-size: 610px
 background-position: 97% 55%
 
@@ -250,7 +250,7 @@ Mecanismo natural de replicación
 
 ---
 
-background-image: url("../figs/mutant_phenotypes.jpg")
+background-image: url("../../biology/figs/mutant_phenotypes.jpg")
 background-size: 660px
 background-position: 97% 55%
 
@@ -267,7 +267,7 @@ background-position: 97% 55%
 
 ---
 
-background-image: url("../figs/alleles.jpg")
+background-image: url("../../biology/figs/alleles.jpg")
 background-size: 800px
 background-position: 50% 60%
 
@@ -279,7 +279,7 @@ background-position: 50% 60%
  
 ---
 
-background-image: url("../figs/mitosis_meiosis_d.jpg")
+background-image: url("../../biology/figs/mitosis_meiosis_d.jpg")
 background-size: 850px
 background-position: 50% 75%
  
@@ -297,7 +297,7 @@ En principio, cada cromosoma tiene **la misma probabilidad** de ser heredado.
 
 ---
 
-background-image: url("../figs/mendel_single_gene_ratios.jpg")
+background-image: url("../../biology/figs/mendel_single_gene_ratios.jpg")
 background-size: 790px
 background-position: 50% 75%
 
@@ -305,7 +305,7 @@ background-position: 50% 75%
  
 ---
 
-background-image: url("../figs/punnett_2_alleles_a.jpg")
+background-image: url("../../biology/figs/punnett_2_alleles_a.jpg")
 background-size: 370px
 background-position: 95% 35%
 
@@ -322,7 +322,7 @@ background-position: 95% 35%
 
 ---
 
-background-image: url("../figs/tomato_varieties.jpg")
+background-image: url("../../biology/figs/tomato_varieties.jpg")
 background-size: 350px
 background-position: 90% 85%
 
@@ -336,7 +336,7 @@ background-position: 90% 85%
 ]
 
 .pull-right[
-![](../figs/hetero2homozygote.jpg)
+![](../../biology/figs/hetero2homozygote.jpg)
 ]
 
 ---
@@ -349,7 +349,7 @@ class: inverse, center, middle
 
 ---
 
-background-image: url("../figs/barley_lab_composition.jpg")
+background-image: url("../../biology/figs/barley_lab_composition.jpg")
 background-size: 750px
 background-position: 99% 99%
 
@@ -970,7 +970,7 @@ class: inverse
 
 ---
 
-background-image: url("../figs/acknowledgements.jpg")
+background-image: url("../figs/acknowledgments.jpg")
 background-size: 1000px
 background-position: 50% 50%
 

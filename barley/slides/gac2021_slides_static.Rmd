@@ -3,7 +3,7 @@ title: "Quantifying the shape of plants"
 subtitle: "using Topological Data Analysis"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()`"
+date: "2021-02-14"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -105,7 +105,7 @@ class: inverse
 
 ---
 
-background-image: url("../figs/composite_cross_experiment.jpg")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 450px
 background-position: 95% 90%
 
@@ -171,7 +171,7 @@ Batch scans - 4 per tray
 
 $$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$
 ```{r, out.width=400}
-knitr::include_graphics("../figs/euler_characteristic_2.png")
+knitr::include_graphics("../../tda/figs/euler_characteristic_2.png")
 ```
 
 - Summarize **topological features** with the Euler-Poincaré formula
@@ -214,7 +214,7 @@ background-position: 50% 90%
 
 
 ```{r, out.width=400, out.height=5}
-knitr::include_graphics("../figs/alleles.jpg")
+knitr::include_graphics("../../biology/figs/alleles.jpg")
 ```
 
 

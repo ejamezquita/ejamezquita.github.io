@@ -1,0 +1,286 @@
+---
+title: "The early dodder gets the host"
+subtitle: "Decoding the Circumnutation Patterns of *Cuscuta campestris* with image processing"
+author: "Max Bentelspacher, **Erik Amézquita**,<br>Supral Adhikari, Jaime Barros, So-Yon Park<br>&mdash;<br>Division of Plant Sciences & Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2024-03-17"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# _Cuscuta_ : The plant vampire diaries
+
+```{r, out.width="700px"}
+knitr::include_graphics(c('https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-018-04344-z/MediaObjects/41467_2018_4344_Fig1_HTML.jpg?as=webp'))
+```
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1038/s41467-018-04344-z">Vogel <em>et al.<em> (2018)</a></p>
+
+---
+
+# Haustoria: more intimate than Twilight
+
+![](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/jxb/67/3/10.1093_jxb_erv482/2/exbotj_erv482_f0002.jpeg?Expires=1713304842&Signature=u1e3JjVS~ZWLd72saFP4kZRfVswslWyao3mMq2odsCYqC7fnVtlxRzD5a88eGc9tzDtuycbe4SFqkqVw4RZNk8lDkt4ORH-rIsGabW-lAEzLbvYhBufjT6A6U~k2wwVHUv-A9YXQzI4KLc8yHZT4ieUdTFNn-hlsIX-wouU-e38Ufq-5lTvAOO81EjCOm9P33cPm8qdHCqr2duQlch2ev12wFXp1xUWeQbFJafpefJm1JHsmheYnvk3tFjJTVkPdmS2LAvxJjYNzecen~Riix~uWmDkJs~CqptW5IGBW8RI~JdygnlhdPuMQMx~07lhf3u1o-kW1OGO7EaXMhShXkg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1093/jxb/erv482">Olsen <em>et al.<em> (2015)</a></p>
+
+---
+
+# Haustoria: more intimate than Twilight
+
+```{r, out.width="650px"}
+knitr::include_graphics(c('https://ars.els-cdn.com/content/image/1-s2.0-S1369526615000631-gr1_lrg.jpg'))
+```
+
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1016/j.pbi.2015.05.012">Kim and Westwood (2015)</a></p>
+
+
+---
+
+# Studying how a vampire plant wiggles
+
+<video width="900" controls>
+  <source src="../video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
+</video>
+
+- Study how _Cuscuta_ moves to ultimately stop it from attaching to crops in the first place.
+
+---
+
+# The early dodder gets the host
+
+![](../figs/cuscuta_standstill_3x3.jpg)
+
+---
+
+class: inverse, center, middle
+
+# Methods
+
+## Image processing to automate video observation
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_raw.jpg)
+
+- Mature _Cuscuta_ stem segments grown in greenhouse.
+- Inoculated on skewers at 9AM, 12PM, and 4PM.
+- 900 camera snapshots &times; 96 seconds = 24 hours.
+- 5 skewers &times; 7 repetitions = 35 samples per time.
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc1.jpg)
+
+- Identify tapes (inoculation points)
+- Identify skewers
+- Linear approximation for the center of the skewers'
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_proc2.jpg)
+
+- Consider 5 subimages, one per skewer, from hereafter
+- Discard the rest of the image
+
+---
+
+# Image processing
+
+![](../figs/4pm_rep7_0330_full_h.jpg)
+
+--
+
+![](../figs/4pm_rep7_plant0_v02_0330_h.jpg)
+
+---
+
+```{r include=FALSE, evaluate=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:4, digits=0, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  # Analyzing sub-images
+  
+  <div class=\"row\">
+  <div class=\"column\" style=\"max-width:40%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v03_0330_v.jpg\"></img>
+  </div>
+  <div class=\"column\" style=\"max-width:30%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v06_0330.jpg\"></img>
+  </div>
+  <div class=\"column\" style=\"max-width:30%\">
+    <img src=\"../figs/4pm_rep7_plant{first}_v08_0330.jpg\"></img>
+  </div>
+  </div>
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+```{r include=FALSE, evaluate=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:4, digits=1, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  # Putting it all together
+  
+  <video width=\"900\" controls>
+  <source src=\"../video/4pm_rep7_plant_{first}.mp4\" type=\"video/mp4\">
+  </video>
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+# Automated phenotyping
+
+```{r, out.width="700px"}
+knitr::include_graphics(c('../figs/4pm_rep7_plant_02_posang.png',
+                          '../figs/cuscuta_tracking.png'))
+```
+
+---
+
+# Manual vs Automated comparison
+
+![](../figs/manual_timepoints.jpg)
+
+- 3 timepoints originally considered whenever doing manual video observation
+
+![](../figs/automated_timepoints.jpg)
+
+- 6+ timepoints can be quickly extracted from the automated pipeline
+
+---
+
+class: center, middle, inverse
+
+# Results
+
+## Certain differences between coils and inoculation times
+
+
+---
+
+# Differences: Coiling rate
+
+```{r, out.width=500}
+knitr::include_graphics(c('../figs/coil_percentage.svg'))
+```
+
+- The early dodder gets to coil
+
+---
+
+# Differences: Intiation and completion
+
+```{r, out.width=575}
+knitr::include_graphics(c('../figs/time_after_inoculation.svg',
+                          '../figs/time_to_complete_coiling.svg'))
+```
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+---
+
+background-image: url("../figs/time_btwn_initiation_and_completion.svg")
+background-size: 350px
+background-position: 50% 99%
+
+# Some differences: angle and stabilization
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <img src="../figs/final_angle.svg"></img>
+  </div>
+  <div class="column" style="max-width:50%">
+    <img style="padding-top: 0px;" src="../figs/dancing_time.svg"></img>
+  </div>
+</div>
+
+---
+
+# No differences: position
+
+<div class="row">
+  <div class="column" style="max-width:65%">
+    <img src="../figs/final_position.svg"></img>
+  </div>
+  <div class="column" style="max-width:35%">
+    <img src="../figs/coil_tightness.svg"></img>
+  </div>
+</div>
+
+---
+
+# No differences: tightening and completing
+
+<div class="row">
+  <div class="column" style="max-width:50%">
+    <img src="../figs/wiggling_time.svg"></img>
+  </div>
+  <div class="column" style="max-width:50%">
+    <img src="../figs/completion_time.svg"></img>
+  </div>
+</div>
+
+---
+
+# No correlation beetween twisting and stabilization times
+
+![](../figs/stabilization_vs_twisting.svg)
+
+---
+
+# Conclusions and future questions
+
+![](../figs/cuscuta_circadian_model.png)
+
+- Cuscuta can tell time despite lacking photoreceptors.
+
+- It prefers to act in the morning/early afternoon.
+
+- Can we tease out more information out of the coiling angle?
+
+- Overall, the automated image analysis criteria agreed with the main conclusions drawn from the manual observation criteria. 
+
+- Our pipeline is ready to collect more data:
+
+- Phenotype the wiggle itself under various environmental conditions?
+
+---
+
+background-image: url("../figs/acknowledgements.png")
+background-size: 910px
+background-position: 50% 50%
+
+class: inverse

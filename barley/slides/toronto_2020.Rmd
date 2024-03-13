@@ -141,7 +141,7 @@ background-position: 95% 5%
 
 ---
 
-background-image: url("../figs/composite_cross_experiment.jpg")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 450px
 background-position: 95% 50%
 
@@ -167,7 +167,7 @@ class: center, middle, inverse
 
 ---
 
-background-image: url("../figs/focus_DNA.jpg")
+background-image: url("../../biology/figs/focus_DNA.jpg")
 background-size: 610px
 background-position: 97% 55%
 
@@ -189,7 +189,7 @@ Natural replication mechanism
 
 ---
 
-background-image: url("../figs/alleles.jpg")
+background-image: url("../../biology/figs/alleles.jpg")
 background-size: 800px
 background-position: 50% 60%
 
@@ -203,7 +203,7 @@ background-position: 50% 60%
 
 ---
 
-background-image: url("../figs/mutant_phenotypes.jpg")
+background-image: url("../../biology/figs/mutant_phenotypes.jpg")
 background-size: 600px
 background-position: 97% 55%
 
@@ -223,7 +223,7 @@ background-position: 97% 55%
  
 ---
 
-background-image: url("../figs/how-are-chromosomes-inherited1.png")
+background-image: url("../../biology/figs/how-are-chromosomes-inherited1.png")
 background-size: 700px
 background-position: 65% 95%
  
@@ -241,7 +241,7 @@ Each copy of every chromosome **has the same probability** of being inherited.
 
 ---
 
-background-image: url("../figs/mendel_single_gene_ratios.jpg")
+background-image: url("../../biology/figs/mendel_single_gene_ratios.jpg")
 background-size: 790px
 background-position: 50% 75%
 
@@ -249,7 +249,7 @@ background-position: 50% 75%
  
 ---
 
-background-image: url("../figs/punnett_2_alleles_a.jpg")
+background-image: url("../../biology/figs/punnett_2_alleles_a.jpg")
 background-size: 370px
 background-position: 95% 35%
 
@@ -261,12 +261,12 @@ background-position: 95% 35%
 - *Recall:* Being dominant/recessive does not influence the chance of being inherited
 - *Mendel's second law:* Gene pairs in **different chromosomes** are grouped independently during the formation of gametes.
 
-![](../figs/punnett_2_alleles_b.jpg)
+![](../../biology/figs/punnett_2_alleles_b.jpg)
 ]
 
 ---
 
-background-image: url("../figs/tomato_varieties.jpg")
+background-image: url("../../biology/figs/tomato_varieties.jpg")
 background-size: 350px
 background-position: 90% 85%
 
@@ -284,7 +284,7 @@ background-position: 90% 85%
 ]
 
 .pull-right[
-![](../figs/hetero2homozygote.jpg)
+![](../../biology/figs/hetero2homozygote.jpg)
 ]
 
 ---
@@ -440,7 +440,7 @@ class: inverse, middle, center
 
 ---
 
-background-image: url("../figs/euler_characteristic_2.png")
+background-image: url("../../tda/figs/euler_characteristic_2.png")
 background-size: 450px
 background-position: 97% 50%
 
@@ -465,7 +465,7 @@ $\chi = \sum_{i=0}^n (-1)^iV_i = \sum_{i=0}^n (-1)^i\beta_i$
 ---
 
 class: center
-background-image: url("../figs/euler_characteristic_variety.jpg")
+background-image: url("../../tda/figs/euler_characteristic_variety.jpg")
 background-size: 900px
 background-position: 50% 80%
 
@@ -571,7 +571,7 @@ background-position: 90% 50%
 
 ---
 
-background-image: url("../figs/pca_figure.jpg")
+background-image: url("../../demat/figs/pca_figure.jpg")
 background-size: 290px
 background-position: 99% 90%
 
@@ -617,7 +617,7 @@ such that $\sum_{i}\mathbf z_i = 0$
 
 ---
 
-background-image: url("../figs/separable-svm.jpg")
+background-image: url("../../demat/figs/separable-svm.svg")
 background-size: 450px
 background-position: 50% 99%
 
@@ -639,7 +639,7 @@ $$\begin{align}
 
 ---
 
-background-image: url("../figs/confusion_traditional_radial.png")
+background-image: url("../figs/confusion_matrix_traditional_crop.png")
 background-size: 450px
 background-position: 97% 95%
 
@@ -665,7 +665,7 @@ background-position: 97% 95%
 ]
 ---
 
-background-image: url("../figs/confusion_ect_radial.png")
+background-image: url("../figs/confusion_matrix_combined_crop.png")
 background-size: 450px
 background-position: 97% 95%
 

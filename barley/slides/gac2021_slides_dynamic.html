@@ -4,6 +4,7 @@
     <title>Quantifying the shape of plants</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita, Michelle Quigley, Tim Ophelders   Elizabeth Munch, Dan Chitwood   Dan Koenig, Jacob Landis   -" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/msu.css" type="text/css" />
     <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
@@ -12,11 +13,21 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Quantifying the shape of plants
+]
+.subtitle[
 ## using Topological Data Analysis
+]
+.author[
 ### <strong>Erik Amézquita</strong>, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -
+]
+.institute[
 ### Computational Mathematics, Science and Engineering <br> Michigan State University <br> -
-### 2021-02-14 <br> - <br> Slides available: <code>bit.ly/shape_gac2021</code>
+]
+.date[
+### 2021-02-14<br> - <br> Slides available: <code>bit.ly/shape_gac2021</code>
+]
 
 ---
 
@@ -100,7 +111,7 @@ class: inverse
 
 ---
 
-background-image: url("../figs/composite_cross_experiment.jpg")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 450px
 background-position: 95% 90%
 
@@ -165,7 +176,7 @@ Batch scans - 4 per tray
 # Topology: The Euler characteristic `\(\chi\)`
 
 `$$\chi = \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}).$$`
-&lt;img src="../figs/euler_characteristic_2.png" width="400" style="display: block; margin: auto;" /&gt;
+&lt;img src="../../tda/figs/euler_characteristic_2.png" width="400" style="display: block; margin: auto;" /&gt;
 
 --
 - Summarize **topological features** with the Euler-Poincaré formula
@@ -209,7 +220,7 @@ background-position: 50% 90%
 - The ECT effectively summarizes all possible information related to shape.
 
 
-&lt;img src="../figs/alleles.jpg" width="400" height="5" style="display: block; margin: auto;" /&gt;
+&lt;img src="../../biology/figs/alleles.jpg" width="400" height="5" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -331,6 +342,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

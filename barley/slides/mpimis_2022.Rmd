@@ -1003,7 +1003,7 @@ knitr::include_graphics(c('../../arabidopsis/figs/Day7_110921_Col_0_X_pot3_leaf_
 ]
 
 .pull-right[
-![](../../proteins/figs/protein_vr.gif)
+![](../../proteins/figs/protein_vr_rsz.gif)
 ]
 
 ---

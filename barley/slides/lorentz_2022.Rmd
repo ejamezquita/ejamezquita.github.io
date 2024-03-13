@@ -64,7 +64,7 @@ class: inverse
     <ul>
   </div>
   <div class="column" style="max-width:35%; font-size: 15px;">
-    <img src="../figs/svm_mds_canberra_transp.png">
+    <img src="../figs/svm_mds_canberra.png">
     <p style="font-size: 25px; text-align: center; color: DarkRed;"> Analysis </p>
     <ul>
       <li> Statistics </li>
