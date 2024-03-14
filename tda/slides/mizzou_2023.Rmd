@@ -56,7 +56,7 @@ background-position: 98% 2%
 # From MX to MI to MO at MU
 
 .left-column[
-![](../../cmse/figs/dvdy216-toc-0001-m.jpg)
+![](../../img/dvdy216-toc-0001-m.jpg)
 ]
 
 .right-column[

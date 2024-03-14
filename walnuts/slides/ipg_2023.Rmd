@@ -385,6 +385,6 @@ class: inverse
     <p style="text-align: center; color: Blue; font-family: monospace;">ejamezquita.github.io</p>
     <p style="text-align: center;"><strong>Preprint DOI</strong></p>
     <p style="text-align: center; color: Blue; font-family: monospace;">10.1101/2023.09.26.559651</p>
-    <img style="padding: 0 0 0 0;" src="../../cmse/figs/institutional_logos.jpg">
+    <img style="padding: 0 0 0 0;" src="../../img/phd_institutional_logos.jpg">
   </div>
 </div>

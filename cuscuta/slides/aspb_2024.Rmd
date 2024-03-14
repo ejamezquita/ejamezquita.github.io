@@ -34,7 +34,7 @@ knitr::include_graphics(c('https://media.springernature.com/full/springer-static
 
 # Haustoria: more intimate than Twilight
 
-![](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/jxb/67/3/10.1093_jxb_erv482/2/exbotj_erv482_f0002.jpeg?Expires=1713304842&Signature=u1e3JjVS~ZWLd72saFP4kZRfVswslWyao3mMq2odsCYqC7fnVtlxRzD5a88eGc9tzDtuycbe4SFqkqVw4RZNk8lDkt4ORH-rIsGabW-lAEzLbvYhBufjT6A6U~k2wwVHUv-A9YXQzI4KLc8yHZT4ieUdTFNn-hlsIX-wouU-e38Ufq-5lTvAOO81EjCOm9P33cPm8qdHCqr2duQlch2ev12wFXp1xUWeQbFJafpefJm1JHsmheYnvk3tFjJTVkPdmS2LAvxJjYNzecen~Riix~uWmDkJs~CqptW5IGBW8RI~JdygnlhdPuMQMx~07lhf3u1o-kW1OGO7EaXMhShXkg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
+![](../figs/haustoria_photo_diagram.jpg)
 <p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1093/jxb/erv482">Olsen <em>et al.<em> (2015)</a></p>
 
 ---
@@ -255,3 +255,9 @@ background-size: 910px
 background-position: 50% 50%
 
 class: inverse
+
+---
+
+background-image: url("../../msucourses/figs/ipg_2024-3.jpg")
+background-size: 910px
+background-position: 50% 50%

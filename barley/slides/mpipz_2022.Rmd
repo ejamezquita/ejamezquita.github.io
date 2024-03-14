@@ -129,7 +129,7 @@ class: inverse
 
 ---
 
-background-image: url("../../cmse/figs/cmse logo file-01.svg")
+background-image: url("../../img/cmse_logo.svg")
 background-size: 150px
 background-position: 5% 60%
 
@@ -844,7 +844,7 @@ knitr::include_graphics(c('../../arabidopsis/figs/Day7_110921_Col_0_X_pot3_leaf_
 ---
 
 
-background-image: url("../../cmse/figs/institutional_logos.jpg")
+background-image: url("../../img/phd_institutional_logos.jpg")
 background-size: 500px
 background-position: 95% 1%
 
