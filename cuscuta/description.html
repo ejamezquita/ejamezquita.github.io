@@ -57,8 +57,9 @@ Set the type and color theme here - the Pro version contains additional themes -
         <p>
             But that's just the beginning: then the haustoria proceed to launch searching hyphae (like a fungi) and stem cells into the stem. For the final step, as if drawn from sci-fi, Cuscuta manages to fuse its vascular system, phloem and xylem, with the one from the host. And to make things even crazier, through this intimate link, Cuscuta can send its own RNA to the host and the host will transcribe it! Cuscuta and host become effectively one. Imagine having a leech attached, but your veins and arteries are fused with the leech's! 
         </p>
-        <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1369526615000631-gr1_lrg.jpg" alt="haustoria"  style="float: center; margin: 0 0; vertical-align:center"></img>
-        <p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1016/j.pbi.2015.05.012">Kim and Westwood (2015)</a></p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+        <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1369526615000631-gr1_lrg.jpg" alt="haustoria"  style="width:90%"></img><br>
+        Credits: <a href="https://doi.org/10.1016/j.pbi.2015.05.012">Kim and Westwood (2015)</a></p>
         <p>
             Once the haustoria is fully formed and into the host, it is game over for the host. Any herbicide that kill Cuscuta will kill the host as well. Thus, novel research on Cuscuta control focuses on determining how Cuscuta detects and moves/wiggles toward its potential host. We were particularly interested in determining if time of the day influences Cuscuta movement, ie., if Cuscuta has a cyrcadian rhythm going on.
         </p>
@@ -66,7 +67,7 @@ Set the type and color theme here - the Pro version contains additional themes -
         <p>
             Cuscuta was grown in a greenhouse by infecting beets. Mature stems were then cut after 3 weeks and they were attached to bamboo skewers at different times of the day &mdash;9AM, 12PM, and 4PM. A camera was place in front of the Cuscuta-skewer setup. A snapshot was taken every 96 seconds for 24 hours, producing 900 images in total per repetition. There were 5 skewers per setup and 7 repetitions per inoculation time of the day, producing data for 105 individual Cuscuta stems. Manual and <strong>automated</strong> observations were compared for Coiling success rates, and Initiation and completion times.
         </p>
-        <video width=500 controls>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
           <source src="video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
         </video>
         <p>
@@ -74,20 +75,35 @@ Set the type and color theme here - the Pro version contains additional themes -
         </p>
         <h3>Tinkering with image processing</h3>
         <p>
-            We developed a very <em>ad-hoc</em> pipeline with basic thresholding, erosion, and dilation operations. The main idea was to exploit color contrast between skewer and Cuscuta. This is by no means perfect, but allowed us to at least keep track of when Cuscuta crosses in front of the skewer, and when its angle and position stop changing.
+            We developed a very <em>ad-hoc</em> pipeline with basic thresholding, erosion, and dilation operations. The main idea was to exploit color contrast between skewer and Cuscuta. This is by no means perfect, but allowed us to at least keep track of when Cuscuta crosses in front of the skewer, and when its angle and position stop changing. We were also able to treat Coil 1 and Coil 2 separately.
         </p>
-        <video width=500 controls>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
           <source src="video/4pm_rep7_plant_00.mp4" type="video/mp4">
         </video>
-        <video width=500 controls>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
           <source src="video/4pm_rep7_plant_01.mp4" type="video/mp4">
         </video>
-        <video width=500 controls>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
           <source src="video/4pm_rep7_plant_02.mp4" type="video/mp4">
         </video>
         <p>
             Our code is available in a <a href="https://github.com/ejamezquita/cuscuta/" target="_blank">Github repository</a> with a series of Python-based Jupyter notebooks detailing the image-processing pipeline we wrote to detect Cuscuta from skewer and background. It also contains code on how time series were created and later analyzed.
         </p>
+        <h3>The early dodder gets the host</h3>
+        <p>
+            Cuscuta that was inoculated during the morning/noon got coiling after 5 hours. But Cuscuta inoculated by the afternoon were much groggier: they needed a good stretch before get it going. These observations were confirmed with our automated pipeline. Similarly, plants that started early completed their coiling earlier than those that started late.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/time_after_inoculation.svg" alt="original"  style="width:80%">
+            <img src="figs/time_to_complete_coiling.svg" alt="normal"  style="width:80%">
+        </div>
+        <p>
+            But when we only consider the coiling process time, the time it takes Cuscuta to finish coiling <strong>once</strong> it starts its coiling movement, we observed no significant differences! This suggests that the resting period prior to coiling follows a different mechanism.     
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/completion_time.svg" alt="original"  style="width:50%">
+            <img src="figs/cuscuta_circadian_model.png" alt="original"  style="width:100%">
+        </div>
     </div>
 	<div class="small-12 medium-5 large-5 columns">
 		<p>
@@ -123,9 +139,6 @@ Set the type and color theme here - the Pro version contains additional themes -
             Presented at <a href="https://muplantresearchsymposium.org/" target="_blank">MUPRS</a>. University of Missouri, Columbia, Missouri. March 2024.
         </p>
         <p>
-            &mdash;
-        </p>
-        <p>
             <img src="figs/4pm_rep7_plant2_v09_0680_h.jpg" alt="cuscuta_wrap" style="vertical-align:bottom"/>
         </p>
         <p>
@@ -155,8 +168,8 @@ Set the type and color theme here - the Pro version contains additional themes -
     <div class="small-12 medium-12 large-12 columns">
         <footer>
             <ul>
-                <li>&copy; 2023 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
-                <li>Last updated: September 2023.</li>
+                <li>&copy; 2024 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
+                <li>Last updated: March 2024.</li>
                 <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
 
                 <!-- *****************************************************************************************
