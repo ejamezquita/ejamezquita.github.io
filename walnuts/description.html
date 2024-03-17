@@ -49,7 +49,7 @@ Set the type and color theme here - the Pro version contains additional themes -
 	<div class="small-12 medium-7 large-7 columns">
 		<h2>Phenotyping the crackability of walnuts</h2>
         <p>
-            What is the best shape of a nicely crackable walnut? 
+            What is the most commercially desirable shape for a walnut? 
             What are the morphological characteristics that make a walnut yield easily its kernel as two intact pieces instead of 
             having its kernel exploding into a million pieces?
             This project sought to link morphological traits with three traits of commercial interest: ease of kernel removal, shell strength, and kernel-to-total weight ratio. 
@@ -72,6 +72,37 @@ Set the type and color theme here - the Pro version contains additional themes -
             <img src="figs/2014SBa_R1_T3_001_vein.gif" alt="unair"  style="width:24%">
             <img src="figs/2014SBa_R5_T81_meat_2.gif" alt="clean"  style="width:24%">
         </div>
+        <h3>The power of allometry</h3>
+        <p>
+            We do not grow isometrically. Whenever a child doubles their height, their arms and legs do not simply double in length; their weight does not simply double. Instead, different tissues and body parts grow at different relative rates from each other. We grow allometrically. Relative growth can be modeled as a power function.
+            We humans are not unique in this regard. Quite the opposite, all the observed animals and plants so far do grow allometrically. Allometric growth can even be observed in cities and urban planning! Check out <a href="https://search.worldcat.org/title/973480868" target="_blank">Geoffrey West "Scale"</a> for an awesome treatise on allometry for general audience.
+        </p>
+        <p>
+            Walnuts are not the exception. For instance, if nut volume doubles, then air volume increases by 2.3x. We cannot have a walnut with more air than nut, so following the power law, we see that walnut diameter cannot go beyond 15cm (a small cantaloupe). Similarly, if nut volume doubles, then kernel volume only increases by 1.8x.
+            There must be some biophysical constraints at play here: it is not a matter of breeding for bigger walnuts because these will have mostly air. 
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/air_volume_vs_nut_volume.png" alt="original"  style="width:45%">
+            <img src="figs/kernel_volume_vs_nut_volume.png" alt="normal"  style="width:45%">
+        </div>
+        <h3>Step-wise linear regression</h3>
+        <p>
+            We want to link our size and shape related traits to those of commercial interest. 
+            Moreover, we want to determine which 3-4 morphological traits might be the best
+            indicators of commercial desirability, as walnut breeders don't have access to 
+            an X-ray CT scan machine in the field to evaluate 49+ values at a time.
+            We performed a step-wise linear regression precisely to tease apart the impact
+            of individual traits. It works as follows:
+        </p>
+        <ol>
+            <li>Fix a commercial trait as variable to explain.</li>
+            <li>Limit the run to only traits significantly correlated (Spearman) to the trait from step 1.</li>
+            <li>Perform a linear regression using only <strong>one</strong> morphological trait as an explanatory variable.</li>
+            <li>Check the R<sup>2</sup> coefficient to see how good of a choice that was.</li>
+            <li>Repeat steps 3-4 for all individual morphological traits</li>
+            <li>Pick the trait with the best R<sup>2</sup> score</li>
+            <li>Repeat steps 3-6 for all possible pairs, trios, etc.</li>
+        </ol>
         <img src="figs/ease_of_removal_OLS_optimal_features.svg" alt="original"  style="float: center; margin: 0 0; vertical-align:center"></img>
     </div>
 	<div class="small-12 medium-5 large-5 columns">
