@@ -168,14 +168,20 @@ img.main-img-left {
 }
 img.main-img-right {
     width: 20%;
-    right: 1em;
+    right: 1ex;
     bottom: 1em;
     position: absolute;
 }
 img.main-img-subright {
     width: 20%;
-    right: 8em;
+    right: 7.5em;
     bottom: 2em;
+    position: absolute;
+}
+img.main-img-subsubright {
+    width: 25%;
+    right: 14.5em;
+    bottom: 3.5em;
     position: absolute;
 }
 i {
@@ -224,21 +230,23 @@ a.left:hover, a.left:active{
         <p><strong>Novel</strong> lung cancer groups with <strong>Mapper</strong><p>
         <p style="text-align:center; margin-top: -2em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
             <!-- <img src="../figs/IMGA04011.jpg" style="width:28%" /> -->
-            <img src="../../tda/figs/mapper_b_00.svg" style="width:99%" />
+            <img src="../../tda/figs/mapper_b_00.svg" style="width:80%" />
             <span style="width:99%; padding:0; margin:0;">
-                &nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &#8593;&#8593; What shape do you see? &#8593;&#8593;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span>
-            <img src="../../tda/figs/mapper_a_complete.svg" style="width:99%" />
+            <img src="../../tda/figs/mapper_a_complete.svg" style="width:105%" />
             <span style="width:99%; padding:0; margin:0;">
-                Group nodes AND establish links that preserve the topology
+                Group nodes AND establish links that reflect the topology
             </span>
         </p>
         <!-- <p style="text-align: center; margin-top:0; font-size:2em">Preprint</p> -->
-        <p style="text-align:center; font-family:monospace; margin-top:2em; font-size:1.75em; color:navy;">Published Paper DOI<br><a class="left" href="https://doi.org/10.1371/journal.pone.0284820/", target="_blank">10.1371/journal.pone.0284820</a></p>
+        <p style="text-align:center; font-family:monospace; margin-top:2em; font-size:1.75em; color:navy;">Published Paper DOI<br><a class="left" href="https://doi.org/10.1371/journal.pone.0284820", target="_blank">10.1371/journal.pone.0284820</a></p>
         <img src="../figs/amezquita_etal_2023.svg" class="main-img-left" />
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg" class="main-img-right" />
+        <img src="http://www.anad.org/wp-content/uploads/2017/09/university-of-hawaii-manoa.png" class="main-img-subright" />
+        <img src="https://communications.lafayette.edu/wp-content/uploads/sites/10/2013/10/logo-stacked-red.png" class="main-img-subsubright" />
         </div>
     </div>
     <div class="column right">
@@ -266,58 +274,64 @@ a.left:hover, a.left:active{
         </div>
         <br>
         <div id="experimental-design" class="section level2">
-            <h2 style="margin-top:-2ex">Materials and methods</h2>
+            <h2 style="margin-top:-1ex;">Materials and methods</h2>
             <p>
-                <img src="../figs/fpkm_raw_4.png" width="99%"/>
-                <img src="../figs/TCGA-55-A57B-01A-12R-A39D-07-section.png" width="99%"/>
+                <img src="../figs/fpkm_raw_4.png" width="100%"/>
+                <img src="../figs/TCGA-55-A57B-01A-12R-A39D-07-section.png" width="100%"/>
             </p>
             <ul>
-                <li>Mature <em>Cuscuta</em> stem segments grown in greenhouse.</li>
-                <li>Inoculated on skewers at 9AM, 12PM, and 4PM.</li>
-                <li>900 camera snapshots &times; 96 seconds = 24 hours.</li>
-                <li>5 skewers &times; 7 repetitions = 35 samples per time.</li>
-                <li><strong>Manual</strong> and <strong>automated</strong> observations:<br>&rarrhk; Coiling success rates.<br>&rarrhk; Initiation and completion times.</li>
+                <li>
+                    FPKM counts of RNAseq data from human <strong>lung</strong> tissue:<br>
+                    &rarrhk; 19,648 genes per sample.<br>
+                    &rarrhk; 314 healthy samples (GTEx).<br>
+                    &rarrhk; 500 cancerous samples (TCGA).
+                </li>
+                <li>
+                    Fit a Gaussian Mixture Model (GMM):<br>
+                    &rarrhk; Accurate transformation to a unimodal Gaussian.<br>
+                    &rarrhk; Consider <strong><em>Z</em>-scores</strong> onward.
+                </li>
+                <li>
+                    Compute pairwise correlation across all samples<br>
+                    &rarrhk; Filter data by <strong>mean correlation</strong> value.
+                </li>
             </ul>
         </div>
         <div id="image-processing-to-measure-seeds" class="section level2">
-            <h2 style="margin-top: 1ex">More data extracted automatically</h2>
+            <h2 style="margin-top: 2ex; margin-bottom: 1ex">Novel subgroups revealed with Mapper</h2>
             <p>
                 <img src="../figs/t0_1_corr_eps1e+03_r300_g50.png" style="width:49%" />
-                <img src="../figs/t0_1_corr_eps1e+04_r200_g50.png" style="width:49%" /></p>
+                <img src="../figs/t0_1_corr_eps1e+04_r200_g50.png" style="width:49%" />
+            </p>
             <ul style="margin-top:-1em;">
+                <li>Vary the number of <strong>bins</strong> 60 &le; <em>b</em> &le; 110.</li>
+                <li>Vary the <strong>overlap</strong> percentage 30 &le; <em>p</em> &le; 80.</li>
+                <li>Bright yellow: 100% cancerous samples.</li>
+                <li>Deep purple: 100% healthy samples.</li>
                 <li>
-                    Keep track of coil position and angle as a time series:<br>
-                    &rarrhk; Observe <strong>nuanced</strong> coiling stages.<br>
-                    &rarrhk; Consider Coil 1 and Coil 2 individually.<br>
-                    &rarrhk; More <strong>accurate</strong> representation.
+                    <strong>Regardless</strong> of parameters:<br>
+                    &rarrhk; <strong>Healthy</strong> samples tend to stay at the <strong>center</strong>.<br>
+                    &rarrhk; <strong>Cancerous</strong> samples are <strong>split</strong> between both ends.
                 </li>
-                <li>Based on color contrast <em>Cuscuta</em> vs skewer.<br></li>
             </ul>
         </div>
     </div>
     <div class="column right">
         <br>
         <div id="euler-characteristic-transform-ect" class="section level2">
-            <h2>The early dodder gets the host</h2>
+            <h2>Split <strong>not</strong> captured by tSNE</h2>
             <p>
-                <img src="../figs/mapper_vs_tsne.png" width="99%"/>
+                <img src="../figs/mapper_vs_tsne.png" width="100%"/>
             </p>
             <ul style="margin-top: -2ex;">
+                <li>tSNE separates healthy from cancerous samples <strong>but</strong>,</li>
                 <li>
-                    <em>Cuscuta</em> inoculated in the <strong>morning</strong> coiled <strong>better</strong>:<br>
-                    &rarrhk; Higher coiling success rate.<br>
-                    &rarrhk; Coiling started sooner.<br>
-                    &rarrhk; Coiling was completed sooner.
+                    Fine structural <strong>details</strong> are <strong>lost</strong> with tSNE:<br>
+                    (a) Using FPKM, (b) Using GMM Z-scores.
                 </li>
-                <li>However, once coiling initiated, coiling stages lasted the <strong>same</strong>, <strong>regardless</strong> of inoculation time.</li>
-                <li>Inoculation time did <strong>not</strong> influence twinning speed, angle, position, or coiling stage durations.</li>
-                <li>Nonetheless, Coil 2 is <strong>more stable</strong> than Coil 1.</li>
             </ul>
-            <p>
-                <img src="../figs/spectral_shape_stats.png" width="99%"/>
-            </p>
-            <h2 style="margin-top: 1ex">Circadian clock model and conclusions</h2>
-            <p><img src="https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0284820.g009" width="99%" style="display: block; margin: auto;" /></p>
+            <h2 style="margin-top: 1ex">GO Enrichment Analysis</h2>
+            <p><img src="../figs/go_analysis_results.png" width="100%" style="display: block; margin: auto;" /></p>
             <ul style="margin-top: -2ex;">
                 <li><em>Cuscuta</em> can tell time despite lacking photoreceptors.</li>
                 <li>It prefers to act in the morning/early afternoon.</li>
