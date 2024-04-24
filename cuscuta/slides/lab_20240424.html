@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The mathematical shape of plants</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita — Division of Plant Sciences &amp; Technology Department of Mathematics University of Missouri —" />
+    <meta name="date" content="2024-04-24" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The mathematical shape of plants
+]
+.author[
+### Erik Amézquita<br>—<br>Division of Plant Sciences &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
+]
+.date[
+### 2024-04-24
+]
+
+---
+
+
+
+
+# The wal(nu)tzing nutcracker!
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px"&gt;
+  &lt;div class="column" style="max-width:25%;"&gt;
+    &lt;img src="../../walnuts/figs/IMGA04011.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;149 accessions&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:42%;"&gt;
+    &lt;img src="../../barley/figs/x3000_setup.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;1301 (1264) walnuts scanned&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="../../walnuts/figs/pat_walnut_crack_detail4.jpg"&gt;
+    &lt;p style="text-align: center;"&gt;Qualitative data for crackability&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif"&gt;
+    &lt;p style="text-align: center; margin: 0.5ex;"&gt;Shell&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex; "&gt;Air&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex; "&gt;Packing tissue&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%;"&gt;
+    &lt;img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;
+    &lt;p style="text-align: center;margin: 0.5ex;"&gt;Kernel&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%; padding: 0 0 0 5px"&gt;
+    &lt;p style="margin:5px 0 0 0; text-align:left"&gt;
+      &amp;#9656;&amp;ensp;Individuals separated manually&lt;br&gt;
+      &amp;#9656;&amp;ensp;Tissues separated with watershed segmentation&lt;br&gt;
+      &amp;#9656;&amp;ensp;49 traditional shape and size descriptors
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## Trying to figure out **independent** contributions
+
+&lt;img src="../../walnuts/figs/kernel_weight_ratio_OLS_optimal_features.svg" width="700" style="display: block; margin: auto;" /&gt;&lt;img src="../../walnuts/figs/shell_strength_OLS_optimal_features.svg" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The plant vampire diaries
+
+&lt;video width="900" controls&gt;
+&lt;source src="../video/4pm_rep7_plant_02.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Differences: Intiation and completion
+
+&lt;img src="../figs/time_after_inoculation.svg" width="575" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/time_to_complete_coiling.svg" width="575" style="display: block; margin: auto;" /&gt;
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+
+---
+
+# General TDA pipeline
+
+![](../../tda/figs/chazal_tda_shape_classification_overview.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: Frédéric Chazal. &lt;a href="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Sophia2017/slidesSophia2017/PersistenceForTDA2.pdf"&gt;Source&lt;/a&gt;&lt;/p&gt;
+
+- Encode shapes and patterns as topological signatures
+
+- Similar shapes &amp;rarr; Similar mathematical signatures &amp;rarr; Similar points in MDS
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

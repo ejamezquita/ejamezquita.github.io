@@ -1,0 +1,108 @@
+---
+title: "The mathematical shape of plants"
+author: "Erik Amézquita<br>&mdash;<br>Division of Plant Sciences & Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2024-04-24"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# The wal(nu)tzing nutcracker!
+
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; margin: 0 auto; font-size:22px">
+  <div class="column" style="max-width:25%;">
+    <img src="../../walnuts/figs/IMGA04011.jpg">
+    <p style="text-align: center;">149 accessions</p>
+  </div>
+  <div class="column" style="max-width:42%;">
+    <img src="../../barley/figs/x3000_setup.jpg">
+    <p style="text-align: center;">1301 (1264) walnuts scanned</p>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="../../walnuts/figs/pat_walnut_crack_detail4.jpg">
+    <p style="text-align: center;">Qualitative data for crackability</p>
+  </div>
+</div>
+
+<div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R5_T81_shell_1.gif">
+    <p style="text-align: center; margin: 0.5ex;">Shell</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R1_T3_001_air.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Air</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R1_T3_001_vein.gif">
+    <p style="text-align: center;margin: 0.5ex; ">Packing tissue</p>
+  </div>
+  <div class="column" style="max-width:20%;">
+    <img src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif">
+    <p style="text-align: center;margin: 0.5ex;">Kernel</p>
+  </div>
+  <div class="column" style="max-width:20%; padding: 0 0 0 5px">
+    <p style="margin:5px 0 0 0; text-align:left">
+      &#9656;&ensp;Individuals separated manually<br>
+      &#9656;&ensp;Tissues separated with watershed segmentation<br>
+      &#9656;&ensp;49 traditional shape and size descriptors
+    </p>
+  </div>
+</div>
+
+---
+
+## Trying to figure out **independent** contributions
+
+```{r, out.width=700}
+knitr::include_graphics(c("../../walnuts/figs/kernel_weight_ratio_OLS_optimal_features.svg",
+                          "../../walnuts/figs/shell_strength_OLS_optimal_features.svg"))
+```
+
+---
+
+# The plant vampire diaries
+
+<video width="900" controls>
+<source src="../video/4pm_rep7_plant_02.mp4" type="video/mp4">
+</video>
+
+---
+
+# Differences: Intiation and completion
+
+```{r, out.width=575}
+knitr::include_graphics(c('../figs/time_after_inoculation.svg',
+                          '../figs/time_to_complete_coiling.svg'))
+```
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+
+---
+
+# General TDA pipeline
+
+![](../../tda/figs/chazal_tda_shape_classification_overview.png)
+<p style="font-size: 10px; text-align: right; color: Grey;">Credits: Frédéric Chazal. <a href="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Sophia2017/slidesSophia2017/PersistenceForTDA2.pdf">Source</a></p>
+
+- Encode shapes and patterns as topological signatures
+
+- Similar shapes &rarr; Similar mathematical signatures &rarr; Similar points in MDS
+
