@@ -286,6 +286,8 @@ background-position: 95% 42%
 
 - These height differences are reflected in differences in persistence diagrams
 
+- The diagram is essentially stretched out
+
 ---
 
 background-image: url("../figs/D2_GLYMA_15G210100_pd_suplevel_by_gene_00557.jpg")
@@ -299,6 +301,8 @@ background-position: 95% 42%
 - Normalizing by gene or by cell-gene produces KDEs of different heights
 
 - These height differences are reflected in differences in persistence diagrams
+
+- The diagram is essentially stretched out
 
 ---
 
@@ -314,6 +318,8 @@ background-position: 95% 42%
 
 - These height differences are reflected in differences in persistence diagrams
 
+- The diagram is essentially stretched out
+
 ---
 
 background-image: url("../figs/D2_GLYMA_05G092200_pd_suplevel_by_gene_00579.jpg")
@@ -324,10 +330,9 @@ background-position: 95% 42%
 
 &lt;img src="../figs/D2_GLYMA_05G092200_pd_suplevel_by_both_00579.jpg" width="530px" style="display: block; margin: auto auto auto 0;" /&gt;
 
-- Look at the axes
+- Look at the axes values: the diagram is essentially the same
 
 ---
-
 
 background-image: url("../figs/D2_GLYMA_05G092200_pd_suplevel_by_gene_01692.jpg")
 background-size: 530px
@@ -337,9 +342,7 @@ background-position: 95% 42%
 
 &lt;img src="../figs/D2_GLYMA_05G092200_pd_suplevel_by_both_01692.jpg" width="530px" style="display: block; margin: auto auto auto 0;" /&gt;
 
-- Normalizing by gene or by cell-gene produces KDEs of different heights
-
-- These height differences are reflected in differences in persistence diagrams
+- Look at the axes values: the diagram is essentially the same
 
 ---
 
@@ -359,231 +362,89 @@ background-position: 95% 42%
 
 # Wasserstein 1-distance
 
-![](../../tda/figs/bottleneck_diagram.svg)
+&lt;img src="../../tda/figs/bottleneck_diagram.svg" width="525px" style="display: block; margin: auto;" /&gt;
 
-Measure topological similarity
+- Measure the topological similarity between two persistence diagrams `\(D_1,D_2\)`.
 
-For persistence diagrams `\(D_1,D_2\)`, their Wasserstein 1-distance is
+- Of all possible ways to match the points from `\(D_1\)` to `\(D_2\)` (or match to the diagonal), we want the one that minimizes the total sum of matching distances.
 
-`$$d_{W_1}(D_1,D_2) = \inf_{\gamma:D_1\to D_2}\left(\sum_{p\in D_1}\left\|p - \gamma(p)\right\|_{\infty}\right)$$`
+- In the caricature above, **B** is a much better matching than **A**.
 
----
+- Mathematically speaking, the Wasserstein 1-distance is defined as:
 
-# Multidimensional scaling (MDS)
-
-![](../../demat/figs/geodesic_earth_distances_km.png)
-
-- Another form of dimension reduction
-
-- We only have pairwise distances/similarities between points
-
-- Optimization problem: We want to project them to 2D such that similar points remain close
+`$${W_1}(D_1,D_2) = \inf_{\gamma:D_1\to D_2}\left(\sum_{p\in D_1}\left\|p - \gamma(p)\right\|_{\infty}\right)$$`
 
 ---
 
-background-image: url("../../demat/figs/mds_reconstructed.svg")
-background-size: 800px
-background-position: 50% 70%
-
-# Using geodesic distances
-
----
-
-# General TDA pipeline
-
-![](../../tda/figs/chazal_tda_shape_classification_overview.png)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: Frédéric Chazal. &lt;a href="https://geometrica.saclay.inria.fr/team/Fred.Chazal/Sophia2017/slidesSophia2017/PersistenceForTDA2.pdf"&gt;Source&lt;/a&gt;&lt;/p&gt;
-
-- Encode shapes and patterns as persistence diagrams via sublevel set persistence
-
-- Similar shapes &amp;rarr; Similar topological signatures &amp;rarr; Similar points in MDS
-
----
-
-class: inverse, middle, center
-
-# Bringing it back to the transcriptome
-
-## 1. Determine transcript distribution pattern via KDE
-
-## 2. Use TDA to encode the shape of the pattern
-
-## 3. Compute pairwise distances between patterns
-
-## 4. Assess those distances in 2D
- 
-
----
-
-# Back to the transcriptome
+# Wasserstein 1-distance
 
 .pull-left[
-![](../figs/D2_GLYMA_05G092200_1767_1765_plain_kde.jpg)
-
+![](../figs/D2_ws1d_infty_suplevel_by_both_01726.svg)
 ]
 
 .pull-right[
-
-- Normalize the KDE accordingly (per cell)
-
-- Extract the topological shape signature of every KDE via sublevel set persistence
-
-- Compare the similarities of these topological shape signatures
-
-![](https://user-images.githubusercontent.com/85555218/121733939-5d932280-cb09-11eb-9ff4-56bec59e0cf9.jpg)
-
-- &amp;#8593;&amp;#8593; ¡Remember: 2D this time! &amp;#8593;&amp;#8593;
+![](../figs/D2_ws1d_infty_suplevel_by_both_00579.svg)
 ]
+
+- Measure the topological difference of transcript distribution of different genes within the same cell
+
+- Comparing two genes at a time
 
 ---
 
-background-image: url("../figs/D2_GLYMA_05G092200_1767_1765_sublevel_persistence_diagram.svg")
-background-size: 305px
-background-position: 10% 95%
-
-# Sublevel set persistence
+# Normalization can affect the differences
 
 .pull-left[
-```
-[(1, (0.0, 192.0)),
- (1, (11.0, 72.0)),
- (1, (93.0, 106.0)),
- (1, (25.0, 36.0)),
- (1, (95.0, 105.0)),
- (1, (8.0, 13.0)),
- (1, (14.0, 18.0)),
- (0, (0.0, inf)),
- (0, (0.0, 76.0))]
- ```
+![](../figs/D2_ws1d_infty_suplevel_by_both_01692.svg)
 ]
 
 .pull-right[
-![](../figs/D2_GLYMA_05G092200_1767_1765_sublevel_sets.jpg)
+![](../figs/D2_ws1d_infty_suplevel_by_gene_01692.svg)
 ]
 
 ---
 
-background-image: url("../figs/D2_GLYMA_05G092200_1749_1748_sublevel_persistence_diagram.svg")
-background-size: 305px
-background-position: 10% 95%
+class: center, inverse, middle
 
-# Sublevel set persistence
+# Normalizing by **both** cell and gene
+
+## The sum of all transcripts of all genes of all infected cells add to 100%
+
+The heatmaps corresponding to genes with low amounts of transcripts e.g. (`GLYMA_15G210100`) are essentially flattened and there's little than can be said about them
+
+---
+
+# Measure pair-wise differences
+
+- For 6 genes, there are 15 possible different pairs
+
+- Measure the Wasserstein distance within the same cell
+
+- Unsurprisingly, 4 of them are quite close to each other because they are all flat.
+
+- The most interesting differences happen between `GLYMA_05G092200` and `GLYMA_17G165900`
+
+![](../figs/infected24_ws1d_infty_distribution_suplevel_by_both.svg)
+
+---
+
+# Represent spatially these distances
+
+- Taking the median difference of each pair of genes, we can represent these distance differences in 2D with an MDS (multidimensional scaling)
 
 .pull-left[
-```
-[(1, (0.0, 194.0)),
- (1, (94.0, 126.0)),
- (1, (21.0, 48.0)),
- (1, (22.0, 45.0)),
- (1, (119.0, 139.0)),
- (0, (0.0, inf)),
- (0, (0.0, 73.0)),
- (0, (4.0, 10.0))]
- ```
+![](../figs/infected24_ws1d_infty_mds_suplevel_by_both.svg)
 ]
 
 .pull-right[
-![](../figs/D2_GLYMA_05G092200_1749_1748_sublevel_sets.jpg)
+![](../figs/D2_ws1d_infty_difference_suplevel_by_both.jpg)
 ]
 
----
-
-# Sublevel set persistence
-
-&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'"&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_296_295_plain_kde.jpg"&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_297_286_plain_kde.jpg"&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_572_570_plain_kde.jpg"&gt;
-  &lt;/div&gt;
-    &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_2150_2149_plain_kde.jpg"&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'"&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_296_295_sublevel_persistence_diagram.svg"&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_297_286_sublevel_persistence_diagram.svg"&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_572_570_sublevel_persistence_diagram.svg"&gt;
-  &lt;/div&gt;
-    &lt;div class="column" style="max-width:24%; font-size: 20px;"&gt;
-    &lt;img style="padding: 0;" src="../figs/D2_GLYMA_05G092200_2150_2149_sublevel_persistence_diagram.svg"&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+- Darker colors represent lower difference values
 
 ---
 
-# Putting it all together
-
-![](../figs/CYP93A1_-_sublevel_bottleneck_00133_c2355.png)
-
-- Left: Cross-section
-    - Brighter color &amp;rarr; higher transcript density within cell's cytoplasm
-- Center: MDS based on bottleneck distances of sublevel persistence diagrams
-    - Corresponding coloring
-- Right: KDE of the cell
-    - Brighter color &amp;rarr; higher transcript density wrt total cross section
-
----
-
-# Putting it all together
-
-&lt;video width="900" controls&gt;
-  &lt;source src="../videos/CYP93A1_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
----
-
-# Putting it all together
-
-&lt;video width="900" controls&gt;
-  &lt;source src="../videos/BAC51072_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
----
-
-# Putting it all together
-
-&lt;video width="900" controls&gt;
-  &lt;source src="../videos/GLYMA_02G003700_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
----
-
-# Putting it all together
-
-&lt;video width="900" controls&gt;
-  &lt;source src="../videos/GLYMA_05G092200_-_sublevel_bottleneck.mp4" type="video/mp4"&gt;
-&lt;/video&gt;
-
----
-
-# To-do list
-
-.left-column[
-![](../figs/D2_GLYMA_05G092200_2196_2195_plain_kde.jpg)
-![](../figs/D2_GLYMA_05G092200_1776_1774_plain_kde.jpg)
-]
-
-.right-column[
-- Repeat the pipeline to use 3D data instead
-
-- Compare how different transcripts are distributed within the same cell
-
-- Analyze root tissue as well
-
-- Compare how the same transcript tends to be distributed between different tissues
-
-- Compare plant vs bacterial transcripts, especially at the infection zone
-]
+## But how do these distributions really look like?
 
 ---
 
