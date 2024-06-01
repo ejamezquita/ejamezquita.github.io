@@ -415,7 +415,49 @@ The heatmaps corresponding to genes with low amounts of transcripts e.g. (`GLYMA
 
 ---
 
-## But how do these distributions really look like?
+
+```{r include=FALSE, evaluate=FALSE}
+genes_low <- c(1419,2431,885,2063,609)
+genes_mid <- c(1306,512,1829,942,1328)
+genes_high <- c(1702,2404,2288,1164,1726)
+genes <- c(genes_low, genes_mid, genes_high)
+genes <- base::formatC(genes, digits=4, format='d', flag='0')
+grank <- c(1:5, 484:488, 964:968)
+
+w1_low <- c(31.33, 35.36, 38.44, 39.77, 41.01)
+w1_mid <- c(343.77, 343.96, 343.99, 344.10, 345.72)
+w1_high <- c(1080.96, 1142.89, 1171.87, 1251.22, 1532.61)
+w1 <- c(w1_low, w1_mid, w1_high)
+
+slides_info <- tibble::tibble(first=genes, second=grank, third=w1)
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  background-image: url(\"../figs/D2_ws1d_infty_suplevel_by_both_{first}.svg\")
+  background-size: 200px
+  background-position: 99% 55%
+  
+  ## But how do these distributions really look like?
+  
+  <img src=\"../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
+  <br>
+  <img src=\"../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
+  
+  $W_1(\\text{{GLYMA_17G195900, GLYMA_05G092200}) = {third}$ [{second}/968]
+
+  
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+# Some correlations
+
+![](../figs/D2_ws1d_infty_spearman_suplevel_by_both.jpg)
 
 ---
 
