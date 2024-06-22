@@ -150,7 +150,7 @@ Peer-reviewed work {data-icon=book}
 CV %<>% print_section('peer_reviewed_publications')
 ```
 
-Non peer-reviewed work {data-icon=newspaper}
+Work under review {data-icon=newspaper}
 --------------------------------------------------------------------------------
 
 ::: aside
@@ -160,7 +160,7 @@ Non peer-reviewed work {data-icon=newspaper}
 :::
 
 ```{r}
-CV %<>% print_section('other_writing')
+CV %<>% print_section('preprint')
 ```
 
 
@@ -168,9 +168,22 @@ CV %<>% print_section('other_writing')
 Teaching and Mentoring Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-### Experience at Michigan State University
+### At University of Missouri
 
-* Mentor for the [ACRES REU](https://icer-acres.msu.edu/). Conducted weekly professional development workshops and weekly social events for an undergraduate audience. Summer 2022.
+* Undegraduate Research mentor for Ethan Lenhardt. Mathematical network analysis of academic collaboration. Department of Mathematics. Spring 2024 - present.
+* Undegraduate Research mentor for Gibson Tschappler. Topological Data Analysis of spatial data. Division of Plant Science & Technology. Summer 2024 - present.
+* Mentor for [BIPS](https://undergradresearch.missouri.edu/bioinformatics-in-plant-sciences-bips/). Conducted weekly workshops on good coding practices. Fall 2023.
+
+N/A
+
+Leading projects at the intersection of mathematics, computer science, and plant biology
+
+2023 - present
+
+
+### At Michigan State University
+
+* Mentor for the [ACRES REU](https://icer-acres.msu.edu/). Conducted weekly professional development workshops. Summer 2022.
 * TA for CMSE 201: Intro to Computational Modelling and Data Analysis. Fall 2019
 
 N/A
@@ -179,25 +192,26 @@ Audience was mainly undergraduate students with no prior coding experience
 
 2022 - 2019
 
-### Teaching Assistant at other institutions in the US
+### At other institutions
 
-* [SGI 2022](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
-* [SGI 2021](https://sgi.mit.edu/). Summer Geometry Institute REU. Massachusetts Institute of Technology.
-* [Code In Place](https://codeinplace.stanford.edu/). Stanford University.
+* Mentor for [SGI 2023](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
+* Mentor for [SGI 2022](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
+* Mentor for [SGI 2021](https://sgi.mit.edu/). Summer Geometry Institute REU. Massachusetts Institute of Technology.
+* TA fo [Code In Place](https://codeinplace.stanford.edu/). Stanford University.
 
 N/A
 
 Conducted virtually
 
-2022 - 2021
+2023 - 2021
 
-### Teaching Assistant at CIMAT/Universidad de Guanajuato
+### At CIMAT/Universidad de Guanajuato
 
-* Precalculus and analytic geometry. Spring 2018
-* Topology I (Intro to point-set topology). Fall 2017
-* 14th Calculus Problem-solving Workshop. Summer 2017
-* Introduction to C++ and data structures (Online). Summer 2017
-* Introduction to probability. Fall 2016
+* TA for Precalculus and analytic geometry. Spring 2018
+* TA for Topology I (Intro to point-set topology). Fall 2017
+* TA for 14th Calculus Problem-solving Workshop. Summer 2017
+* TA for Introduction to C++ and data structures (Online). Summer 2017
+* TA for Introduction to probability. Fall 2016
 
 N/A
 
@@ -206,7 +220,7 @@ Some courses involved leading tutorials on C++ or R
 2018 - 2016
 
 
-Invited talks {data-icon=microphone}
+Invited and recent talks {data-icon=microphone}
 --------------------------------------------------------------------------------
 
 ```{r}
