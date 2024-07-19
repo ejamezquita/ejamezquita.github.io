@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Characterizing spatial patterns and distributions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Sutton Tennant, Sandra Thibivillers, Sai Subhash Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
+    <meta name="date" content="2024-07-19" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Characterizing spatial patterns and distributions
+]
+.subtitle[
+## with Topological Data Analysis (TDA)
+]
+.author[
+### <strong>Erik Amézquita</strong>, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
+]
+.date[
+### 2024-07-19
+]
+
+---
+
+
+
+
+# Patterns, patterns everywhere!
+
+&lt;div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="https://www.landsat.com/samples/county2018/andrew-mo-2018.jpg"&gt;
+    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Andrew.png"&gt;
+    &lt;p style="text-align: center;"&gt;Quantify/Describe&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="https://www.landsat.com/samples/county2018/boone-mo-2018.jpg"&gt;
+    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Boone.png"&gt;
+    &lt;p style="text-align: center;"&gt;Compare/Contrast&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%;"&gt;
+    &lt;img src="https://www.landsat.com/samples/county2018/new-madrid-mo-2018.jpg"&gt;
+    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/New_Madrid.png"&gt;
+    &lt;p style="text-align: center;"&gt;Model/Predict&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://www.landsat.com/aerial-photography/missouri/"&gt;Landsat.com&lt;/a&gt; and &lt;a href="https://www.atlas.moherp.org/missouri/"&gt;MO Herpetological Atlas Project&lt;/a&gt;&lt;/p&gt;
+---
+
+# Issue at hand: transcript distribution
+
+![](../figs/D2_distribution_example.jpg)
+
+- Different cells of different shapes and sizes
+- Beyond density: How to quantify and compare patterns?
+- Patterns across the whole cross section? Patterns within cells?
+
+---
+
+# Plan of attack
+
+1. Make heatmaps of transcript distributions via Kernel Density Estimates (KDEs)
+
+1. Quantify these heatmaps via Topological Data Analysis (TDA)
+
+1. Featurize these topological signatures as Persistence Images
+
+1. ????? [traditional data analysis]
+
+1. Profit
+
+![](../figs/D2_GLYMA_05G092200_1749_1748_3D_kde_correction.gif)
+
+---
+
+class: inverse, middle, center
+
+# [1] Kernel Density Estimators (KDEs)
+
+## The continuous version of a histogram
+
+### Think of heatmaps
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+[3] Featurize these topological signatures as Persistence Images
+
+[4] Traditional data analysis and results
+
+---
+
+# Say we want to characterize the distribution of these points in 1D
+
+![](../../tda/figs/kernel_density_estimator_00.svg)
+
+- We only know the samples (blue points)
+
+---
+
+# A histogram gives us a sense of distribution
+
+
+![](../../tda/figs/kernel_density_estimator_03.svg)
+
+- The total gray area equals 1
+- 100% of the points are represented in the histogram
+
+---
+
+# Approximate the underlying distribution with a KDE
+
+![](../../tda/figs/kernel_density_estimator_04.svg)
+
+- A continuous approximation is mathematically better to perform meaningful statistics
+- Kernel Density Estimate: KDE
+
+---
+
+# The width/number of bins does influence the shape of the histogram
+
+![](../../tda/figs/kernel_density_estimator_05.svg)
+
+- Similarly, we can control the bandwidth parameter of the KDE to influence its shape
+- Plenty of heuristics to define the "right" bandwidth
+- But ultimately, "right" depends on the application in mind
+
+---
+
+## KDEs: 3D; one per cell; reflect borders and nuclei
+
+
+&lt;img src="../figs/D2_GLYMA_05G092200_1767_1765_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/D2_GLYMA_05G092200_1749_1748_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+# [2] Quantify the shape of these heatmaps
+
+## Topological Data Analysis (TDA) and persistent homology
+
+[3] Featurize these topological signatures as Persistence Images
+
+[4] Traditional data analysis and results
+
+---
+
+
+
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_00.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_01.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_02.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_03.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_04.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_05.svg)
+
+---
+# Sublevel filter &amp;rarr; Persistence Diagrams
+
+![](../../tda/figs/sublevel_filtration_06.svg)
+
+
+---
+
+# Same idea for higher dimensions
+
+![](https://pubs.acs.org/cms/10.1021/acs.jpcb.1c00904/asset/images/large/jp1c00904_0001.jpeg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1021/acs.jpcb.1c00904"&gt;Manuchehrfar &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+
+# Distance between persistence diagrams
+
+`$${W^q}(D_1,D_2) = \left[\inf_{\gamma:D_1\to D_2} \sum_{p\in D_1}\left\|p - \gamma(p)\right\|^q_{\infty}\right]^{1/q}$$`
+
+- **Theorem:** The bottleneck and Wasserstein distances are stable ([Cohen-Steiner *et al.* (2007)](https://doi.org/10.1007/s00454-006-1276-5), [Cohen-Steiner *et al.* (2010)](https://doi.org/10.1007/s10208-010-9060-6)). 
+
+---
+
+
+
+
+background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_00885.svg")
+background-size: 200px
+background-position: 99% 55%
+
+## Compare two different persistence diagrams
+
+&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
+&lt;br&gt;
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
+
+`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 38.44\)`
+
+
+---
+background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01306.svg")
+background-size: 200px
+background-position: 99% 55%
+
+## Compare two different persistence diagrams
+
+&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
+&lt;br&gt;
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
+
+`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 343.77\)`
+
+
+---
+background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01702.svg")
+background-size: 200px
+background-position: 99% 55%
+
+## Compare two different persistence diagrams
+
+&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
+&lt;br&gt;
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
+
+`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 1080.96\)`
+
+
+
+
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+# [3] Featurize these topological signatures as Persistence Images
+
+## The space of persistence diagrams is weird
+
+### So we move to a nicer, more familiar one
+
+[4] Traditional data analysis and results
+
+---
+
+# Rotate `\(45^\circ\)` for Persistence Images
+
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_02404.jpg" width="650" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/persistence_image_example_GLYMA_05G092200_2404.png" width="650" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# A word on Persistence Images
+
+.pull-left[
+![](../figs/persistence_image_example_GLYMA_05G092200_2404_v.png)
+]
+
+.pull-right[
+- Think them as a KDE of the lifetime diagram *with extra steps*.
+
+- More persistent points are heavier
+
+- Points with 0 lifespan have 0 weight
+
+- **Theorem:** Persistence Images are stable with respect to the 1-Wasserstein distance ([Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html))
+
+- The topological signature now is a collection of pixel values
+
+- Concatenate all dimensions into a single large vector
+
+- We can now do standard statistics and machine learning with PIs as our input features!
+]
+
+---
+
+# Persistence Images can be tuned
+
+![](../figs/persistence_image_parameters_GLYMA_05G092200_2404.png)
+
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+[3] Featurize these topological signatures as Persistence Images
+
+# [4] Traditional data analysis and results
+
+## An example of a pipeline
+
+### Never underestimate the power of PCA
+
+---
+
+# Remember the setup
+
+- Looking at 968 individual cells in soybean root
+
+- Looking at `\((x,y,z)\)` spatial locations of all transcripts from 6 genes
+
+- With KDEs, we produced 3D heatmaps for all the `\(968\times 6=5808\)` cases
+
+- The *shape* of the heatmaps was then encoded into persistence diagrams using a sublevel set filtration ( `\(H_1, H_2\)` )
+
+- These diagrams were then transformed into Persistence Images
+
+- All the dimensions were concatenated and used as features in a standard exploratory pipeline
+
+- Modeling the transcripts patterns across genes and cells &amp;larr; *You are here*
+
+![](../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg)
+
+---
+
+# Never underestimate PCA
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2.png)
+
+---
+
+# What is exactly used by PCA?
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
+
+---
+
+background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
+background-size: 775px
+background-position: 50% 99%
+
+# Show me
+
+&lt;img src="../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="250" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
+background-size: 775px
+background-position: 50% 99%
+
+# Show me
+
+&lt;img src="../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="250" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+# Relate patterns to spatial location
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_17G195900.png)
+
+---
+
+# Differentiate patterns within cells
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2_0_vs_GLYMA_17G195900.png)
+
+---
+
+# Discussion
+
+- Topological Data Analysis offers a robust way to encode the *shape of patterns*
+
+- Robust to differences in scale, underlying boundaries, or orientation
+
+- As long as you have a heatmap, you're good to go:
+    
+- Even if you don't, you can make one via KDEs from individual spatial coordinates
+    - Climate patterns?
+    - Canopy patterns?
+    - Cover crop patterns?
+    - Species spatial distribution?
+
+![](../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg)
+
+---
+
+# Software used
+
+.pull-left[
+- All the work has been done in python with mostly standard libries (`numpy`, `scikit-learn`, `matplotlib`, `pandas`, etc.)
+
+- KDEs computed efficiently with [`KDEpy`](https://kdepy.readthedocs.io/en/latest/)
+
+- Sublevel set filtration of images and persistence diagrams done with [`gudhi`](https://gudhi.inria.fr/)
+
+![](https://gudhi.inria.fr/assets/img/logo.png)
+]
+
+.pull-right[
+- Persistence Images computed with [`persim`](https://persim.scikit-tda.org/en/latest/)
+
+![](https://persim.scikit-tda.org/en/latest/_static/logo.png)
+]
+
+---
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:60%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/11/libault-returns-to-bond-lsc-as-plant-scientist-with-single-cell-focus-1.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:6%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;eah4d@missouri.edu&lt;/p&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; Libault Lab (MU) &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Marc Libault&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sandra Thibivillers&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Hengping Xu&lt;/li&gt;
+      &lt;li&gt;Sahand Amini&lt;/li&gt;
+      &lt;li&gt;Hong Fu&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sutton Tennant&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Md Sabbir Hossain&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:65%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; With help from &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sai Subash (Nebraska-Lincoln)&lt;/li&gt;
+      &lt;li&gt;Benjamin Smith (UC Berkeley)&lt;/li&gt;
+      &lt;li&gt;Samik Bhattacharya (Resolve Biosciences)&lt;/li&gt;
+      &lt;li&gt;Jasper Kläver (Resolve Biosciences)&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
