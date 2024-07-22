@@ -1,0 +1,823 @@
+---
+title: "Characterizing spatial patterns and distributions"
+subtitle: "with Topological Data Analysis (TDA)"
+author: "**Erik Amézquita**, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2024-07-19"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+genes = c('GLYMA_17G195900', 'GLYMA_05G216000', 'GLYMA_17G185800', 'GLYMA_05G203100', 'GLYMA_15G210100', 'GLYMA_05G092200')
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+# Patterns, patterns everywhere!
+
+<div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
+  <div class="column" style="max-width:33%;">
+    <img src="https://www.landsat.com/samples/county2018/andrew-mo-2018.jpg">
+    <img src="https://www.atlas.moherp.org/maps/county/histveg/Andrew.png">
+    <p style="text-align: center;">Quantify/Describe</a>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="https://www.landsat.com/samples/county2018/boone-mo-2018.jpg">
+    <img src="https://www.atlas.moherp.org/maps/county/histveg/Boone.png">
+    <p style="text-align: center;">Compare/Contrast</a>
+  </div>
+  <div class="column" style="max-width:33%;">
+    <img src="https://www.landsat.com/samples/county2018/new-madrid-mo-2018.jpg">
+    <img src="https://www.atlas.moherp.org/maps/county/histveg/New_Madrid.png">
+    <p style="text-align: center;">Model/Predict</a>
+  </div>
+</div>
+<p style="font-size: 10px; text-align: right; color: Grey;">Credits: <a href="https://www.landsat.com/aerial-photography/missouri/">Landsat.com</a> and <a href="https://www.atlas.moherp.org/missouri/">MO Herpetological Atlas Project</a></p>
+---
+
+# Issue at hand: transcript distribution
+
+![](../figs/D2_distribution_example.jpg)
+
+- Different cells of different shapes and sizes
+- Beyond density: How to quantify and compare patterns?
+- Patterns across the whole cross section? Patterns within cells?
+
+---
+
+# Plan of attack
+
+1. Make heatmaps of transcript distributions via Kernel Density Estimates (KDEs)
+
+1. Quantify these heatmaps via Topological Data Analysis (TDA)
+
+1. Featurize these topological signatures as Persistence Images
+
+1. ????? [traditional data analysis]
+
+1. Profit
+
+![](../figs/D2_GLYMA_05G092200_1749_1748_3D_kde_correction.gif)
+
+---
+
+class: inverse, middle, center
+
+# [1] Kernel Density Estimators (KDEs)
+
+## The continuous version of a histogram
+
+### Think of heatmaps
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+[3] Featurize these topological signatures as Persistence Images
+
+[4] Traditional data analysis and results
+
+---
+
+# Say we want to characterize the distribution of these points in 1D
+
+![](../../tda/figs/kernel_density_estimator_00.svg)
+
+- We only know the samples (blue points)
+
+---
+
+# A histogram gives us a sense of distribution
+
+
+![](../../tda/figs/kernel_density_estimator_03.svg)
+
+- The total gray area equals 1
+- 100% of the points are represented in the histogram
+
+---
+
+# Approximate the underlying distribution with a KDE
+
+![](../../tda/figs/kernel_density_estimator_04.svg)
+
+- A continuous approximation is mathematically better to perform meaningful statistics
+- Kernel Density Estimate: KDE
+
+---
+
+# The width/number of bins does influence the shape of the histogram
+
+![](../../tda/figs/kernel_density_estimator_05.svg)
+
+- Similarly, we can control the bandwidth parameter of the KDE to influence its shape
+- Plenty of heuristics to define the "right" bandwidth
+- But ultimately, "right" depends on the application in mind
+
+---
+
+## KDEs: 3D; one per cell; reflect borders and nuclei
+
+
+```{r, out.width="700px"}
+knitr::include_graphics(c('../figs/D2_GLYMA_05G092200_1767_1765_kde_correction.jpg',
+                          '../figs/D2_GLYMA_05G092200_1749_1748_kde_correction.jpg'))
+```
+
+---
+
+# Normalize: What is 100%?
+
+- Limit scope to just the 968 infected cells
+
+- **By gene:** The sum of all transcripts of a fixed gene add to 100%
+    - Each gene adds to 100% independent of the rest
+    - Compares relative concentrations 
+
+- **By cell AND gene:** The sum of all transcripts OF ALL genes add to 100%
+    - Each gene adds to a certain percentage
+    - The sum of all genes add to 100%
+    - Compares absolute concentrations 
+
+```
+gene
+GLYMA_17G195900    698882
+GLYMA_05G216000     12919
+GLYMA_17G185800     11462
+GLYMA_05G203100      4116
+GLYMA_15G210100     11688
+GLYMA_05G092200    479091
+```
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+# [2] Quantify the shape of these heatmaps
+
+## Topological Data Analysis (TDA) and persistent homology
+
+[3] Featurize these topological signatures as Persistence Images
+
+[4] Traditional data analysis and results
+
+---
+
+```{r include=FALSE, evaluate=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:6, digits=1, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  # Sublevel filter &rarr; Persistence Diagrams
+  
+  ![](../../tda/figs/sublevel_filtration_{first}.svg)
+  
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+background-image: url("https://pubs.acs.org/cms/10.1021/acs.jpcb.1c00904/asset/images/large/jp1c00904_0001.jpeg")
+background-size: 400px
+background-position: 99% 1%
+
+# Same for higher dims
+
+.pull-left[
+![](../figs/D2_GLYMA_05G092200_1767_1765_plain_kde.jpg)
+]
+
+.pull-right[
+![](../figs/D2_GLYMA_05G092200_1767_1765_sublevel_sets.jpg)
+]
+
+---
+
+# Wasserstein/bottleneck distances
+
+.pull-left[
+```{r, out.width="300px"}
+knitr::include_graphics(c('../figs/D2_ws1d_infty_suplevel_by_both_01726.svg'))
+```
+]
+
+.pull-right[
+```{r, out.width="300px"}
+knitr::include_graphics(c('../figs/D2_ws1d_infty_suplevel_by_both_00579.svg'))
+```
+]
+
+- Measure the topological similarity between two persistence diagrams $D_1,D_2$.
+
+$${W^q}(D_1,D_2) = \left[\inf_{\gamma:D_1\to D_2} \sum_{p\in D_1}\left\|p - \gamma(p)\right\|^q_{\infty}\right]^{1/q}$$
+
+- **Theorem:** The bottleneck and Wasserstein distances are stable ([Cohen-Steiner *et al.* (2007)](https://doi.org/10.1007/s00454-006-1276-5), [Cohen-Steiner *et al.* (2010)](https://doi.org/10.1007/s10208-010-9060-6)). 
+
+---
+
+
+```{r include=FALSE, evaluate=FALSE}
+genes_low <- c(885)
+genes_mid <- c(1306)
+genes_high <- c(1702)
+geness <- c(genes_low, genes_mid, genes_high)
+geness <- base::formatC(geness, digits=4, format='d', flag='0')
+
+w1_low <- c(38.44)
+w1_mid <- c(343.77)
+w1_high <- c(1080.96)
+w1 <- c(w1_low, w1_mid, w1_high)
+
+slides_info <- tibble::tibble(first=geness, third=w1)
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  background-image: url(\"../figs/D2_ws1d_infty_suplevel_by_both_{first}.svg\")
+  background-size: 200px
+  background-position: 99% 55%
+  
+  ## Compare two different persistence diagrams
+  
+  <img src=\"../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
+  <br>
+  <img src=\"../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
+  
+  $W_1(\\text{{GLYMA_17G195900, GLYMA_05G092200}) = {third}$
+
+  
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+# [3] Featurize these topological signatures as Persistence Images
+
+## The space of persistence diagrams is weird
+
+### So we move to a nicer, more familiar one
+
+[4] Traditional data analysis and results
+
+---
+
+# Rotate $45^\circ$ for Persistence Images
+
+```{r, out.width=650}
+knitr::include_graphics(c('../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_02404.jpg',
+                          '../figs/persistence_image_example_GLYMA_05G092200_2404.png'))
+```
+
+
+---
+
+# A word on Persistence Images
+
+.pull-left[
+![](../figs/persistence_image_example_GLYMA_05G092200_2404_v.png)
+]
+
+.pull-right[
+- Think them as a KDE of the lifetime diagram *with extra steps*.
+
+- More persistent points are heavier
+
+- Points with 0 lifespan have 0 weight
+
+- **Theorem:** Persistence Images are stable with respect to the 1-Wasserstein distance ([Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html))
+
+- The topological signature now is a collection of pixel values
+
+- Concatenate all dimensions into a single large vector
+
+- We can now do standard statistics and machine learning with PIs as our input features!
+]
+
+---
+
+# Persistence Images can be tuned
+
+![](../figs/persistence_image_parameters_GLYMA_05G092200_2404.png)
+
+---
+
+class: inverse, middle, center
+
+[1] Estimate heatmaps via KDEs
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+[3] Featurize these topological signatures as Persistence Images
+
+# [4] Traditional data analysis and results
+
+## An example of a pipeline
+
+### Never underestimate the power of PCA
+
+---
+
+# Remember the setup
+
+- Looking at 968 infected cells in soybean root
+
+- Looking at $(x,y,z)$ spatial locations of all transcripts from 6 genes
+
+- With KDEs, 3D heatmaps produced $968\times 6=5808$ times
+
+- The *shape* of the heatmaps was then encoded into persistence diagrams using a sublevel set filtration
+
+- These diagrams were then transformed into Persistence Images
+
+- $H_1, H_2$ images were concatenated and used as features
+
+- Modeling the transcripts patterns across genes and cells &larr; *You are here*
+
+```{r, out.width="550px"}
+knitr::include_graphics(c('../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg'))
+```
+
+---
+
+class: inverse, middle, center
+
+# Normalize by *both* gene and cell
+
+## Consider both pattern and density
+
+---
+
+# Never underestimate PCA
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2.png)
+
+---
+
+# What is exactly used by PCA?
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
+
+---
+
+background-image: url("../figs/scale16_-_PI_1_1_1_pca_H1+2_PI_sample.png")
+background-size: 900px
+background-position: 50% 50%
+
+# Show me
+
+```{r, out.width=250, fig.align='left'}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
+background-size: 775px
+background-position: 50% 99%
+
+# Show me
+
+```{r, out.width=250, fig.align='left'}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
+background-size: 775px
+background-position: 50% 99%
+
+# Show me
+
+```{r, out.width=250, fig.align='left'}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+# Relate patterns to spatial location
+
+
+```{r, out.width=605}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_17G195900.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_kde_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_cell_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_kde_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_cell_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_-1_kde_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 01 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_-1_cell_00_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_kde_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_cell_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_kde_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Lowest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_cell_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_kde_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_cell_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_kde_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Highest PC 02 [17G195900]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_cell_01_GLYMA_17G195900.png'))
+```
+
+---
+
+# Relate patterns to spatial location
+
+
+```{r, out.width=605}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_05G092200.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Lowest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_kde_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Lowest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_1_cell_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_kde_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_cell_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_kde_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 01 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_cell_00_GLYMA_05G092200.png'))
+```
+
+---
+
+# Lowest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_kde_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Lowest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_low_0_cell_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_kde_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_0_cell_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_kde_01_GLYMA_05G092200.png'))
+```
+
+---
+
+# Highest PC 02 [05G092200]
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_high_1_cell_01_GLYMA_05G092200.png'))
+```
+
+---
+
+class: inverse, middle, center
+
+# Normalize just by *gene*
+
+## Highlight patterns themselves
+
+---
+
+# Never underestimate PCA
+
+![](../figs/gene_scale16_-_PI_1_1_1_pca_H1+2.png)
+
+---
+
+# What is exactly used by PCA?
+
+![](../figs/gene_scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
+
+---
+
+background-image: url("../figs/../figs/gene_scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
+background-size: 775px
+background-position: 99% 99%
+
+# Show me
+
+```{r, out.width=250, fig.align='left'}
+knitr::include_graphics(c('../figs/gene_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+background-image: url("../figs/../figs/gene_scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
+background-size: 775px
+background-position: 99% 99%
+
+# Show me
+
+```{r, out.width=250, fig.align='left'}
+knitr::include_graphics(c('../figs/gene_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+# 05G21600
+
+
+```{r, out.width=555}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_05G216000.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_01_GLYMA_05G216000.png'))
+```
+
+---
+
+# 17G185800
+
+
+```{r, out.width=555}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_17G185800.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_01_GLYMA_17G185800.png'))
+```
+
+---
+
+# 15G210100
+
+
+```{r, out.width=555}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_15G210100.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_01_GLYMA_15G210100.png'))
+```
+
+---
+
+
+class: inverse, middle, center
+
+# Differentiate patterns within cells
+
+---
+
+# Differentiate patterns within cells
+
+![](../figs/scale16_-_PI_1_1_1_pca_H1+2_0_vs_GLYMA_17G195900.png)
+
+---
+
+# 17G195900 vs 05G092200
+
+```{r, out.width=550}
+knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_least_kde_GLYMA_17G195900_vs_GLYMA_05G092200.png',
+                          '../figs/scale16_-_PI_1_1_1_pca_H1+2_most_kde_GLYMA_17G195900_vs_GLYMA_05G092200.png'))
+```
+
+---
+
+# Discussion
+
+- Topological Data Analysis offers a robust way to encode the *shape of patterns*
+
+- Robust to differences in scale, underlying boundaries, or orientation
+
+- As long as you have a heatmap, you're good to go:
+    
+- Even if you don't, you can make one via KDEs from individual spatial coordinates
+    - Climate patterns?
+    - Canopy patterns?
+    - Cover crop patterns?
+    - Species spatial distribution?
+
+![](../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg)
+
+---
+
+# Software used
+
+.pull-left[
+- All the work has been done in python with mostly standard libries (`numpy`, `scikit-learn`, `matplotlib`, `pandas`, etc.)
+
+- KDEs computed efficiently with [`KDEpy`](https://kdepy.readthedocs.io/en/latest/)
+
+- Sublevel set filtration of images and persistence diagrams done with [`gudhi`](https://gudhi.inria.fr/)
+
+![](https://gudhi.inria.fr/assets/img/logo.png)
+]
+
+.pull-right[
+- Persistence Images computed with [`persim`](https://persim.scikit-tda.org/en/latest/)
+
+![](https://persim.scikit-tda.org/en/latest/_static/logo.png)
+]
+
+---
+
+class: inverse
+
+# Thank you!
+
+<div class="row">
+  <div class="column" style="max-width:60%; font-size: 15px;">
+    <img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/11/libault-returns-to-bond-lsc-as-plant-scientist-with-single-cell-focus-1.jpg">
+  </div>
+  <div class="column" style="width:6%; font-size: 24px;">
+  </div>
+  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
+  <p style="text-align: center;"><strong>Email</strong></p>
+  <p style="text-align: center;color:Blue">eah4d@missouri.edu</p>
+  <p style="text-align: center;"><strong>Website and slides</strong></p>
+  <p style="text-align: center;color:Blue">ejamezquita.github.io</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:35%; font-size: 20px;">
+  <p style="font-size: 25px; text-align: center;"> Libault Lab (MU) </p>
+    <ul>
+      <li><strong>Marc Libault</strong></li>
+      <li><strong>Sandra Thibivillers</strong></li>
+      <li>Hengping Xu</li>
+      <li>Sahand Amini</li>
+      <li>Hong Fu</li>
+      <li><strong>Sutton Tennant</strong></li>
+      <li>Md Sabbir Hossain</li>
+    <ul>
+  </div>
+  <div class="column" style="max-width:65%; font-size: 20px;">
+  <p style="font-size: 25px; text-align: center;"> With help from </p>
+    <ul>
+      <li>Sai Subash (Nebraska-Lincoln)</li>
+      <li>Benjamin Smith (UC Berkeley)</li>
+      <li>Samik Bhattacharya (Resolve Biosciences)</li>
+      <li>Jasper Kläver (Resolve Biosciences)</li>
+    <ul>
+  </div>
+</div>
