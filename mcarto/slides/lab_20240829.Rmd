@@ -23,27 +23,6 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
-# Patterns, patterns everywhere!
-
-<div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;">
-  <div class="column" style="max-width:33%;">
-    <img src="https://www.landsat.com/samples/county2018/andrew-mo-2018.jpg">
-    <img src="https://www.atlas.moherp.org/maps/county/histveg/Andrew.png">
-    <p style="text-align: center;">Quantify/Describe</a>
-  </div>
-  <div class="column" style="max-width:33%;">
-    <img src="https://www.landsat.com/samples/county2018/boone-mo-2018.jpg">
-    <img src="https://www.atlas.moherp.org/maps/county/histveg/Boone.png">
-    <p style="text-align: center;">Compare/Contrast</a>
-  </div>
-  <div class="column" style="max-width:33%;">
-    <img src="https://www.landsat.com/samples/county2018/new-madrid-mo-2018.jpg">
-    <img src="https://www.atlas.moherp.org/maps/county/histveg/New_Madrid.png">
-    <p style="text-align: center;">Model/Predict</a>
-  </div>
-</div>
-<p style="font-size: 10px; text-align: right; color: Grey;">Credits: <a href="https://www.landsat.com/aerial-photography/missouri/">Landsat.com</a> and <a href="https://www.atlas.moherp.org/missouri/">MO Herpetological Atlas Project</a></p>
----
 
 # Issue at hand: transcript distribution
 
@@ -84,24 +63,6 @@ class: inverse, middle, center
 [3] Featurize these topological signatures as Persistence Images
 
 [4] Traditional data analysis and results
-
----
-
-# Say we want to characterize the distribution of these points in 1D
-
-![](../../tda/figs/kernel_density_estimator_00.svg)
-
-- We only know the samples (blue points)
-
----
-
-# A histogram gives us a sense of distribution
-
-
-![](../../tda/figs/kernel_density_estimator_03.svg)
-
-- The total gray area equals 1
-- 100% of the points are represented in the histogram
 
 ---
 
@@ -156,6 +117,7 @@ GLYMA_05G203100      4116
 GLYMA_15G210100     11688
 GLYMA_05G092200    479091
 ```
+
 ---
 
 class: inverse, middle, center
@@ -203,68 +165,6 @@ background-position: 99% 1%
 .pull-right[
 ![](../figs/D2_GLYMA_05G092200_1767_1765_sublevel_sets.jpg)
 ]
-
----
-
-# Wasserstein/bottleneck distances
-
-.pull-left[
-```{r, out.width="300px"}
-knitr::include_graphics(c('../figs/D2_ws1d_infty_suplevel_by_both_01726.svg'))
-```
-]
-
-.pull-right[
-```{r, out.width="300px"}
-knitr::include_graphics(c('../figs/D2_ws1d_infty_suplevel_by_both_00579.svg'))
-```
-]
-
-- Measure the topological similarity between two persistence diagrams $D_1,D_2$.
-
-$${W^q}(D_1,D_2) = \left[\inf_{\gamma:D_1\to D_2} \sum_{p\in D_1}\left\|p - \gamma(p)\right\|^q_{\infty}\right]^{1/q}$$
-
-- **Theorem:** The bottleneck and Wasserstein distances are stable ([Cohen-Steiner *et al.* (2007)](https://doi.org/10.1007/s00454-006-1276-5), [Cohen-Steiner *et al.* (2010)](https://doi.org/10.1007/s10208-010-9060-6)). 
-
----
-
-
-```{r include=FALSE, evaluate=FALSE}
-genes_low <- c(885)
-genes_mid <- c(1306)
-genes_high <- c(1702)
-geness <- c(genes_low, genes_mid, genes_high)
-geness <- base::formatC(geness, digits=4, format='d', flag='0')
-
-w1_low <- c(38.44)
-w1_mid <- c(343.77)
-w1_high <- c(1080.96)
-w1 <- c(w1_low, w1_mid, w1_high)
-
-slides_info <- tibble::tibble(first=geness, third=w1)
-
-slides_text <- glue::glue_data(
-  slides_info,
-  "
-  background-image: url(\"../figs/D2_ws1d_infty_suplevel_by_both_{first}.svg\")
-  background-size: 200px
-  background-position: 99% 55%
-  
-  ## Compare two different persistence diagrams
-  
-  <img src=\"../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
-  <br>
-  <img src=\"../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_{first}.jpg\" width=\"650px\"></img>
-  
-  $W_1(\\text{{GLYMA_17G195900, GLYMA_05G092200}) = {third}$
-
-  
-  "
-)
-```
-
-`r slides_text %>% paste(collapse = "\n---\n")`
-
 
 ---
 

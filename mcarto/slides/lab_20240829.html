@@ -32,27 +32,6 @@ class: center, middle, inverse, title-slide
 
 
 
-# Patterns, patterns everywhere!
-
-&lt;div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/andrew-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Andrew.png"&gt;
-    &lt;p style="text-align: center;"&gt;Quantify/Describe&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/boone-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Boone.png"&gt;
-    &lt;p style="text-align: center;"&gt;Compare/Contrast&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/new-madrid-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/New_Madrid.png"&gt;
-    &lt;p style="text-align: center;"&gt;Model/Predict&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://www.landsat.com/aerial-photography/missouri/"&gt;Landsat.com&lt;/a&gt; and &lt;a href="https://www.atlas.moherp.org/missouri/"&gt;MO Herpetological Atlas Project&lt;/a&gt;&lt;/p&gt;
----
 
 # Issue at hand: transcript distribution
 
@@ -93,24 +72,6 @@ class: inverse, middle, center
 [3] Featurize these topological signatures as Persistence Images
 
 [4] Traditional data analysis and results
-
----
-
-# Say we want to characterize the distribution of these points in 1D
-
-![](../../tda/figs/kernel_density_estimator_00.svg)
-
-- We only know the samples (blue points)
-
----
-
-# A histogram gives us a sense of distribution
-
-
-![](../../tda/figs/kernel_density_estimator_03.svg)
-
-- The total gray area equals 1
-- 100% of the points are represented in the histogram
 
 ---
 
@@ -162,6 +123,7 @@ GLYMA_05G203100      4116
 GLYMA_15G210100     11688
 GLYMA_05G092200    479091
 ```
+
 ---
 
 class: inverse, middle, center
@@ -230,72 +192,6 @@ background-position: 99% 1%
 .pull-right[
 ![](../figs/D2_GLYMA_05G092200_1767_1765_sublevel_sets.jpg)
 ]
-
----
-
-# Wasserstein/bottleneck distances
-
-.pull-left[
-&lt;img src="../figs/D2_ws1d_infty_suplevel_by_both_01726.svg" width="300px" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-&lt;img src="../figs/D2_ws1d_infty_suplevel_by_both_00579.svg" width="300px" style="display: block; margin: auto;" /&gt;
-]
-
-- Measure the topological similarity between two persistence diagrams `\(D_1,D_2\)`.
-
-`$${W^q}(D_1,D_2) = \left[\inf_{\gamma:D_1\to D_2} \sum_{p\in D_1}\left\|p - \gamma(p)\right\|^q_{\infty}\right]^{1/q}$$`
-
-- **Theorem:** The bottleneck and Wasserstein distances are stable ([Cohen-Steiner *et al.* (2007)](https://doi.org/10.1007/s00454-006-1276-5), [Cohen-Steiner *et al.* (2010)](https://doi.org/10.1007/s10208-010-9060-6)). 
-
----
-
-
-
-
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_00885.svg")
-background-size: 200px
-background-position: 99% 55%
-
-## Compare two different persistence diagrams
-
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
-
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 38.44\)`
-
-
----
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01306.svg")
-background-size: 200px
-background-position: 99% 55%
-
-## Compare two different persistence diagrams
-
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
-
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 343.77\)`
-
-
----
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01702.svg")
-background-size: 200px
-background-position: 99% 55%
-
-## Compare two different persistence diagrams
-
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
-
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 1080.96\)`
-
-
-
 
 ---
 
