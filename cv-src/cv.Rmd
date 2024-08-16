@@ -170,9 +170,9 @@ Teaching and Mentoring Experience {data-icon=chalkboard-teacher}
 
 ### At University of Missouri
 
-* Undegraduate Research mentor for Ethan Lenhardt. Mathematical network analysis of academic collaboration. Department of Mathematics. Spring 2024 - present.
-* Undegraduate Research mentor for Gibson Tschappler. Topological Data Analysis of spatial data. Division of Plant Science & Technology. Summer 2024 - present.
-* Mentor for [BIPS](https://undergradresearch.missouri.edu/bioinformatics-in-plant-sciences-bips/). Conducted weekly workshops on good coding practices. Fall 2023.
+* Undegraduate research mentor for Ethan Lenhardt. Mathematical network analysis of academic collaboration. Department of Mathematics. Spring 2024 - present.
+* Undegraduate research mentor for Gibson Tschappler. Topological Data Analysis of spatial data. Division of Plant Science & Technology. Summer 2024.
+* Mentor for [BIPS](https://undergradresearch.missouri.edu/bioinformatics-in-plant-sciences-bips/). Lead weekly professional development workshops.  Fall 2023 - present.
 
 N/A
 
@@ -184,26 +184,13 @@ Leading projects at the intersection of mathematics, computer science, and plant
 ### At Michigan State University
 
 * Mentor for the [ACRES REU](https://icer-acres.msu.edu/). Conducted weekly professional development workshops. Summer 2022.
-* TA for CMSE 201: Intro to Computational Modelling and Data Analysis. Fall 2019
+* TA for [CMSE 201](https://msu-cmse-courses.github.io/cmse201-S24-jb/Course_Materials-201/Syllabus/syllabus.html): Computational Modelling and Data Analysis I. Fall 2019
 
 N/A
 
 Audience was mainly undergraduate students with no prior coding experience
 
 2022 - 2019
-
-### At other institutions
-
-* Mentor for [SGI 2023](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
-* Mentor for [SGI 2022](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
-* Mentor for [SGI 2021](https://sgi.mit.edu/). Summer Geometry Institute REU. Massachusetts Institute of Technology.
-* TA fo [Code In Place](https://codeinplace.stanford.edu/). Stanford University.
-
-N/A
-
-Conducted virtually
-
-2023 - 2021
 
 ### At CIMAT/Universidad de Guanajuato
 
@@ -219,18 +206,32 @@ Some courses involved leading tutorials on C++ or R
 
 2018 - 2016
 
+### At other institutions
 
-Invited and recent talks {data-icon=microphone}
+* Mentor for [SGI 2023](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
+* Mentor for [SGI 2022](https://sgi.mit.edu/). Summer Geometry Initiative REU. Massachusetts Institute of Technology.
+* Mentor for [SGI 2021](https://sgi.mit.edu/). Summer Geometry Institute REU. Massachusetts Institute of Technology.
+* TA fo [Code In Place](https://codeinplace.stanford.edu/). Stanford University.
+
+N/A
+
+All of the above were conducted virtually
+
+2023 - 2021
+
+
+Invited talks {data-icon=microphone}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('talks_delivered')
 ```
 
+<!--
 Selected workshops lead {data-icon=wrench}
 --------------------------------------------------------------------------------
 
-```{r}
+```{r, eval=FALSE}
 CV %<>% print_section('workshops')
 ```
 
@@ -247,6 +248,7 @@ Selected workshops and hackathons attended {data-icon=lightbulb}
 ```{r}
 CV %<>% print_section('hackathons')
 ```
+-->
 
 Outreach {data-icon=user-plus}
 --------------------------------------------------------------------------------
