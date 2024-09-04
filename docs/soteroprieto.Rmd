@@ -38,6 +38,7 @@ if(knitr::is_html_output()){
 ### Medalla
 
 - Fernando Olivie Méndez Méndez (UASLP)
+    - Álgebras de Lie de contacto: propiedades fundamentales y sus relaciones
 - Violeta Abigail López López (ESFM-IPN)
     - Rectas contenidas en una superficie cúbica suaves y cómo éstas la determinan
 - José Alfredo Issa Barbará (ITAM)
