@@ -177,35 +177,35 @@ Teaching Experience {data-icon=chalkboard-teacher}
 CV %<>% print_section('teaching')
 ```
 
-Invited talks {data-icon=microphone}
+Invited and recent talks {data-icon=microphone}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('talks_delivered')
 ```
 
-<!--
-Selected workshops lead {data-icon=wrench}
---------------------------------------------------------------------------------
 
-```{r, eval=FALSE}
-CV %<>% print_section('workshops')
-```
-
-Selected posters presented {data-icon=portrait}
+Workshops lead {data-icon=wrench}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %<>% print_section('posters_presented')
+CV %<>% print_section('workshops')
 ```
 
-Selected workshops and hackathons attended {data-icon=lightbulb}
+Select Flash Talks (with posters) {data-icon=bolt}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('flash_posters')
+```
+
+Select workshops and hackathons attended {data-icon=lightbulb}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('hackathons')
 ```
--->
+
 
 Outreach {data-icon=user-plus}
 --------------------------------------------------------------------------------
@@ -221,7 +221,7 @@ Select Service {data-icon=users}
 CV %<>% print_section('service')
 ```
 
-Awards {data-icon=award}
+Select and Recent Awards {data-icon=award}
 --------------------------------------------------------------------------------
 
 ```{r}
