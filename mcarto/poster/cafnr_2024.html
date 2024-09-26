@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>TDA for spatial patterns</title>
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Rasa&family=Roboto&display=swap" rel="stylesheet">
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+*{
+  box-sizing: border-box;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 16in;
+height: 12in;
+text-align: justify;
+font-size: 18px;
+background-color: gray;
+color: #000000;
+}
+.references {
+font-size: 1.5ex;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+
+.column {
+    float: left;
+    padding: 0px;
+    height: 12in;
+}
+.left{
+    width: 40%;
+}
+.right {
+    width: 30%;
+    background-color: #eeeeee;
+    font-family: 'Rasa', serif;
+    color: #000000;
+    padding: 1ex;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+a {
+    text-decoration: none;
+    color: #0484ae;
+}
+
+#title {
+    font-size: 2em;
+    text-align: left;
+    margin: 10px 0 0 0;
+    line-height: 80%;
+    border-bottom: 0;
+}
+#author {
+    color: #18453b;
+    margin: 0;
+    line-height: 90%;
+    font-size: 1.15em;
+}
+.author a{
+    color: #18453b;
+}
+
+#affiliation {
+    line-height: 95%;
+    color: #404040;
+    font-style: italic;
+    font-size: 0.75em;
+    text-align: left;
+}
+sup {
+    color: #900000;
+}
+.affiliation sup {
+    font-size: 1ex;
+}
+.affsup{
+    color: #900000;
+    font-style: normal;
+}
+
+.affiliation a{
+    color: #404040;
+    text-align: left;
+}
+.author sup {
+    font-size: 2ex;
+}
+.right h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.right h2 {
+    text-align: center;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 80%;
+}
+.right h4,h5 {
+    text-align: left;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 90%;
+}
+.right p {
+    color: #000000;
+    text-align: center;
+}
+.right ol, ul {
+    text-align: left;
+    margin-top: -1em;
+}
+.main {
+    width: calc(16in * 0.4);
+    height: 12in;
+    position: absolute;
+    color: black;
+    text-shadow: 0.25ex 0.25ex 0.75ex white;
+    font-family: Overpass;
+    background-image: linear-gradient(#f1b82d 70%, black);
+}
+.main strong {
+    color: white;
+    text-shadow: 0.25ex 0.25ex 0.75ex black;
+}
+.main p {
+    margin-top: 0.5em;
+    font-size: 3.25em;
+    text-align: left;
+}
+img.main-img-left {
+    width: 25%;
+    left: 1em;
+    bottom: 1ex;
+    position: absolute;
+}
+img.main-img-right {
+    width: 20%;
+    right: 1ex;
+    bottom: 1em;
+    position: absolute;
+}
+img.main-img-subright {
+    width: 20%;
+    right: 7.5em;
+    bottom: 2em;
+    position: absolute;
+}
+img.main-img-subsubright {
+    width: 25%;
+    right: 14.5em;
+    bottom: 3.5em;
+    position: absolute;
+}
+i {
+    color: #404040;
+    font-size: 1.5ex;
+    text-decoration: none;
+}
+a.email {
+    text-decoration: none;
+    color: #18453b;
+    font-size: 0.75em;
+    font-family: monospace;
+}
+
+.section {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+}
+.main p {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+
+.orcid img {
+  width: 3%;
+}
+a.left:link, a.left:visited{
+    color: #ccf5ff;
+    text-shadow: none;
+}
+a.left:hover, a.left:active{
+    color: hotpink;
+    background-color:#ccf5ff;
+    text-shadow: none;
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="column left">
+        <div class="main">
+        <p>Model <strong>sub-cellular</strong> transcript <strong>patterns</strong> with <strong>topology</strong><p>
+        <p style="text-align:center; margin-top: -3em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
+            <!-- <img src="../figs/IMGA04011.jpg" style="width:28%" /> -->
+            <img src="../../tda/figs/mapper_c_complete.svg" style="width:100%" />
+        </p>
+        <p style="text-align:center; font-family:monospace; margin-top:0; font-size:1.75em; color:navy;">Python, preprint, and videos<br><a class="left" href="https://ejamezquita.github.io/mcarto/description.html", target="_blank">bit.ly/mcarto [QR below]</a></p>
+        <img src="../figs/bitly_mcarto.svg" class="main-img-left" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg" class="main-img-right" />
+        </div>
+    </div>
+    <div class="column right">
+        <div class="title section">
+            <h1 id="title"><a href="https://ejamezquita.github.io/mcarto/description.html" target="_blank">Topological Data Analysis to characterize transcriptomic spatial distributions</a></h1>
+
+            <h3 id="author" class="author">
+            <a class="orcid" href="https://orcid.org/0000-0002-9837-0397"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg"></img></a> <a href="https://ejamezquita.github.io" target="_blank">Erik Am&eacute;zquita</a><sup>1,2</sup> &nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fas fa-envelope"></i> <a href="mailto:eah4d@missouri.edu" class="email">eah4d @ missouri.edu</a> <br>
+            </h3>
+
+            <h5 id="author_extra" class="author_extra">
+             Sutton Tennant<sup>1</sup>,
+             Sandra Thibivillers<sup>1</sup>,
+             Sai Subhash<sup>3</sup>,
+             Samik Bhattacharya<sup>4</sup>,
+             Jasper Kl&auml;ver<sup>4</sup>,
+             Benjamin Smith<sup>5</sup>,
+             Marc Libault<sup>1</sup>
+            </h5>
+
+            <p id="affiliation" class="affiliation">
+            <span class="affsup">1.</span> <a href="https://pst.missouri.edu/" target="_blank">Division of Plant Sciences &amp; Technology, University of Missouri, Columbia, MO</a><br>
+            <span class="affsup">2.</span> <a href="https://math.missouri.edu/" target="_blank">Department of Mathematics, University of Missouri, Columbia, MO</a><br>
+            <span class="affsup">3.</span> <a href="https://cbio.unl.edu/" target="_blank">Complex Biosystems Program, University of Nebraska, Lincoln, NE</a><br>
+            <span class="affsup">4.</span> <a href="https://resolvebiosciences.com/" target="_blank">Resolve Biosciences GmbH, Monheim am Rhein, Germany</a><br>
+            <span class="affsup">5.</span> <a href="https://vision.berkeley.edu/" target="_blank">Vision Science group, University of California, Berkeley, CA</a><br>
+            </p>
+        </div>
+        <br>
+        <div id="experimental-design" class="section level2">
+            <h2 style="margin-top:-1ex;">Molecular Cartography</h2>
+            <p>
+                <img src="../figs/fpkm_raw_4.png" width="100%"/>
+                <img src="../figs/TCGA-55-A57B-01A-12R-A39D-07-section.png" width="100%"/>
+            </p>
+            <ul>
+                <li>
+                    FPKM counts of RNAseq data from human <strong>lung</strong> tissue:<br>
+                    &rarrhk; 19,648 genes per sample.<br>
+                    &rarrhk; 314 healthy samples (GTEx).<br>
+                    &rarrhk; 500 cancerous samples (TCGA).
+                </li>
+                <li>
+                    Fit a Gaussian Mixture Model (GMM):<br>
+                    &rarrhk; Accurate transformation to a unimodal Gaussian.<br>
+                    &rarrhk; Consider <strong><em>Z</em>-scores</strong> onward.
+                </li>
+                <li>
+                    Compute pairwise correlation across all samples<br>
+                    &rarrhk; Filter data by <strong>mean correlation</strong> value.
+                </li>
+            </ul>
+        </div>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="margin-top: 2ex; margin-bottom: 1ex">Kernel Density Estimation (KDE)</h2>
+            <p>
+                <img src="../figs/t0_1_corr_eps1e+03_r300_g50.png" style="width:49%" />
+                <img src="../figs/t0_1_corr_eps1e+04_r200_g50.png" style="width:49%" />
+            </p>
+            <ul style="margin-top:-1em;">
+                <li>Vary the number of <strong>bins</strong> 60 &le; <em>b</em> &le; 110.</li>
+                <li>Vary the <strong>overlap</strong> percentage 30 &le; <em>p</em> &le; 80.</li>
+                <li>Bright yellow: 100% cancerous samples.</li>
+                <li>Deep purple: 100% healthy samples.</li>
+                <li>
+                    <strong>Regardless</strong> of parameters:<br>
+                    &rarrhk; <strong>Healthy</strong> samples tend to stay at the <strong>center</strong>.<br>
+                    &rarrhk; <strong>Cancerous</strong> samples are <strong>split</strong> between both ends.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="column right">
+        <br>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2>Split <strong>not</strong> captured by tSNE</h2>
+            <p>
+                <img src="../figs/mapper_vs_tsne.png" width="90%"/>
+            </p>
+            <ul style="margin-top: -2ex;">
+                <li>tSNE separates healthy from cancerous samples <strong>but</strong>,</li>
+                <li>
+                    Fine structural <strong>details</strong> are <strong>lost</strong> with tSNE:<br>
+                    (a) Using FPKM, (b) Using GMM Z-scores.
+                </li>
+            </ul>
+            <h2 style="margin-top: 1ex">GO Enrichment Analysis</h2>
+            <p><img src="../figs/go_analysis_results.png" width="100%" style="display: block; margin: auto;" /></p>
+            <ul style="margin-top: -2ex;">
+                <li><strong>Two possible processes for forming lung cancer</strong>.</li>
+                <li>Strand <strong>-1</strong>: Mostly tumor cells<br>&rarrhk; Primarily upregulating inflammatory reactions.</li>
+                <li>Strand <strong>+1</strong>: Mixed bag but high risk<br>&rarrhk; Environmental factors and tumor gene interactions.</li>
+                <li>Similar conclusions when analyzing KEGG pathways.</li>
+            </ul>
+        </div>
+        <div id="acknowledgements" class="section">
+            <h4 style="margin-top: 1ex">Acknowledgements</h4>
+            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">This research was supported by National Institute of General Medical Sciences - Centers of Biomedical Research Excellence (COBRE) grant number P20GM125508.</p>
+        </div>
+    </div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>

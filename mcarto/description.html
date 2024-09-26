@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Erik Amézquita &mdash; A hodge-podge of math and plants</title>
+<meta name="description" content="Erik Amézquita webpage">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="../css/hawthorne_type1_color2.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<script src="../js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="row">
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <header>
+            <h1><a href="../index.html">Erik Amézquita</a></h1>
+            <h2><a href="../index.html">PFFIE Postdoctoral Fellow</a></h2>
+            <h2><a href="../index.html">Plant Sciences and Mathematics @ University of Missouri</a></h2>
+            <!--
+            <div class="logo">
+                <a href="img/front_original.jpg"><img src="img/front_medium.jpg" alt="Erik_in_Chicago_2019" /></a>
+            </div>
+            -->
+        </header>
+    </div>
+    <div class="small-6 medium-12 large-12 small-centered columns">
+        <nav>
+            <ul class="inline-list-custom">
+                <li><a href="../index.html">Home [TL;DR]</a></li>
+                <li><a href="../research.html">Research</a></li>
+                <li><a href="../teaching.html">Academic Resources</a></li>
+                <li><a href="../service.html">Other Resources</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../else.html">Else</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-7 large-7 columns">
+		<h2>Tracking the wiggle of a vampire plant</h2>
+        <p>
+            Plants come in all shapes and sizes. Some plants have no roots, no leaves, and are really bad at performing photosynthesis. Some plants must parasitize other plants for their own survival. You might have heard of carnivorous plants, but have you heard of vegetarian plants?
+        </p>
+        <p>
+            Cuscuta spp. (aka dodder) is a holoparasitic stem plant: it can only survive by feeding from other plants and it attaches to their stems. What makes Cuscuta and the rest of parasitic plants unique is their haustorium (plural haustoria), a highly specialized organ through which they sap water and nutrients out of their hosts. It works first like the sucking mouth of a leech, as it latches the Cuscuta on the host and then it creates a stem lession through which Cuscuta can start feeding.
+        </p>
+        <p>
+            But that's just the beginning: then the haustoria proceed to launch searching hyphae (like a fungi) into the stem. For the final step, as if drawn from sci-fi, Cuscuta manages to fuse its vascular system, phloem and xylem, with the one from the host. And to make things even crazier, through this intimate link, Cuscuta can send its own RNA to the host and the host will transcribe it! Cuscuta and host become effectively one. Imagine having a leech attached, but your veins and arteries are fused with the leech's! 
+        </p>
+        <p style="text-align:center;font-size: 0.8em; color: Grey;">
+        <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1369526615000631-gr1_lrg.jpg" alt="haustoria"  style="width:90%"></img><br>
+        Credits: <a href="https://doi.org/10.1016/j.pbi.2015.05.012">Kim and Westwood (2015)</a></p>
+        <p>
+            Once the haustoria is fully formed and into the host, it is game over for the host. Any herbicide that kill Cuscuta will kill the host as well. Thus, novel research on Cuscuta control focuses on determining how Cuscuta detects and moves/wiggles toward its potential host. We were particularly interested in determining if time of the day influences Cuscuta movement, ie., if Cuscuta has a cyrcadian rhythm going on.
+        </p>
+        <h3>Basic setup</h3>
+        <p>
+            Cuscuta was grown in a greenhouse by infecting beets. Mature stems were then cut after 3 weeks and they were attached to bamboo skewers at different times of the day &mdash;9AM, 12PM, and 4PM. A camera was place in front of the Cuscuta-skewer setup. A snapshot was taken every 96 seconds for 24 hours, producing 900 images in total per repetition. There were 5 skewers per setup and 7 repetitions per inoculation time of the day, producing data for 105 individual Cuscuta stems. Manual and <strong>automated</strong> observations were compared for Coiling success rates, and Initiation and completion times.
+        </p>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
+          <source src="video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
+        </video>
+        <p>
+            These snapshots can be put together in a video like the example above. More videos can be seen in our <a href="https://www.youtube.com/playlist?list=PLZkYcVyQr2u4tT0yoZAkrMqzQxRIDvxru" target="_blank">YouTube list</a>.
+        </p>
+        <h3>Tinkering with image processing</h3>
+        <p>
+            We developed a very <em>ad-hoc</em> pipeline with basic thresholding, erosion, and dilation operations. The main idea was to exploit color contrast between skewer and Cuscuta. This is by no means perfect, but allowed us to at least keep track of when Cuscuta crosses in front of the skewer, and when its angle and position stop changing. We were also able to treat Coil 1 and Coil 2 separately.
+        </p>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
+          <source src="video/4pm_rep7_plant_00.mp4" type="video/mp4">
+        </video>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
+          <source src="video/4pm_rep7_plant_01.mp4" type="video/mp4">
+        </video>
+        <video style="width:90%; margin: 0 auto; display: block;" controls>
+          <source src="video/4pm_rep7_plant_02.mp4" type="video/mp4">
+        </video>
+        <p>
+            Our code is available in a <a href="https://github.com/ejamezquita/cuscuta/" target="_blank">Github repository</a> with a series of Python-based Jupyter notebooks detailing the image-processing pipeline we wrote to detect Cuscuta from skewer and background. It also contains code on how time series were created and later analyzed.
+        </p>
+        <h3>The early dodder gets the host</h3>
+        <p>
+            Cuscuta that was inoculated during the morning/noon got coiling after 5 hours. But Cuscuta inoculated by the afternoon were much groggier: they needed a good stretch before get it going. These observations were confirmed with our automated pipeline. Similarly, plants that started early completed their coiling earlier than those that started late.
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/time_after_inoculation.svg" alt="original"  style="width:80%">
+            <img src="figs/time_to_complete_coiling.svg" alt="normal"  style="width:80%">
+        </div>
+        <p>
+            But when we only consider the coiling process time, the time it takes Cuscuta to finish coiling <strong>once</strong> it starts its coiling movement, we observed no significant differences! This suggests that the resting period prior to coiling follows a different mechanism.     
+        </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/completion_time.svg" alt="original"  style="width:50%">
+            <img src="figs/cuscuta_circadian_model.png" alt="original"  style="width:100%">
+        </div>
+    </div>
+	<div class="small-12 medium-5 large-5 columns">
+		<p>
+            ¡<strong>Preprint</strong>: Bentelspacher <em>et al.</em> (2024)!
+        </p>
+        <div class="thumbnail-img">
+            <div class="thumbnail-hover"><a href="https://doi.org/10.1101/2024.02.29.582789"></a></div>
+            <a href="https://doi.org/10.1101/2024.02.29.582789" target="_blank"><img src="figs/biorxiv.png" alt="Bentelspacher et al 2024" style="vertical-align:bottom"/></a>
+        </div>
+        <p>
+            DOI: <a href="https://doi.org/10.1101/2024.02.29.582789 " target="_blank">10.1101/2024.02.29.582789</a>
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <strong><a href="https://github.com/ejamezquita/cuscuta/" target="_blank">Code Available</a></strong>: 
+            Github repository with a series of Python-based Jupyter notebooks detailing the image-processing pipeline we wrote to detect Cuscuta from skewer and background. It also contains code on how time series were created and later analyzed.
+        </p>
+        <p>
+            <strong><a href="https://www.youtube.com/playlist?list=PLZkYcVyQr2u4tT0yoZAkrMqzQxRIDvxru" target="_blank">Original videos</a></strong>: 
+            24-hour timelapse videos showcasing how Cuscuta coils during different times of the day.
+        </p>
+        <p>
+            &mdash;
+        </p>
+        <p>
+            <strong><a href="slides/aspb_2024.html" target="_blank">As slides</a></strong>: 
+            Presented at <a href="https://midwest.aspb.org/meeting/" target="_blank">ASPB-MW 2024</a>. Purdue University. West Lafayette, Indiana. March 2024.
+        </p>
+        <p>
+            <strong><a href="poster/aspb_2024.html" target="_blank">As a poster</a></strong>: 
+            Presented at <a href="https://muplantresearchsymposium.org/" target="_blank">MUPRS</a>. University of Missouri, Columbia, Missouri. March 2024.
+        </p>
+        <p>
+            <img src="figs/4pm_rep7_plant2_v09_0680_h.jpg" alt="cuscuta_wrap" style="vertical-align:bottom"/>
+        </p>
+        <p>
+            &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+        </p>
+        <p style="font-size:1.5em">
+            <strong><a href="#additional_resources">Go to additional resources</a></strong>
+        </p>
+        <p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+        <h3>Other research projects</h3>
+        <div class="list">
+            <ul>
+                <li><a href="../cuscuta/description.html" class="current">The early dodder gets the host</a></li>
+                <li><a href="../walnuts/description.html">The crackability of walnuts: all about shape, in a nutshell</a></li>
+                <li><a href="../barley/description.html">Quantification of barley grain morphology</a></li>
+                <li><a href="../journal_diversity/description.html">Global disparities in plant biology research</a></li>
+                <li><a href="../nasrin/description.html">Mapper to unravel the shape of omics data</a></li>
+                <li><a href="../tda/description.html">The intersection of Topological Data Analysis and Biology</a></li>
+                <li><a href="../citrus/description.html">The shape of citrus fruits and modeling their oil gland distribution</a></li>
+                <li><a href="../demat/description.html">Archaeological artifact classification and the Euler Characteristic</a></li>
+            </ul>
+        </div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="small-12 medium-12 large-12 columns">
+        <footer>
+            <ul>
+                <li>&copy; 2024 <a href="index.html">Erik Amézquita</a>. All rights reserved.</li>
+                <li>Last updated: March 2024.</li>
+                <li><a href="mailto:amezqui3@msu.edu"><i class="fa fa-envelope-o"></i> eah4d_at_missouri_dot_edu</a></li>
+
+                <!-- *****************************************************************************************
+                The "Powered by Type & Grids" link in the footer is required in the Free version
+                typeandgrids.com/pirates -->
+                <li>Powered by Type &amp; Grids [The link to the template was broken last time I checked]</li>
+                <!--  ************************************************************************************ -->
+
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/ejamezquita/" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                <a href="https://www.linkedin.com/in/erik-amezquita/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                <a href="https://www.researchgate.net/profile/Erik-Amezquita-2" target="_blank"><img src="../img/researchgate.svg" width="30" alt="researchgate" style="vertical-align:bottom; margin: 0px 10px"/></a>
+                <a href="https://orcid.org/0000-0002-9837-0397" target="_blank"><img src="../img/orcid.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+                <a href="https://scholar.google.com/citations?user=JBCDR4cAAAAJ&hl=en" target="_blank"><img src="../img/googlescholar.svg" width="35" alt="researchgate" style="vertical-align:bottom"/></a>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="../js/vendor/jquery.min.js"></script>
+<script src="../js/foundation.min.js"></script>
+<script src="../js/hawthorne.js"></script>
+
+</body>
+</html>
