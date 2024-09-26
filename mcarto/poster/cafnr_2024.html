@@ -119,14 +119,14 @@ sup {
 }
 .right h1 {
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: -1em;
+    margin-bottom: -1em;
 }
 .right h2 {
     text-align: center;
     margin-top: -1ex;
-    margin-bottom: -1ex;
-    line-height: 80%;
+    margin-bottom: -1ex ;
+    line-height: 100%;
 }
 .right h4,h5 {
     text-align: left;
@@ -263,74 +263,49 @@ a.left:hover, a.left:active{
         </div>
         <br>
         <div id="experimental-design" class="section level2">
-            <h2 style="margin-top:-1ex;">Molecular Cartography</h2>
-            <p>
-                <img src="../figs/fpkm_raw_4.png" width="100%"/>
-                <img src="../figs/TCGA-55-A57B-01A-12R-A39D-07-section.png" width="100%"/>
-            </p>
-            <ul>
+            <h2>Molecular Cartography</h2>
                 <li>
-                    FPKM counts of RNAseq data from human <strong>lung</strong> tissue:<br>
+                    <br>FPKM counts of RNAseq data from human <strong>lung</strong> tissue:<br>
                     &rarrhk; 19,648 genes per sample.<br>
                     &rarrhk; 314 healthy samples (GTEx).<br>
                     &rarrhk; 500 cancerous samples (TCGA).
                 </li>
-                <li>
-                    Fit a Gaussian Mixture Model (GMM):<br>
-                    &rarrhk; Accurate transformation to a unimodal Gaussian.<br>
-                    &rarrhk; Consider <strong><em>Z</em>-scores</strong> onward.
-                </li>
-                <li>
-                    Compute pairwise correlation across all samples<br>
-                    &rarrhk; Filter data by <strong>mean correlation</strong> value.
-                </li>
-            </ul>
+            <p>
+                <img src="../figs/molecular_cartography_2x4.png" width="95%"/>
+            </p>
         </div>
         <div id="image-processing-to-measure-seeds" class="section level2">
-            <h2 style="margin-top: 2ex; margin-bottom: 1ex">Kernel Density Estimation (KDE)</h2>
+            <h2>Kernel Density Estimation (KDE)</h2>
             <p>
-                <img src="../figs/t0_1_corr_eps1e+03_r300_g50.png" style="width:49%" />
-                <img src="../figs/t0_1_corr_eps1e+04_r200_g50.png" style="width:49%" />
+                <img src="../figs/kernel_density_estimate_2x4.png" style="width:95%" />
             </p>
-            <ul style="margin-top:-1em;">
-                <li>Vary the number of <strong>bins</strong> 60 &le; <em>b</em> &le; 110.</li>
-                <li>Vary the <strong>overlap</strong> percentage 30 &le; <em>p</em> &le; 80.</li>
-                <li>Bright yellow: 100% cancerous samples.</li>
-                <li>Deep purple: 100% healthy samples.</li>
-                <li>
-                    <strong>Regardless</strong> of parameters:<br>
-                    &rarrhk; <strong>Healthy</strong> samples tend to stay at the <strong>center</strong>.<br>
-                    &rarrhk; <strong>Cancerous</strong> samples are <strong>split</strong> between both ends.
-                </li>
-            </ul>
+        </div>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2>Sub-level set persistence</h2>
+            <p>
+                <img src="../figs/sublevel_set_persistence_4x10.png" width="95%"/>
+            </p>
         </div>
     </div>
     <div class="column right">
         <br>
         <div id="euler-characteristic-transform-ect" class="section level2">
-            <h2>Split <strong>not</strong> captured by tSNE</h2>
+            <h2>Persistence diagrams</h2>
             <p>
-                <img src="../figs/mapper_vs_tsne.png" width="90%"/>
+                <img src="../figs/persistence_diagrams_2x4.png" width="95%"/>
             </p>
-            <ul style="margin-top: -2ex;">
-                <li>tSNE separates healthy from cancerous samples <strong>but</strong>,</li>
-                <li>
-                    Fine structural <strong>details</strong> are <strong>lost</strong> with tSNE:<br>
-                    (a) Using FPKM, (b) Using GMM Z-scores.
-                </li>
-            </ul>
-            <h2 style="margin-top: 1ex">GO Enrichment Analysis</h2>
-            <p><img src="../figs/go_analysis_results.png" width="100%" style="display: block; margin: auto;" /></p>
-            <ul style="margin-top: -2ex;">
-                <li><strong>Two possible processes for forming lung cancer</strong>.</li>
-                <li>Strand <strong>-1</strong>: Mostly tumor cells<br>&rarrhk; Primarily upregulating inflammatory reactions.</li>
-                <li>Strand <strong>+1</strong>: Mixed bag but high risk<br>&rarrhk; Environmental factors and tumor gene interactions.</li>
-                <li>Similar conclusions when analyzing KEGG pathways.</li>
-            </ul>
+            <h2>Persistence Images</h2>
+            <p>
+                <img src="../figs/persistence_images_2x4.png" width="100%" style="display: block; margin: auto;" />
+            </p>
+            <h2>Relate back to the nodule</h2>
+            <p>
+                <img src="../figs/nodule_pca_1_2.png" width="100%" style="display: block; margin: auto;" />
+            </p>
         </div>
         <div id="acknowledgements" class="section">
             <h4 style="margin-top: 1ex">Acknowledgements</h4>
-            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">This research was supported by National Institute of General Medical Sciences - Centers of Biomedical Research Excellence (COBRE) grant number P20GM125508.</p>
+            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">Registration and travel support for this presentation was provided by National Science Foundation and NSF Project 00087298.</p>
         </div>
     </div>
 </div>
