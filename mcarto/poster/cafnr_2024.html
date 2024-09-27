@@ -227,9 +227,9 @@ a.left:hover, a.left:active{
         <p>Model <strong>sub-cellular</strong> transcript <strong>patterns</strong> with <strong>topology</strong><p>
         <p style="text-align:center; margin-top: -3em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
             <!-- <img src="../figs/IMGA04011.jpg" style="width:28%" /> -->
-            <img src="../../tda/figs/mapper_c_complete.svg" style="width:100%" />
+            <img src="../figs/pca_1_2_kde_sample.png" style="width:100%" />
         </p>
-        <p style="text-align:center; font-family:monospace; margin-top:0; font-size:1.75em; color:navy;">Python, preprint, and videos<br><a class="left" href="https://ejamezquita.github.io/mcarto/description.html", target="_blank">bit.ly/mcarto [QR below]</a></p>
+        <p style="text-align:center; font-family:monospace; margin-top:0; font-size:2em; color:navy;">&darr;More details&darr;<br><a class="left" href="https://ejamezquita.github.io/mcarto/description.html", target="_blank">bit.ly/mcarto [QR below]</a></p>
         <img src="../figs/bitly_mcarto.svg" class="main-img-left" />
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg" class="main-img-right" />
         </div>
@@ -263,52 +263,62 @@ a.left:hover, a.left:active{
         </div>
         <br>
         <div id="experimental-design" class="section level2">
-            <h2>Molecular Cartography</h2>
-                <li>
-                    <br>FPKM counts of RNAseq data from human <strong>lung</strong> tissue:<br>
-                    &rarrhk; 19,648 genes per sample.<br>
-                    &rarrhk; 314 healthy samples (GTEx).<br>
-                    &rarrhk; 500 cancerous samples (TCGA).
-                </li>
+            <h2 style="margin-bottom: 1.75ex; margin-top:-2ex">Molecular Cartography&trade;</h2>
+            <ul>
+                <li>Soybean nodule 10&micro;m thick cross-sections.</li>
+                <li>(X,Y,Z) coordinates for 3.7M+ cytosolic transcripts.</li>
+                <li>97 genes (including 10 bacterial ones).</li>
+                <li>2938 cells &rarr; 918 infected ones.</li>
+            </ul>
+            <p style="text-align: left; margin-top: -0.75em; margin-bottom: -0.75em">
+                <strong>TDA</strong>: A <strong>framework</strong> that can <strong>compare</strong> all kinds of spatial distributions and <strong>patterns</strong> regardless of <strong>different</strong> cell sizes, shapes, orientations, and transcript number.
             <p>
-                <img src="../figs/molecular_cartography_2x4.png" width="95%"/>
+                <img src="../figs/molecular_cartography_2x4.png" width="99%"/>
             </p>
         </div>
         <div id="image-processing-to-measure-seeds" class="section level2">
             <h2>Kernel Density Estimation (KDE)</h2>
             <p>
-                <img src="../figs/kernel_density_estimate_2x4.png" style="width:95%" />
+                <img src="../figs/kernel_density_estimate_2x4.png" style="width:99%" />
             </p>
         </div>
         <div id="euler-characteristic-transform-ect" class="section level2">
             <h2>Sub-level set persistence</h2>
             <p>
-                <img src="../figs/sublevel_set_persistence_4x10.png" width="95%"/>
+                <img src="../figs/sublevel_set_persistence_4x10.png" width="99%"/>
             </p>
         </div>
     </div>
     <div class="column right">
         <br>
         <div id="euler-characteristic-transform-ect" class="section level2">
-            <h2>Persistence diagrams</h2>
+            <h2>Persistence diagrams (H1 and H2)</h2>
             <p>
-                <img src="../figs/persistence_diagrams_2x4.png" width="95%"/>
+                <img src="../figs/persistence_diagrams_2x4.png" width="90%"/>
             </p>
-            <h2>Persistence Images</h2>
+            <h2 style="margin-top:-2ex">Persistence Images</h2>
             <p>
-                <img src="../figs/persistence_images_2x4.png" width="100%" style="display: block; margin: auto;" />
+                <img src="../figs/persistence_images_2x4.png" width="90%" style="display: block; margin: auto;" />
             </p>
-            <h2>Relate back to the nodule</h2>
+            <h2 style="margin-top:0">Relate back to the nodule</h2>
             <p>
-                <img src="../figs/nodule_pca_1_2.png" width="100%" style="display: block; margin: auto;" />
+                <img src="../figs/nodule_pca_1_2.png" width="100%" style="display: block; margin: auto;" /> 
+                <img src="../figs/pca_1_2_kde_contrast.png" width="95%" style="display: block; margin: auto;" />
             </p>
+            <ul>
+                <li>Cells at the center tend to be senescent.</li>
+                <li>They have a distinct transcriptomic spatial pattern.</li>
+                <li>Loss of mRNA localization may be a lesser known contributor to cell senescence.</li>
+            </ul>
         </div>
         <div id="acknowledgements" class="section">
-            <h4 style="margin-top: 1ex">Acknowledgements</h4>
-            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">Registration and travel support for this presentation was provided by National Science Foundation and NSF Project 00087298.</p>
+            <h4 style="margin-top: -1.5ex">Acknowledgements</h4>
+            <p style="font-size: 1.5ex; line-height: 90%; text-align:left">Molecular Cartography&trade; technology provided by Resolve Biosciences (<span style="font-family:monospace; font-size:1.75ex">https://resolvebiosciences.com/</span>). Registration and travel support for this presentation was provided by National Science Foundation and NSF Project 00087298.</p>
         </div>
     </div>
 </div>
+
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
