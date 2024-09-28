@@ -1,0 +1,65 @@
+---
+title: "Characterizing spatial patterns and distributions"
+subtitle: "with Topological Data Analysis (TDA)"
+author: "**Erik Amézquita**<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2024-10-25"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+genes = c('GLYMA_17G195900', 'GLYMA_05G216000', 'GLYMA_17G185800', 'GLYMA_05G203100', 'GLYMA_15G210100', 'GLYMA_05G092200')
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+Erik Am&eacute;zquita &mdash; MS79: Characterizing Single-Cell Transcriptomic Signatures with TDA
+
+# Different **genes** in different **cells** follow different **spatial patterns** of expression
+
+.pull-left[
+![](../figs/Infected_Cells_17G195900_yellow_05G2160000_red.jpg)
+
+Some genes seem uniformly distributed
+]
+
+.pull-right[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+
+Other genes are more ring-like
+]
+
+---
+
+class: inverse, center
+
+Erik Am&eacute;zquita &mdash; MS79: Characterizing Single-Cell Transcriptomic Signatures with TDA
+
+# Understanding cell-gene **spatial patterns** will further our biological knowledge
+
+```{r, out.width=300}
+knitr::include_graphics("../figs/Infected_Cells_01G164600_green_05G092200_yellow.jpg")
+```
+
+--
+
+# But how do we **quantify** these patterns?
+
+
+---
+
+Erik Am&eacute;zquita &mdash; MS79: Characterizing Single-Cell Transcriptomic Signatures with TDA
+
+# We use **Topological Data Analysis** (TDA)!
+
+![](../figs/GLYMA_05G092200_TDA_c00541_2x.gif)
