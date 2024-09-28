@@ -3,7 +3,7 @@ title: "Quantifying the shape of plants"
 subtitle: "using the Euler Characteristic Transform"
 author: "**Erik Amézquita**, Michelle Quigley, Tim Ophelders <br> Elizabeth Munch, Dan Chitwood <br> Dan Koenig, Jacob Landis <br> -"
 institute: "Computational Mathematics, Science and Engineering <br> Michigan State University <br> -"
-date: "`r Sys.Date()` <br> - <br> In _inSilico Plants_ 4(1) 2022"
+date: "2022-01-25 <br> - <br> In _inSilico Plants_ 4(1) 2022"
 output:
   xaringan::moon_reader:
     css: ["../../css/msu.css", default-fonts, "../../css/gallery.css"]
@@ -118,7 +118,7 @@ class: inverse
 
 ---
 
-background-image: url("../figs/composite_cross_v_01.png")
+background-image: url("../figs/composite_cross_v_02.svg")
 background-size: 425px
 background-position: 95% 90%
 
@@ -136,7 +136,7 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/composite_cross_v_02.png")
+background-image: url("../figs/composite_cross_v_02.svg")
 background-size: 425px
 background-position: 95% 90%
 
@@ -158,7 +158,7 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/composite_cross_v_03.png")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 425px
 background-position: 95% 90%
 
@@ -181,7 +181,7 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/composite_cross_v_04.png")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 425px
 background-position: 95% 90%
 
@@ -206,7 +206,7 @@ background-position: 95% 90%
 
 ---
 
-background-image: url("../figs/composite_cross_v_05.png")
+background-image: url("../figs/composite_cross_v_05.svg")
 background-size: 425px
 background-position: 95% 90%
 
@@ -325,7 +325,7 @@ background-position: 95% 90%
     <p style="text-align: center;"> Align all the seeds </p>
   </div>
   <div class="column" style="max-width:55%; color: Navy; font-size: 15px;">
-    <img src="../figs/boxplot_all_traditional_h.gif">
+    <img src="../figs/boxplot_all_traditional_h_transp.gif">
     <p style="text-align: center;"> Traditional shape descriptors </p>
   </div>
 </div>
@@ -553,11 +553,11 @@ knitr::include_graphics(c('../figs/discerning_directions.png'))#, '../figs/arrow
 - Classify the progeny $(F_{18}\text{ and }F_{58})$ to detect genotype enrichment
 
 .pull-left[
-![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.png)
+![](../figs/histogram_combined_gen1_d158_T16_topounscaled_vert.svg)
 ]
 
 .pull-right[
-![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.png)
+![](../figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
 ]
 
 ---
