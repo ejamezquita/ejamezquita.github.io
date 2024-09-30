@@ -47,96 +47,56 @@ Set the type and color theme here - the Pro version contains additional themes -
 
 <div class="row">
 	<div class="small-12 medium-7 large-7 columns">
-		<h2>Tracking the wiggle of a vampire plant</h2>
+		<h2>Characterizing trascriptomic spatial patterns</h2>
         <p>
-            Plants come in all shapes and sizes. Some plants have no roots, no leaves, and are really bad at performing photosynthesis. Some plants must parasitize other plants for their own survival. You might have heard of carnivorous plants, but have you heard of vegetarian plants?
+            Different genes in different cells follow different spatial patterns of expression. We can clearly tell by eye. Our gut feeling tells us that some patterns look rather uniform, others spotty, and others pretty circular.
         </p>
+        <div class="row" style="text-align:center">
+            <img src="figs/Infected_Cells_17G195900_yellow_05G2160000_red.jpg" alt="original"  style="width:50%">
+            <img src="figs/Infected_Cells_05G216000_red_05G092200_green.jpg" alt="normal"  style="width:47%">
+        </div>
         <p>
-            Cuscuta spp. (aka dodder) is a holoparasitic stem plant: it can only survive by feeding from other plants and it attaches to their stems. What makes Cuscuta and the rest of parasitic plants unique is their haustorium (plural haustoria), a highly specialized organ through which they sap water and nutrients out of their hosts. It works first like the sucking mouth of a leech, as it latches the Cuscuta on the host and then it creates a stem lession through which Cuscuta can start feeding.
-        </p>
+            Understanding cell-gene spatial patterns will further our biological knowledge. But how do we quantify these patterns?
         <p>
-            But that's just the beginning: then the haustoria proceed to launch searching hyphae (like a fungi) into the stem. For the final step, as if drawn from sci-fi, Cuscuta manages to fuse its vascular system, phloem and xylem, with the one from the host. And to make things even crazier, through this intimate link, Cuscuta can send its own RNA to the host and the host will transcribe it! Cuscuta and host become effectively one. Imagine having a leech attached, but your veins and arteries are fused with the leech's! 
+            We need a platform that is robust enough to take into account all possible cell shapes, sizes, and orientations. A pipeline that can work regardless of the amount of transcripts. We turn thus to Topological Data Analysis (TDA).
         </p>
         <p style="text-align:center;font-size: 0.8em; color: Grey;">
-        <img src="https://ars.els-cdn.com/content/image/1-s2.0-S1369526615000631-gr1_lrg.jpg" alt="haustoria"  style="width:90%"></img><br>
-        Credits: <a href="https://doi.org/10.1016/j.pbi.2015.05.012">Kim and Westwood (2015)</a></p>
-        <p>
-            Once the haustoria is fully formed and into the host, it is game over for the host. Any herbicide that kill Cuscuta will kill the host as well. Thus, novel research on Cuscuta control focuses on determining how Cuscuta detects and moves/wiggles toward its potential host. We were particularly interested in determining if time of the day influences Cuscuta movement, ie., if Cuscuta has a cyrcadian rhythm going on.
+            <img src="figs/GLYMA_05G092200_TDA_c00541_transp.gif" alt="TDA"  style="width:100%"></img>
         </p>
-        <h3>Basic setup</h3>
-        <p>
-            Cuscuta was grown in a greenhouse by infecting beets. Mature stems were then cut after 3 weeks and they were attached to bamboo skewers at different times of the day &mdash;9AM, 12PM, and 4PM. A camera was place in front of the Cuscuta-skewer setup. A snapshot was taken every 96 seconds for 24 hours, producing 900 images in total per repetition. There were 5 skewers per setup and 7 repetitions per inoculation time of the day, producing data for 105 individual Cuscuta stems. Manual and <strong>automated</strong> observations were compared for Coiling success rates, and Initiation and completion times.
-        </p>
-        <video style="width:90%; margin: 0 auto; display: block;" controls>
-          <source src="video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
-        </video>
-        <p>
-            These snapshots can be put together in a video like the example above. More videos can be seen in our <a href="https://www.youtube.com/playlist?list=PLZkYcVyQr2u4tT0yoZAkrMqzQxRIDvxru" target="_blank">YouTube list</a>.
-        </p>
-        <h3>Tinkering with image processing</h3>
-        <p>
-            We developed a very <em>ad-hoc</em> pipeline with basic thresholding, erosion, and dilation operations. The main idea was to exploit color contrast between skewer and Cuscuta. This is by no means perfect, but allowed us to at least keep track of when Cuscuta crosses in front of the skewer, and when its angle and position stop changing. We were also able to treat Coil 1 and Coil 2 separately.
-        </p>
-        <video style="width:90%; margin: 0 auto; display: block;" controls>
-          <source src="video/4pm_rep7_plant_00.mp4" type="video/mp4">
-        </video>
-        <video style="width:90%; margin: 0 auto; display: block;" controls>
-          <source src="video/4pm_rep7_plant_01.mp4" type="video/mp4">
-        </video>
-        <video style="width:90%; margin: 0 auto; display: block;" controls>
-          <source src="video/4pm_rep7_plant_02.mp4" type="video/mp4">
-        </video>
-        <p>
-            Our code is available in a <a href="https://github.com/ejamezquita/cuscuta/" target="_blank">Github repository</a> with a series of Python-based Jupyter notebooks detailing the image-processing pipeline we wrote to detect Cuscuta from skewer and background. It also contains code on how time series were created and later analyzed.
-        </p>
-        <h3>The early dodder gets the host</h3>
-        <p>
-            Cuscuta that was inoculated during the morning/noon got coiling after 5 hours. But Cuscuta inoculated by the afternoon were much groggier: they needed a good stretch before get it going. These observations were confirmed with our automated pipeline. Similarly, plants that started early completed their coiling earlier than those that started late.
-        </p>
-        <div class="row" style="text-align:center">
-            <img src="figs/time_after_inoculation.svg" alt="original"  style="width:80%">
-            <img src="figs/time_to_complete_coiling.svg" alt="normal"  style="width:80%">
+        <div class="list">
+            <ul>
+                <li>You start with X,Y,Z coordinates of transcripts for one specific gene and one specific cell</li>
+                <li>Compute heatmaps via KDEs (kernel density estimates)</li>
+                <li>Compute persistence diagrams via sublevel set persistence (for both 1- and 2-dimensional holes [ H1 and H2 respectively])</li>
+                <li>Transform those diagrams into persistence images (for both 1- and 2-dimensional diagrams)</li>
+                <li>Concatenate both dimensions and flatten them into a single row. Then attach all the rows for all the cells and genes: this produces a large matrix (4800 rows [cell/gene combinations] x 300 columns [topological features], approx)</li>
+                <li>Compute the PCA of this matrix. Between the first two PCs we are able to capture more than 75% of the total topological variance when it comes to the spatial distributions of transcripts (or the shape of the heatmaps)</li>
+            </ul>
         </div>
         <p>
-            But when we only consider the coiling process time, the time it takes Cuscuta to finish coiling <strong>once</strong> it starts its coiling movement, we observed no significant differences! This suggests that the resting period prior to coiling follows a different mechanism.     
+            (One day of this I will write a better summary of this topic here.)
         </p>
-        <div class="row" style="text-align:center">
-            <img src="figs/completion_time.svg" alt="original"  style="width:50%">
-            <img src="figs/cuscuta_circadian_model.png" alt="original"  style="width:100%">
-        </div>
     </div>
 	<div class="small-12 medium-5 large-5 columns">
 		<p>
-            ¡<strong>Preprint</strong>: Bentelspacher <em>et al.</em> (2024)!
-        </p>
-        <div class="thumbnail-img">
-            <div class="thumbnail-hover"><a href="https://doi.org/10.1101/2024.02.29.582789"></a></div>
-            <a href="https://doi.org/10.1101/2024.02.29.582789" target="_blank"><img src="figs/biorxiv.png" alt="Bentelspacher et al 2024" style="vertical-align:bottom"/></a>
-        </div>
-        <p>
-            DOI: <a href="https://doi.org/10.1101/2024.02.29.582789 " target="_blank">10.1101/2024.02.29.582789</a>
+            ¡<strong>Preprint</strong>: In progress!
         </p>
         <p>
             &mdash;
         </p>
         <p>
-            <strong><a href="https://github.com/ejamezquita/cuscuta/" target="_blank">Code Available</a></strong>: 
+            <strong><a href="https://github.com/ejamezquita/mcarto/" target="_blank">Code Available</a></strong>: 
             Github repository with a series of Python-based Jupyter notebooks detailing the image-processing pipeline we wrote to detect Cuscuta from skewer and background. It also contains code on how time series were created and later analyzed.
         </p>
-        <p>
-            <strong><a href="https://www.youtube.com/playlist?list=PLZkYcVyQr2u4tT0yoZAkrMqzQxRIDvxru" target="_blank">Original videos</a></strong>: 
-            24-hour timelapse videos showcasing how Cuscuta coils during different times of the day.
-        </p>
-        <p>
             &mdash;
         </p>
         <p>
-            <strong><a href="slides/aspb_2024.html" target="_blank">As slides</a></strong>: 
-            Presented at <a href="https://midwest.aspb.org/meeting/" target="_blank">ASPB-MW 2024</a>. Purdue University. West Lafayette, Indiana. March 2024.
+            <strong><a href="slides/siamcss_2024.html" target="_blank">As slides</a></strong>: 
+            Presented at <a href="https://sse.umkc.edu/siam-2024/" target="_blank">SIAM-CSS 2024</a>. University of Missouri&ndash;Kansas City, Kansas City, Missouri. October 2024.
         </p>
         <p>
-            <strong><a href="poster/aspb_2024.html" target="_blank">As a poster</a></strong>: 
-            Presented at <a href="https://muplantresearchsymposium.org/" target="_blank">MUPRS</a>. University of Missouri, Columbia, Missouri. March 2024.
+            <strong><a href="poster/cafnr_2024.html" target="_blank">As a poster</a></strong>: 
+            Presented at the <a href="https://calendar.missouri.edu/event/2024-cafnr-research-symposium" target="_blank">CAFNR Research Symposium</a>. University of Missouri. Columbia, Missouri. October 2024.
         </p>
         <p>
             <img src="figs/4pm_rep7_plant2_v09_0680_h.jpg" alt="cuscuta_wrap" style="vertical-align:bottom"/>
@@ -151,7 +111,8 @@ Set the type and color theme here - the Pro version contains additional themes -
         <h3>Other research projects</h3>
         <div class="list">
             <ul>
-                <li><a href="../cuscuta/description.html" class="current">The early dodder gets the host</a></li>
+                <li><a href="../mcarto/description.html" class="current">Sub-cellular transcriptomic patterns</a></li>
+                <li><a href="../cuscuta/description.html">The early dodder gets the host</a></li>
                 <li><a href="../walnuts/description.html">The crackability of walnuts: all about shape, in a nutshell</a></li>
                 <li><a href="../barley/description.html">Quantification of barley grain morphology</a></li>
                 <li><a href="../journal_diversity/description.html">Global disparities in plant biology research</a></li>
