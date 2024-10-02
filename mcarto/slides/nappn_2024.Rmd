@@ -314,49 +314,49 @@ class: inverse, middle, center
 
 # Never underestimate PCA
 
-![](../figs/scale16_-_PI_1_1_1_pca_H1+2.png)
+![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2.png)
 
 ---
 
 # What is exactly used by PCA?
 
-![](../figs/scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
+![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
 
 ---
 
-background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
+background-image: url("../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
 background-size: 775px
 background-position: 50% 99%
 
 # Show me
 
 ```{r, out.width=250, fig.align='left'}
-knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+knitr::include_graphics(c('../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
 ```
 
 ---
 
-background-image: url("../figs/../figs/scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
+background-image: url("../figs/../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
 background-size: 775px
 background-position: 50% 99%
 
 # Show me
 
 ```{r, out.width=250, fig.align='left'}
-knitr::include_graphics(c('../figs/scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+knitr::include_graphics(c('../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
 ```
 
 ---
 
 # Relate patterns to spatial location
 
-![](../figs/scale16_-_PI_1_1_1_pca_H1+2_00_GLYMA_17G195900.png)
+![](../figs/nodule_pca_1_2.png)
 
 ---
 
 # Differentiate patterns within cells
 
-![](../figs/scale16_-_PI_1_1_1_pca_H1+2_0_vs_GLYMA_17G195900.png)
+![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_L2_kde_GLYMA_17G195900_vs_GLYMA_05G092200.png)
 
 ---
 

@@ -4,7 +4,7 @@
     <title>Characterizing spatial patterns and distributions</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita, Sutton Tennant, Sandra Thibivillers, Sai Subhash Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
-    <meta name="date" content="2024-07-19" />
+    <meta name="date" content="2024-10-05" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### <strong>Erik Amézquita</strong>, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
 ]
 .date[
-### 2024-07-19
+### 2024-10-05
 ]
 
 ---
@@ -32,126 +32,76 @@ class: center, middle, inverse, title-slide
 
 
 
-# Patterns, patterns everywhere!
 
-&lt;div class="row" style="font-size: 22px; font-family: 'Yanone Kaffeesatz'; margin: 0 auto;"&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/andrew-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Andrew.png"&gt;
-    &lt;p style="text-align: center;"&gt;Quantify/Describe&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/boone-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/Boone.png"&gt;
-    &lt;p style="text-align: center;"&gt;Compare/Contrast&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:33%;"&gt;
-    &lt;img src="https://www.landsat.com/samples/county2018/new-madrid-mo-2018.jpg"&gt;
-    &lt;img src="https://www.atlas.moherp.org/maps/county/histveg/New_Madrid.png"&gt;
-    &lt;p style="text-align: center;"&gt;Model/Predict&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://www.landsat.com/aerial-photography/missouri/"&gt;Landsat.com&lt;/a&gt; and &lt;a href="https://www.atlas.moherp.org/missouri/"&gt;MO Herpetological Atlas Project&lt;/a&gt;&lt;/p&gt;
----
+# Different **genes** in different **cells** follow different **spatial patterns** of expression
 
-# Issue at hand: transcript distribution
+.pull-left[
+![](../figs/Infected_Cells_17G195900_yellow_05G2160000_red.jpg)
 
-![](../figs/D2_distribution_example.jpg)
+Some genes seem uniformly distributed
+]
 
-- Different cells of different shapes and sizes
-- Beyond density: How to quantify and compare patterns?
-- Patterns across the whole cross section? Patterns within cells?
+.pull-right[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+
+Other genes are more ring-like
+]
+
+- Different cells have different sizes, shapes, and orientations
 
 ---
 
-# Plan of attack
+# We use Topological Data Analysis (TDA)!
 
-1. Make heatmaps of transcript distributions via Kernel Density Estimates (KDEs)
-
-1. Quantify these heatmaps via Topological Data Analysis (TDA)
-
-1. Featurize these topological signatures as Persistence Images
-
-1. ????? [traditional data analysis]
-
-1. Profit
-
-![](../figs/D2_GLYMA_05G092200_1749_1748_3D_kde_correction.gif)
+![](../figs/GLYMA_05G092200_TDA_c00541.gif)
 
 ---
 
 class: inverse, middle, center
 
-# [1] Kernel Density Estimators (KDEs)
+# [1] Molecular Cartography&amp;trade; 
 
-## The continuous version of a histogram
+# &amp;amp; 
 
-### Think of heatmaps
+# Kernel Density Estimators (KDEs)
 
 [2] Quantify these heatmaps via Topological Data Analysis (TDA)
 
-[3] Featurize these topological signatures as Persistence Images
-
-[4] Traditional data analysis and results
+[3] Link back to biological context
 
 ---
 
-# Say we want to characterize the distribution of these points in 1D
+# Molecular Cartography&amp;trade;
 
-![](../../tda/figs/kernel_density_estimator_00.svg)
+![](../figs/molecular_cartography_2x4.png)
 
-- We only know the samples (blue points)
+- Soybean nodule 10&amp;micro;m thick cross-sections.
+- (X,Y,Z) coordinates for 3.7M+ cytosolic transcripts.
+- 97 genes (including 10 bacterial ones) &amp;rarr; 2 genes
+- 2938 cells &amp;rarr; 918 infected ones.
+
 
 ---
 
-# A histogram gives us a sense of distribution
+# Kernel Density Estimations (KDEs)
 
+![](../figs/kernel_density_estimate_2x4.png)
 
-![](../../tda/figs/kernel_density_estimator_03.svg)
-
-- The total gray area equals 1
-- 100% of the points are represented in the histogram
-
----
-
-# Approximate the underlying distribution with a KDE
-
-![](../../tda/figs/kernel_density_estimator_04.svg)
-
-- A continuous approximation is mathematically better to perform meaningful statistics
-- Kernel Density Estimate: KDE
-
----
-
-# The width/number of bins does influence the shape of the histogram
-
-![](../../tda/figs/kernel_density_estimator_05.svg)
-
-- Similarly, we can control the bandwidth parameter of the KDE to influence its shape
-- Plenty of heuristics to define the "right" bandwidth
-- But ultimately, "right" depends on the application in mind
-
----
-
-## KDEs: 3D; one per cell; reflect borders and nuclei
-
-
-&lt;img src="../figs/D2_GLYMA_05G092200_1767_1765_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/D2_GLYMA_05G092200_1749_1748_kde_correction.jpg" width="700px" style="display: block; margin: auto;" /&gt;
-
-
+- **Normalize by cell AND gene:** The sum of all transcripts OF ALL genes add to 100%
+    - Each gene adds to a certain percentage
+    - The sum of all genes add to 100%
+    - Compares absolute concentrations 
 ---
 
 class: inverse, middle, center
 
-[1] Estimate heatmaps via KDEs
+[1] Molecular Cartography&amp;trade; &amp;amp; Kernel Density Estimations
 
 # [2] Quantify the shape of these heatmaps
 
 ## Topological Data Analysis (TDA) and persistent homology
 
-[3] Featurize these topological signatures as Persistence Images
-
-[4] Traditional data analysis and results
+[3] Link back to biological context
 
 ---
 
@@ -196,169 +146,75 @@ class: inverse, middle, center
 
 # Same idea for higher dimensions
 
-![](https://pubs.acs.org/cms/10.1021/acs.jpcb.1c00904/asset/images/large/jp1c00904_0001.jpeg)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1021/acs.jpcb.1c00904"&gt;Manuchehrfar &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
-
-# Distance between persistence diagrams
-
-`$${W^q}(D_1,D_2) = \left[\inf_{\gamma:D_1\to D_2} \sum_{p\in D_1}\left\|p - \gamma(p)\right\|^q_{\infty}\right]^{1/q}$$`
-
-- **Theorem:** The bottleneck and Wasserstein distances are stable ([Cohen-Steiner *et al.* (2007)](https://doi.org/10.1007/s00454-006-1276-5), [Cohen-Steiner *et al.* (2010)](https://doi.org/10.1007/s10208-010-9060-6)). 
+![](../figs/GLYMA_05G092200_TDA_c00282.gif)
 
 ---
 
+# Same idea for higher dimensions
 
-
-
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_00885.svg")
-background-size: 200px
-background-position: 99% 55%
-
-## Compare two different persistence diagrams
-
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00885.jpg" width="650px"&gt;&lt;/img&gt;
-
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 38.44\)`
-
+![](../figs/GLYMA_05G092200_TDA_c00282_40.png)
 
 ---
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01306.svg")
-background-size: 200px
-background-position: 99% 55%
 
-## Compare two different persistence diagrams
+# Rotate 45 degs for Persistence Images
 
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg" width="650px"&gt;&lt;/img&gt;
-
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 343.77\)`
-
+![](../figs/GLYMA_05G092200_TDA_c00282_082.png)
 
 ---
-background-image: url("../figs/D2_ws1d_infty_suplevel_by_both_01702.svg")
-background-size: 200px
-background-position: 99% 55%
 
-## Compare two different persistence diagrams
+# Rotate 45 degs for Persistence Images
 
-&lt;img src="../figs/D2_GLYMA_17G195900_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
-&lt;br&gt;
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01702.jpg" width="650px"&gt;&lt;/img&gt;
+![](../figs/GLYMA_05G092200_TDA_c00282_122.png)
 
-`\(W_1(\text{GLYMA_17G195900, GLYMA_05G092200}) = 1080.96\)`
+---
 
+# Mathematical justifications
 
+- **Definition:** Given two persistence diagrams `\(D_1, D_2\)`, for `\(1\leq p&lt;\infty\)`, we define the *p-Wasserstein* distance between them as
+`$$W_p(D_1, D_2) := \inf_{\gamma:D_1\to D_2}\left(\sum_{u\in D_1} \left\| u-\gamma(u) \right\|_\infty^p\right)^{1/p},$$`
+where the infimum is over all possible bijections `\(\gamma: D_1\to D_2\)`.
 
+- **Theorem [[Mileyko *et al* (2011)](https://doi.org/10.1088/0266-5611/27/12/124007)]:** For nice filtrations, the persistence diagrams are Wasserstein-stable under small perturbations of the data they summarize.
+
+- **Theorem [[Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html)]:** The persistence image `\(I(D)\)` of a persistence diagram `\(D\)` with Gaussian distributions is stable with respect to the 1-Wasserstein distance between diagrams.
+
+### If the overall shape/pattern is perturbed a little bit, then the resulting persistence images are perturbed only a little bit as well
 
 ---
 
 class: inverse, middle, center
 
-[1] Estimate heatmaps via KDEs
+[1] Molecular Cartography&amp;trade; &amp;amp; Kernel Density Estimations
 
-[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+[2] Quantify the shape of these heatmaps
 
-# [3] Featurize these topological signatures as Persistence Images
+# [3] Link back to biological context
 
-## The space of persistence diagrams is weird
-
-### So we move to a nicer, more familiar one
-
-[4] Traditional data analysis and results
+## Never underestimate the power of PCA
 
 ---
 
-# Rotate `\(45^\circ\)` for Persistence Images
+# Do TDA for all cell-gene combinations
 
-&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_02404.jpg" width="650" style="display: block; margin: auto;" /&gt;&lt;img src="../figs/persistence_image_example_GLYMA_05G092200_2404.png" width="650" style="display: block; margin: auto;" /&gt;
+&lt;img src="../figs/molecular_cartography_2x4.png" width="500" style="display: block; margin: auto;" /&gt;
 
-
----
-
-# A word on Persistence Images
-
-.pull-left[
-![](../figs/persistence_image_example_GLYMA_05G092200_2404_v.png)
-]
-
-.pull-right[
-- Think them as a KDE of the lifetime diagram *with extra steps*.
-
-- More persistent points are heavier
-
-- Points with 0 lifespan have 0 weight
-
-- **Theorem:** Persistence Images are stable with respect to the 1-Wasserstein distance ([Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html))
-
-- The topological signature now is a collection of pixel values
-
-- Concatenate all dimensions into a single large vector
-
-- We can now do standard statistics and machine learning with PIs as our input features!
-]
-
----
-
-# Persistence Images can be tuned
-
-![](../figs/persistence_image_parameters_GLYMA_05G092200_2404.png)
-
----
-
-class: inverse, middle, center
-
-[1] Estimate heatmaps via KDEs
-
-[2] Quantify these heatmaps via Topological Data Analysis (TDA)
-
-[3] Featurize these topological signatures as Persistence Images
-
-# [4] Traditional data analysis and results
-
-## An example of a pipeline
-
-### Never underestimate the power of PCA
-
----
-
-# Remember the setup
-
-- Looking at 968 individual cells in soybean root
-
-- Looking at `\((x,y,z)\)` spatial locations of all transcripts from 6 genes
-
-- With KDEs, we produced 3D heatmaps for all the `\(968\times 6=5808\)` cases
-
-- The *shape* of the heatmaps was then encoded into persistence diagrams using a sublevel set filtration ( `\(H_1, H_2\)` )
-
-- These diagrams were then transformed into Persistence Images
-
-- All the dimensions were concatenated and used as features in a standard exploratory pipeline
-
-- Modeling the transcripts patterns across genes and cells &amp;larr; *You are here*
-
-![](../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_01306.jpg)
-
----
-
-# Never underestimate PCA
-
-![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2.png)
-
----
-
-# What is exactly used by PCA?
-
-![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_loadings.png)
+&lt;img src="../figs/persistence_images_2x4.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
 background-image: url("../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_cell_sample.png")
-background-size: 775px
-background-position: 50% 99%
+background-size: 620px
+background-position: 75% 99%
+
+# PCA on all topological descriptors
+
+&lt;img src="../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="250" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+background-image: url("../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
+background-size: 620px
+background-position: 75% 99%
 
 # Show me
 
@@ -366,25 +222,12 @@ background-position: 50% 99%
 
 ---
 
-background-image: url("../figs/../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_kde_sample.png")
-background-size: 775px
-background-position: 50% 99%
-
-# Show me
-
-&lt;img src="../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="250" style="display: block; margin: auto auto auto 0;" /&gt;
-
----
-
-# Relate patterns to spatial location
+# Relate back to the biological context
 
 ![](../figs/nodule_pca_1_2.png)
 
----
-
-# Differentiate patterns within cells
-
-![](../figs/bw20_both_scale16_-_PI_1_1_1_pca_H1+2_L2_kde_GLYMA_17G195900_vs_GLYMA_05G092200.png)
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
 
 ---
 
@@ -434,13 +277,11 @@ class: inverse
   &lt;div class="column" style="max-width:60%; font-size: 15px;"&gt;
     &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/11/libault-returns-to-bond-lsc-as-plant-scientist-with-single-cell-focus-1.jpg"&gt;
   &lt;/div&gt;
-  &lt;div class="column" style="width:6%; font-size: 24px;"&gt;
-  &lt;/div&gt;
-  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
-  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;div class="column" style="max-width:40%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Contact and slides:&lt;/strong&gt;&lt;/p&gt;
   &lt;p style="text-align: center;color:Blue"&gt;eah4d@missouri.edu&lt;/p&gt;
-  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Website and slides&lt;/strong&gt;&lt;/p&gt;
   &lt;p style="text-align: center;color:Blue"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;p style="font-size: 18px"&gt;Registration and travel support for this presentation was provided by the National Science Foundation and NSF Project 00087298.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -458,7 +299,7 @@ class: inverse
     &lt;ul&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:65%; font-size: 20px;"&gt;
-  &lt;p style="font-size: 25px; text-align: center;"&gt; With help from &lt;/p&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; With help from:&lt;/p&gt;
     &lt;ul&gt;
       &lt;li&gt;Sai Subash (Nebraska-Lincoln)&lt;/li&gt;
       &lt;li&gt;Benjamin Smith (UC Berkeley)&lt;/li&gt;

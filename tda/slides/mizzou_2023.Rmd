@@ -70,7 +70,7 @@ background-position: 98% 2%
 
 ]
 
-&mdash;&mdash;&mdash;&mdash;&mdash;
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
 
 <div class="row">
   <div class="column" style="max-width:49%">
@@ -380,7 +380,7 @@ background-position: 50% 90%
 
 # Bottleneck distance and stability
 
-- Consider $\text{dgm}_1$, $\text{dgm}_2$ two persistence diagrams. The *bottleneck distance$ between them is
+- Consider $\text{dgm}_1$, $\text{dgm}_2$ two persistence diagrams. The *bottleneck distance* between them is
 
 $$d_B(\text{dgm}_1,\text{dgm}_2) = \inf_\gamma\sup_{p\in\text{dgm}_1}\|p-\gamma(p)\|_\infty.$$
 
@@ -563,7 +563,7 @@ class: inverse, middle, center
 <p style="font-size: 9px; text-align: right; color: Grey;"> Credits: Park Lab. <em>In progress</em></p>
 
 ```{r, out.width=500}
-knitr::include_graphics("../../mcarto/figs/A1_-_CYP93A1_kde_0.25.jpg")
+knitr::include_graphics("../../mcarto/figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00609.jpg")
 ```
 <p style="font-size: 9px; text-align: right; color: Grey;"> Credits: Libault Lab. <em>In progress</em></p>
 
