@@ -2,7 +2,7 @@
 title: "Characterizing spatial patterns and distributions"
 subtitle: "with Topological Data Analysis (TDA)"
 author: "**Erik Amézquita**, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
-date: "2024-10-05"
+date: "2024-11-21"
 output:
   xaringan::moon_reader:
     css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
@@ -440,7 +440,6 @@ class: inverse
   <p style="text-align: center;"><strong>Contact and slides:</strong></p>
   <p style="text-align: center;color:Blue">eah4d@missouri.edu</p>
   <p style="text-align: center;color:Blue">ejamezquita.github.io</p>
-  <p style="font-size: 18px">Registration and travel support for this presentation was provided by the National Science Foundation and NSF Project 00087298.</p>
   </div>
 </div>
 
