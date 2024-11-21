@@ -148,6 +148,29 @@ class: inverse, middle, center
     - Compares absolute concentrations 
 ---
 
+# "Fixing" 3D data with 2D info
+
+![](../figs/cell_nucleus_811.jpg)
+
+- Consider the Z-axis coordinates of all the bacterial transcripts
+
+- Do a 2-sample Kolmogorov-Smirnov test to determine if the putative nuclear and cytosolic transcripts follow the same statistical distribution
+
+- If they don't, use the KS statistic as a nuclear-cytosolic breaking point
+
+- Proceed **nucleus**-wise
+
+---
+
+# "Fixing" 3D data with 2D info
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/cell_nucleus_1234.jpg', '../figs/cell_nucleus_2404.jpg'))
+```
+
+
+---
+
 class: inverse, middle, center
 
 [1] Molecular Cartography&trade; &amp; Kernel Density Estimations
@@ -277,13 +300,103 @@ knitr::include_graphics(c('../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded
 
 ---
 
+background-image: url("../figs/eccentricity_root_nodule.png")
+background-size: 300px
+background-position: 99% 1%
+
+# Connecting features to eccentricity
+
+---
+
+background-image: url("../figs/eccentricity_root_nodule.png")
+background-size: 300px
+background-position: 99% 1%
+
+![](../figs/GLYMA_17G195900_ecc_all_infected.png)
+
+![](../figs/GLYMA_17G195900_ecc_infected_w_nucleus.png)
+
+---
+
+background-image: url("../figs/eccentricity_root_nodule.png")
+background-size: 300px
+background-position: 99% 1%
+
+![](../figs/GLYMA_05G092200_ecc_all_infected.png)
+
+![](../figs/GLYMA_05G092200_ecc_infected_w_nucleus.png)
+
+---
+
+# What are the PCs measuring?
+
+.pull-left[
+![](../figs/GLYMA_17G195900_pca_all_infected.png)
+]
+
+.pull-right[
+![](../figs/GLYMA_05G092200_pca_all_infected.png)
+]
+
+--
+
+## Did I just spent a whole math degree to recompute sample size and transcriptomic density?
+
+---
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_density13_pc02.png")
+background-size: 600px
+background-position: 50% 99%
+
+# The PCs are capturing other information
+
+---
+
+# We define a morphospace of transcriptomic patterns
+
+![](../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_30_clusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+# Working "backward"
+
+--
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_30_clusters.jpg'))
+```
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_varclusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+# Working "backward"
+
+--
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclusters.jpg'))
+```
+
+---
+
 # Discussion
 
 - Topological Data Analysis offers a robust way to encode the *shape of patterns*
 
 - Robust to differences in scale, underlying boundaries, or orientation
 
-- As long as you have a heatmap, you're good to go:
+- As long as you have a heatmap, you're good to go: more traditional FISH
     
 - Even if you don't, you can make one via KDEs from individual spatial coordinates
     - Climate patterns?
