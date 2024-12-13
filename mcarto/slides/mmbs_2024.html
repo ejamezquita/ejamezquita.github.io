@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Characterizing spatial patterns and distributions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Sutton Tennant, Sandra Thibivillers, Sai Subhash Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
+    <meta name="date" content="2024-12-13" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Characterizing spatial patterns and distributions
+]
+.subtitle[
+## with Topological Data Analysis (TDA)
+]
+.author[
+### <strong>Erik Amézquita</strong>, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
+]
+.date[
+### 2024-12-13
+]
+
+---
+
+
+
+
+# Shape has data, and data has shape
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:19%"&gt;
+    &lt;img src="../../barley/figs/S019_L0_1.gif"&gt;&lt;/img&gt;
+    &lt;img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:39%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/LxNSbrfq3kY?si=Qw9qv3Og1XcPIUyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;img src="../../tda/figs/Mapper_ColorBy_Tissue.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:41%"&gt;
+    &lt;img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"&gt;&lt;/img&gt;
+    &lt;img src="../../tda/figs/g86.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# We use Topological Data Analysis (TDA)!
+
+![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
+
+---
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
+
+# From MX to MI to MO at MU
+
+.left-column[
+![](../../img/dvdy216-toc-0001-m.jpg)
+]
+
+.right-column[
+- 2013 - 2018 : Licenciatura (Bachelor): Math @ at the Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis.
+
+- 2018 - 2023 : PhD: Computational Mathematics, Science, and Engineering @ Michigan State University. **Came for the math. Stayed for the plants.**
+
+- 2023 - Present : PFFIE Postdoc Fellow @ Division of Plant Science &amp; Department of Mathematics at Mizzou
+
+]
+
+---
+
+class: inverse, middle, center
+
+# Topological Data Analysis
+
+## A primer
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedra
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topologically invariant features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 3 connected components, 1 loop, 1 voids
+
+&lt;img src="../../tda/figs/complex-good.svg" width="350" style="display: block; margin: auto;" /&gt;
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each cell is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+&lt;img src="../../barley/figs/eigcurv_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/gaussian_density_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="../../barley/figs/eccentricity_filter.gif" width="250px" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/vrips_ver2.gif" width="250px" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Ye olde simplicial homology *with* time
+
+- A *filtration* of simplicial complex `\(\mathbf K\)` is a collection of nested subcomplexes `\(\mathbf K_0\subset\mathbf K_0\subset\ldots\subset\mathbf K_m=\mathbf K\)`.
+
+&lt;img src="https://www.frontiersin.org/files/Articles/637684/fphys-12-637684-HTML/image_m/fphys-12-637684-g003.jpg" width="400" style="display: block; margin: auto;" /&gt;
+
+- We have canonical inclusions `\(\iota_{i,j}:\mathbf K_i\to\mathbf K_j\)`.
+
+- We see that `\(\iota_{i,k} = \iota_{j,k}\circ\iota_{i,j}\)` for any `\(0\leq i\leq j\leq k\leq m\)`.
+
+- (Abusing notation) These correspond to inclusions `\(\iota_{i,j}:H_q(\mathbf K_i)\to H_q(\mathbf K_j)\)` for `\(q=0,1,2,\ldots\)`.
+
+- The `\((i,j)\)`-th persistent `\(q\)`-th homology group is `\(H_{i,j;q}(\mathbf K) = \text{Im}\,(\iota_{i,j})\)`.
+
+- It's dimension is the `\((i,j)\)`-th persistent `\(q\)`-th Betti number, `\(\beta_{i,j;q}(\mathbf K)\)`.
+
+- A class `\(\alpha\in H_q(\mathbf K_i)\)` *is born* at time `\(i\)` if `\(\alpha\notin H_{i-1,i;q}(\mathbf K)\)`.
+
+- This class `\(\alpha\in H_q(\mathbf K_j)\)` *dies* at time `\(j+1\)` if `\(\iota_{j,j+1}(\alpha)\in H_{i,j;q}(\mathbf K)\)`.
+
+---
+
+class: inverse, middle, center
+
+# An example later will make this much clearer
+
+---
+
+# TDA + Biology in the literature
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr1.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://ars.els-cdn.com/content/image/1-s2.0-S1361841518302688-gr2.jpg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.media.2019.03.014"&gt;Qaiser &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:25%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/ce30e9df-d595-4520-a68a-74f3c6f151d1/assets/graphic/pnas.1313480110fig01.jpeg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.pnas.org/cms/10.1073/pnas.1313480110/asset/b733c3a3-00f2-43d5-b372-9da25f3d33c9/assets/graphic/pnas.1313480110fig02.jpeg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1073/pnas.1313480110"&gt;Chan &lt;em&gt;et al.&lt;/em&gt; (2013)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:22%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_001.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_012.jpg"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.degruyter.com/document/doi/10.1515/sagmb-2015-0057/asset/graphic/j_sagmb-2015-0057_fig_010.jpg"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1515/sagmb-2015-0057"&gt;Kovacev-Nikolic &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:28%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-3-030-20867-7_7/MediaObjects/484957_1_En_7_Fig1_HTML.png"&gt;
+    &lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1007/978-3-030-20867-7_7"&gt;Chitwood &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:25px;"&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Cancerous tissue&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Horizontal Reassortment&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Holes&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Open/closed conformations&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:25%;"&gt;
+    &lt;p style="text-align: center;"&gt;Components&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;&amp;darr;&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Panicle structure&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse, middle, center
+
+# [1] mRNA localization
+
+# Molecular Cartography&amp;trade; 
+
+### &amp;amp; 
+
+# Kernel Density Estimators (KDEs)
+
+[2] Quantify these heatmaps via Topological Data Analysis (TDA)
+
+[3] Link back to biological context
+
+---
+
+# mRNA localization FTW
+
+- **Another regulational mechanism**: Spatial segregation and asymmetrical distribution of mRNA.
+
+- Observed various spatial patterns across animal and plant species.
+
+.pull-left[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
+]
+
+.pull-right[
+
+- Energetically more efficient to transport mRNA than a whole protein
+
+- Efficient protein complex assembly
+
+- Prevent proteins from reaching the wrong cellular compartment
+
+- Subcellular localization influences proteome architecture and adaptation
+
+- mRNA can exert fuctions beyond the protein they encode
+]
+
+---
+
+# Molecular Cartography&amp;trade;
+
+![](../figs/molecular_cartography_2x4.png)
+
+- Soybean nodule 10&amp;micro;m thick cross-sections.
+- (X,Y,Z) coordinates for 3.7M+ cytosolic transcripts.
+- 97 genes (including 10 bacterial ones) &amp;rarr; 2 genes
+- 2938 cells &amp;rarr; 918 infected ones.
+- Considered 918 &amp;times; 2 = 1836 cell-gene pairs
+
+---
+
+# Kernel Density Estimations (KDEs)
+
+![](../figs/kernel_density_estimate_2x4.png)
+
+- **Normalize by cell AND gene:** The sum of all transcripts OF ALL genes add to 100%
+    - Each gene adds to a certain percentage
+    - The sum of all genes add to 100%
+    - Compares absolute concentrations 
+---
+
+
+class: inverse, middle, center
+
+[1] Molecular Cartography&amp;trade; &amp;amp; Kernel Density Estimations
+
+# [2] Quantify the shape of these heatmaps
+
+## Topological Data Analysis (TDA) and persistent homology
+
+[3] Link back to biological context
+
+---
+
+# Keep track of blobs `\(H_0\)` and holes `\(H_1\)`
+
+![](../figs/GLYMA_05G092200_TDA_c00282.gif)
+
+---
+
+
+
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_00.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_01.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_02.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_03.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_04.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_05.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_06.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_07.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_08.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_09.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_10.png)
+
+---
+# Walking through an example
+
+![](../figs/GLYMA_05G092200_TDA_c02352_11.png)
+
+
+---
+
+# Mathematical motivation: stability
+
+- [**Theorem (Cohen-Steiner, Edelsbrunner, Harer, 2007)**](https://doi.org/10.1007/s00454-006-1276-5): Given a nice enough topological space `\(\mathbb{X}\)` and two nice enough filtration functions `\(f,g:\mathbb{X}\to\mathbb{R}\)`, then
+`$$d_B(\text{dgm}(f), \text{dgm}(g)) \leq \|f-g\|_\infty,$$`
+
+- where `\(d_B\)` is the bottleneck distance.
+
+- **Translation**: If the original complex wiggles a tiny bit, then the elements of its related persistence diagram will wiggle only a tiny bit as well.
+
+
+## However
+
+- Outside stable distances, it is hard to do anything interesting in the space of persistence diagrams.
+
+- E.g.: there are no unique means!
+
+- Hard to perform Machine Learning directly with persistence diagrams
+
+---
+
+# Rotate 45 degrees for ML ammenability
+
+![](../figs/GLYMA_05G092200_TDA_c02352_12.png)
+
+---
+
+# From patterns to numbers
+
+![](../figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+# We actually work with 3D data
+
+- We keep track of blobs `\(H_0\)`, holes `\(H_1\)`, and voids `\(H_2\)`
+
+![](https://upload.wikimedia.org/wikipedia/commons/d/db/Earth_Internal_Structure.svg)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://commons.wikimedia.org/wiki/File:Earth_Internal_Structure.svg"&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+
+
+---
+
+# Mathematical justifications
+
+- **Definition:** Given two persistence diagrams `\(D_1, D_2\)`, for `\(1\leq p&lt;\infty\)`, we define the *p-Wasserstein* distance between them as
+`$$W_p(D_1, D_2) := \inf_{\gamma:D_1\to D_2}\left(\sum_{u\in D_1} \left\| u-\gamma(u) \right\|_\infty^p\right)^{1/p},$$`
+where the infimum is over all possible bijections `\(\gamma: D_1\to D_2\)`.
+
+- **Theorem [[Mileyko *et al* (2011)](https://doi.org/10.1088/0266-5611/27/12/124007)]:** For nice filtrations, the persistence diagrams are Wasserstein-stable under small perturbations of the data they summarize.
+
+- **Theorem [[Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html)]:** The persistence image `\(I(D)\)` of a persistence diagram `\(D\)` with Gaussian distributions is stable with respect to the 1-Wasserstein distance between diagrams.
+
+### If the overall shape/pattern is perturbed a little bit, then the resulting persistence images are perturbed only a little bit as well
+
+---
+
+class: inverse, middle, center
+
+[1] Molecular Cartography&amp;trade; &amp;amp; Kernel Density Estimations
+
+[2] Quantify the shape of these heatmaps
+
+# [3] Link back to biological context
+
+## Never underestimate the power of PCA
+
+---
+
+# Do TDA for all cell-gene combinations
+
+&lt;img src="../figs/molecular_cartography_2x4.png" width="500" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="../figs/persistence_images_2x4.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# PCA on all topological descriptors
+
+&lt;img src="../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_kde_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# Show me
+
+&lt;img src="../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+# Relate back to the biological context
+
+![](../figs/nodule_pca_1_2.png)
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+
+---
+
+background-image: url("../figs/eccentricity_root_nodule.png")
+background-size: 600px
+background-position: 50% 95%
+
+# Connecting features to eccentricity
+
+
+---
+
+background-image: url("../figs/eccentricity_root_nodule.png")
+background-size: 300px
+background-position: 99% 1%
+
+![](../figs/GLYMA_17G195900_ecc_all_infected.png)
+
+![](../figs/GLYMA_05G092200_ecc_all_infected.png)
+
+---
+
+# What are the PCs measuring?
+
+.pull-left[
+![](../figs/GLYMA_17G195900_pca_all_infected.png)
+]
+
+.pull-right[
+![](../figs/GLYMA_05G092200_pca_all_infected.png)
+]
+
+--
+
+## Did I just spent a whole math degree to recompute sample size and transcriptomic density?
+
+---
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_density13_pc02.png")
+background-size: 600px
+background-position: 50% 99%
+
+# The PCs are capturing other information
+
+---
+
+# We define a morphospace of transcriptomic patterns
+
+![](../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_30_clusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+# Working "backward"
+
+--
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_30_clusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_varclusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+# Working "backward"
+
+--
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Discussion
+
+- Topological Data Analysis offers a robust way to encode the *shape of patterns*
+
+- Robust to differences in scale, underlying boundaries, or orientation
+
+- As long as you have a heatmap, you're good to go: more traditional FISH
+    
+- Even if you don't, you can make one via KDEs from individual spatial coordinates
+    - Climate patterns?
+    - Canopy patterns?
+    - Cover crop patterns?
+    - Species spatial distribution?
+
+![](../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg)
+
+---
+
+# Software used
+
+.pull-left[
+- All the work has been done in python with mostly standard libries (`numpy`, `scikit-learn`, `matplotlib`, `pandas`, etc.)
+
+- KDEs computed efficiently with [`KDEpy`](https://kdepy.readthedocs.io/en/latest/)
+
+- Sublevel set filtration of images and persistence diagrams done with [`gudhi`](https://gudhi.inria.fr/)
+
+![](https://gudhi.inria.fr/assets/img/logo.png)
+]
+
+.pull-right[
+- Persistence Images computed with [`persim`](https://persim.scikit-tda.org/en/latest/)
+
+![](https://persim.scikit-tda.org/en/latest/_static/logo.png)
+]
+
+---
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:60%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/11/libault-returns-to-bond-lsc-as-plant-scientist-with-single-cell-focus-1.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Contact and slides:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;eah4d@missouri.edu&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; Libault Lab (MU) &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Marc Libault&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sandra Thibivillers&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Hengping Xu&lt;/li&gt;
+      &lt;li&gt;Sahand Amini&lt;/li&gt;
+      &lt;li&gt;Hong Fu&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sutton Tennant&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Md Sabbir Hossain&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:65%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; With help from:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sai Subash (Nebraska-Lincoln)&lt;/li&gt;
+      &lt;li&gt;Benjamin Smith (UC Berkeley)&lt;/li&gt;
+      &lt;li&gt;Samik Bhattacharya (Resolve Biosciences)&lt;/li&gt;
+      &lt;li&gt;Jasper Kläver (Resolve Biosciences)&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
