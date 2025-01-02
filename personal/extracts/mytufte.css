@@ -1,0 +1,28 @@
+@media(max-width: 1280px) { label.margin-toggle:not(.sidenote-number) { display: inline; }
+                           .sidenote, .marginnote { display: none; }
+                           .margin-toggle:checked + .sidenote, 
+                           .margin-toggle:checked + .marginnote { display: block;
+                                                                  float: left;
+                                                                  left: 1rem;
+                                                                  clear: both;
+                                                                  width: 95%;
+                                                                  margin: 1rem 2.5%;
+                                                                  vertical-align: baseline;
+                                                                  position: relative; }
+                           label { cursor: pointer; }
+                           pre.code { padding: 0; }
+                           .table-caption { display: block;
+                                            float:none;
+                                            clear: both;
+                                            width: 100%;
+											top: -3px;
+                                            margin-top: 2rem;
+                                            margin-bottom: 1rem;
+
+                                            vertical-align: baseline;
+                                            position: relative; }
+                           table { width: 100%; }
+                           img { width: 100%; } }
+
+@media screen and (max-width: 1280px) { p, footer, pre.code { width: 90%; }
+                                       blockquote p, blockquote footer { width: 90%; }}
