@@ -177,11 +177,18 @@ Teaching Experience {data-icon=chalkboard-teacher}
 CV %<>% print_section('teaching')
 ```
 
-Invited and recent talks {data-icon=microphone}
+Invited talks {data-icon=podcast}
 --------------------------------------------------------------------------------
 
 ```{r}
-CV %<>% print_section('talks_delivered')
+CV %<>% print_section('invited')
+```
+
+Recent contributed talks {data-icon=microphone}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('contributed')
 ```
 
 
