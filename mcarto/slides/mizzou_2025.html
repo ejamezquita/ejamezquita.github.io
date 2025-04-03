@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Shape is data, and data is shape</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
+    <meta name="date" content="2025-04-07" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Shape is data, and data is shape
+]
+.subtitle[
+## Mathematically phenotyping shapes and patterns, from molecules to organisms
+]
+.author[
+### Erik Amézquita<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
+]
+.date[
+### 2025-04-07
+]
+
+---
+
+
+
+
+# Shape has data, and data has shape
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:19%"&gt;
+    &lt;img src="../../barley/figs/S019_L0_1.gif"&gt;&lt;/img&gt;
+    &lt;img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:39%"&gt;
+    &lt;iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/LxNSbrfq3kY?si=Qw9qv3Og1XcPIUyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;img src="../../tda/figs/Mapper_ColorBy_Tissue.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:41%"&gt;
+    &lt;img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"&gt;&lt;/img&gt;
+    &lt;img src="../../tda/figs/g86.png"&gt;&lt;/img&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# We use Topological Data Analysis (TDA)!
+
+![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
+
+---
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
+
+# From MX to MI to MO at MU
+
+## I work across multiple disciplines and countries
+
+.left-column[
+![](../../img/dvdy216-toc-0001-m.jpg)
+]
+
+.right-column[
+- 2013 - 2018 : Licenciatura (Bachelor): Math @ at the Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis.
+
+- 2018 - 2023 : PhD: Computational Mathematics, Science, and Engineering @ Michigan State University. Dissertation: Exploring the mathematical shape of plants. **Came for the math. Stayed for the plants.**
+
+- 2023 - Present : PFFIE Postdoc Fellow @ Division of Plant Science &amp; Technology (80%) / Department of Mathematics (20%) at MU
+
+]
+
+---
+
+
+# My research: Crossing and merging bridges
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:21%"&gt;
+    &lt;a href="https://doi.org/10.1002/ppj2.20095" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:20%"&gt;
+    &lt;a href="https://doi.org/10.1007/s00299-024-03337-1" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../cuscuta/figs/4pm_rep7_plant2_v09_0401_h.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:21%"&gt;
+    &lt;a href="https://doi.org/10.1002/ppj2.20095" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../figs/Infected_Cells_05G216000_red_05G092200_green.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;a href="https://doi.org/10.1371/journal.pone.0284820" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:50%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tutorials/figs/myzou_plnt_sci_2500.png"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tutorials/figs/mizzou_math_drp.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%"&gt;
+    &lt;a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../tutorials/figs/ipg_network_r.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="list" style="font-size: 10px; text-align: left;"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;M. Bentelspacher, &lt;strong&gt;E.J.A.&lt;/strong&gt;, S. Adhikari, J. Barros, S.Y. Park (2024) The early dodder gets the host: Decoding the coiling patterns of Cuscuta campestris with automated image processing.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;E.J.A&lt;/strong&gt;, M.Y. Quigley, P.J. Brown, E. Munch, D.H. Chitwood (2024) Allometry and volumes in a nutshell: Analyzing walnut morphology using three-dimensional X-ray computed tomography.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;E.J.A.&lt;/strong&gt;, F. Nasrin, K.M. Storey, M. Yoshizawa (2023) Genomics data analysis via spectral shape and topology.&lt;/li&gt;
+      &lt;li&gt;S.A. Cervantes-Pérez &lt;em&gt;et al.&lt;/em&gt; (2024) Tabula Glycine: The whole-soybean single-cell resolution transcriptome atlas. Submitted.&lt;/li&gt;
+      &lt;li&gt;Z. Ji, &lt;strong&gt;E.J.A&lt;/strong&gt;, L. Newton, D.H. Chitwood, A.M. Thompson (2024) From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield. Submitted.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+# Phenotyping the shape of things to come
+
+&lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;"&gt;
+  &lt;div class="column" style="max-width:33%"&gt;
+    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;Phenotyping patterns&lt;/p&gt;
+    &lt;img style="padding: 0 30px;" src="../figs/molecular_cartography_2x2.jpg"&gt;&lt;/img&gt;
+    &lt;img style="padding: 0 30px;" src="../figs/persistence_images_1x1.svg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;mRNA sub-cellular localization in soybean nodule cells.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%"&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Phenotyping movement&lt;/p&gt;
+    &lt;img style="padding: 0 10px;" src="../../cuscuta/figs/qmlphv.gif"&gt;&lt;/img&gt;
+    &lt;img style="padding: 35px 30px;" src="../../cuscuta/figs/avg_pl.svg"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;Tracking and describing &lt;i&gt;Cuscuta campestris&lt;/i&gt; circumnutation&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:33%"&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Phenotyping data&lt;/p&gt;
+    &lt;img style="padding: 0 0px;" src="../../nasrin/figs/fpkm_raw_3.png"&gt;&lt;/img&gt;
+    &lt;img style="padding: 30px 0px;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"&gt;&lt;/img&gt;
+    &lt;p style="text-align: center;"&gt;Reducing &lt;strong&gt;and&lt;/strong&gt; clustering high-dimensional omics data&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+class: inverse, middle, center
+
+# 1. Characterizing spatial patterns and distributions
+
+## with Topological Data Analysis (TDA)
+
+### The significance of detecting connected components and holes
+
+---
+
+# mRNA localization FTW
+
+- **Another regulational mechanism**: Spatial segregation and asymmetrical distribution of mRNA.
+
+- Observed various spatial patterns across animal and plant species.
+
+.pull-left[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
+]
+
+.pull-right[
+
+- Energetically more efficient to transport mRNA than a whole protein
+
+- Efficient protein complex assembly
+
+- Prevent proteins from reaching the wrong cellular compartment
+
+- Subcellular localization influences proteome architecture and adaptation
+
+- mRNA can exert fuctions beyond the protein they encode
+]
+
+---
+
+# Grand goal with Molecular Cartography&amp;trade;
+
+![](../figs/molecular_cartography_2x4.png)
+
+- 97 genes (including 10 bacterial ones) &amp;rarr; 2 genes
+- 2938 cells &amp;rarr; 918 infected ones.
+
+**Subcellular transcript patterns &amp;harr; spatial location of the cell within the nodule**
+
+---
+
+# Traditional model: Density of transcripts
+
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_05G092200.png)
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_17G195900.png)
+
+But this characterization discards sub-cellular information!
+
+---
+
+class: inverse, middle, center
+
+# Alternate model: Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
+
+---
+
+
+
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_00.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_01.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_02.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_03.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_04.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_05.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_06.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_07.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_08.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_09.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_10.png)
+
+---
+# TDA: Keep track of blobs and holes
+
+![](../figs/GLYMA_05G092200_TDA_c02352_11.png)
+
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# PCA on all topological descriptors
+
+&lt;img src="../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_kde_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# Show me
+
+&lt;img src="../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+# Connecting PC 02 to the biological context
+
+![](../figs/sublevel_both_bw3_S25_PCA02_GLYMA_05G092200.png)
+![](../figs/sublevel_both_bw3_S25_PCA02_GLYMA_17G195900.png)
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+
+---
+
+# We define a morphospace of transcriptomic patterns
+
+![](../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
+
+# We then work "backward"
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_30_clusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_30_clusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_varclusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Discussion
+
+**Biologically speaking**
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+
+**Mathematically speaking**
+
+- Topological Data Analysis offers a robust way to encode the *shape of patterns*
+- Robust to differences in scale, underlying boundaries, or orientation
+- Adaptable to other patterns: Canopy patterns, Cover crop patterns, Species spatial distributions?
+
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, inverse, middle
+
+# 2. Tracking how a vampire plant wiggles
+
+&lt;img src="../../cuscuta/figs/bentelspacher_etal2024.png" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+# _Cuscuta_ : a vegetarian plant
+
+&lt;img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-018-04344-z/MediaObjects/41467_2018_4344_Fig1_HTML.jpg?as=webp" width="700px" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: center; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1038/s41467-018-04344-z"&gt;Vogel &lt;em&gt;et al.&lt;em&gt; (2018)&lt;/a&gt;&lt;/p&gt;
+
+---
+
+# Snapshots taken every 96 secs for 24h
+
+&lt;video width="900" controls&gt;
+  &lt;source src="../../cuscuta/video/9am_Inc_Rep_3_redone.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+- Study how _Cuscuta_ moves to ultimately stop it from attaching to crops in the first place.
+
+---
+
+# Putting it all together
+  
+&lt;video width="900" controls&gt;
+  &lt;source src="../../cuscuta/video/4pm_rep7_plant_01.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+---
+
+# Automated phenotyping
+
+&lt;img src="../../cuscuta/figs/4pm_rep7_plant_02_posang.png" width="700px" style="display: block; margin: auto;" /&gt;&lt;img src="../../cuscuta/figs/cuscuta_tracking.png" width="700px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Differences: Intiation and completion
+
+&lt;img src="../../cuscuta/figs/time_after_inoculation.svg" width="575" style="display: block; margin: auto;" /&gt;&lt;img src="../../cuscuta/figs/time_to_complete_coiling.svg" width="575" style="display: block; margin: auto;" /&gt;
+
+
+- Cuscuta at 4pm takes longer to get going and then to reach a stable position
+
+---
+
+# Discussion
+
+![](../../cuscuta/figs/cuscuta_circadian_model.png)
+
+**Biologically speaking**
+
+- Cuscuta can tell time despite lacking photoreceptors.
+- It prefers to act in the morning/early afternoon.
+
+**Computationally speaking**
+
+- Overall, the automated image analysis criteria agreed with the main conclusions drawn from the manual observation criteria. 
+- Our pipeline is ready to collect more data
+- Phenotype the wiggle itself under various environmental conditions?
+
+---
+
+background-image: url("../../cuscuta/figs/cuscuta_coords.jpg")
+background-size: 450px
+background-position: 95% 25%
+
+# Future directions
+
+.pull-left[
+- F
+- F
+- F
+- F
+- F
+- F
+- F
+- F
+- F
+- F
+]
+
+![](../../cuscuta/figs/tda_pipeline.jpg)
+
+---
+
+class: center, middle inverse
+
+# 3. Phenotyping data itself
+
+## Omics data analysis with topology
+
+&lt;img src="../../nasrin/figs/amezquita_etal_2023.png" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Setup
+
+- FPKM counts of RNAseq data from human lung tissue &amp;rarr; 19,648 genes
+    - 314 healthy samples (GTEx)
+    - 500 cancerous samples (TCGA)
+
+- Considered Z-scores drawn from a Gaussian Mixture Model (GMM).
+
+![](../../nasrin/figs/fpkm_raw_1.png)
+
+---
+
+# With tSNE/UMAP we can split the data
+
+- tSNE (or UMAP) separates healthy vs cancerous samples (blue vs red)
+   - (a): Using FPKM
+   - (b): Using GMM Z-scores
+
+![](../../nasrin/figs/mapper_vs_tsne.png)
+
+## Can we go from clusters to continua?
+
+---
+
+background-image: url("../../tda/figs/mapper_b_00.svg")
+background-size: 725px
+background-position: 50% 95%
+
+# Mapper 
+
+## Topological summary: exploration and visualization
+
+- We start with **lots** of data points `\(X\)` in a **high-dimensional** space
+
+- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**
+
+---
+
+background-image: url("../../tda/figs/mapper_c_complete.svg")
+background-size: 525px
+background-position: 50% 99%
+
+# Mapper in a single picture
+
+---
+
+# Notice that cancerous samples are split
+
+.pull-left[
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g006)
+
+![](../../nasrin/figs/lung_t0_meancorr_eps7.0e+02_r40_g30.png)
+]
+
+.pull-right[
+- Mapper produced mostly strand-like graphs regardless of parameters used
+
+- Position Index for each subject: 
+    - **`-1`**: subject is part of the 13 leftmost nodes
+    - **`+1`**: subject is part of the 13 rightmost nodes
+
+- Healthy subjects tend to stay at the center
+
+- Cancerous samples are distributed at both ends
+]
+
+---
+
+# Biological significance
+
+![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g009)
+
+---
+
+# Future perspectives and Conclusions
+
+.pull-left[
+Maintained python libraries to compute mapper
+
+- [Giotto-tda](https://github.com/giotto-ai/giotto-tda)
+- [KeplerMapper](https://kepler-mapper.scikit-tda.org/en/latest/)
+
+![](https://giotto-ai.github.io/gtda-docs/0.5.1/_static/tda_logo.svg)
+
+Data visualization to inspire new research
+
+]
+
+.pull-right[
+Plenty of untapped potential in plant genomics
+
+![](../../tda/figs/tissue_leaf_lens.png)
+
+Agnostic to any kind of omics data
+]
+
+
+---
+
+background-image: url("https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg")
+background-size: 500px
+background-position: 50% 95%
+
+class: inverse, center
+
+# 4. Potential future directions
+
+## TDA to bridge the genotype-phenotype gap
+
+## TDA to bridge the biology-mathematics gap
+
+### Mizzou, NextGen, and the IPG have all the resources needed to make sense of data in a high-throughput manner
+
+---
+
+# Comprehensive root phenotyping
+
+.pull-left[
+
+![](https://ipg.missouri.edu/images/facility_images/east_campus.jpeg)
+
+Potential collaborators @ Mizzou
+
+- Felix Fritschi
+- David Mendoza-Cozatl
+- Jacob Washburn (USDA)
+
+Potential collaborators around MO
+
+- Erin Chambers (SLU)
+- Tao Ju (WUSTL)
+- Mao Li &amp; Chris Topp (Danforth)
+
+]
+
+.pull-right[
+&lt;img src="../../psd/figs/Maiz_root_Dario.jpeg" width="225" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: Mendoza-Cozatl&lt;/p&gt;
+
+![](https://danzeng8.github.io/personalwebsite/images/pipeline.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1186/s13007-021-00829-z"&gt;Zeng &lt;em&gt;et al.&lt;/em&gt; (2021)&lt;/a&gt;&lt;/p&gt;
+
+]
+
+---
+
+## Fungal network features as functional traits
+
+.pull-left[
+
+![](https://www.slcu.cam.ac.uk/sites/www.slcu.cam.ac.uk/files/styles/leading/public/amfinder-stained_roots-edouard_evangelisti-1.jpg?itok=fBdJLRt7)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://www.slcu.cam.ac.uk/news/new-method-quantify-arbuscular-mycorrhizal-fungi-amf-colonisation-plant-roots"&gt;SLCU&lt;/a&gt;&lt;/p&gt;
+
+Quantify arbuscular mycorrhizal fungi (AMF) colonisation patterns of plant roots.
+
+Potential collaborators @ Mizzou
+
+- Heike Buecking
+- Gary Stacey
+
+External potential collaborators
+
+- Mason Porter (UCLA)
+
+]
+
+.pull-right[
+![](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/comnet/5/1/10.1093_comnet_cnv034/2/cnv03402.jpeg?Expires=1672627121&amp;Signature=QeExxwr4FhzoFGvhV9IV1Q6d2~2dkastJXjkG1AjgcbSl8p2wc3Rghaywb9j~Eoriehlp50t9YttUxm8bdAtqFIwFaWgY~vKjohinbvUy9zvB9m5qi3PpCIqQ47~UeXnTHUV22rf-SsxXMgaHHE~GRlKTVq3jPH3sCyhM4igKcay32hWoWNstt7XbkNTcuHo4RKsNUV-O4YdK4GuJRxFVYJOHfdYQG3A1AYQG9PwY~OQ1qyYiWJlq-X4ZQHypSUy4tH2etuJrNRFua1z4LwpYuWyaxK1PIrJTGv7DFs1T6iB-MY5KE9kYm4sMq4GyTUCDGD-VEClm0MoYv5V8mGSPg__&amp;Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1093/comnet/cnv034"&gt;Hoon Lee &lt;em&gt;et al.&lt;/em&gt; (2017)&lt;/a&gt;&lt;/p&gt;
+]
+
+
+---
+
+# Quantifying the shape of cellular patterns
+
+.pull-left[
+
+![](https://ipg.missouri.edu/Images/facility_images/MCC.jpg)
+
+The **Molecular Cytology Core** at the **Bond Life Science Center** offers state-of-the-art microscopy imaging and resources.
+
+Potential collaborators @ Mizzou
+
+- Ron Mittler
+- Melvin Oliver
+- Robert Sharp
+
+External potential collaborators
+
+- Pau Formosa-Jordan (MPIPZ)
+
+]
+
+.pull-right[
+
+&lt;img src="../../psd/figs/pavement_plasma.jpg" width="250" style="display: block; margin: auto;" /&gt;&lt;img src="../../psd/figs/bw_pavement_geometry_area.gif" width="250" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+# Omics networks also have shape!
+
+.pull-left[
+
+![](https://research.missouri.edu/sites/default/files/featured-img/2021-12/panlabview.jpg)
+
+The **Genomics Technology Core**, the **Gehrke Proteomics Center**, and the **Metabolomics Center** will provide detailed omics network data, from which further structure can be inferred.
+
+Potential collaborators @ MU
+
+
+- Ruthie Angelovici
+- Trupti Joshi
+- Andrew Scaboo
+
+]
+
+.pull-right[
+
+![](../../tda/figs/tissue_leaf_lens.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2022.09.07.506951"&gt;Palande &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+
+]
+
+---
+
+# The intricacies of protein shape
+
+.pull-left[
+
+![](https://research.missouri.edu/sites/default/files/featured-img/2022-02/emc-news-announcements-8jpg.jpg)
+
+The **Electron Microscopy Core** at the **NextGen Precision Health building** offers state-of-the-art Cryo-EM resources for protein imaging.
+
+Potential collaborators @ MU
+
+- Jianlin Cheng
+- Brian Mooney
+- Dong Xu
+
+]
+
+.pull-right[
+
+![](https://journals.plos.org/ploscompbiol/article/figure/image?size=large&amp;id=10.1371/journal.pcbi.1010045.g001)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1371/journal.pcbi.1010045"&gt;Tang &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+
+![](../../proteins/figs/protein_vr_rsz.gif)
+]
+
+---
+
+background-image: url("../../tutorials/figs/PlantsPythonQR.jpg")
+background-size: 350px
+background-position: 50% 95%
+
+class: inverse, center
+
+# Plants &amp; Python
+
+## Large amounts of data require large amounts of people
+
+## Freely available at [bit.ly/plantspython](https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html)
+
+
+---
+
+background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
+background-size: 180px
+background-position: 99% 1%
+
+## Python taught especifically for plant biologists
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="500" src="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" title="Plants and Python"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p style="font-size: 8px; text-align: right; color: Grey;"&gt;&lt;a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html"&gt;Original link&lt;/a&gt;&lt;/p&gt;
+
+---
+
+background-image: url("../../tutorials/figs/plantspython22_02.png")
+background-size: 180px
+background-position: 99% 1%
+
+# Hybrid class format
+
+.pull-left[
+
+- Offered in hybrid format between MSU and UNAM
+
+- 3-credit course during Fall semester
+
+- **HRT 841**: Foundation in Computational and Plant Science
+
+- **UNAM Temas Selectos**: Bioinformática y Minería de Datos con Python
+
+- Freely available material in jupyter notebook format.
+
+- Material in English and Spanish.
+
+]
+
+.pull-right[
+![](../../tutorials/figs/class_foto1.png)
+![](../../tutorials/figs/plantspython22_01.png)
+]
+
+
+---
+
+## Empower students to lead cutting-edge research
+
+.pull-left[
+Large amounts of data require large amounts of people
+
+Build off SPIP (Small Plant Imaging Platform) a hands-on class experience.
+
+MU's Engineering and Information Technology Program hosts faculty with advanced pedagogical knowledge and skills to enrich the project.
+
+Potential collaborators @ MU
+
+- Brian Maurer
+- Dale Musser
+- Jon Stemmle
+
+]
+
+.pull-right[
+
+Plants&amp;Python 2019
+&lt;img src="https://bsapubs.onlinelibrary.wiley.com/cms/asset/d5c10e59-0479-4be0-a19e-fddb0ef49ef0/aps311404-fig-0004-m.jpg" width="250" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1002/aps3.11404"&gt;Bryson &lt;em&gt;et al.&lt;/em&gt; (2020)&lt;/a&gt;&lt;/p&gt;
+
+Plants&amp;Python 2020
+&lt;img src="https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&amp;height=600&amp;carousel=1" width="250" style="display: block; margin: auto;" /&gt;
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1101/2022.09.07.506951"&gt;Palande &lt;em&gt;et al.&lt;/em&gt; (2022)&lt;/a&gt;&lt;/p&gt;
+]
+
+---
+
+
+background-image: url("../../img/phd_institutional_logos.jpg")
+background-size: 500px
+background-position: 95% 1%
+
+class: inverse
+
+## Thank you!
+
+&lt;div class="row" style="margin-top: -25px;"&gt;
+  &lt;div class="column" style="max-width:19.5%; font-size: 13px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Liz Munch&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Tim Ophelders&lt;br&gt;(Utrecht)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Jacob Landis&lt;br&gt;(Cornell)&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:19.5%; font-size: 13px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Dan Chitwood&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg"&gt;
+    &lt;p style="text-align: center; color: White"&gt;Michelle Quigley&lt;br&gt;(MSU)&lt;/p&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../psd/figs/mizzou22.png"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:14%; font-size: 13px;"&gt;
+  &lt;img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p"&gt;
+  &lt;p style="text-align: center; color: White"&gt;Dan Koenig&lt;br&gt;(UC Riverside)&lt;/p&gt;
+  &lt;img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh"&gt;
+  &lt;p style="text-align: center; color: White"&gt;Danelle Seymour&lt;br&gt;(UC Riverside)&lt;/p&gt;
+  &lt;p style="text-align: left; color: Yellow; font-size:24px; line-height: 1em;"&gt;&amp;larr; Grab &amp;larr; these &amp;larr; slides&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:10%; font-size: 24px;"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;amezqui3@msu.edu&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;Slides&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: Yellow"&gt;bit.ly/mu_22&lt;/p&gt;
+  &lt;p style="text-align: center; color: White"&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    &lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. &lt;a href="https://doi.org/10.1002/ppp3.10333" target="_blank"&gt;DOI: 10.1002/ppp3.10333&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    &lt;strong&gt;E.A.&lt;/strong&gt; &lt;em&gt;et al.&lt;/em&gt; (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. &lt;a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank"&gt;DOI: 10.1093/insilicoplants/diab033&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;p style="text-align: center; color: White; font-size: 12px; text-align:left"&gt;
+    VanBuren, R. &lt;em&gt;et al.&lt;/em&gt; (2022) Plants &amp; Python: A series of lessons in coding, plant biology, computation, and bioinformatics. &lt;a href="https://doi.org/10.1093/plcell/koac187" target="_blank"&gt;DOI: 10.1093/plcell/koac187&lt;/a&gt;
+  &lt;/p&gt;
+    &lt;p style="text-align: center; color: White; font-size:15px; line-height:1.1"&gt;Slides made in &lt;a href="https://bookdown.org/yihui/rmarkdown/xaringan.html" target="_blank"&gt;xaringan&lt;/a&gt;.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
