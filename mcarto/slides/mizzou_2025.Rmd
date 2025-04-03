@@ -72,7 +72,7 @@ background-position: 98% 2%
 ---
 
 
-# My research: Crossing and merging bridges
+# My work: Crossing and merging bridges
 
 <div class="row">
   <div class="column" style="max-width:21%">
@@ -218,6 +218,24 @@ slides_text <- glue::glue_data(
 
 ---
 
+# TDA: From patterns to numbers
+
+![](../figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+# Do TDA for all cell-gene combinations
+
+```{r, out.width=500}
+knitr::include_graphics(c('../figs/molecular_cartography_2x4.png'))
+```
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/persistence_images_2x4.png'))
+```
+
+---
+
 background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sample.png")
 background-size: 620px
 background-position: 75% 99%
@@ -284,7 +302,7 @@ knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclus
 
 ---
 
-# Discussion
+# Discussion and future directions
 
 **Biologically speaking**
 
@@ -382,7 +400,7 @@ background-image: url("../../cuscuta/figs/cuscuta_coords.jpg")
 background-size: 450px
 background-position: 95% 25%
 
-# Future directions
+# Future wiggle room
 
 .pull-left[
 - F
@@ -487,7 +505,7 @@ background-position: 50% 99%
 
 ---
 
-# Future perspectives and Conclusions
+# Discussion and future directions
 
 .pull-left[
 Maintained python libraries to compute mapper
@@ -512,177 +530,117 @@ Agnostic to any kind of omics data
 
 ---
 
-background-image: url("https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg")
-background-size: 500px
-background-position: 50% 95%
+class: inverse, center, middle
 
-class: inverse, center
+# 4. The shape of things to come
 
-# 4. Potential future directions
+## New research frontiers at the intersection of math, data science, and plant biology
 
-## TDA to bridge the genotype-phenotype gap
+### Phenotyping at all scales 
 
-## TDA to bridge the biology-mathematics gap
-
-### Mizzou, NextGen, and the IPG have all the resources needed to make sense of data in a high-throughput manner
-
----
-
-# Comprehensive root phenotyping
-
-.pull-left[
-
-![](https://ipg.missouri.edu/images/facility_images/east_campus.jpeg)
-
-Potential collaborators @ Mizzou
-
-- Felix Fritschi
-- David Mendoza-Cozatl
-- Jacob Washburn (USDA)
-
-Potential collaborators around MO
-
-- Erin Chambers (SLU)
-- Tao Ju (WUSTL)
-- Mao Li & Chris Topp (Danforth)
-
-]
-
-.pull-right[
-```{r, out.width=225}
-knitr::include_graphics(c('../../psd/figs/Maiz_root_Dario.jpeg'))
+```{r, out.width=400, fig.align='center'}
+knitr::include_graphics('https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg')
 ```
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: Mendoza-Cozatl</p>
-
-![](https://danzeng8.github.io/personalwebsite/images/pipeline.png)
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1186/s13007-021-00829-z">Zeng <em>et al.</em> (2021)</a></p>
-
-]
 
 ---
 
-## Fungal network features as functional traits
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+# Complex network analysis
 
 .pull-left[
 
-![](https://www.slcu.cam.ac.uk/sites/www.slcu.cam.ac.uk/files/styles/leading/public/amfinder-stained_roots-edouard_evangelisti-1.jpg?itok=fBdJLRt7)
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://www.slcu.cam.ac.uk/news/new-method-quantify-arbuscular-mycorrhizal-fungi-amf-colonisation-plant-roots">SLCU</a></p>
+Further analysis of Mapper networks
 
-Quantify arbuscular mycorrhizal fungi (AMF) colonisation patterns of plant roots.
+Or of complex gene networks in general
 
-Potential collaborators @ Mizzou
 
-- Heike Buecking
-- Gary Stacey
-
-External potential collaborators
-
-- Mason Porter (UCLA)
+![](../../tda/figs/tissue_leaf_lens.png)
 
 ]
 
 .pull-right[
-![](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/comnet/5/1/10.1093_comnet_cnv034/2/cnv03402.jpeg?Expires=1672627121&Signature=QeExxwr4FhzoFGvhV9IV1Q6d2~2dkastJXjkG1AjgcbSl8p2wc3Rghaywb9j~Eoriehlp50t9YttUxm8bdAtqFIwFaWgY~vKjohinbvUy9zvB9m5qi3PpCIqQ47~UeXnTHUV22rf-SsxXMgaHHE~GRlKTVq3jPH3sCyhM4igKcay32hWoWNstt7XbkNTcuHo4RKsNUV-O4YdK4GuJRxFVYJOHfdYQG3A1AYQG9PwY~OQ1qyYiWJlq-X4ZQHypSUy4tH2etuJrNRFua1z4LwpYuWyaxK1PIrJTGv7DFs1T6iB-MY5KE9kYm4sMq4GyTUCDGD-VEClm0MoYv5V8mGSPg__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1093/comnet/cnv034">Hoon Lee <em>et al.</em> (2017)</a></p>
+
+Or even analysis on the collaboration within the IPG
+
+```{r, out.width=300, fig.align='center'}
+knitr::include_graphics('../../tutorials/figs/ipg_network.jpg')
+```
+
 ]
 
+Math students: Ethan Lenhardt, Sophia Knehans, Roberto Herrera
 
 ---
 
-# Quantifying the shape of cellular patterns
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+# Spatial topological data analysis
 
 .pull-left[
 
-![](https://ipg.missouri.edu/Images/facility_images/MCC.jpg)
+```{r, out.width=200, fig.align='center'}
+knitr::include_graphics(c('../../tda/figs/025-imperial.png', '../../tda/figs/107-tulare.png'))
+```
 
-The **Molecular Cytology Core** at the **Bond Life Science Center** offers state-of-the-art microscopy imaging and resources.
+```{r, out.width=200, fig.align='center'}
+knitr::include_graphics('https://www.researchgate.net/publication/362833654/figure/fig2/AS:11431281098979080@1669173266225/Two-persistence-diagrams-for-the-simulation-shown-in-Fig-1-The-blue-crosses-represent.png')
+```
 
-Potential collaborators @ Mizzou
+]
 
-- Ron Mittler
-- Melvin Oliver
-- Robert Sharp
+.pull-right[
 
-External potential collaborators
+Use TDA to analyze geographical patterns across the state.
 
-- Pau Formosa-Jordan (MPIPZ)
+![](https://i.emlfiles4.com/cmpimg/9/4/0/0/9/1/files/imagecache/1098401/w660_1719770_connectingentrepreneurialcommunitieslogosmall.jpg)
+
+Use TDA to analyze spatial patterns patterns: if you squint enough, a voting district looks pretty much like a plant cell. 
+
+```{r, out.width=200}
+knitr::include_graphics(c('../../psd/figs/pavement_plasma.jpg'))
+```
+
+]
+
+Math students: Jake Parmentier and Thomas Searcy
+
+---
+
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+
+# Phenotype everywhere!
+
+.pull-left[
+![](../../yeast2hybrid/figs/centers_plate_5.jpg)
+![](../../yeast2hybrid/figs/p53_P06_contrasting_whiteness_red_1_45_6.png)
+![](../../yeast2hybrid/figs/50mM 3AT OEV-control_P01_contrasting_sizes_gray_0_30_4.png)
+
+Image automation (w/ David Mendoza)
 
 ]
 
 .pull-right[
 
 ```{r, out.width=250}
-knitr::include_graphics(c('../../psd/figs/pavement_plasma.jpg', '../../psd/figs/bw_pavement_geometry_area.gif'))
+knitr::include_graphics(c('../../psd/figs/MAX_Composite-1.jpg'))
+```
+Spatial transcriptomics (w/Jie Zhu)
+
+```{r, out.width=250}
+knitr::include_graphics(c('../../root_necrosis/figs/geodesic_comparison_-_222M_side1_030117006.png'))
 ```
 
-]
-
----
-
-# Omics networks also have shape!
-
-.pull-left[
-
-![](https://research.missouri.edu/sites/default/files/featured-img/2021-12/panlabview.jpg)
-
-The **Genomics Technology Core**, the **Gehrke Proteomics Center**, and the **Metabolomics Center** will provide detailed omics network data, from which further structure can be inferred.
-
-Potential collaborators @ MU
-
-
-- Ruthie Angelovici
-- Trupti Joshi
-- Andrew Scaboo
+2D root image analysis (w/ Miranda Haus (MSU))
 
 ]
-
-.pull-right[
-
-![](../../tda/figs/tissue_leaf_lens.png)
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1101/2022.09.07.506951">Palande <em>et al.</em> (2022)</a></p>
-
-]
-
----
-
-# The intricacies of protein shape
-
-.pull-left[
-
-![](https://research.missouri.edu/sites/default/files/featured-img/2022-02/emc-news-announcements-8jpg.jpg)
-
-The **Electron Microscopy Core** at the **NextGen Precision Health building** offers state-of-the-art Cryo-EM resources for protein imaging.
-
-Potential collaborators @ MU
-
-- Jianlin Cheng
-- Brian Mooney
-- Dong Xu
-
-]
-
-.pull-right[
-
-![](https://journals.plos.org/ploscompbiol/article/figure/image?size=large&id=10.1371/journal.pcbi.1010045.g001)
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1371/journal.pcbi.1010045">Tang <em>et al.</em> (2022)</a></p>
-
-![](../../proteins/figs/protein_vr_rsz.gif)
-]
-
----
-
-background-image: url("../../tutorials/figs/PlantsPythonQR.jpg")
-background-size: 350px
-background-position: 50% 95%
-
-class: inverse, center
-
-# Plants & Python
-
-## Large amounts of data require large amounts of people
-
-## Freely available at [bit.ly/plantspython](https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html)
-
 
 ---
 
@@ -690,129 +648,139 @@ background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images
 background-size: 180px
 background-position: 99% 1%
 
-## Python taught especifically for plant biologists
+class: inverse, center, middle
+
+# Training the next generation of interdisciplinary scientists
+
+## Large amounts of data require large amounts of people
+
+## PLNT_SCI 2500: Data Science for Life Sciences I
+
+![](../../tutorials/figs/myzou_plnt_sci_2500.png)
+
+---
+
+## PLNT_SCI 2500: Python taught for life sciences
 
 <p align="center">
-<iframe width="800" height="500" src="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html" title="Plants and Python">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-10_In-Class_NumPyDataAnalysis2-INSTRUCTOR.html" title="Day10">
 </iframe>
 </p>
-<p style="font-size: 8px; text-align: right; color: Grey;"><a href="https://plantsandpython.github.io/PlantsAndPython/00_Opening_page.html">Original link</a></p>
 
 ---
 
-background-image: url("../../tutorials/figs/plantspython22_02.png")
-background-size: 180px
+
+## PLNT_SCI 2500: With data from CAFNR faculty!
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-13_In-Class_Regression-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+
+## PLNT_SCI 2500: Active learning, example driven
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-20_In-Class_AdvancedPlotting-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+background-image: url("https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&height=600&carousel=1")
+background-size: 325px
+background-position: 1% 60%
+
+# Discussion
+
+**PLNT_SCI 2500: Data Science for Life Sciences I will be the first course for the emerging Data Science for Life Sciences Certificate**
+
+.right-column[
+
+- Incorporate examples from outside Plant Science to appeal to more students
+
+- Data Science for Life Sciences II will build on top more Data Science topics:
+    - Supervised and unsupervised classification
+    - Clustering algorithms
+    - Non-linear regressions
+    - Network analyses
+    - Statistical paradoxes to be wary of
+    
+**Personal Goal: Make the teaching of data science in life sciences a scientific endeavor in itself**
+
+- Collaborate with colleagues from the College of Education.
+- Motivate students to tackle a single research problem as a unit.
+
+]
+
+---
+
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
+background-size: 60px
 background-position: 99% 1%
-
-# Hybrid class format
-
-.pull-left[
-
-- Offered in hybrid format between MSU and UNAM
-
-- 3-credit course during Fall semester
-
-- **HRT 841**: Foundation in Computational and Plant Science
-
-- **UNAM Temas Selectos**: Bioinformática y Minería de Datos con Python
-
-- Freely available material in jupyter notebook format.
-
-- Material in English and Spanish.
-
-]
-
-.pull-right[
-![](../../tutorials/figs/class_foto1.png)
-![](../../tutorials/figs/plantspython22_01.png)
-]
-
-
----
-
-## Empower students to lead cutting-edge research
-
-.pull-left[
-Large amounts of data require large amounts of people
-
-Build off SPIP (Small Plant Imaging Platform) a hands-on class experience.
-
-MU's Engineering and Information Technology Program hosts faculty with advanced pedagogical knowledge and skills to enrich the project.
-
-Potential collaborators @ MU
-
-- Brian Maurer
-- Dale Musser
-- Jon Stemmle
-
-]
-
-.pull-right[
-
-Plants&Python 2019
-```{r, out.width=250}
-knitr::include_graphics(c('https://bsapubs.onlinelibrary.wiley.com/cms/asset/d5c10e59-0479-4be0-a19e-fddb0ef49ef0/aps311404-fig-0004-m.jpg'))
-```
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1002/aps3.11404">Bryson <em>et al.</em> (2020)</a></p>
-
-Plants&Python 2020
-```{r, out.width=250}
-knitr::include_graphics(c('https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&height=600&carousel=1'))
-```
-<p style="font-size: 10px; text-align: right; color: Grey;"> Credits: <a href="https://doi.org/10.1101/2022.09.07.506951">Palande <em>et al.</em> (2022)</a></p>
-]
-
----
-
-
-background-image: url("../../img/phd_institutional_logos.jpg")
-background-size: 500px
-background-position: 95% 1%
 
 class: inverse
 
 ## Thank you!
 
-<div class="row" style="margin-top: -25px;">
-  <div class="column" style="max-width:19.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/607374528233472-1521820780707_Q128/Elizabeth-Munch.jpg">
-    <p style="text-align: center; color: White">Liz Munch<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://alga.win.tue.nl/images/staff/tim.jpg">
-    <p style="text-align: center; color: White">Tim Ophelders<br>(Utrecht)</p>
-    <img style="padding: 0 0 0 0;" src="https://publons.com/media/thumbs/academic/photos/252a7116-ee14-4a5e-b44c-7c62ac11e217.png.200x200_q95_crop_detail_upscale.png">
-    <p style="text-align: center; color: White">Jacob Landis<br>(Cornell)</p>
-  </div>
-  <div class="column" style="max-width:19.5%; font-size: 13px;">
-    <img style="padding: 0 0 0 0;" src="https://www.canr.msu.edu/contentAsset/image/9ae9777d-157c-46e6-9f12-d062ad35671e/fileAsset/filter/Jpeg,Resize,Crop/jpeg_q/80/resize_w/400/crop_x/0/crop_y/45/crop_w/400/crop_h/400">
-    <p style="text-align: center; color: White">Dan Chitwood<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="https://i1.rgstatic.net/ii/profile.image/926632407748609-1597937790454_Q128/Michelle-Quigley.jpg">
-    <p style="text-align: center; color: White">Michelle Quigley<br>(MSU)</p>
-    <img style="padding: 0 0 0 0;" src="../../psd/figs/mizzou22.png">
-  </div>
-  <div class="column" style="max-width:14%; font-size: 13px;">
-  <img style="padding: 0 0 0 0;" src="https://plantbiology.ucr.edu/sites/g/files/rcwecm1001/files/styles/scale_225/public/Koenig.jpg?itok=P92Ow61p">
-  <p style="text-align: center; color: White">Dan Koenig<br>(UC Riverside)</p>
-  <img style="padding: 0 0 0 0;" src="https://iigb.ucr.edu/sites/g/files/rcwecm5716/files/styles/scale_225/public/Seymour.jpg?itok=pnUK_orh">
-  <p style="text-align: center; color: White">Danelle Seymour<br>(UC Riverside)</p>
-  <p style="text-align: left; color: Yellow; font-size:24px; line-height: 1em;">&larr; Grab &larr; these &larr; slides</p>
-  </div>
-  <div class="column" style="width:10%; font-size: 24px;">
-  </div>
-  <div class="column" style="max-width:30%; font-size: 24px; line-height:1.25">
-  <p style="text-align: center; color: White"><strong>Email</strong></p>
-  <p style="text-align: center; color: Yellow">amezqui3@msu.edu</p>
-  <p style="text-align: center; color: White"><strong>Slides</strong></p>
-  <p style="text-align: center; color: Yellow">bit.ly/mu_22</p>
-  <p style="text-align: center; color: White"><strong>References</strong></p>
-  <p style="text-align: center; color: White; font-size: 12px; text-align:left">
-    <strong>E.A.</strong> <em>et al.</em> (2022) The shape of aroma: measuring and modeling citrus oil gland distribution. <a href="https://doi.org/10.1002/ppp3.10333" target="_blank">DOI: 10.1002/ppp3.10333</a>
-  </p>
-  <p style="text-align: center; color: White; font-size: 12px; text-align:left">
-    <strong>E.A.</strong> <em>et al.</em> (2021) Measuring hidden phenotype: Quantifying the shape of barley seeds using the Euler Characteristic Transform. <a href="https://doi.org/10.1093/insilicoplants/diab033" target="_blank">DOI: 10.1093/insilicoplants/diab033</a>
-  </p>
-  <p style="text-align: center; color: White; font-size: 12px; text-align:left">
-    VanBuren, R. <em>et al.</em> (2022) Plants & Python: A series of lessons in coding, plant biology, computation, and bioinformatics. <a href="https://doi.org/10.1093/plcell/koac187" target="_blank">DOI: 10.1093/plcell/koac187</a>
-  </p>
-    <p style="text-align: center; color: White; font-size:15px; line-height:1.1">Slides made in <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html" target="_blank">xaringan</a>.</p>
-  </div>
-</div>
+.pull-left[
+
+**mRNA sub-cellular localization**
+
+- Sutton Tennant
+- Sandra Thibivillers
+- Sai Subhash
+- Benjamin Smith
+- Samik Bhattacharya
+- Jasper Kläver
+- Marc Libault
+
+**Cuscuta circadian rhythm and locomotion**
+
+- Max Bentelspacher
+- Supral Adhikari
+- Jaime Barros-Rios
+- Joseph Lynch
+- So-Yon Park
+
+**Mapper for omics analysis**
+
+- Farzana Nasrain
+- Katie Storey
+- Masato Yoshizawa
+
+]
+
+.pull-right[
+
+**Collaboration of the IPG network**
+
+- Ethan Lenhardt
+- Sophia Knehans
+- Roberto Herrera
+- David Braun
+
+**Data Science for Life Sciences I**
+
+- Kent Shannon
+- Andrew Scaboo
+- Jianfeng Zhou
+- Debbie Finke
+
+**Other ongoing projects**
+
+- Leyre Urmeneta
+- Laura Martins
+- Mather Khan
+- David Mendoza-Cozatl
+- Miranda Haus
+- Jie Zhu
+
+**More details**
+
+<p style="font-size: 20px; text-align: center; color: Blue;">ejamezquita.github.io/</p>
+<p style="font-size: 20px; text-align: center; color: Blue;">eah4d@missouri.edu</p>
+
+]
