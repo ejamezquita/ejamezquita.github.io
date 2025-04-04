@@ -351,12 +351,13 @@ background-position: 50% 1%
 
 - Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
 - Loss of mRNA localization may be a lesser known contributor to cell senescence.
+- Now we have a mathematical benchmark which we can validate against.
 
 **Mathematically speaking**
 
 - Topological Data Analysis offers a robust way to encode the *shape of patterns*
-- Robust to differences in scale, underlying boundaries, or orientation
-- Adaptable to other patterns: Canopy patterns, Cover crop patterns, Species spatial distributions?
+- Robust to differences in scale, underlying boundaries, or orientation.
+- The framework is open to any number of cells, genes, and dimensions.
 
 &lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg" width="550" style="display: block; margin: auto;" /&gt;
 
@@ -434,16 +435,10 @@ background-position: 95% 25%
 # Future wiggle room
 
 .pull-left[
-- F
-- F
-- F
-- F
-- F
-- F
-- F
-- F
-- F
-- F
+**Grant re-submitted to NSF eMB (Emerging Mathematics in Biology) on March 2025**
+- Cuscuta locomotion is affected by Volatile Organic Compounds (VOCs).
+- Transform a Cuscuta position into a vector of angles.
+- Use TDA to characterize all the vectors of all the positions.
 ]
 
 ![](../../cuscuta/figs/tda_pipeline.jpg)
@@ -506,7 +501,7 @@ background-position: 50% 99%
 
 ---
 
-# Notice that cancerous samples are split
+# Mapper and lung cancer data
 
 .pull-left[
 ![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g006)
@@ -537,23 +532,18 @@ background-position: 50% 99%
 # Discussion and future directions
 
 .pull-left[
-Maintained python libraries to compute mapper
-
-- [Giotto-tda](https://github.com/giotto-ai/giotto-tda)
-- [KeplerMapper](https://kepler-mapper.scikit-tda.org/en/latest/)
-
-![](https://giotto-ai.github.io/gtda-docs/0.5.1/_static/tda_logo.svg)
-
-Data visualization to inspire new research
-
+- Data visualization to inspire new research.
+- It is not just about finding low-dimensional clusters (UMAP already does a terrific job at that), but finding continua of clusters.
+- Agnostic to any kind of omics data
+- Mapper remains underused and there is plenty of untapped potential in plant genomics
 ]
 
 .pull-right[
-Plenty of untapped potential in plant genomics
 
 ![](../../tda/figs/tissue_leaf_lens.png)
 
-Agnostic to any kind of omics data
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig3_HTML.jpg?as=webp)
+
 ]
 
 
