@@ -48,6 +48,13 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 ---
 
+# Roadmap for today
+
+
+
+
+---
+
 background-image: url("../../demat/figs/fam9_3.png")
 background-size: 100px
 background-position: 98% 2%
