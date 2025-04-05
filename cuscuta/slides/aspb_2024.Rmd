@@ -35,7 +35,7 @@ knitr::include_graphics(c('https://media.springernature.com/full/springer-static
 # Haustoria: more intimate than Twilight
 
 ![](../figs/haustoria_photo_diagram.jpg)
-<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1093/jxb/erv482">Olsen <em>et al.<em> (2015)</a></p>
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1093/jxb/erv482">Olsen <em>et al.</em> (2015)</a></p>
 
 ---
 

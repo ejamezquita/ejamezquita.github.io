@@ -23,6 +23,41 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
+background-image: url("../../barley/figs/seed.png")
+background-size: 325px
+background-position: 99% 99%
+
+class: middle
+
+# Roadmap for today
+
+1. Introduction and about me
+
+1. The shape of spatial patterns of mRNA
+
+1. The shape of the movement of a vampire plant
+
+1. The shape of omics data analysis
+
+1. The shape of things to come
+
+1. Shaping the next generation of interdisciplinary scientists
+
+
+---
+
+class: inverse, middle, center
+
+# 1. Introduction
+
+## Shape has data, and data has shape
+
+### Visual intuition &rarr; Numbers
+
+### Numbers &rarr; Visual intuition
+
+---
+
 # Shape has data, and data has shape
 
 <div class="row">
@@ -32,7 +67,7 @@ knitr::opts_chunk$set(fig.align = 'center')
   </div>
   <div class="column" style="max-width:39%">
     <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/LxNSbrfq3kY?si=Qw9qv3Og1XcPIUyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <img src="../../tda/figs/Mapper_ColorBy_Tissue.png"></img>
+    <img src="../../mcarto/figs/Infected_Cells_01G164600_green_05G092200_yellow.jpg"></img>
   </div>
   <div class="column" style="max-width:41%">
     <img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"></img>
@@ -45,13 +80,6 @@ knitr::opts_chunk$set(fig.align = 'center')
 # We use Topological Data Analysis (TDA)!
 
 ![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
-
----
-
-# Roadmap for today
-
-
-
 
 ---
 
@@ -68,13 +96,16 @@ background-position: 98% 2%
 ]
 
 .right-column[
-- 2013 - 2018 : Licenciatura (Bachelor): Math @ at the Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis.
+- 2013 - 2018 : Licenciatura (Bachelor): Mathematics @ Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis applied to archaeology.
 
 - 2018 - 2023 : PhD: Computational Mathematics, Science, and Engineering @ Michigan State University. Dissertation: Exploring the mathematical shape of plants. **Came for the math. Stayed for the plants.**
 
-- 2023 - Present : PFFIE Postdoc Fellow @ Division of Plant Science & Technology (80%) / Department of Mathematics (20%) at MU
-
+- 2023 - Present : PFFIE Postdoctoral Fellow @ Division of Plant Science & Technology (80%) / Department of Mathematics (20%) at MU.
 ]
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+The interdisciplinarity of plant research at MU has been key to my professional development.
 
 ---
 
@@ -83,7 +114,7 @@ background-position: 98% 2%
 
 <div class="row">
   <div class="column" style="max-width:21%">
-    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"></a>
+    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../../walnuts/figs/meat_2_05.png"></a>
   </div>
   <div class="column" style="max-width:20%">
     <a href="https://doi.org/10.1007/s00299-024-03337-1" target="_blank"><img style="padding: 0 0 0 0;" src="../../cuscuta/figs/4pm_rep7_plant2_v09_0401_h.jpg"></a>
@@ -91,28 +122,30 @@ background-position: 98% 2%
   <div class="column" style="max-width:21%">
     <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/Infected_Cells_05G216000_red_05G092200_green.jpg"></a>
   </div>
-  <div class="column" style="max-width:30%">
+  <div class="column" style="max-width:27%">
     <a href="https://doi.org/10.1371/journal.pone.0284820" target="_blank"><img style="padding: 0 0 0 0;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"></a>
   </div>
 </div>
 
 <div class="row">
-  <div class="column" style="max-width:50%">
+  <div class="column" style="width:10%">
+  </div>
+  <div class="column" style="max-width:43%">
     <img style="padding: 0 0 0 0;" src="../../tutorials/figs/myzou_plnt_sci_2500.png">
     <img style="padding: 0 0 0 0;" src="../../tutorials/figs/mizzou_math_drp.png">
   </div>
-  <div class="column" style="max-width:40%">
+  <div class="column" style="max-width:32%">
     <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tutorials/figs/ipg_network_r.jpg"></a>
   </div>
 </div>
 
-<div class="list" style="font-size: 10px; text-align: left;">
+<div class="list" style="font-size: 14px; text-align: left;">
     <ul>
-      <li>M. Bentelspacher, <strong>E.J.A.</strong>, S. Adhikari, J. Barros, S.Y. Park (2024) The early dodder gets the host: Decoding the coiling patterns of Cuscuta campestris with automated image processing.</li>
-      <li><strong>E.J.A</strong>, M.Y. Quigley, P.J. Brown, E. Munch, D.H. Chitwood (2024) Allometry and volumes in a nutshell: Analyzing walnut morphology using three-dimensional X-ray computed tomography.</li>
-      <li><strong>E.J.A.</strong>, F. Nasrin, K.M. Storey, M. Yoshizawa (2023) Genomics data analysis via spectral shape and topology.</li>
-      <li>S.A. Cervantes-Pérez <em>et al.</em> (2024) Tabula Glycine: The whole-soybean single-cell resolution transcriptome atlas. Submitted.</li>
-      <li>Z. Ji, <strong>E.J.A</strong>, L. Newton, D.H. Chitwood, A.M. Thompson (2024) From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield. Submitted.</li>
+      <li>M Bentelspacher, <strong>EJA</strong>, S Adhikari, J Barros, SY Park (2024) "The early dodder gets the host: Decoding the coiling patterns of Cuscuta campestris with automated image processing". <em>Plant Cell Reports</em>.</li>
+      <li><strong>EJA</strong>, MY Quigley, PJ Brown, E Munch, DH Chitwood (2024) "Allometry and volumes in a nutshell: Analyzing walnut morphology using three-dimensional X-ray computed tomography". <em>The Plant Phenome J</em>.</li>
+      <li><strong>EJA</strong>, F Nasrin, KM Storey, M Yoshizawa (2023) "Genomics data analysis via spectral shape and topology." <em>PLOS One</em></li>
+      <li>SA Cervantes-Pérez <em>et al.</em> (2024) "Tabula Glycine: The whole-soybean single-cell resolution transcriptome atlas." Submitted.</li>
+      <li>Z Ji, <strong>EJA</strong>, L Newton, DH Chitwood, AM Thompson (2024) "From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield." Submitted.</li>
     </ul>
 </div>
 
@@ -145,19 +178,21 @@ background-position: 98% 2%
 
 class: inverse, middle, center
 
-# 1. Characterizing spatial patterns and distributions
+# 2. Characterizing spatial patterns and distributions
 
 ## with Topological Data Analysis (TDA)
 
 ### The significance of detecting connected components and holes
 
+### In collaboration with Marc Libault
+
 ---
 
-# mRNA localization FTW
+# mRNA localization at a sub-cellular level
 
-- **Another regulational mechanism**: Spatial segregation and asymmetrical distribution of mRNA.
+- Another regulational mechanism: Spatial segregation and asymmetrical distribution of mRNA across the cytosol.
 
-- Observed various spatial patterns across animal and plant species.
+- Molecular Cartography&trade; data provided by the Libault Lab
 
 .pull-left[
 ![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
@@ -166,20 +201,22 @@ Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
 
 .pull-right[
 
-- Energetically more efficient to transport mRNA than a whole protein
+**Goals**: "How patterny is a pattern?"
 
-- Efficient protein complex assembly
+- Quantify the spatial patterns followed by mRNA within individual cells.
+- Mathematically model all observed mRNA sub-cellular distributions.
+- Use the mathematical framework to differentiate patterns across cell types and genotypes.
 
-- Prevent proteins from reaching the wrong cellular compartment
 
-- Subcellular localization influences proteome architecture and adaptation
+**Challenge**
 
-- mRNA can exert fuctions beyond the protein they encode
+- Develop a mathematical model that works for any cell size, orientation, shape, and dimension.
+
 ]
 
 ---
 
-# Grand goal with Molecular Cartography&trade;
+# Molecular Cartography&trade; data
 
 ![](../figs/molecular_cartography_2x4.png)
 
@@ -315,7 +352,7 @@ knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclus
 
 - Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
 - Loss of mRNA localization may be a lesser known contributor to cell senescence.
-- Now we have a mathematical benchmark which we can validate against.
+- How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?
 
 **Mathematically speaking**
 
@@ -331,20 +368,36 @@ knitr::include_graphics(c('../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_
 
 class: center, inverse, middle
 
-# 2. Tracking how a vampire plant wiggles
+# 3. Tracking how a vampire plant wiggles
 
-```{r, out.width=400}
+```{r, out.width=600}
 knitr::include_graphics(c('../../cuscuta/figs/bentelspacher_etal2024.png'))
 ```
 
+### In collaboration with Soyon Park
+
 ---
 
-# _Cuscuta_ : a vegetarian plant
+background-image: url("../../cuscuta/figs/cuscuta_overview_vogel_etal_2018.webp")
+background-size: 350px
+background-position: 15% 90%
 
-```{r, out.width="700px"}
-knitr::include_graphics(c('https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-018-04344-z/MediaObjects/41467_2018_4344_Fig1_HTML.jpg?as=webp'))
-```
-<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1038/s41467-018-04344-z">Vogel <em>et al.<em> (2018)</a></p>
+# _Cuscuta campestris_ : a vegetarian plant
+
+.pull-right[
+
+**Goal**: "How wiggly is a wiggle?"
+
+- Mathematically model how _Cuscuta_ moves under various environmental conditions to ultimately stop it from attaching to crops in the first place.
+
+**Challenges**
+
+- Develop an image-based high-throughput phenotyping algorithm that tracks *Cuscuta* as it coils.
+- Develop a mathematical framework that works for any locomotion: circumnutation, twitching, idling, etc.
+
+<p style="font-size: 10px; text-align: left; color: Grey;">Image Credits: <a href="https://doi.org/10.1038/s41467-018-04344-z">Vogel <em>et al.<em> (2018)</a></p>
+
+]
 
 ---
 
@@ -354,7 +407,8 @@ knitr::include_graphics(c('https://media.springernature.com/full/springer-static
   <source src="../../cuscuta/video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
 </video>
 
-- Study how _Cuscuta_ moves to ultimately stop it from attaching to crops in the first place.
+- Inoculation at 9am, 12pm, and 4pm
+- Experiment setup and data provided by the Park Lab
 
 ---
 
@@ -372,18 +426,6 @@ knitr::include_graphics(c('https://media.springernature.com/full/springer-static
 knitr::include_graphics(c('../../cuscuta/figs/4pm_rep7_plant_02_posang.png',
                           '../../cuscuta/figs/cuscuta_tracking.png'))
 ```
-
----
-
-# Differences: Intiation and completion
-
-```{r, out.width=575}
-knitr::include_graphics(c('../../cuscuta/figs/time_after_inoculation.svg',
-                          '../../cuscuta/figs/time_to_complete_coiling.svg'))
-```
-
-
-- Cuscuta at 4pm takes longer to get going and then to reach a stable position
 
 ---
 
@@ -423,15 +465,20 @@ background-position: 95% 25%
 
 class: center, middle inverse
 
-# 3. Phenotyping data itself
+# 4. Phenotyping data itself
 
 ## Omics data analysis with topology
 
-```{r, out.width=400, fig.align='center'}
+```{r, out.width=750, fig.align='center'}
 knitr::include_graphics('../../nasrin/figs/amezquita_etal_2023.png')
 ```
 
 ---
+
+background-image: url("../../nasrin/figs/mapper_vs_tsne_half.png")
+background-size: 450px
+background-position: 10% 90%
+
 
 # Setup
 
@@ -439,21 +486,19 @@ knitr::include_graphics('../../nasrin/figs/amezquita_etal_2023.png')
     - 314 healthy samples (GTEx)
     - 500 cancerous samples (TCGA)
 
-- Considered Z-scores drawn from a Gaussian Mixture Model (GMM).
-
-![](../../nasrin/figs/fpkm_raw_1.png)
-
----
-
-# With tSNE/UMAP we can split the data
-
 - tSNE (or UMAP) separates healthy vs cancerous samples (blue vs red)
-   - (a): Using FPKM
-   - (b): Using GMM Z-scores
+   
+.pull-right[
 
-![](../../nasrin/figs/mapper_vs_tsne.png)
+**Question**: 
 
-## Can we go from clusters to continua?
+"Is the RNAseq data arranged into a specific shape?"
+
+- Can we go from clusters to continua?
+- What is the biological characterization of such continua?
+
+]
+
 
 ---
 
@@ -465,9 +510,9 @@ background-position: 50% 95%
 
 ## Topological summary: exploration and visualization
 
-- We start with **lots** of data points $X$ in a **high-dimensional** space
+- We start with **lots** of data points in a **high-dimensional** space.
 
-- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**
+- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**.
 
 ---
 
@@ -497,6 +542,8 @@ background-position: 50% 99%
 - Healthy subjects tend to stay at the center
 
 - Cancerous samples are distributed at both ends
+
+- Healthy subjects that land in between might be at risk
 ]
 
 ---
@@ -511,9 +558,14 @@ background-position: 50% 99%
 
 .pull-left[
 - Data visualization to inspire new research.
+
 - It is not just about finding low-dimensional clusters (UMAP already does a terrific job at that), but finding continua of clusters.
+
 - Agnostic to any kind of omics data
+
 - Mapper remains underused and there is plenty of untapped potential in plant genomics
+
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 ]
 
 .pull-right[
@@ -529,7 +581,7 @@ background-position: 50% 99%
 
 class: inverse, center, middle
 
-# 4. The shape of things to come
+# 5. The shape of things to come
 
 ## New research frontiers at the intersection of math, data science, and plant biology
 
@@ -549,12 +601,10 @@ background-position: 99% 1%
 
 .pull-left[
 
-Further analysis of Mapper networks
+Further analysis of Mapper, gene coexpression, and microbiota interaction networks, and beyond.
 
-Or of complex gene networks in general
-
-
-![](../../tda/figs/tissue_leaf_lens.png)
+![](https://journals.asm.org/cms/10.1128/msystems.01570-24/asset/0d865e60-513c-4bc1-9491-a2919a8e66b6/assets/images/large/msystems.01570-24.f003.jpg)
+<p style="font-size: 10px; text-align: left; color: Grey;">Credits: <a href="https://doi.org/10.1128/msystems.01570-24">Jiang <em>et al.</em>(2024)</a></p>
 
 ]
 
@@ -629,7 +679,7 @@ Image automation (w/ David Mendoza)
 ```{r, out.width=250}
 knitr::include_graphics(c('../../psd/figs/MAX_Composite-1.jpg'))
 ```
-Spatial transcriptomics (w/Jie Zhu)
+Spatial transcriptomics (w/ Jie Zhu)
 
 ```{r, out.width=250}
 knitr::include_graphics(c('../../root_necrosis/figs/geodesic_comparison_-_222M_side1_030117006.png'))
@@ -647,7 +697,7 @@ background-position: 99% 1%
 
 class: inverse, center, middle
 
-# Training the next generation of interdisciplinary scientists
+# 6. Shaping the next generation of interdisciplinary scientists
 
 ## Large amounts of data require large amounts of people
 
@@ -667,7 +717,7 @@ class: inverse, center, middle
 ---
 
 
-## PLNT_SCI 2500: With data from CAFNR faculty!
+## PLNT_SCI 2500: With data from DPST faculty!
 
 <p align="center">
 <iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-13_In-Class_Regression-INSTRUCTOR.html" title="Day10">
