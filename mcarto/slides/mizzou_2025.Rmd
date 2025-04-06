@@ -1,6 +1,6 @@
 ---
 title: "Shape is data, and data is shape"
-subtitle: "Mathematically phenotyping shapes and patterns, from molecules to organisms"
+subtitle: "Mathematically phenotyping shapes and patterns<br>From molecules to organisms"
 author: "Erik Amézquita<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
 date: "2025-04-07"
 output:
@@ -23,71 +23,11 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
-background-image: url("../../barley/figs/seed.png")
-background-size: 325px
-background-position: 99% 99%
-
-class: middle
-
-# Roadmap for today
-
-1. Introduction and about me
-
-1. The shape of spatial patterns of mRNA
-
-1. The shape of the movement of a vampire plant
-
-1. The shape of omics data analysis
-
-1. The shape of things to come
-
-1. Shaping the next generation of interdisciplinary scientists
-
-
----
-
-class: inverse, middle, center
-
-# 1. Introduction
-
-## Shape has data, and data has shape
-
-### Visual intuition &rarr; Numbers
-
-### Numbers &rarr; Visual intuition
-
----
-
-# Shape has data, and data has shape
-
-<div class="row">
-  <div class="column" style="max-width:19%">
-    <img src="../../barley/figs/S019_L0_1.gif"></img>
-    <img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"></img>
-  </div>
-  <div class="column" style="max-width:39%">
-    <iframe width="375" height="210" src="https://www.youtube-nocookie.com/embed/LxNSbrfq3kY?si=Qw9qv3Og1XcPIUyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <img src="../../mcarto/figs/Infected_Cells_01G164600_green_05G092200_yellow.jpg"></img>
-  </div>
-  <div class="column" style="max-width:41%">
-    <img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"></img>
-    <img src="../../tda/figs/g86.png"></img>
-  </div>
-</div>
-
----
-
-# We use Topological Data Analysis (TDA)!
-
-![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
-
----
-
 background-image: url("../../demat/figs/fam9_3.png")
 background-size: 100px
 background-position: 98% 2%
 
-# From MX to MI to MO at MU
+# About me: From MX to MI to MO at MU
 
 ## I work across multiple disciplines and countries
 
@@ -105,10 +45,7 @@ background-position: 98% 2%
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-The interdisciplinarity of plant research at MU has been key to my professional development.
-
 ---
-
 
 # My work: Crossing and merging bridges
 
@@ -128,14 +65,15 @@ The interdisciplinarity of plant research at MU has been key to my professional 
 </div>
 
 <div class="row">
-  <div class="column" style="width:10%">
-  </div>
   <div class="column" style="max-width:43%">
     <img style="padding: 0 0 0 0;" src="../../tutorials/figs/myzou_plnt_sci_2500.png">
     <img style="padding: 0 0 0 0;" src="../../tutorials/figs/mizzou_math_drp.png">
   </div>
-  <div class="column" style="max-width:32%">
+  <div class="column" style="max-width:30%">
     <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tutorials/figs/ipg_network_r.jpg"></a>
+  </div>
+  <div class="column" style="max-width:25%">
+    <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tda/figs/107-tulare.png"></a>
   </div>
 </div>
 
@@ -148,6 +86,57 @@ The interdisciplinarity of plant research at MU has been key to my professional 
       <li>Z Ji, <strong>EJA</strong>, L Newton, DH Chitwood, AM Thompson (2024) "From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield." Submitted.</li>
     </ul>
 </div>
+
+---
+
+background-image: url("../../barley/figs/seed.png")
+background-size: 325px
+background-position: 99% 99%
+
+class: middle
+
+# Roadmap for today
+
+1. Introduction: Addressing the genotype-phenotype gap
+
+1. The shape of spatial patterns of mRNA
+
+1. The shape of the movement of a vampire plant
+
+1. The shape of omics data analysis
+
+1. The shape of things to come
+
+1. Shaping the next generation of interdisciplinary scientists
+
+
+---
+
+class: inverse, middle, center
+
+# 1. Introduction
+
+## Shape is data, and data is shape
+
+<div class="row">
+  <div class="column" style="max-width:21%">
+    <img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"></img>
+  </div>
+  <div class="column" style="max-width:31%">
+    <img src="../../mcarto/figs/Infected_Cells_01G164600_green_05G092200_yellow.jpg"></img>
+  </div>
+  <div class="column" style="max-width:50%">
+    <img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"></img>
+  </div>
+</div>
+
+### Visual intuition &harr; Numbers
+
+---
+
+# We use Topological Data Analysis (TDA)!
+
+![](../figs/GLYMA_05G092200_TDA_c00541_transp.gif)
 
 ---
 
@@ -178,11 +167,9 @@ The interdisciplinarity of plant research at MU has been key to my professional 
 
 class: inverse, middle, center
 
-# 2. Characterizing spatial patterns and distributions
+# 2. Characterizing mRNA spatial patterns and distributions
 
 ## with Topological Data Analysis (TDA)
-
-### The significance of detecting connected components and holes
 
 ### In collaboration with Marc Libault
 
@@ -190,7 +177,7 @@ class: inverse, middle, center
 
 # mRNA localization at a sub-cellular level
 
-- Another regulational mechanism: Spatial segregation and asymmetrical distribution of mRNA across the cytosol.
+- Beyond gene expression counts: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
 
 - Molecular Cartography&trade; data provided by the Libault Lab
 
@@ -205,25 +192,13 @@ Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
 
 - Quantify the spatial patterns followed by mRNA within individual cells.
 - Mathematically model all observed mRNA sub-cellular distributions.
-- Use the mathematical framework to differentiate patterns across cell types and genotypes.
-
+- *Use this mathematical model to differentiate cell types and genotypes.*
 
 **Challenge**
 
 - Develop a mathematical model that works for any cell size, orientation, shape, and dimension.
 
 ]
-
----
-
-# Molecular Cartography&trade; data
-
-![](../figs/molecular_cartography_2x4.png)
-
-- 97 genes (including 10 bacterial ones) &rarr; 2 genes
-- 2938 cells &rarr; 918 infected ones.
-
-**Subcellular transcript patterns &harr; spatial location of the cell within the nodule**
 
 ---
 
@@ -235,6 +210,18 @@ Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
 But this characterization discards sub-cellular information!
 
 ---
+
+# Same density, different patterns
+
+![](../figs/molecular_cartography_2x4.png)
+
+- 97 genes (including 10 bacterial ones) &rarr; 2 genes
+- 2938 cells &rarr; 918 infected ones.
+
+**Subcellular transcript patterns &harr; spatial location of the cell within the nodule**
+
+---
+
 
 class: inverse, middle, center
 
@@ -352,11 +339,11 @@ knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclus
 
 - Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
 - Loss of mRNA localization may be a lesser known contributor to cell senescence.
-- How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?
+- *How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?*
 
 **Mathematically speaking**
 
-- Topological Data Analysis offers a robust way to encode the *shape of patterns*
+- Topological Data Analysis offers a robust way to encode the shape of patterns.
 - Robust to differences in scale, underlying boundaries, or orientation.
 - The framework is open to any number of cells, genes, and dimensions.
 
@@ -437,12 +424,12 @@ knitr::include_graphics(c('../../cuscuta/figs/4pm_rep7_plant_02_posang.png',
 
 - Cuscuta can tell time despite lacking photoreceptors.
 - It prefers to act in the morning/early afternoon.
+- *How does the wiggle vary under other environmental conditions?*
 
 **Computationally speaking**
 
 - Overall, the automated image analysis criteria agreed with the main conclusions drawn from the manual observation criteria. 
 - Our pipeline is ready to collect more data
-- Phenotype the wiggle itself under various environmental conditions?
 
 ---
 
@@ -494,6 +481,7 @@ background-position: 10% 90%
 
 "Is the RNAseq data arranged into a specific shape?"
 
+- Are there subgroups that we are ignoring?
 - Can we go from clusters to continua?
 - What is the biological characterization of such continua?
 
@@ -527,7 +515,7 @@ background-position: 50% 99%
 # Mapper and lung cancer data
 
 .pull-left[
-![](https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0284820.g006)
+![](../../nasrin/figs/t0_1_corr_eps1e+04_r200_g50.png)
 
 ![](../../nasrin/figs/lung_t0_meancorr_eps7.0e+02_r40_g30.png)
 ]
@@ -535,15 +523,13 @@ background-position: 50% 99%
 .pull-right[
 - Mapper produced mostly strand-like graphs regardless of parameters used
 
-- Position Index for each subject: 
-    - **`-1`**: subject is part of the 13 leftmost nodes
-    - **`+1`**: subject is part of the 13 rightmost nodes
-
 - Healthy subjects tend to stay at the center
 
 - Cancerous samples are distributed at both ends
 
 - Healthy subjects that land in between might be at risk
+
+- **Predictive model**: Take a new patient sample and you can assess its cancer risk based on where they land in this continuum.
 ]
 
 ---
@@ -559,9 +545,9 @@ background-position: 50% 99%
 .pull-left[
 - Data visualization to inspire new research.
 
-- It is not just about finding low-dimensional clusters (UMAP already does a terrific job at that), but finding continua of clusters.
+- Mapper finds novel sub-clusters that reveal important nuances.
 
-- Agnostic to any kind of omics data
+- Agnostic to any kind of -omics data
 
 - Mapper remains underused and there is plenty of untapped potential in plant genomics
 
@@ -637,6 +623,8 @@ knitr::include_graphics(c('../../tda/figs/025-imperial.png', '../../tda/figs/107
 ```{r, out.width=200, fig.align='center'}
 knitr::include_graphics('https://www.researchgate.net/publication/362833654/figure/fig2/AS:11431281098979080@1669173266225/Two-persistence-diagrams-for-the-simulation-shown-in-Fig-1-The-blue-crosses-represent.png')
 ```
+
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1137/19M1241519">Feng and Porter (2021)</a></p>
 
 ]
 
