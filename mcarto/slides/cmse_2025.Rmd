@@ -1,0 +1,892 @@
+---
+title: "Shape is data, and data is shape"
+subtitle: "Mathematically phenotyping shapes and patterns<br>From molecules to organisms"
+author: "Erik Amézquita<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2025-04-07"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+genes = c('GLYMA_17G195900', 'GLYMA_05G092200')
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
+
+# About me: From MX to MI to MO at MU
+
+## I work across multiple disciplines and countries
+
+.left-column[
+![](../../img/dvdy216-toc-0001-m.jpg)
+]
+
+.right-column[
+- 2013 - 2018 : Licenciatura (Bachelor): Mathematics @ Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis applied to archaeology.
+
+- 2018 - 2023 : PhD: Computational Mathematics, Science, and Engineering @ Michigan State University. Dissertation: Exploring the mathematical shape of plants. **Came for the math. Stayed for the plants.**
+
+- 2023 - Jun. 2025 : ~~PFFFD~~ ~~PFFIE~~ PFF Postdoctoral Fellow @ Division of Plant Science & Technology (80%) / Department of Mathematics (20%) at MU.
+]
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+---
+
+# My work: Crossing and merging bridges
+
+<div class="row">
+  <div class="column" style="max-width:21%">
+    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../../walnuts/figs/meat_2_05.png"></a>
+  </div>
+  <div class="column" style="max-width:20%">
+    <a href="https://doi.org/10.1007/s00299-024-03337-1" target="_blank"><img style="padding: 0 0 0 0;" src="../../cuscuta/figs/4pm_rep7_plant2_v09_0401_h.jpg"></a>
+  </div>
+  <div class="column" style="max-width:21%">
+    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../figs/Infected_Cells_05G216000_red_05G092200_green.jpg"></a>
+  </div>
+  <div class="column" style="max-width:27%">
+    <a href="https://doi.org/10.1371/journal.pone.0284820" target="_blank"><img style="padding: 0 0 0 0;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:43%">
+    <img style="padding: 0 0 0 0;" src="../../tutorials/figs/myzou_plnt_sci_2500.png">
+    <img style="padding: 0 0 0 0;" src="../../tutorials/figs/mizzou_math_drp.png">
+  </div>
+  <div class="column" style="max-width:30%">
+    <img style="padding: 0 0 0 0;" src="../../tutorials/figs/ipg_network_r.jpg">
+  </div>
+  <div class="column" style="max-width:25%">
+    <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tda/figs/107-tulare.png"></a>
+  </div>
+</div>
+
+<div class="list" style="font-size: 14px; text-align: left;">
+    <ul>
+      <li>M Bentelspacher, <strong>EJA</strong>, S Adhikari, J Barros, SY Park (2024) "The early dodder gets the host: Decoding the coiling patterns of Cuscuta campestris with automated image processing". <em>Plant Cell Reports</em>.</li>
+      <li><strong>EJA</strong>, MY Quigley, PJ Brown, E Munch, DH Chitwood (2024) "Allometry and volumes in a nutshell: Analyzing walnut morphology using three-dimensional X-ray computed tomography". <em>The Plant Phenome J</em>.</li>
+      <li><strong>EJA</strong>, F Nasrin, KM Storey, M Yoshizawa (2023) "Genomics data analysis via spectral shape and topology." <em>PLOS One</em></li>
+      <li>SA Cervantes-Pérez <em>et al.</em> (2024) "Tabula Glycine: The whole-soybean single-cell resolution transcriptome atlas." Submitted.</li>
+      <li>Z Ji, <strong>EJA</strong>, L Newton, DH Chitwood, AM Thompson (2024) "From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield." Submitted.</li>
+    </ul>
+</div>
+
+---
+
+background-image: url("../../barley/figs/seed.png")
+background-size: 325px
+background-position: 99% 99%
+
+class: middle
+
+# Roadmap for today
+
+1. Introduction: Addressing the genotype-phenotype gap
+
+1. The shape of spatial patterns of mRNA
+
+1. The shape of the movement of a vampire plant
+
+1. The shape of omics data analysis
+
+1. The shape of things to come
+
+1. Shaping the next generation of interdisciplinary scientists
+
+
+---
+
+class: inverse, middle, center
+
+# 1. Introduction
+
+## Shape is data, and data is shape
+
+<div class="row">
+  <div class="column" style="max-width:21%">
+    <img src="https://botany.one/wp-content/uploads/2018/08/mcy061.jpg"></img>
+  </div>
+  <div class="column" style="max-width:31%">
+    <img src="../../mcarto/figs/Infected_Cells_01G164600_green_05G092200_yellow.jpg"></img>
+  </div>
+  <div class="column" style="max-width:50%">
+    <img src="https://i.kinja-img.com/gawker-media/image/upload/s--usj3b0wY--/c_fit,fl_progressive,q_80,w_636/ve69bswtlq7vqih5qrb1.gif"></img>
+  </div>
+</div>
+
+### Visual intuition &harr; Numbers
+
+---
+
+# 1st TDA Ingredient: Complexes
+
+- Think the data as a collection of elementary building blocks ( _simplices_ )
+
+Vertices | Edges | Faces | Tetrahedra
+---------|-------|-------|-------
+  0-dim  | 1-dim | 2-dim | 3-dim
+
+- A collection of cells is a _simplicial complex_
+
+- Count the number of topologically invariant features ( _holes_ ):
+
+Connected components | Loops | Voids
+---------------------|-------|-------
+       0-dim         | 1-dim | 2-dim
+
+- Example with 3 connected components, 1 loop, 1 voids
+
+```{r, out.width=350}
+knitr::include_graphics("../../tda/figs/complex-good.svg")
+```
+
+---
+
+# 2nd TDA Ingredient: Filters
+
+- Each cell is assigned a real value which defines how the complex is constructed.
+
+- Observe how the number of topological features change as the complex grows.
+
+.pull-left[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eigcurv_filter.gif", "../../barley/figs/gaussian_density_filter.gif"))
+```
+]
+
+.pull-right[
+```{r, out.width="250px"}
+knitr::include_graphics(c("../../barley/figs/eccentricity_filter.gif", "../../barley/figs/vrips_ver2.gif"))
+```
+]
+
+
+---
+
+# Phenotyping the shape of things to come
+
+<div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;">
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;text-align: center; font-size:28px">Phenotyping patterns</p>
+    <img style="padding: 0 30px;" src="../figs/molecular_cartography_2x2.jpg"></img>
+    <img style="padding: 0 30px;" src="../figs/persistence_images_1x1.svg"></img>
+    <p style="text-align: center;">mRNA sub-cellular localization in soybean nodule cells.</p>
+  </div>
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;font-size:28px;text-align: center;">Phenotyping movement</p>
+    <img style="padding: 0 10px;" src="../../cuscuta/figs/qmlphv.gif"></img>
+    <img style="padding: 35px 30px;" src="../../cuscuta/figs/avg_pl.svg"></img>
+    <p style="text-align: center;">Tracking and describing <i>Cuscuta campestris</i> circumnutation</p>
+  </div>
+  <div class="column" style="max-width:33%">
+    <p style="line-height:0;font-size:28px;text-align: center;">Phenotyping data</p>
+    <img style="padding: 0 0px;" src="../../nasrin/figs/fpkm_raw_3.png"></img>
+    <img style="padding: 30px 0px;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"></img>
+    <p style="text-align: center;">Reducing <strong>and</strong> clustering high-dimensional omics data</p>
+  </div>
+</div>
+
+---
+
+class: inverse, middle, center
+
+# 2. Characterizing mRNA spatial patterns and distributions
+
+## with Topological Data Analysis (TDA)
+
+### In collaboration with Marc Libault
+
+---
+
+# mRNA localization at a sub-cellular level
+
+- Beyond gene expression counts: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
+
+- Molecular Cartography&trade; data provided by the Libault Lab
+
+.pull-left[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
+]
+
+.pull-right[
+
+**Goals**: "How patterny is a pattern?"
+
+- Quantify the spatial patterns followed by mRNA within individual cells.
+- Mathematically model all observed mRNA sub-cellular distributions.
+- *Use this mathematical model to differentiate cell types and genotypes.*
+
+**Challenge**
+
+- Develop a mathematical model that works for any cell size, orientation, shape, and dimension.
+
+]
+
+---
+
+# Traditional model: Density of transcripts
+
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_05G092200.png)
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_17G195900.png)
+
+But this characterization discards sub-cellular information!
+
+---
+
+# Same density, different patterns
+
+![](../figs/molecular_cartography_2x4.png)
+
+- 97 genes (including 10 bacterial ones) &rarr; 2 genes
+- 2938 cells &rarr; 918 infected ones.
+
+**Subcellular transcript patterns &harr; spatial location of the cell within the nodule**
+
+---
+
+
+```{r include=FALSE, evaluate=FALSE}
+slides_info <- tibble::tibble(first  = formatC(0:11, digits=1, format='d', flag='0'))
+
+slides_text <- glue::glue_data(
+  slides_info,
+  "
+  # Alternate model: Topological Data Analysis
+  
+  ![](../figs/GLYMA_05G092200_TDA_c02352_{first}.png)
+  
+  "
+)
+```
+
+`r slides_text %>% paste(collapse = "\n---\n")`
+
+---
+
+# Mathematical motivation: stability
+
+- [**Theorem (Cohen-Steiner, Edelsbrunner, Harer, 2007)**](https://doi.org/10.1007/s00454-006-1276-5): Given a nice enough topological space $\mathbb{X}$ and two nice enough filtration functions $f,g:\mathbb{X}\to\mathbb{R}$, then
+$$d_B(\text{dgm}(f), \text{dgm}(g)) \leq \|f-g\|_\infty,$$
+
+- where $d_B$ is the bottleneck distance.
+
+- **Translation**: If the original complex wiggles a tiny bit, then the elements of its related persistence diagram will wiggle only a tiny bit as well.
+
+
+## However
+
+- Outside stable distances, it is hard to do anything interesting in the space of persistence diagrams.
+
+- E.g.: there are no unique means!
+
+- Hard to perform Machine Learning directly with persistence diagrams
+
+---
+
+# Rotate 45 degrees for ML ammenability
+
+![](../figs/GLYMA_05G092200_TDA_c02352_12.png)
+
+---
+
+# TDA: From patterns to numbers
+
+![](../figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+# Mathematical justifications
+
+- **Definition:** Given two persistence diagrams $D_1, D_2$, for $1\leq p<\infty$, we define the *p-Wasserstein* distance between them as
+$$W_p(D_1, D_2) := \inf_{\gamma:D_1\to D_2}\left(\sum_{u\in D_1} \left\| u-\gamma(u) \right\|_\infty^p\right)^{1/p},$$
+where the infimum is over all possible bijections $\gamma: D_1\to D_2$.
+
+- **Theorem [[Mileyko *et al* (2011)](https://doi.org/10.1088/0266-5611/27/12/124007)]:** For nice filtrations, the persistence diagrams are Wasserstein-stable under small perturbations of the data they summarize.
+
+- **Theorem [[Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html)]:** The persistence image $I(D)$ of a persistence diagram $D$ with Gaussian distributions is stable with respect to the 1-Wasserstein distance between diagrams.
+
+### If the overall shape/pattern is perturbed a little bit, then the resulting persistence images are perturbed only a little bit as well
+
+---
+
+# Do TDA for all cell-gene combinations
+
+```{r, out.width=500}
+knitr::include_graphics(c('../figs/molecular_cartography_2x4.png'))
+```
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/persistence_images_2x4.png'))
+```
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# PCA on all topological descriptors
+
+```{r, out.width=350, fig.align='left'}
+knitr::include_graphics(c('../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_kde_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# Show me
+
+```{r, out.width=350, fig.align='left'}
+knitr::include_graphics(c('../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png'))
+```
+
+---
+
+# Connecting PC 02 to the biological context
+
+![](../figs/sublevel_both_bw3_S25_PCA02_GLYMA_05G092200.png)
+![](../figs/sublevel_both_bw3_S25_PCA02_GLYMA_17G195900.png)
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+
+---
+
+# We define a morphospace of transcriptomic patterns
+
+![](../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
+
+# We then work "backward"
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_30_clusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_30_clusters.jpg'))
+```
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_varclusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+```{r, out.width=600}
+knitr::include_graphics(c('../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclusters.jpg'))
+```
+
+---
+
+# Discussion and future directions
+
+**Biologically speaking**
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+- *How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?*
+
+**Mathematically speaking**
+
+- Topological Data Analysis offers a robust way to encode the shape of patterns.
+- Robust to differences in scale, underlying boundaries, or orientation.
+- The framework is open to any number of cells, genes, and dimensions.
+
+```{r, out.width=550}
+knitr::include_graphics(c('../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg'))
+```
+
+---
+
+class: center, inverse, middle
+
+# 3. Tracking how a vampire plant wiggles
+
+```{r, out.width=600}
+knitr::include_graphics(c('../../cuscuta/figs/bentelspacher_etal2024.png'))
+```
+
+### In collaboration with Soyon Park
+
+---
+
+background-image: url("../../cuscuta/figs/cuscuta_overview_vogel_etal_2018.webp")
+background-size: 350px
+background-position: 15% 90%
+
+# _Cuscuta campestris_ : a vegetarian plant
+
+.pull-right[
+
+**Goal**: "How wiggly is a wiggle?"
+
+- Mathematically model how _Cuscuta_ moves under various environmental conditions to ultimately stop it from attaching to crops in the first place.
+
+**Challenges**
+
+- Develop an image-based high-throughput phenotyping algorithm that tracks *Cuscuta* as it coils.
+- Develop a mathematical framework that works for any locomotion: circumnutation, twitching, idling, etc.
+
+<p style="font-size: 10px; text-align: left; color: Grey;">Image Credits: <a href="https://doi.org/10.1038/s41467-018-04344-z">Vogel <em>et al.<em> (2018)</a></p>
+
+]
+
+---
+
+# Snapshots taken every 96 secs for 24h
+
+<video width="900" controls>
+  <source src="../../cuscuta/video/9am_Inc_Rep_3_redone.mp4" type="video/mp4">
+</video>
+
+- Inoculation at 9am, 12pm, and 4pm
+- Experiment setup and data provided by the Park Lab
+
+---
+
+# Putting it all together
+  
+<video width="900" controls>
+  <source src="../../cuscuta/video/4pm_rep7_plant_01.mp4" type="video/mp4">
+</video>
+
+---
+
+# Automated phenotyping
+
+```{r, out.width="700px"}
+knitr::include_graphics(c('../../cuscuta/figs/4pm_rep7_plant_02_posang.png',
+                          '../../cuscuta/figs/cuscuta_tracking.png'))
+```
+
+---
+
+# Discussion
+
+![](../../cuscuta/figs/cuscuta_circadian_model.png)
+
+**Biologically speaking**
+
+- Cuscuta can tell time despite lacking photoreceptors.
+- It prefers to act in the morning/early afternoon.
+- *How does the wiggle vary under other environmental conditions?*
+
+**Computationally speaking**
+
+- Overall, the automated image analysis criteria agreed with the main conclusions drawn from the manual observation criteria. 
+- Our pipeline is ready to collect more data
+
+---
+
+background-image: url("../../cuscuta/figs/cuscuta_coords.jpg")
+background-size: 450px
+background-position: 95% 25%
+
+# Future wiggle room
+
+.pull-left[
+**Grant re-submitted to NSF eMB (Emerging Mathematics in Biology) on March 2025**
+- Cuscuta locomotion is affected by Volatile Organic Compounds (VOCs).
+- Transform a Cuscuta position into a vector of angles.
+- Use TDA to characterize all the vectors of all the positions.
+]
+
+![](../../cuscuta/figs/tda_pipeline.jpg)
+
+---
+
+class: center, middle inverse
+
+# 4. Phenotyping data itself
+
+## Omics data analysis with topology
+
+```{r, out.width=750, fig.align='center'}
+knitr::include_graphics('../../nasrin/figs/amezquita_etal_2023.png')
+```
+
+---
+
+background-image: url("../../nasrin/figs/mapper_vs_tsne_half.png")
+background-size: 450px
+background-position: 10% 90%
+
+
+# Setup
+
+- FPKM counts of RNAseq data from human lung tissue &rarr; 19,648 genes
+    - 314 healthy samples (GTEx)
+    - 500 cancerous samples (TCGA)
+
+- tSNE (or UMAP) separates healthy vs cancerous samples (blue vs red)
+   
+.pull-right[
+
+**Question**: 
+
+"Is the RNAseq data arranged into a specific shape?"
+
+- Are there subgroups that we are ignoring?
+- Can we go from clusters to continua?
+- What is the biological characterization of such continua?
+
+]
+
+
+---
+
+background-image: url("../../tda/figs/mapper_b_00.svg")
+background-size: 725px
+background-position: 50% 95%
+
+# Mapper 
+
+## Topological summary: exploration and visualization
+
+- We start with **lots** of data points in a **high-dimensional** space.
+
+- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**.
+
+---
+
+background-image: url("../../tda/figs/mapper_c_complete.svg")
+background-size: 525px
+background-position: 50% 99%
+
+# Mapper in a single picture
+
+---
+
+# Mapper and lung cancer data
+
+.pull-left[
+![](../../nasrin/figs/t0_1_corr_eps1e+04_r200_g50.png)
+
+![](../../nasrin/figs/lung_t0_meancorr_eps7.0e+02_r40_g30.png)
+]
+
+.pull-right[
+- Mapper produced mostly strand-like graphs regardless of parameters used
+
+- Healthy subjects tend to stay at the center
+
+- Cancerous samples are distributed at both ends
+
+- Healthy subjects that land in between might be at risk
+
+- **Predictive model**: Take a new patient sample and you can assess its cancer risk based on where they land in this continuum.
+]
+
+---
+
+# Biological significance
+
+![](https://journals.plos.org/plosone/article/figure/image?size=large&id=10.1371/journal.pone.0284820.g009)
+
+---
+
+# Discussion and future directions
+
+.pull-left[
+- Data visualization to inspire new research.
+
+- Mapper finds novel sub-clusters that reveal important nuances.
+
+- Agnostic to any kind of -omics data
+
+- Mapper remains underused and there is plenty of untapped potential in plant genomics
+
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
+]
+
+.pull-right[
+
+![](../../tda/figs/tissue_leaf_lens.png)
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig3_HTML.jpg?as=webp)
+
+]
+
+
+---
+
+class: inverse, center, middle
+
+# 5. The shape of things to come
+
+## New research frontiers at the intersection of math, data science, and plant biology
+
+### Phenotyping at all scales 
+
+```{r, out.width=400, fig.align='center'}
+knitr::include_graphics('https://bondlsc.missouri.edu/wp-content/uploads/2015/02/sanborn-620x413.jpg')
+```
+
+---
+
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+# Complex network analysis
+
+.pull-left[
+
+Further analysis of Mapper, gene coexpression, and microbiota interaction networks, and beyond.
+
+![](https://journals.asm.org/cms/10.1128/msystems.01570-24/asset/0d865e60-513c-4bc1-9491-a2919a8e66b6/assets/images/large/msystems.01570-24.f003.jpg)
+<p style="font-size: 10px; text-align: left; color: Grey;">Credits: <a href="https://doi.org/10.1128/msystems.01570-24">Jiang <em>et al.</em>(2024)</a></p>
+
+]
+
+.pull-right[
+
+Or even analysis on the collaboration within the IPG
+
+```{r, out.width=300, fig.align='center'}
+knitr::include_graphics('../../tutorials/figs/ipg_network.jpg')
+```
+
+]
+
+Math students: Ethan Lenhardt, Sophia Knehans, Roberto Herrera
+
+---
+
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+# Spatial topological data analysis
+
+.pull-left[
+
+```{r, out.width=200, fig.align='center'}
+knitr::include_graphics(c('../../tda/figs/025-imperial.png', '../../tda/figs/107-tulare.png'))
+```
+
+```{r, out.width=200, fig.align='center'}
+knitr::include_graphics('https://www.researchgate.net/publication/362833654/figure/fig2/AS:11431281098979080@1669173266225/Two-persistence-diagrams-for-the-simulation-shown-in-Fig-1-The-blue-crosses-represent.png')
+```
+
+<p style="font-size: 10px; text-align: center; color: Grey;">Credits: <a href="https://doi.org/10.1137/19M1241519">Feng and Porter (2021)</a></p>
+
+]
+
+.pull-right[
+
+Use TDA to analyze geographical patterns across the state.
+
+![](https://i.emlfiles4.com/cmpimg/9/4/0/0/9/1/files/imagecache/1098401/w660_1719770_connectingentrepreneurialcommunitieslogosmall.jpg)
+
+Use TDA to analyze spatial patterns patterns: if you squint enough, a voting district looks pretty much like a plant cell. 
+
+```{r, out.width=200}
+knitr::include_graphics(c('../../psd/figs/pavement_plasma.jpg'))
+```
+
+]
+
+Math students: Jake Parmentier and Thomas Searcy
+
+---
+
+background-image: url("../../tutorials/figs/mizzou_math_drp.png")
+background-size: 250px
+background-position: 99% 1%
+
+
+# Phenotype everywhere!
+
+.pull-left[
+![](../../yeast2hybrid/figs/centers_plate_5.jpg)
+![](../../yeast2hybrid/figs/p53_P06_contrasting_whiteness_red_1_45_6.png)
+![](../../yeast2hybrid/figs/50mM 3AT OEV-control_P01_contrasting_sizes_gray_0_30_4.png)
+
+Image automation (w/ David Mendoza)
+
+]
+
+.pull-right[
+
+```{r, out.width=250}
+knitr::include_graphics(c('../../psd/figs/MAX_Composite-1.jpg'))
+```
+Spatial transcriptomics (w/ Jie Zhu)
+
+```{r, out.width=250}
+knitr::include_graphics(c('../../root_necrosis/figs/geodesic_comparison_-_222M_side1_030117006.png'))
+```
+
+2D root image analysis (w/ Miranda Haus (MSU))
+
+]
+
+---
+
+background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
+background-size: 180px
+background-position: 99% 1%
+
+class: inverse, center, middle
+
+# 6. Shaping the next generation of interdisciplinary scientists
+
+## Large amounts of data require large amounts of people
+
+## PLNT_SCI 2500: Data Science for Life Sciences I
+
+![](../../tutorials/figs/myzou_plnt_sci_2500.png)
+
+---
+
+## PLNT_SCI 2500: Python taught for life sciences
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-10_In-Class_NumPyDataAnalysis2-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+
+## PLNT_SCI 2500: With data from DPST faculty!
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-13_In-Class_Regression-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+
+## PLNT_SCI 2500: Active learning, example driven
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-20_In-Class_AdvancedPlotting-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+background-image: url("https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&height=600&carousel=1")
+background-size: 325px
+background-position: 1% 60%
+
+# Discussion and future goals
+
+**PLNT_SCI 2500: Data Science for Life Sciences I will be the first course for the emerging Data Science for Life Sciences Certificate**
+
+.right-column[
+
+- Incorporate examples from outside Plant Science to appeal to more students
+
+- Data Science for Life Sciences II will build on top more Data Science topics:
+    - Supervised and unsupervised classification
+    - Clustering algorithms
+    - Non-linear regressions
+    - Network analyses
+    - Statistical paradoxes to be wary of
+    
+**Personal Goal: Make the teaching of data science in life sciences a scientific endeavor in itself**
+
+- Collaborate with colleagues from the College of Education.
+- Motivate students to tackle a single research problem as a unit.
+
+]
+
+---
+
+background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
+background-size: 60px
+background-position: 99% 1%
+
+class: inverse
+
+## Thank you!
+
+.pull-left[
+
+**mRNA sub-cellular localization**
+
+- Sutton Tennant
+- Sandra Thibivillers
+- Sai Subhash
+- Benjamin Smith
+- Samik Bhattacharya
+- Jasper Kläver
+- Marc Libault
+
+**Cuscuta circadian rhythm and locomotion**
+
+- Max Bentelspacher
+- Supral Adhikari
+- Jaime Barros-Rios
+- Joseph Lynch
+- So-Yon Park
+
+**Mapper for omics analysis**
+
+- Farzana Nasrain
+- Katie Storey
+- Masato Yoshizawa
+
+]
+
+.pull-right[
+
+**Collaboration of the IPG network**
+
+- Ethan Lenhardt
+- Sophia Knehans
+- Roberto Herrera
+- David Braun
+
+**Data Science for Life Sciences I**
+
+- Kent Shannon
+- Andrew Scaboo
+- Jianfeng Zhou
+- Debbie Finke
+
+**Other ongoing projects**
+
+- Leyre Urmeneta
+- Laura Martins
+- Mather Khan
+- David Mendoza-Cozatl
+- Miranda Haus
+- Jie Zhu
+
+**More details**
+
+<p style="font-size: 20px; text-align: center; color: Blue;">ejamezquita.github.io/</p>
+<p style="font-size: 20px; text-align: center; color: Blue;">eah4d@missouri.edu</p>
+
+]

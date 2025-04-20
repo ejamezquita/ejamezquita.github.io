@@ -150,7 +150,7 @@ Peer-reviewed work {data-icon=book}
 CV %<>% print_section('peer_reviewed_publications')
 ```
 
-Work under review {data-icon=newspaper}
+Work submitted for peer-review {data-icon=newspaper}
 --------------------------------------------------------------------------------
 
 ::: aside
