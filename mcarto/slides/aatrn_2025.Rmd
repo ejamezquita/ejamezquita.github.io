@@ -183,8 +183,6 @@ class: inverse, middle, center
 
 ## with Topological Data Analysis (TDA)
 
-### In collaboration with Marc Libault
-
 ---
 
 

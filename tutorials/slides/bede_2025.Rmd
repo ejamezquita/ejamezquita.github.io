@@ -1,0 +1,78 @@
+---
+title: "Data Science for Life Sciences"
+subtitle: "Building on my first course last spring"
+author: "Erik Amézquita<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2025-06-24"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+genes = c('GLYMA_17G195900', 'GLYMA_05G092200')
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(fig.align = 'center')
+```
+
+
+
+## PLNT_SCI 2500: Python taught for life sciences
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-10_In-Class_NumPyDataAnalysis2-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+## PLNT_SCI 2500: Active learning, example driven
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-13_In-Class_Regression-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+## PLNT_SCI 2500: With data from DPST faculty!
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-20_In-Class_AdvancedPlotting-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+background-image: url("https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&height=600&carousel=1")
+background-size: 325px
+background-position: 1% 60%
+
+# Discussion and future goals
+
+**PLNT_SCI 2500: Data Science for Life Sciences I will be the first course for the emerging Data Science for Life Sciences Certificate**
+
+- Incorporate examples from outside Plant Science to appeal to more students
+
+- Data Science for Life Sciences II will build on top more Data Science topics:
+    - Supervised and unsupervised classification
+    - Clustering algorithms
+    - Non-linear regressions
+    - Network analyses
+    - Statistical paradoxes to be wary of
+    
+**Professional Goal: Make the teaching of data science in life sciences a scientific endeavor in itself**
+
+- Collaborate with colleagues with experience in Education research.
+
+- Motivate students to tackle *and publish* a single research problem as a unit.
+
+## Get in touch: ``eah4d@missouri.edu``
