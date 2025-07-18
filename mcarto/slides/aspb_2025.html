@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Differential Subcellular Localization of Soybean Transcripts</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Erik Amézquita, Sutton Tennant, Sandra Thibivillers, Sai Subhash Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/gallery.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# The Differential Subcellular Localization of Soybean Transcripts
+]
+.subtitle[
+## An Additional Regulatory Mechanism of Gene Activity
+]
+.author[
+### <strong>Erik Amézquita</strong>, Sutton Tennant, Sandra Thibivillers, Sai Subhash<br>Benjamin Smith, Samik Bhattacharya, Jasper Kläver, Marc Libault<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
+]
+.date[
+### 2025-07-25<br><em>[Manuscript under review]</em>
+]
+
+---
+
+
+
+
+# mRNA localization at a sub-cellular level
+
+- Beyond gene expression counts: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
+
+- Molecular Cartography&amp;trade; data provided by the Libault Lab
+
+.pull-left[
+![](../figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
+Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
+]
+
+.pull-right[
+
+**Goals**: "How *patterny* is a pattern?"
+
+- Quantify the spatial patterns followed by mRNA within individual cells.
+- Mathematically model all observed mRNA sub-cellular distributions.
+- *Use this mathematical model to differentiate cell types and genotypes.*
+
+**Challenge**
+
+- Develop a mathematical model that works for any cell size, orientation, shape, and dimension.
+
+]
+
+---
+
+class: inverse, middle, center
+
+# 1. mRNA localization to characterize cell types
+
+### 2. Topological Data Analysis (TDA) to model localization patterns
+
+### 3. Results and discussion
+
+---
+
+## Different nuclear versus cytosolic compartmentalizations across cell types
+
+![](../figs/infected_density.jpg)
+
+---
+
+
+## Different nuclear versus cytosolic compartmentalizations across cell types
+
+![](../figs/vascular_density.jpg)
+
+---
+
+# Density of transcripts versus cell location
+
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_05G092200.png)
+![](../figs/sublevel_both_bw3_S25_rho_cyto_GLYMA_17G195900.png)
+
+But this characterization discards sub-cellular information!
+
+---
+
+# Same density, different patterns
+
+![](../figs/molecular_cartography_2x4.png)
+
+- 97 genes (including 10 bacterial ones) &amp;rarr; 6 genes
+- 2938 cells &amp;rarr; 918 infected ones.
+
+**Subcellular transcript patterns &amp;harr; spatial location of the cell within the nodule**
+
+---
+
+# How *patterny* is a pattern?
+
+![](../figs/cell_sample.jpg)
+
+Patterns are subject to a large variety of cell shapes, sizes, orientations, and mRNA quantities.
+
+---
+
+class: inverse, middle, center
+
+### 1. mRNA localization to characterize cell types
+
+# 2. Topological Data Analysis (TDA) to model localization patterns
+
+### 3. Results and discussion
+
+---
+
+
+
+
+
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_00.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_01.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_02.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_03.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_04.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_05.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_06.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_07.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_08.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_09.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_10.png)
+
+---
+# Modeling with Topological Data Analysis
+
+![](../figs/GLYMA_05G092200_TDA_c02352_11.png)
+
+
+---
+
+# Rotate 45 degrees for ML ammenability
+
+![](../figs/GLYMA_05G092200_TDA_c02352_12.png)
+
+---
+
+# TDA: From patterns to numbers
+
+![](../figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+
+class: inverse, middle, center
+
+### 1. mRNA localization to characterize cell types
+
+### 2. Topological Data Analysis (TDA) to model localization patterns
+
+# 3. Results and discussion
+
+---
+
+# Focus on `\(H_1\)` and `\(H_2\)`
+
+&lt;img src="../figs/molecular_cartography_2x4.png" width="500" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="../figs/persistence_images_2x4.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sample.png")
+background-size: 620px
+background-position: 75% 99%
+
+# PCA on all topological descriptors
+
+&lt;img src="../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+background-image: url("../figs/bw25_scale32_-_PI_1_1_1_H1+2_kde_sample.png")
+background-size: 620px
+background-position: 99% 50%
+
+.left-column[
+
+### PC 1
+- Related to the number of distinct hotspots
+- Correlated to transcript number and cell size
+
+### PC 2
+- Related to the heterogeneity of hotspots
+- Correlated to transcript density
+
+]
+
+---
+
+# Connecting PC 02 to the biological context
+
+![](../figs/GLYMA_17G195900_bw15_PI_scale24_fulleccentricity_correlations.png)
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+
+---
+
+# We define a morphospace of transcriptomic patterns
+
+![](../figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
+
+# We then work "backward"
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_30_clusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_30_clusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: bottom
+
+background-image: url("../figs/scale32_-_PI_1_1_1_H1+2_synthetic_varclusters.jpg")
+background-size: 900px
+background-position: 50% 1%
+
+&lt;img src="../figs/scale32_-_PI_1_1_1_H1+2_synthetic_pca_varclusters.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Discussion and future directions
+
+**Biologically speaking**
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+- *How does the **morphospace of patterns** change if we take into account more genes, more cell types, more tissues, and more mutants?*
+
+**Mathematically speaking**
+
+- Topological Data Analysis offers a robust way to encode the shape of patterns.
+- Robust to differences in scale, underlying boundaries, or orientation.
+- *Be much more **systematic** to generate and evaluate synthetic spatial patterns*
+
+
+&lt;img src="../figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg" width="550" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: inverse
+
+# Thank you!
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:60%; font-size: 15px;"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="https://bondlsc.missouri.edu/wp-content/uploads/2023/11/libault-returns-to-bond-lsc-as-plant-scientist-with-single-cell-focus-1.jpg"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:40%; font-size: 24px; line-height:1.25"&gt;
+  &lt;p style="text-align: center;"&gt;&lt;strong&gt;Contact and slides:&lt;/strong&gt;&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;eah4d@missouri.edu&lt;/p&gt;
+  &lt;p style="text-align: center;color:Blue"&gt;ejamezquita.github.io&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:35%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; Libault Lab (MU) &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Marc Libault&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sandra Thibivillers&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Hengping Xu&lt;/li&gt;
+      &lt;li&gt;Sahand Amini&lt;/li&gt;
+      &lt;li&gt;Hong Fu&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Sutton Tennant&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;Md Sabbir Hossain&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:65%; font-size: 20px;"&gt;
+  &lt;p style="font-size: 25px; text-align: center;"&gt; With help from:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sai Subash (Nebraska-Lincoln)&lt;/li&gt;
+      &lt;li&gt;Benjamin Smith (UC Berkeley)&lt;/li&gt;
+      &lt;li&gt;Sergio Cervantes-Perez (Arizona)&lt;/li&gt;
+      &lt;li&gt;Samik Bhattacharya (Resolve Biosciences)&lt;/li&gt;
+      &lt;li&gt;Jasper Kläver (Resolve Biosciences)&lt;/li&gt;
+    &lt;ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+Manuscript under review
+
+---
+
+# Mathematical motivation: stability
+
+- [**Theorem (Cohen-Steiner, Edelsbrunner, Harer, 2007)**](https://doi.org/10.1007/s00454-006-1276-5): Given a nice enough topological space `\(\mathbb{X}\)` and two nice enough filtration functions `\(f,g:\mathbb{X}\to\mathbb{R}\)`, then
+`$$d_B(\text{dgm}(f), \text{dgm}(g)) \leq \|f-g\|_\infty,$$`
+
+- where `\(d_B\)` is the bottleneck distance.
+
+- **Translation**: If the original complex wiggles a tiny bit, then the elements of its related persistence diagram will wiggle only a tiny bit as well.
+
+
+## However
+
+- Outside stable distances, it is hard to do anything interesting in the space of persistence diagrams.
+
+- E.g.: there are no unique means!
+
+- Hard to perform Machine Learning directly with persistence diagrams
+
+---
+
+# Mathematical justifications
+
+- **Definition:** Given two persistence diagrams `\(D_1, D_2\)`, for `\(1\leq p&lt;\infty\)`, we define the *p-Wasserstein* distance between them as
+`$$W_p(D_1, D_2) := \inf_{\gamma:D_1\to D_2}\left(\sum_{u\in D_1} \left\| u-\gamma(u) \right\|_\infty^p\right)^{1/p},$$`
+where the infimum is over all possible bijections `\(\gamma: D_1\to D_2\)`.
+
+- **Theorem [[Mileyko *et al* (2011)](https://doi.org/10.1088/0266-5611/27/12/124007)]:** For nice filtrations, the persistence diagrams are Wasserstein-stable under small perturbations of the data they summarize.
+
+- **Theorem [[Adams *et al.* (2017)](http://jmlr.org/papers/v18/16-337.html)]:** The persistence image `\(I(D)\)` of a persistence diagram `\(D\)` with Gaussian distributions is stable with respect to the 1-Wasserstein distance between diagrams.
+
+### If the overall shape/pattern is perturbed a little bit, then the resulting persistence images are perturbed only a little bit as well
+
+---
+
+
+# Software used
+
+.pull-left[
+- All the work has been done in python with mostly standard libries (`numpy`, `scikit-learn`, `matplotlib`, `pandas`, etc.)
+
+- KDEs computed efficiently with [`KDEpy`](https://kdepy.readthedocs.io/en/latest/)
+
+- Sublevel set filtration of images and persistence diagrams done with [`gudhi`](https://gudhi.inria.fr/)
+
+![](https://gudhi.inria.fr/assets/img/logo.png)
+]
+
+.pull-right[
+- Persistence Images computed with [`persim`](https://persim.scikit-tda.org/en/latest/)
+
+![](https://persim.scikit-tda.org/en/latest/_static/logo.png)
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="../../js/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
