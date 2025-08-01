@@ -1,0 +1,134 @@
+---
+title: "Going between math, data science, plant biology, and education"
+subtitle: "Lessons from interdisciplinarity"
+author: "Erik Amézquita<br>&mdash;<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>&mdash;"
+date: "2025-08-18"
+output:
+  xaringan::moon_reader:
+    css: ["../../css/mu.css", default-fonts, "../../css/gallery.css"]
+    chakra: '../../js/remark-latest.min.js'
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url("../../demat/figs/fam9_3.png")
+background-size: 100px
+background-position: 98% 2%
+
+# About me: From MX to MI to MO at MU
+
+## I work across multiple disciplines and countries
+
+.left-column[
+![](../../img/dvdy216-toc-0001-m.jpg)
+]
+
+.right-column[
+- 2013 - 2018 : Licenciatura (Bachelor): Mathematics @ Universidad de Guanajuato and CIMAT. Thesis focused on Topological Data Analysis applied to archaeology.
+
+- 2018 - 2023 : PhD: Computational Mathematics, Science, and Engineering @ Michigan State University. Dissertation: Exploring the mathematical shape of plants. **Came for the math. Stayed for the plants.**
+
+- 2023 - Present : PFFIE Postdoctoral Fellow @ Division of Plant Science & Technology (80%) / Department of Mathematics (20%) at MU.
+]
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+---
+
+# My work: Crossing and merging bridges
+
+<div class="row">
+  <div class="column" style="max-width:21%">
+    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../../walnuts/figs/meat_2_05.png"></a>
+  </div>
+  <div class="column" style="max-width:20%">
+    <a href="https://doi.org/10.1007/s00299-024-03337-1" target="_blank"><img style="padding: 0 0 0 0;" src="../../cuscuta/figs/4pm_rep7_plant2_v09_0401_h.jpg"></a>
+  </div>
+  <div class="column" style="max-width:21%">
+    <a href="https://doi.org/10.1002/ppj2.20095" target="_blank"><img style="padding: 0 0 0 0;" src="../../mcarto/figs/Infected_Cells_05G216000_red_05G092200_green.jpg"></a>
+  </div>
+  <div class="column" style="max-width:27%">
+    <a href="https://doi.org/10.1371/journal.pone.0284820" target="_blank"><img style="padding: 0 0 0 0;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="max-width:43%">
+    <img style="padding: 0 0 0 0;" src="../../tutorials/figs/myzou_plnt_sci_2500.png">
+    <img style="padding: 0 0 0 0;" src="../../tutorials/figs/mizzou_math_drp.png">
+  </div>
+  <div class="column" style="max-width:30%">
+    <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tutorials/figs/ipg_network_r.jpg"></a>
+  </div>
+  <div class="column" style="max-width:25%">
+    <a href="https://doi.org/10.1101/2022.10.15.512190" target="_blank"><img style="padding: 0 0 0 0;" src="../../tda/figs/107-tulare.png"></a>
+  </div>
+</div>
+
+<div class="list" style="font-size: 14px; text-align: left;">
+    <ul>
+      <li>M Bentelspacher, <strong>EJA</strong>, S Adhikari, J Barros, SY Park (2024) "The early dodder gets the host: Decoding the coiling patterns of Cuscuta campestris with automated image processing". <em>Plant Cell Reports</em>.</li>
+      <li><strong>EJA</strong>, MY Quigley, PJ Brown, E Munch, DH Chitwood (2024) "Allometry and volumes in a nutshell: Analyzing walnut morphology using three-dimensional X-ray computed tomography". <em>The Plant Phenome J</em>.</li>
+      <li><strong>EJA</strong>, F Nasrin, KM Storey, M Yoshizawa (2023) "Genomics data analysis via spectral shape and topology." <em>PLOS One</em></li>
+      <li>SA Cervantes-Pérez <em>et al.</em> (2024) "Tabula Glycine: The whole-soybean single-cell resolution transcriptome atlas." Submitted.</li>
+      <li>Z Ji, <strong>EJA</strong>, L Newton, DH Chitwood, AM Thompson (2024) "From hand measurements to high throughput phenotyping: understanding maize canopy structure and predicting yield." Submitted.</li>
+    </ul>
+</div>
+
+---
+
+
+## PLNT_SCI 2500: Python taught for life sciences
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-10_In-Class_NumPyDataAnalysis2-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+## PLNT_SCI 2500: Active learning, example driven
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-13_In-Class_Regression-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+## PLNT_SCI 2500: With data from DPST faculty!
+
+<p align="center">
+<iframe width="800" height="550" src="../../tutorials/plnt_2500/Day-20_In-Class_AdvancedPlotting-INSTRUCTOR.html" title="Day10">
+</iframe>
+</p>
+
+---
+
+background-image: url("https://www.biorxiv.org/content/biorxiv/early/2022/09/09/2022.09.07.506951/F1.large.jpg?width=800&height=600&carousel=1")
+background-size: 325px
+background-position: 1% 60%
+
+# Discussion and future goals
+
+**PLNT_SCI 2500: Data Science for Life Sciences I will be the first course for the emerging Data Science for Life Sciences Certificate**
+
+- Incorporate examples from outside Plant Science to appeal to more students
+
+- Data Science for Life Sciences II will build on top more Data Science topics:
+    - Supervised and unsupervised classification
+    - Clustering algorithms
+    - Non-linear regressions
+    - Network analyses
+    - Statistical paradoxes to be wary of
+    
+**Professional Goal: Make the teaching of data science in life sciences a scientific endeavor in itself**
+
+- Collaborate with colleagues with experience in Education research.
+
+- Motivate students to tackle *and publish* a single research problem as a unit.
+
+## Get in touch: ``eah4d@missouri.edu``
