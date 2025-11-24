@@ -192,14 +192,17 @@ class: middle
 
 # Roadmap for today
 
-1. My research while at CMSE
-   - Mixing TDA with plant biology
+1. Phenotyping shapes: barley seeds
+   - Euler Characteristic Transform
 
-1. My research right after CMSE
-   - Jack of all trades, master of none
+1. Phenotyping patterns: mRNA localization in soybean
+   - Sublevel set persistence
+   - Persistence Images
 
-1. Current projects that excite me
-   - Taking a leaf from CMSE 201
+1. Phenotyping data: lung tissue RNAseq 
+   - Mapper
+   
+1. Current plant data and TDA opportunities
 
 ---
 
