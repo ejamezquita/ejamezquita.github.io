@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Data Sci for Life Sci</title>
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Overpass' rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css2?family=Rasa&family=Roboto&display=swap" rel="stylesheet">
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+*{
+  box-sizing: border-box;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 16in;
+height: 12in;
+text-align: justify;
+font-size: 18px;
+background-color: gray;
+color: #000000;
+}
+.references {
+font-size: 1.5ex;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+
+.column {
+    float: left;
+    padding: 0px;
+    height: 12in;
+}
+.left{
+    width: 40%;
+}
+.right {
+    width: 30%;
+    background-color: #eeeeee;
+    font-family: 'Rasa', serif;
+    color: #000000;
+    padding: 1ex;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+a {
+    text-decoration: none;
+    color: #0484ae;
+}
+
+#title {
+    font-size: 2em;
+    text-align: left;
+    margin: 10px 0 0 0;
+    line-height: 80%;
+    border-bottom: 0;
+}
+#author {
+    color: #18453b;
+    margin: 0;
+    line-height: 90%;
+    font-size: 1.25em;
+}
+.author a{
+    color: #18453b;
+}
+
+#affiliation {
+    line-height: 95%;
+    color: #404040;
+    font-style: italic;
+    font-size: 0.75em;
+    text-align: left;
+}
+sup {
+    color: #900000;
+}
+.affiliation sup {
+    font-size: 1ex;
+}
+.affsup{
+    color: #900000;
+    font-style: normal;
+}
+
+.affiliation a{
+    color: #404040;
+    text-align: left;
+}
+.author sup {
+    font-size: 2ex;
+}
+.right h1 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.right h2 {
+    text-align: center;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 80%;
+}
+.right h4,h5 {
+    text-align: left;
+    margin-top: -1ex;
+    margin-bottom: -1ex;
+    line-height: 90%;
+}
+.right p {
+    color: #000000;
+    text-align: center;
+}
+.right ol, ul {
+    text-align: left;
+    margin-top: -1em;
+}
+.main {
+    width: calc(16in * 0.4);
+    height: 12in;
+    position: absolute;
+    color: black;
+    text-shadow: 0.25ex 0.25ex 0.75ex white;
+    font-family: Overpass;
+    background-image: linear-gradient(#f1b82d 60%, black);
+}
+.main strong {
+    color: white;
+    text-shadow: 0.25ex 0.25ex 0.75ex black;
+}
+.main p {
+    margin-top: 0.5em;
+    font-size: 3.25em;
+    text-align: left;
+}
+img.main-img-left {
+    width: 25%;
+    left: 1em;
+    bottom: 1ex;
+    position: absolute;
+}
+img.main-img-right {
+    width: 20%;
+    right: 1em;
+    bottom: 1em;
+    position: absolute;
+}
+img.main-img-subright {
+    width: 20%;
+    right: 8em;
+    bottom: 2em;
+    position: absolute;
+}
+i {
+    color: #404040;
+    font-size: 1ex;
+    text-decoration: none;
+}
+a.affiliation {
+    line-height: 95%;
+    color: dimgray;
+    font-style: italic;
+    font-size: 0.6em;
+    text-align: left;
+}
+a.email {
+    text-decoration: none;
+    color: #404040;
+    font-size: 0.75em;
+}
+
+.section {
+  padding-left: 1.5mm;
+  padding-right: 1.5mm;
+}
+.main p {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+
+.orcid img {
+  width: 4%;
+}
+a.left:link, a.left:visited{
+    color: hotpink;
+    background-color:#ccf5ff;
+    text-shadow: none;
+    border: 0.15ex solid dodgerblue;
+    padding: 0.1ex 0.1ex;
+}
+a.left:hover, a.left:active{
+    color: hotpink;
+    background-color:#ccf5ff;
+    text-shadow: none;
+    border: 0.15ex solid #ccf5ff;
+    padding: 0.1ex 0.1ex;
+}
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.container:hover .image {
+  opacity: 0.3;
+}
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="column left">
+        <div class="main">
+        <p>A <strong>flipped</strong> classroom introduction to <strong>Python</strong> inspired by and for <strong>life sciences</strong><p>
+        <p style="text-align:center; margin-top: -2em; font-size:1.1em; color: white; text-shadow: 0.25ex 0.25ex 0.75ex black">
+            <iframe width="550" height="425" src="../plnt_2500/Day-01_InClass_IntroJupyterDataViz-STUDENT.html" title="PLNT_SCI 2500 Day 01"></iframe>
+        </p>
+        <p style="text-align:center; font-family:monospace; font-size:2em; color: darkblue">
+            Online version<br>
+            <a class="left" href="https://ejamezquita.github.io/plnt_sci2500/", target="_blank">bit.ly/mooer2026</a>
+        </p>
+        <p style="text-align:center; font-family:monospace; font-size:1.5em; color: darkblue">Course Materials<br>
+        <a class="left" href="https://ejamezquita.github.io/plnt_sci2500/", target="_blank">ejamezquita.github.io/plnt_sci2500</a></p>
+        <img src="../../img/University_of_Missouri_logo.svg" class="main-img-right" />
+        </div>
+    </div>
+    <div class="column right">
+        <div class="title section">
+            <h1 id="title">
+                <a href="https://ejamezquita.github.io/plnt_sci2500/" target="_blank">PLNT_SCI 2500:<br>Data Science for Life Sciences</a>
+            </h1>
+            <h3 id="author" class="author">
+                <a class="orcid" href="https://orcid.org/0000-0002-9837-0397">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg"></img>
+                </a>
+                <a href="https://ejamezquita.github.io/" target="_blank">Erik J. Am&eacute;zquita</a><br>
+                <i class="fas fa-envelope"></i> <a href="mailto:eah4d@missouri.edu" class="email">eah4d@missouri.edu</a><br>
+                <a href="https://pst.missouri.edu/" target="_blank" class="affiliation" >Division of Plant Sciences &amp; Technology, University of Missouri</a>
+            </h3>
+        </div>
+        <br>
+        <div id="experimental-design" class="section level2">
+            <h2 style="margin-top:0">Setting and Setup<br>Python and Jupyter as license-free tools</h2>
+            <p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="25%" alt="Logo for Python, the programming language"></img>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" width="25% alt" alt="Logo for Jupyter, the coding platform"></img>
+            </p>
+            <ul>
+                <li>Course open to all undergrads across all majors.</li>
+                <li>College Algebra (MAT 1100) is the only pre-requisite.</li>
+                <li>No prior statistics or coding experience is assumed.</li>
+                <li>Two 75-minute sessions per week through 16 weeks.</li>
+                <li>Course fully based in <strong>Python</strong> with <strong>Jupyter</strong> Notebooks.</li>
+            </ul>
+        </div>
+        <br>
+        <div id="euler-characteristic-transform-ect" class="section level2">
+            <h2>Open-access, example-driven lessons</h2>
+            <p>
+                <div class="container">
+                    <a href="https://doi.org/10.1002/ece3.3272" target="_blank">
+                        <img class="image" src="../figs/kettenbach_etal_2017_title_2.png" width="100%" style="display: block; margin: auto;" alt="Screenshot of the research paper How shrub encroachment under climate change could threaten pollination services for alpine wildflowers"></img>
+                    </a>
+                </div>
+                <img src="https://onlinelibrary.wiley.com/cms/asset/1a360e97-826a-4c93-95a2-96a10e966698/ece33272-fig-0002-m.jpg" width="65%" style="display: block; margin: auto;" alt="Relationship between Julian days when flowering specimens of Salix and Polemonium were collected in each of 25 historic contact zones in the Colorado Rocky Mountains (USA)."></img>
+                <div class="container">
+                    <a href="https://doi.org/10.5061/dryad.2p2bh" target="_blank">
+                        <img class="image" src="../figs/kettenbach_etal_2017_dataavailability.png" width="100%" style="display: block; margin: auto;" alt="screenshot of the data availability statement of the referenced paper."></img>
+                    </a>
+                </div>
+            </p>
+            <ul style="margin-top: -2ex;">
+                <li>Python and data science as <strong>means to an end</strong>.</li>
+                <li>Class discussion driven by biology-oriented <strong>open-access</strong> papers with <strong>publicly available</strong> data.</li>
+                <li>Students associate content to <strong>real-life</strong> situations.</li>
+                <li>Expose students to <strong>data literacy</strong> and visualization.</li>
+                <li>Papers co-authored by <strong>Mizzou's</strong> faculty: promote the exciting research done on campus.</li>
+            </ul>
+        </div>
+        <div id="acknowledgements" class="section">
+            <h4>Acknowledgements</h4>
+            <p style="font-size: 1.75ex; line-height: 90%; text-align:left">
+                The class materials are heavily inspired by those of <a href="https://cmse.msu.edu/Academics/undergrad_program/undergrad_courses/index.aspx" target="_blank">CMSE 201 - Introduction to Computational Modeling</a> at Michigan State University and by <a href="https://doi.org/10.1093/plcell/koac187" target="_blank">Plants &amp; Python</a>.
+            </p>
+        </div>
+        <div id="references" class="section">
+            <h4>References</h4>
+            <div id="refs" class="references">
+                <div id="ref-Turner2014">
+                <p style="text-align:left; margin-top:7px">
+                    Kettenbach JA, Miller-Struttmann N, Moffett Z, Galen C (2017). <a href="https://doi.org/10.1002/ece3.3272" target="_blank">How shrub encroachment under climate change could threaten pollination services for alpine wildflowers</a>. <em>Ecol Evol.</em> <strong>7</strong>: 6963&ndash;6971. 
+                </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column right">
+        <br>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="margin-top:0">Active Learning: Pre-Class Assignments</h2>
+            <p>
+                <div class="container">
+                    <a href="https://ejamezquita.github.io/plnt_sci2500/day-15-preclass-pvaluesandcorrelations-student/" target="_blank">
+                        <img class="image" src="../figs/preclass15_correlations.png" style="width:100%" alt="Screenshot of the pre-class assignment on correlations. The screenshot highlights a YouTube video explaining the Pearson Correlation Coefficient."></img>
+                    </a>
+                </div>
+            </p>
+            <ul style="margin-top:-1em;">
+                <li>
+                    Students watch videos and comment working code:<br>
+                    &nbsp;&mdash;&nbsp;Python programming and Python packages<br>
+                    &nbsp;&mdash;&nbsp;Data wrangling, analysis, and visualization<br>
+                    &nbsp;&mdash;&nbsp;Mathematical modeling and statistics<br>
+                    &nbsp;&mdash;&nbsp;Common statistical misconceptions and pitfalls
+                </li>
+            </ul>
+        </div>
+        <div id="image-processing-to-measure-seeds" class="section level2">
+            <h2 style="margin-top:0">Active Learning: In-Class Assignments</h2>
+            <p>
+                <div class="container">
+                    <a href="https://ejamezquita.github.io/plnt_sci2500/day-15-inclass-correlatingpollencontamination-stud/" target="_blank">
+                        <img class="image" src="../figs/inclass15_correlations.png" style="width:100%" alt="Screenshot of the in-class assignment on correlations. The screenshot hightlights Python code to plot correlated data and compute its Pearson coefficient."></img>
+                    </a>
+                </div>
+            </p>
+            <ul style="margin-top:-1em;">
+                <li>Students apply the concepts to various datasets to reproduce <strong>open-access</strong> published results.</li>
+                <li>Encourage them to work in groups and peer-learning.</li>
+            </ul>
+        </div>
+        <div id="results-traditional-ect" class="section level2">
+            <h2 style="margin-top:0">Conclusions and future directions</h2>
+            <p>
+                <img src="../figs/inclass15_correlations.png" style="width:1%" alt="Screenshot of the in-class assignment on correlations. The screenshot hightlights Python code to plot correlated data and compute its Pearson coefficient."></img>
+            </p>
+            <ul style="margin-top: -2em;">
+                <li>No prior experience in biology, data science, or coding assumed, welcoming students from <strong>every background</strong>.</li>
+                <li>Python and Jupyter are <strong>open-source</strong> technologies, with no licensing barriers and plenty of <strong>free</strong> support.</li>
+                <li>Lessons are drawn from <strong>open-access</strong> papers, avoiding thus any paywalls and promoting open science.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>
