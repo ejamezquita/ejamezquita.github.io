@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>The mathematical shape of plants</title>
+    <title>La morfología matemática de las plantas</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
-    <meta name="date" content="2026-01-13" />
+    <meta name="date" content="2026-02-20" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
@@ -15,16 +15,16 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# The mathematical shape of plants
+# La morfología matemática de las plantas
 ]
 .subtitle[
-## Topological Data Analysis and plant science
+## Análisis Topológico de Datos y Biología Vegetal
 ]
 .author[
 ### Erik Amézquita<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
 ]
 .date[
-### 2026-01-13
+### 2026-02-20
 ]
 
 ---
@@ -36,19 +36,19 @@ background-image: url("../../demat/figs/fam9_3.png")
 background-size: 100px
 background-position: 98% 2%
 
-# About me: From MX to MI to MO at MU
+# Hoja de Vida: MX&amp;rarr;MI&amp;rarr;MO y MU
 
-## I work across multiple disciplines and countries
+## Trabajando a través de disciplinas y países
 
 .left-column[
 ![](../../img/dvdy216-toc-0001-m.jpg)
 ]
 
 .right-column[
-- 2013 - 2018 : Licenciatura (Bachelor): Mathematics @ Universidad de Guanajuato and CIMAT. 
+- 2013 - 2018 : Licenciatura: Mathemáticas @ Universidad de Guanajuato y CIMAT. 
 - 2018 - 2023 : PhD: Computational Mathematics, Science &amp;amp; Engineering @ Michigan State University 
-- 2023 - 2025 : ~~PFFFD~~ ~~PFFIE~~ PFF Postdoctoral Fellow: Plant Science / Mathematics @ University of Missouri (MU).
-- 2025 - present: Assistant Professor: Plant Science / Math @ MU. 
+- 2023 - 2025 : ~~PFFFD~~ ~~PFFIE~~ PFF Postdoctoral Fellow: Plant Science / Mathematics @ University of Missouri.
+- 2025 - present: Assistant Professor: Plant Science / Math @ University of Missouri. 
 ]
 
 ---
@@ -57,9 +57,9 @@ background-image: url("../../demat/figs/ecg_results.png")
 background-size: 700px
 background-position: 50% 80%
 
-# College &amp;rarr; TDA &amp;oplus; Archaeology
+# Licenciatura &amp;rarr; ATD &amp;oplus; Arqueología
 
-Topological Data Analysis for pre-Columbian mask classification
+Análisis Topológico de Datos para la clasificación de máscaras precolombinas (INAH)
 
 --
 
@@ -75,22 +75,22 @@ Topological Data Analysis for pre-Columbian mask classification
 
 
 ``` r
-*- Lessons learned for better 
-* future interdisciplinary 
-* collaborations
+*- Lecciones de vida para 
+* trabajo interdisciplinario
+* a futuro.
   
-*- Always include the other
-* discipline experts at
-* every stage of the analysis
+*- Siempre hay que incluir
+* en todos los paso a los 
+* expertos disciplinarios
 
-*- Learn the basics of other
-* people disciplines
+*- Ser humilde y aprender
+* lo básico de otras ramas
 ```
 ]
 
 ---
 
-# TDA &amp;oplus; Archaeology: retold
+# ATD &amp;oplus; Arqueología: va de nuez
 
 .pull-left[
 ![](../../demat/figs/mezcala_masks.png)
@@ -107,7 +107,7 @@ Topological Data Analysis for pre-Columbian mask classification
 
 class: inverse, center, middle
 
-# A mathematician by training, a data scientist by trade, and a plant biologist by ~~collaboration~~ osmosis
+# Soy un matemático por formación, un científico de datos por necesidad, y un biólogo por ~~colaboración~~ ósmosis
 
 &lt;img src="../../biology/figs/osmosis-in-plant-cell.png" alt="" width="400" style="display: block; margin: auto;" /&gt;
 
@@ -117,61 +117,61 @@ background-image: url("../../arabidopsis/figs/PFig1.png")
 background-size: 900px
 background-position: 50% 70%
 
-# Shape quantification &amp;oplus; Plant Science
+# Cuantificación de formas &amp;oplus; Botánica
 
-- Quantifying the intuition
-- Intuifying the quantities
+- Cuantificando la intuición
+- Intuyendo la cuantificación
 
 ---
 
-# Come for the math, stay for the plants
+# MSU: De matemático a biólogo vegetal
 
 &lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;"&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;The shape of adaptability&lt;/p&gt;
+    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;La forma de adaptarse&lt;/p&gt;
     &lt;img style="padding: 0 70px;" src="../../barley/figs/S017_L3_1.gif"&gt;&lt;/img&gt;
     &lt;img style="padding: 0 55px;" src="../../barley/figs/ecc_X.gif"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;Topological Data Analysis&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Análisis Topológico de Datos&lt;/p&gt;
     &lt;p style="text-align: center;"&gt;Euler Characteristic Transform&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;The shape of development&lt;/p&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;La forma de desarrollarse&lt;/p&gt;
     &lt;img style="padding: 0 60px;" src="../../citrus/figs/SR01_L01_black_exocarp.gif"&gt;&lt;/img&gt;
     &lt;img style="padding: 0 27px;" src="../../citrus/figs/SW03_CRC1241-B_12B-4-3_L00_lambproj_v.jpg"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;Ellipsoidal modeling&lt;/p&gt;
-    &lt;p style="text-align: center;"&gt;Directional statistics&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Modelado de elipsoides&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Estadística direccional&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;The shape of domestication&lt;/p&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;La forma de domesticarse&lt;/p&gt;
     &lt;img style="padding: 0 35px;" src="../../walnuts/figs/2014SBa_R5_T81_meat_2.gif"&gt;&lt;/img&gt;
     &lt;img style="padding: 0 10px;" src="../../walnuts/figs/kernel_volume_vs_nut_volume.png"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;Allometry of multiple tissues&lt;/p&gt;
-    &lt;p style="text-align: center;"&gt;Convexity indices&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Allometría de tejidos&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Índices de convexidad&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
 ---
 
-# Phenotyping the shape of things to come
+# Mizzou: Morfología más allá de las formas
 
 &lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;"&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;Phenotyping patterns&lt;/p&gt;
+    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;Fenotipando patrones&lt;/p&gt;
     &lt;img style="padding: 0 30px;" src="../../mcarto/figs/molecular_cartography_2x2.jpg"&gt;&lt;/img&gt;
     &lt;img style="padding: 0 30px;" src="../../mcarto/figs/persistence_images_1x1.svg"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;mRNA sub-cellular localization in soybean nodule cells.&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Localización espacial de ARNm en nódulos de soya&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Phenotyping movement&lt;/p&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Fenotipando movimiento&lt;/p&gt;
     &lt;img style="padding: 0 10px;" src="../../cuscuta/figs/qmlphv.gif"&gt;&lt;/img&gt;
     &lt;img style="padding: 35px 30px;" src="../../cuscuta/figs/avg_pl.svg"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;Tracking and describing &lt;i&gt;Cuscuta campestris&lt;/i&gt; circumnutation&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Describiendo la circumnutación de &lt;i&gt;Cuscuta campestris&lt;/i&gt;&lt;/p&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Phenotyping data&lt;/p&gt;
+    &lt;p style="line-height:0;font-size:28px;text-align: center;"&gt;Fenotipando datos&lt;/p&gt;
     &lt;img style="padding: 0 0px;" src="../../nasrin/figs/fpkm_raw_3.png"&gt;&lt;/img&gt;
     &lt;img style="padding: 30px 0px;" src="../../nasrin/figs/lung_fpkm_meancorr_eps1.0e+06_r40_g40.png"&gt;&lt;/img&gt;
-    &lt;p style="text-align: center;"&gt;Reducing &lt;strong&gt;and&lt;/strong&gt; clustering high-dimensional omics data&lt;/p&gt;
+    &lt;p style="text-align: center;"&gt;Reduciendo &lt;strong&gt;y&lt;/strong&gt; agrupando datos genómicos en dimensiones altas&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
@@ -180,11 +180,11 @@ background-position: 50% 70%
 
 class: inverse, middle, center
 
-# The culture shock of switching disciplines has been greater than that of switching countries
+# El shock cultural de cambiar de disciplinas has sido muchísimo mayor al de cambiar de países
 
 &lt;img src="../../img/homotopy_botany.png" alt="" width="500" style="display: block; margin: auto;" /&gt;
 
-# But it is fun
+# Pero es divertido
 
 ---
 
@@ -194,52 +194,110 @@ background-position: 99% 99%
 
 class: middle
 
-# Roadmap for today
+# Orden del día
 
-1. Phenotyping shapes: barley seeds
+1. Fenotipando formas: semillas de cebada
    - Euler Characteristic Transform
 
-1. Phenotyping patterns: mRNA localization in soybean
+1. Fenotipando patrones: localización de ARNm en soya
    - Sublevel set persistence
-   - Persistence Images
+   - Imágenes de persistence
 
-1. Phenotyping data: lung tissue RNAseq 
+1. Fenotipando datos: RNAseq de tejido pulmonar
    - Mapper
    
-1. Current plant data and TDA opportunities
+1. Proyectos en progreso y ATD a futuro
 
 ---
 
 class: inverse, middle, center
 
-# Phenotyping shapes
+# Fenotipando las formas
 
-## How _shape-y_ &amp;nbsp; is a shape?
+## ¿Qué tan _morfológica_ &amp;nbsp; es una morfología?
 
 &lt;img src="../../barley/figs/amezquita_etal_2021.png" alt="" width="500" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Traditional Morphometry
+# Topología: La característica de Euler `\(\chi\)`
 
-&lt;img src="https://nph.onlinelibrary.wiley.com/cms/asset/e0e8b362-efee-410a-a293-947c2d57acb9/nph16286-fig-0003-m.jpg" alt="" width="650" style="display: block; margin: auto;" /&gt;
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1111/nph.16286"&gt;Gupta &lt;em&gt;et al.&lt;/em&gt; (2019)&lt;/a&gt;&lt;/p&gt;
+`$$\begin{align} \chi &amp;= \#(\text{Vértices}) - \#(\text{Aristas}) + \#(\text{Caras}) \\ &amp;= \#(\text{Componentes conexas}) - \#(\text{Ciclos}) + \#(\text{Vacíos}). \end{align}$$`
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/tetrahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/cube.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/octahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/dodecahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/icosahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; V - A + C = 2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
 ---
 
-# Modern Morphometric Methods might not be enough
+background-image: url("../../barley/figs/ecc_ver2.gif")
+background-size: 750px
+background-position: 50% 25%
 
-.pull-left[
-Elliptical Fourier Descriptor (EFD)
-![](../../barley/figs/chitwood_sinha_2016_01_02.jpg)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href="https://doi.org/10.1016/j.cub.2016.02.033"&gt;Chitwood and Sinha (2016)&lt;/a&gt;&lt;/p&gt;
-]
+# La Curva de Característica de Euler (ECC)
 
-.pull-right[
-Landmark-based morphometrics (GMM)
-![](../../barley/figs/chitwood_2021_fig-004_1.jpg)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt; Credits: &lt;a href=" https://doi.org/10.1002/ppp3.10157"&gt;Chitwood  (2020)&lt;/a&gt;&lt;/p&gt;
-]
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;hr&gt;
+
+Para los matemáticos en la sala:
+
+- Consideremos un complejo simplicial/celular `\(X\subset\mathbb{R}^d\)`
+- Y una dirección unitaria `\(\nu\in S^{d-1}\)`
+- Y el subcomplejo con todas las células debajo de la altura  `\(h\)` in la dirección `\(\nu\)`
+`$$X(\nu)_h =\{\Delta \in X\::\:\langle x,\nu\rangle\leq h\text{ para todo }x\in\Delta\}.$$`
+- La curva de característica de Euler (ECC) en dirección `\(\nu\)` se define como `$$\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.$$`
+---
+
+background-image: url("../../barley/figs/ect_ver2.gif")
+background-size: 800px
+background-position: 50% 42%
+
+## La Transformada de Característica de Euler (ECT)
+
+- Repetimos y concatenamos para todas las direcciones posibles.
+
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;hr&gt;
+
+$$
+`\begin{split}
+ECT(X):\; &amp; S^{d-1} \to \mathbb{Z}^{\mathbb{R}}\\
+&amp;\nu\mapsto\{\chi(X(\nu)_h)\}_{h\in\mathbb{R}}.
+\end{split}`
+$$
+
+- [**Teorema** (Turner, Mukherjee, Boyer 2014) &amp; (Curry, Mukherjee, Turner, 2022)](http://arxiv.org/abs/1805.09782):  La ECT is inyectiva con una cota finita en el número necesario de direcciones.
 
 ---
 
@@ -264,41 +322,29 @@ class: inverse
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
-    &lt;p style="text-align: center; font-size: 30px; line-height: 1em;"&gt; &lt;strong&gt; Barley from across the world &lt;/strong&gt;&lt;/p&gt;
-    &lt;p&gt;28 collected barley varieties&lt;/p&gt;
-    &lt;p&gt;Brought to California in 1929&lt;/p&gt;
-    &lt;p&gt;Artificial evolution experiment for 58 generations&lt;/p&gt;
-    &lt;p&gt;975 panicles scanned&lt;/p&gt;
-    &lt;p&gt;38,000 seeds isolated&lt;/p&gt;
+    &lt;p style="text-align: center; font-size: 30px; line-height: 1em;"&gt;&lt;strong&gt;Cebada a lo largo del mundo&lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;28 variantes cebada&lt;/p&gt;
+    &lt;p&gt;Traídas California en 1929&lt;/p&gt;
+    &lt;p&gt;Evolución artificial por 58 generaciones&lt;/p&gt;
+    &lt;p&gt;975 espigas escaneadas&lt;/p&gt;
+    &lt;p&gt;38,000 semillas analizadas&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
+---
+
+# Aprendizaje de máquina supervisado
+
+**Meta:** Clasificar las **28** variantes de cébada usando solo la morfología de sus semillas.
+
+&lt;img src="../../demat/figs/supervised_learning.png" alt="" width="750" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
-## The Euler Characteristic Curve (ECC)
+# Cuantificando la forma de la cebada
 
-&lt;img src="../../barley/figs/ecc_ver2.gif" alt="" width="650" style="display: block; margin: auto;" /&gt;
-
-## The Euler Characteristic Transform (ECT)
-
-&lt;img src="../../barley/figs/ect_000.png" alt="" width="650" style="display: block; margin: auto;" /&gt;
-
----
-
-## The Euler Characteristic Curve (ECC)
-
-&lt;img src="../../barley/figs/ecc_Z_32.png" alt="" width="650" style="display: block; margin: auto;" /&gt;
-
-## The Euler Characteristic Transform (ECT)
-
-&lt;img src="../../barley/figs/ect_ver2.gif" alt="" width="650" style="display: block; margin: auto;" /&gt;
-
----
-
-# Quantify the shape of barley
-
-**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+**Meta:** Clasificar las **28** variantes de cébada usando solo la morfología de sus semillas.
 
 &lt;style type="text/css"&gt;
 .tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
@@ -315,31 +361,31 @@ class: inverse
 &lt;table class="tg"&gt;
 &lt;thead&gt;
   &lt;tr&gt;
-    &lt;th class="tg-0pky"&gt;Shape descriptors&lt;/th&gt;
-    &lt;th class="tg-0pky"&gt;No. of descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;Morfología&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;# de descriptores&lt;/th&gt;
     &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
   &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-    &lt;td class="tg-2bhk"&gt;Traditional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;Tradicional&lt;/td&gt;
     &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
     &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td class="tg-0pky"&gt;Topological&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;Topológica&lt;/td&gt;
     &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
     &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-    &lt;td class="tg-2bhk"&gt;Combined&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;Combinada&lt;/td&gt;
     &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
     &lt;td class="tg-2bhk"&gt;&lt;strong&gt;0.86 &amp;plusmn; 0.010&lt;/strong&gt;&lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-### What does topology actually measure?
+### ¿Qué mide la topología?
 
 .pull-left[
 &lt;img src="../../barley/figs/discerning_directions.png" alt="" width="225" style="display: block; margin: auto;" /&gt;
@@ -351,11 +397,18 @@ class: inverse
 
 ---
 
-# Into semi-supervised territory
+# En territorio semi-supervisado
 
-- Train an SVM with 100% of the founders `\((F_0)\)`
+![](../../demat/figs/semisupervised_learning.png)
 
-- Classify the progeny `\(F_{58}\)`: DNA (genotype) &amp;harr; shape (phenotype) enrichment
+
+---
+
+# En territorio semi-supervisado
+
+- Usamos 100% de las semillas `\((F_0)\)` como entrenamiento
+
+- Clasificamos la progenie `\(F_{58}\)`: enriquecimiento ADN (genotipo) &amp;harr; forma (fenotipo)
 
 .pull-left[
 ![](../../barley/figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
@@ -372,20 +425,20 @@ background-size: 300px
 background-position: 98% 2%
 
 
-# Summary
+# En resumen
 
 .left-column[
 &lt;img src="../../barley/figs/S017_L3_1.gif" alt="" width="150" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/ecc_X.gif" alt="" width="150" style="display: block; margin: auto;" /&gt;
 ]
 
 .right-column[
-- **TDA** captures **nuanced** morphological information that is not obvious to the naked eye.
+- **ATD** describe información morfológica **sutil** que no es obvia a primera vista.
 
-- We get the best results by **combining** both traditional and topological morphological descriptors.
+- Los mejore resultados ocurren cuando se **combinan** descriptores morfológicos tradicionales y topológicos.
 
-- We can tell **similar** population genetic dynamics by using combined **morphological** descriptors.
+- La dinámica **genética** poblacional es similar a la observada con descriptores **morfológicos**.
 
-- Seed phenotyping can be **cheaper** than genotyping.
+- Fenotipar es más barato (en general) que genotipar.
 ]
 
 
@@ -416,96 +469,128 @@ Soybean root phenotyping across years
 
 class: inverse, middle, center
 
-# Phenotyping patterns
+# Fenotipando patrones
 
-## How *pattern-y* is a pattern?
+## ¿Qué tan *patrónico* es un patrón?
 
-(w/ 
-    Sutton Tennant,
-    Sandra Thibivillers,
-    Sai Subhash,
-    Benjamin Smith,
-    Samik Bhattacharya,
-    Jasper Kläver,
-    Marc Libault
-)
+&lt;img src="../../mcarto/figs/sutton_etal_2025.png" alt="" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# The Central Dogma and Gene Expression
+# Localización a escala subcelular
 
-.pull-left[
+- Más allá de niveles de expresión: segregación espacial y distribución asimétrica de ARNm a lo largo del citosol en el nódulo de la soya.
 
-![](https://images.squarespace-cdn.com/content/v1/52668d02e4b0f593739ec2b6/1533240020250-N1ISWHD91G3VPFJAN7YP/1.png)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1242/bio.017178"&gt;Xu &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
-]
-
-.pull-right[
-
-- Every cell in an organism has the same* DNA.
-- But cells will only express a subset of genes depending on their type. 
-- By knowing which genes are over/under-expressed, we can gather what makes each cell type unique and what are their exact functions.
-
-![](https://www.researchgate.net/publication/303559263/figure/fig3/AS:366370148634637@1464360858751/A-heat-map-showing-SmARF-gene-expression-patterns-in-different-organs-The-red-color.png)
-]
-
----
-
-# mRNA localization at a sub-cellular level
-
-- Beyond gene expression counts: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
-
-- Molecular Cartography&amp;trade; data provided by the Libault Lab
+- Datos de Molecular Cartography&amp;trade; en colaboración con el Laboratorio Libault.
 
 .pull-left[
 ![](../../mcarto/figs/Infected_Cells_05G216000_red_05G092200_green.jpg)
-Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
+Células del nódulo de soya. Glyma.05G092200 en verde; Glyma.05G216000 en rojo.
 ]
 
 .pull-right[
 
-**Goals**: "How patterny is a pattern?"
+**Meta**: "¿Que tán patrónico es el patrón?"
 
-- Quantify the spatial patterns followed by mRNA within individual cells.
-- Mathematically model all observed mRNA sub-cellular distributions.
-- *Use this mathematical model to differentiate cell types and genotypes.*
+- Cuantificar los patrones espaciales de ARNm dentro de cada célula.
+- Modelar y agrupar matemáticamente todos los patrones observados
+- *Usar dicho modelo para diferenciar tipos de células y genotipos.*
 
-**Challenge**
+**Desafío**
 
-- Develop a mathematical model that works for any cell size, orientation, shape, and dimension.
+- Desarrollar un modelo matemático de patrones que es robusto ante cambios de tamaños, orientación y dimensiones de células.
+
 
 ]
 
 ---
 
-# Same expression levels, different patterns
+# Mismo nivel de expresión, pero no patrón
 
 ![](../../mcarto/figs/molecular_cartography_2x4.png)
 
-**Subcellular transcript patterns &amp;harr; spatial location of the cell within the nodule**
+**Patrónes transcriptómicos subcelulares &amp;harr; Localización espacial de la célula dentro del nódulo**
 
 ---
 
-# How *pattern-y* is a pattern?
 
-![](../../mcarto/figs/cell_sample.jpg)
 
-Patterns are subject to a large variety of cell shapes, sizes, orientations, and mRNA quantities.
-- 97 genes (including 10 bacterial ones) &amp;rarr; 6 genes
-- 2938 cells &amp;rarr; 918 infected ones.
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_00.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_01.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_02.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_03.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_04.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_05.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_06.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_07.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_08.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_09.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_10.png)
+
+---
+# ATD: islas y agujeros
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_11.png)
 
 
 ---
 
-background-image: url("../../mcarto/figs/GLYMA_05G092200_TDA_c00541_transp.gif")
-background-size: 800px
-background-position: 50% 85%
+# Rotar 45 grados para AM
 
-# KDEs &amp;oplus; Sublevel sets &amp;oplus; Pers. images
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_12.png)
 
 ---
 
-# Focus on `\(H_1\)` and `\(H_2\)`
+# ATD: De patrones a números
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+
+# ATD con 900 células y 2 genes
 
 &lt;img src="../../mcarto/figs/molecular_cartography_2x4.png" alt="" width="500" style="display: block; margin: auto;" /&gt;
 
@@ -517,7 +602,7 @@ background-image: url("../../mcarto/figs/bw25_scale32_-_PI_1_1_1_H1+2_cell_sampl
 background-size: 620px
 background-position: 75% 99%
 
-# PCA on all topological descriptors
+# PCA con los descriptores topológicos
 
 &lt;img src="../../mcarto/figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png" alt="" width="350" style="display: block; margin: auto auto auto 0;" /&gt;
 
@@ -530,31 +615,31 @@ background-position: 99% 50%
 .left-column[
 
 # PC 1
-- Related to the number of distinct hotspots
-- Correlated to transcript number and cell size
+- Relacionado al número de puntos distintos de concentración.
+- Correlacionado con el número de ARNms y el tamaño de la célula.
 
 # PC 2
-- Related to the heterogeneity of hotspots
-- Correlated to transcript density
+- Relacionado a la heterogeneidad de los puntos de concentración. 
+- Correlacionado a la densidad de ARNms
 
 ]
 
 ---
 
-# Connecting PC 02 to the biological context
+# El contexto biológico de PC 02
 
 ![](../../mcarto/figs/GLYMA_17G195900_bw15_PI_scale24_fulleccentricity_correlations.png)
 
-- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
-- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+- Células senescientes exhiben patrones transcriptómicos espaciales distintos comparados con el resto de las células.
+- Patrones más difusos y homogéneos de ARNm pueden contribuir a la senescencia de la célula en primer lugar.
 
 ---
 
-# We define a morphospace of transcriptomic patterns
+# Definimos un morfo-espacio de patrones transcriptómicos
 
 ![](../../mcarto/figs/bw25_both_scale16_-_PI_1_1_1_pca_H1+2_gridded.png)
 
-# We then work "backward"
+# Y después podemos irnos "pa'trás"
 
 ---
 
@@ -578,33 +663,29 @@ background-position: 50% 1%
 
 ---
 
-# Summary
+# Resumen
 
-**Biologically speaking**
+- La homogeneización de patrones transcriptómicos puede contribuir a la senescencia de las células.
 
-- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
-- Loss of mRNA localization may be a lesser known contributor to cell senescence.
-- *How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?*
+- ¿Cómo cambiaría el morfoespacio de patrones si considermos más genes, más células, más tejidos, y más mutantes?
 
-**Mathematically speaking**
+- ATD puede cuantificar patrones de una manera robusta a cambios de tamaño, orientación, dimensionalidad y contornos
 
-- Topological Data Analysis offers a robust way to encode the shape of patterns.
-- Robust to differences in scale, underlying boundaries, or orientation.
-- The framework is open to any number of cells, genes, and dimensions.
+- Relativamente fácil extender nuesto análisis si hubiesen más datos disponibles. 
 
 &lt;img src="../../mcarto/figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg" alt="" width="550" style="display: block; margin: auto;" /&gt;
 
 ---
 
 
-# Gerrymandering tears and battlefields
+# Patrones en pavimento y en batallas
 
 .pull-left[
 
-&lt;img src="../../tda/figs/025-imperial.png" alt="" width="220" style="display: block; margin: auto;" /&gt;&lt;img src="../../tda/figs/107-tulare.png" alt="" width="220" style="display: block; margin: auto;" /&gt;&lt;img src="../../psd/figs/pavement_plasma.jpg" alt="" width="220" style="display: block; margin: auto;" /&gt;
+&lt;img src="../../psd/figs/adjacency_filtration_WT2.png" alt="" width="280" style="display: block; margin: auto;" /&gt;
 
 
-Voting districts &amp;asymp; pavement cells. 
+Giant cells in pavement cells. 
 
 ]
 
@@ -621,31 +702,11 @@ Spatial transcriptomics of a battlefield
 
 class: inverse, middle, center
 
-# Phenotyping data
+# Fenotipando datos
 
-## The shape of omics data and molecular biology
+## La forma de los datos -ómicos y de biología molecular
 
 &lt;img src="../../nasrin/figs/amezquita_etal_2023.png" alt="" width="750" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# The Central Dogma and Gene Expression
-
-.pull-left[
-
-![](https://images.squarespace-cdn.com/content/v1/52668d02e4b0f593739ec2b6/1533240020250-N1ISWHD91G3VPFJAN7YP/1.png)
-&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1242/bio.017178"&gt;Xu &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
-]
-
-.pull-right[
-
-- Every cell in an organism has the same* DNA.
-- But cells will only express a subset of genes depending on their type. 
-- By knowing which genes are over/under-expressed, we can gather what makes each cell type unique and what are their exact functions.
-
-![](https://www.researchgate.net/publication/303559263/figure/fig3/AS:366370148634637@1464360858751/A-heat-map-showing-SmARF-gene-expression-patterns-in-different-organs-The-red-color.png)
-]
 
 ---
 
@@ -654,23 +715,23 @@ background-size: 450px
 background-position: 10% 90%
 
 
-# Problem: Data is very high-dimensional
+# Problema: Datos en dimensiones muy altas
 
-- FPKM counts of RNAseq data from human lung tissue &amp;rarr; 19,648 genes
-    - 314 healthy samples (GTEx)
-    - 500 cancerous samples (TCGA)
+- Conteos FPKM de datos RNAseq tejido pulmonar humano &amp;rarr; 19,648 genes
+    - 314 muestras saludables (GTEx)
+    - 500 muestras cancerosas (TCGA)
 
-- tSNE (or UMAP) separates healthy vs cancerous samples (blue vs red)
+- t-SNE (o UMAP) separa muestras saludables de cancerosas (azul vs rojo)
    
 .pull-right[
 
-**Question**: 
+**Pregunta:**
 
-"Is the RNAseq data arranged into a specific shape?"
+"¿Los datos RNAseq están organizados con cierta estructura?"
 
-- Are there subgroups that we are ignoring?
-- Can we go from clusters to continua?
-- What is the biological characterization of such continua?
+- ¿Habrán subgrupos de cancer que ignoramos?
+- ¿Podemos ir de agrupamientos a continuos?
+- ¿Cuál es la base biológica de dicho continuo?
 
 ]
 
@@ -683,11 +744,11 @@ background-position: 50% 95%
 
 # Mapper 
 
-## Topological summary: exploration and visualization
+## Resumen topológico: exploración y visualización
 
-- We start with **lots** of data points in a **high-dimensional** space.
+- Empezamos con **muchos** puntos/muestras en **altas dimensiones**.
 
-- We want just a **handful** of points in a **low-dimensional** space that roughly preserve the original **shape**.
+- Queremos solo **unos cuantos** puntos en un espacio de **dimensión baja** que preserven la **estructura** original de altas dimensiones.
 
 ---
 
@@ -695,11 +756,11 @@ background-image: url("../../tda/figs/mapper_c_complete.svg")
 background-size: 525px
 background-position: 50% 99%
 
-# Mapper in a single picture
+# Mapper en una única caricatura
 
 ---
 
-# Mapper and lung cancer data
+# Mapper y datos de cáncer pulmonar
 
 .pull-left[
 ![](../../nasrin/figs/t0_1_corr_eps1e+04_r200_g50.png)
@@ -708,35 +769,36 @@ background-position: 50% 99%
 ]
 
 .pull-right[
-- Mapper produced mostly strand-like graphs regardless of parameters used
+- Mapper produjo estructuras lineales para la mayoría de parametros usados.
 
-- Healthy subjects tend to stay at the center
+- Las muestras saludables tienden a permanecer en el centro
 
-- Cancerous samples are distributed at both ends
+- Las muestras cancerosas tienden a estar divididas en ambos extremos de la línea
 
-- Healthy subjects that land in between might be at risk
+- Las muestras saludables cerca de los extremos pueden estar en riesgo
 
-- **Predictive model**: Take a new patient sample and you can assess its cancer risk based on where they land in this continuum.
+- __Modelo predictivo__: Un continuo que indica el riesgo de desarrollar cancer pulmonar __y__ el subtipo de cancer.
+
 ]
 
 ---
 
-# Biological significance
+# Interpretación biológica: GO Analysis
 
 ![](https://journals.plos.org/plosone/article/figure/image?size=large&amp;id=10.1371/journal.pone.0284820.g009)
 
 ---
 
-# Summary
+# En resumen
 
 .pull-left[
-- Data visualization to inspire new research.
+- Visualización de datos que puede ayudarnos a enfocar nuestra investigación.
 
-- Mapper finds novel sub-clusters that reveal important nuances.
+- Mapper puede hallar subgrupos nuevos y revelar sutilezas.
 
-- Agnostic to any kind of -omics data
+- Metodo agnóstico a cualquier tipo de datos -ómicos
 
-- Mapper remains underused and there is plenty of untapped potential in plant genomics
+- Mapper todavía es poco usado, en especial en biología vegetal: oportunidad de trabajo novedoso.
 
 ![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
 ]
@@ -757,40 +819,14 @@ background-image: url("../../nasrin/figs/rice_mapper_2025-11-20.png")
 background-size: 905px
 background-position: 50% 90%
 
-# Leading the Resistance with mapper
+# Liderando la resistencia con mapper
 
-- RNASeq data from rice samples: control and bacterial infection
-- Look for differentially expressed genes to understand disease resistance
-
-
----
-
-background-image: url("../../tutorials/figs/knehansIPG.jpg")
-background-size: 470px
-background-position: 0% 85%
-
-# Since we're talking about networks
-
-.pull-right[
-**Studying the people that study plants**
-
-- Academic social network analysis inspired by the IPG (Interdisciplinary Plant Group) at the University of Missouri
-
-- Expanded data collection for all 51 land-grant institutions
-
-- Weighted graph:
-    - Plant faculty: nodes
-    - No. of papers together: edge
-    
-- Does collaboration/interdisciplinarity lead to better academic outcomes?
-
-- How to quantify collaboration/interdisciplinarity?
-
-W/ Roberto Herrera, Sophia Knehans, David Braun
-]
+- RNASeq data de muestras de arroz: control e infección bacterial
+- Agrupando genes expresados diferencialmente para entender inmunidad
 
 
 ---
+
 
 background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
 background-size: 180px
@@ -798,32 +834,54 @@ background-position: 99% 1%
 
 class: inverse, center, middle
 
-# Shaping the next generation of interdisciplinary scientists
+# Formando a la siguiente generación de científicos interdisciplinarios
 
-## Large amounts of data require large amounts of people
+## Un gran número de datos requieren un gran número de personas
 
-(Ask me later about my undergrad course on Data Science to Life Sciences)
+&lt;p style="font-size: 2.25em; text-align: center; color: Blue;"&gt;ejamezquita.github.io/plnt_sci2500&lt;/p&gt;
 
 ---
 
-## Pers. Diagrams &amp;oplus; distances &amp;oplus; MDS &amp;oplus; PCA
+## Diagramas de persistencia
 
 &lt;p align="center"&gt;
-&lt;iframe width="800" height="550" src="../../tutorials/slides/tda_distances_pca_pipeline.html" title="Day10"&gt;
+&lt;iframe width="800" height="550" src="../../tutorials/slides/tda_distances_pca_pipeline.html" title="persistence diagrams"&gt;
 &lt;/iframe&gt;
 &lt;/p&gt;
 
 ---
 
-## Mapper without the need to code
+## Mapper sin saber como programar
 
 &lt;p align="center"&gt;
-&lt;iframe width="800" height="550" src="../../tutorials/slides/inital_mapper_pipeline.html" title="Day10"&gt;
+&lt;iframe width="800" height="550" src="../../tutorials/slides/inital_mapper_pipeline.html" title="mapper"&gt;
 &lt;/iframe&gt;
 &lt;/p&gt;
 
 
 ---
+
+## PLNT_SCI 2500: Clase formal de Python
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="550" src="https://ejamezquita.github.io/plnt_sci2500/" title="PLNT SCI 2500"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+
+
+
+---
+
+## PLNT_SCI 2500: Clase formal de Python
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="550" src="../../tutorials/plnt_2500/SanchezOvando_et_al_2025.html" title="Day14"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
+
+
+---
+
 
 background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4a/University_of_Missouri_logo.svg")
 background-size: 60px
@@ -831,7 +889,7 @@ background-position: 99% 1%
 
 class: inverse
 
-## Thank you!
+## ¡Gracias por escuchar!
 
 .pull-left[
 
@@ -891,12 +949,57 @@ class: inverse
 
 **More details**
 
-&lt;p style="font-size: 20px; text-align: center; color: Blue;"&gt;ejamezquita.github.io/&lt;/p&gt;
+&lt;p style="font-size: 20px; text-align: center; color: Blue;"&gt;ejamezquita.github.io/plnt_sci2500&lt;/p&gt;
 &lt;p style="font-size: 20px; text-align: center; color: Blue;"&gt;eah4d@missouri.edu&lt;/p&gt;
 
 ]
 
 
+
+---
+
+# Más sobre la ECT
+
+- Fácil de calcular: suma alternante
+
+- Complejos simpliciales *distintos* corresponden ECTs *distintas*.
+
+- [**Theorem _(ibid)_**](https://arxiv.org/abs/1310.1030): La ECT es una estadística que resume toda la información morfológica.
+
+There is elusive math research on computationally efficient reconstruction algorithms:
+- [Turner, Mukherjee, Curry (2021)](https://arxiv.org/abs/1805.09782): Finite number of directions
+- [Betthauser (2018)](https://people.clas.ufl.edu/peterbubenik/files/Betthauser_Thesis.pdf): 2D reconstruction
+- [Fasy, Micka, Millman, Schenfisch, Williams (2022)](https://arxiv.org/abs/1912.12759): 3D reconstruction
+- [Crawford, Monod, Chen, Mukherjee, Rabadan (2020)](https://doi.org/10.1080/01621459.2019.1671198): Smooth ECT
+- [Jiang, Kurtek, Needham (2020)](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w50/Jiang_The_Weighted_Euler_Curve_Transform_for_Shape_and_Image_Analysis_CVPRW_2020_paper.pdf): Weighted ECT
+
+&lt;img src="../../arabidopsis/figs/ect_col-0_pot0_leaf0.gif" alt="" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+
+background-image: url("../../tutorials/figs/knehansIPG.jpg")
+background-size: 470px
+background-position: 0% 85%
+
+# Since we're talking about networks
+
+.pull-right[
+**Studying the people that study plants**
+
+- Academic social network analysis inspired by the IPG (Interdisciplinary Plant Group) at the University of Missouri
+
+- Expanded data collection for all 51 land-grant institutions
+
+- Weighted graph:
+    - Plant faculty: nodes
+    - No. of papers together: edge
+    
+- Does collaboration/interdisciplinarity lead to better academic outcomes?
+
+- How to quantify collaboration/interdisciplinarity?
+
+w/ Roberto Herrera, Sophia Knehans, David Braun
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="../../js/remark-latest.min.js"></script>
