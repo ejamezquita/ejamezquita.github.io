@@ -978,3 +978,74 @@ background-position: 0% 85%
 
 w/ Roberto Herrera, Sophia Knehans, David Braun
 ]
+
+---
+
+# Morfología en el CICESE
+
+.pull-left[
+Aguilar Medrano et al. (2024) *J. Mammalogy*
+![](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/jmammal/105/1/10.1093_jmammal_gyad104/1/gyad104_fig4.jpeg?Expires=1774643349&Signature=FkeJ2y9p-F3rDVEg2-Qgpq11cafAT~JjvYu58Oq5lYpy1aCjnefSzQpq6U2xxdygSdKF~TqBAAYqvb30Uz2ZqOPh03ceH2-sx1KscmdI3Q5enAIzTUd111p1WJjxIt2F6JX5tRTmwzJlRYchCyWseFr3h4NT1mC34XXCkK6YdSrL4sUByyc6zeVEqzxC9dn2RkcYqGpLblehQ0SfebACiW9vkM92JcjmSvVzxq-MGymscXx1ZVSVe7hs1HZZablTHECqleVFgP5zLnuuuB3959oECeHKvCIFwVKHXa2d--oRWkUiw3uDXY2hctSs6zCsHoEIs6F5-8qUAP-ZX80CjA__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
+]
+
+.pull-right[
+Aguilar-Medrano (2025) *J. Morphology*
+![](https://onlinelibrary.wiley.com/cms/asset/de2e6c94-83be-4f30-bec9-27d04841151c/jmor70095-fig-0001-m.jpg)
+
+]
+
+---
+
+# Arquitectura y patrones
+
+.pull-left[
+Callejas-Negrete y Castro-Longoria (2019) *Fungal Genetics and Biology*
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1087184518302482-gr4_lrg.jpg)
+]
+
+.pull-right[
+Cano Dominguez et al (2019) *Fungal Genetics and Biology*
+![](https://ars.els-cdn.com/content/image/1-s2.0-S1087184523000555-gr5_lrg.jpg)
+]
+
+---
+
+# Arquitectura y patrones
+
+.pull-left[
+Jiménez-Gómez et al (2020) *J. Fungi*
+![](https://www.mdpi.com/jof/jof-06-00316/article_deploy/html/images/jof-06-00316-g001.png)
+]
+
+.pull-right[
+Serrano-Mejía et al (2022) *Plants*
+![](https://www.mdpi.com/plants/plants-11-03062/article_deploy/html/images/plants-11-03062-g001.png)
+]
+
+---
+
+# La forma de datos genómicos
+
+.pull-left[
+Juárez et al. (2019) *PLoS ONE*
+![](https://storage.googleapis.com/plos-corpus-prod/10.1371/journal.pone.0216982/1/pone.0216982.g001.PNG_L?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=wombat-sa%40plos-prod.iam.gserviceaccount.com%2F20260220%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260220T204226Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=e72d9af684a9eca2f8425033da0b87f8f2953f22b8bb3cad8692f540cd24843b5119350729e4e78c82735d4255a74afec7505a4155c113b0df50d9b28be6913841a260d32ccc7957f43c3f0b1f3e66c1e72e3abf94f1cf2e3445c33e51048117e681f168da707e75e47c11d0757e1c02ce840fa1aa3da0a0c758a8f273a90a90a5e4489901af80f0c8cf892e0a90025a5682a388c8e8233d45b6dc71f9aece1772363e28f88f739f184d713dea101526e4e1c1ae0cb6a26437af4c1bfbe2081da530b0316110481dd530511476672d2a6c5c15d3d0a206ac564b7fc20fb512ea3743fb07b15921dc1e54b80dd2caf596655ab97ca5cf3b35501292685c3e019b)
+]
+
+.pull-right[
+Morales Pulido et al. (2024) *J. Fish Biology*
+![](https://onlinelibrary.wiley.com/cms/asset/a08cc859-55e6-4fb6-a0b7-c7e318cb98e2/jfb15921-fig-0002-m.jpg)
+]
+
+---
+
+# Patrones y formas neuronales
+
+.pull-left[
+Rodríguez-Arzate et al (2020) *Cells*
+![](https://www.mdpi.com/cells/cells-10-01581/article_deploy/html/images/cells-10-01581-g007.png)
+]
+
+.pull-right[
+Rodríguez-Arzate et al (2020) *Cells*
+![](https://www.mdpi.com/cells/cells-10-01581/article_deploy/html/images/cells-10-01581-g003.png)
+]
