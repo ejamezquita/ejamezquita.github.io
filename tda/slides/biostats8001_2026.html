@@ -4,7 +4,7 @@
     <title>The mathematical shape of plants</title>
     <meta charset="utf-8" />
     <meta name="author" content="Erik Amézquita — Division of Plant Science &amp; Technology Department of Mathematics University of Missouri —" />
-    <meta name="date" content="2026-04-07" />
+    <meta name="date" content="2026-04-14" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/mu.css" type="text/css" />
@@ -24,7 +24,7 @@ class: center, middle, inverse, title-slide
 ### Erik Amézquita<br>—<br>Division of Plant Science &amp; Technology<br>Department of Mathematics<br>University of Missouri<br>—
 ]
 .date[
-### 2026-04-07
+### 2026-04-14
 ]
 
 ---
@@ -62,7 +62,7 @@ background-position: 98% 2%
 
 &lt;div class="row" style="font-family: 'Yanone Kaffeesatz'; font-size:22px;"&gt;
   &lt;div class="column" style="max-width:33%"&gt;
-    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;The shape of adaptability&lt;/p&gt;
+    &lt;p style="line-height:0;text-align: center; font-size:28px"&gt;&lt;mark&gt;The shape of adaptability&lt;/mark&gt;&lt;/p&gt;
     &lt;img style="padding: 0 70px;" src="../../barley/figs/S017_L3_1.gif"&gt;&lt;/img&gt;
     &lt;img style="padding: 0 55px;" src="../../barley/figs/ecc_X.gif"&gt;&lt;/img&gt;
     &lt;p style="text-align: center;"&gt;Topological Data Analysis&lt;/p&gt;
@@ -111,6 +111,259 @@ background-position: 98% 2%
 
 ---
 
+background-image: url("../../barley/figs/seed.png")
+background-size: 325px
+background-position: 99% 99%
+
+class: middle
+
+# Roadmap for today
+
+1. Phenotyping shapes: barley seeds
+   - Euler Characteristic Transform
+
+1. Phenotyping patterns: mRNA localization in soybean
+   - Sublevel set persistence
+   - Persistence Images
+
+1. Phenotyping data: lung tissue RNAseq 
+   - Mapper
+   
+1. Current plant data and TDA opportunities
+
+---
+
+class: inverse, middle, center
+
+# Phenotyping shapes
+
+## How _shape-y_ &amp;nbsp; is a shape?
+
+&lt;img src="../../barley/figs/amezquita_etal_2021.png" alt="" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Topology: The Euler characteristic
+
+`$$\begin{align} \chi &amp;= \#(\text{Vertices}) - \#(\text{Edges}) + \#(\text{Faces}) \\ &amp;= \#(\text{Connected Components}) - \#(\text{Loops}) + \#(\text{Voids}). \end{align}$$`
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/tetrahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/cube.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/octahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/dodecahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;img style="padding: 0 0 0 0;" src="../../tda/figs/icosahedron.gif"&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:30%"&gt;
+    &lt;p style="padding: 50px 0 0 10px; font-size: 48px; text-align: center; color: #18453B; line-height: 1.25; font-family: 'Yanone Kaffeesatz';"&gt; V - E + F = 2&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="width:5%"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+&lt;img src="../../barley/figs/ecc_ver2.gif" alt="" width="650" style="display: block; margin: auto;" /&gt;
+
+## The Euler Characteristic Transform (ECT)
+
+&lt;img src="../../barley/figs/ect_000.png" alt="" width="650" style="display: block; margin: auto;" /&gt;
+
+---
+
+## The Euler Characteristic Curve (ECC)
+
+&lt;img src="../../barley/figs/ecc_Z_32.png" alt="" width="650" style="display: block; margin: auto;" /&gt;
+
+## The Euler Characteristic Transform (ECT)
+
+&lt;img src="../../barley/figs/ect_ver2.gif" alt="" width="650" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse
+
+&lt;div class="row"&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://cereal.interreg-npa.eu/subsites/CEREAL/Barley_cultivation-Norway_Presentation_2018.pdf" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../barley/figs/barley_norway.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.resilience.org/stories/2020-03-09/the-last-crop-before-the-desert/" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../barley/figs/barley_morocco.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.doi.org/10.1007/978-1-4419-0465-2_2168" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../barley/figs/barley_world.jpg"&gt;&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:44%"&gt;
+    &lt;a href="https://www.bloomberg.com/news/articles/2020-09-13/iraq-to-offer-first-ever-barley-exports-as-rains-yield-surplus" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../barley/figs/barley_iraq.jpg"&gt;&lt;/a&gt;
+    &lt;a href="https://www.tibettravel.org/tibetan-culture/highland-barley.html" target="_blank"&gt;&lt;img style="padding: 0 0 0 0;" src="../../barley/figs/barley_seed_tibet.jpg"&gt;&lt;/a&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="column" style="max-width:46%"&gt;
+        &lt;img src="../../barley/figs/S019_L0_1.gif"&gt;
+      &lt;/div&gt;
+      &lt;div class="column" style="max-width:55%"&gt;
+        &lt;img src="../../barley/figs/S017_L0_seed_10_0.gif"&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="column" style="max-width:8%; font-size: 15px;"&gt;
+    &lt;p style="text-align: center; font-size: 30px; line-height: 1em;"&gt; &lt;strong&gt; Barley from across the world &lt;/strong&gt;&lt;/p&gt;
+    &lt;p&gt;28 collected barley varieties&lt;/p&gt;
+    &lt;p&gt;Brought to California in 1929&lt;/p&gt;
+    &lt;p&gt;Artificial evolution experiment for 58 generations&lt;/p&gt;
+    &lt;p&gt;975 panicles scanned&lt;/p&gt;
+    &lt;p&gt;38,000 seeds isolated&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+---
+
+# Supervised Machine Learning
+
+**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+
+&lt;img src="../../demat/figs/supervised_learning.png" alt="" width="750" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Quantify the shape of barley
+
+**Goal:** Classify the **28** founding barley varieties solely by grain morphology information.
+
+&lt;style type="text/css"&gt;
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;margin:0px auto;}
+.tg td{background-color:#fdf6e3;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#002b36;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+  word-break:normal;}
+.tg th{background-color:#657b83;border-bottom-width:1px;border-color:#93a1a1;border-style:solid;border-top-width:1px;
+  border-width:0px;color:#fdf6e3;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+  padding:10px 5px;word-break:normal;}
+.tg .tg-2bhk{background-color:#eee8d5;border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-gyvr{background-color:#eee8d5;border-color:inherit;font-size:100%;text-align:left;vertical-align:top}
+&lt;/style&gt;
+&lt;table class="tg"&gt;
+&lt;thead&gt;
+  &lt;tr&gt;
+    &lt;th class="tg-0pky"&gt;Shape descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;No. of descriptors&lt;/th&gt;
+    &lt;th class="tg-0pky"&gt;F1&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Traditional&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;11&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;0.55 &amp;plusmn; 0.019&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-0pky"&gt;Topological&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;12&lt;/td&gt;
+    &lt;td class="tg-0pky"&gt;0.74 &amp;plusmn; 0.016&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td class="tg-2bhk"&gt;Combined&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;23&lt;/td&gt;
+    &lt;td class="tg-2bhk"&gt;&lt;strong&gt;0.86 &amp;plusmn; 0.010&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+### What does topology actually measure?
+
+.pull-left[
+&lt;img src="../../barley/figs/discerning_directions.png" alt="" width="225" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+![](../../barley/figs/arrow_seed_09_0.gif)
+]
+
+---
+
+# Into semi-supervised territory
+
+![](../../demat/figs/semisupervised_learning.png)
+
+---
+
+# Into semi-supervised territory
+
+- Train an SVM with 100% of the founders `\((F_0)\)`
+
+- Classify the progeny `\(F_{58}\)`: DNA (genotype) &amp;harr; shape (phenotype) enrichment
+
+.pull-left[
+![](../../barley/figs/histogram_combined_gen0_d158_T16_topounscaled_vert.svg)
+]
+
+.pull-right[
+![](../../barley/figs/histogram_combined_gen7_d158_T16_topounscaled_vert.svg)
+]
+
+---
+
+background-image: url("../figs/amezquita_etal_2021.png")
+background-size: 300px
+background-position: 98% 2%
+
+
+# Summary
+
+.left-column[
+&lt;img src="../../barley/figs/S017_L3_1.gif" alt="" width="150" style="display: block; margin: auto;" /&gt;&lt;img src="../../barley/figs/ecc_X.gif" alt="" width="150" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+- **TDA** captures **nuanced** morphological information that is not obvious to the naked eye.
+
+- We get the best results by **combining** both traditional and topological morphological descriptors.
+
+- We can tell **similar** population genetic dynamics by using combined **morphological** descriptors.
+
+- Seed phenotyping can be **cheaper** than genotyping.
+]
+
+
+---
+
+# Color me rooted and phenotyped!
+
+.pull-left[
+![](../../yeast2hybrid/figs/plate_02_p53_plate_02_raw.pdf.png)
+![](../../yeast2hybrid/figs/p53_plate_pipeline_ver04.jpg)
+
+Persistent intensity peak color
+]
+
+.pull-right[
+
+![](../../root_necrosis/figs/geodesic_comparison_-_222M_side1_030117006.png)
+
+![](../../root_necrosis/figs/1-CAL-1-M212_-_geodesic_distance_transform.png)
+
+Soybean root phenotyping across years
+
+]
+
+
+---
 
 class: inverse, middle, center
 
@@ -120,12 +373,11 @@ class: inverse, middle, center
 
 &lt;img src="../../mcarto/figs/sutton_etal_2025.png" alt="" width="650" style="display: block; margin: auto;" /&gt;
 
-
 ---
 
 # mRNA localization at a sub-cellular level
 
-- **Beyond gene expression counts**: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
+- Beyond gene expression counts: Spatial segregation and asymmetrical distribution of mRNA across the cytosol in the soybean nodule.
 
 - Molecular Cartography&amp;trade; data provided by the Libault Lab
 
@@ -158,11 +410,88 @@ Infected soybean nodule cells. Glyma.05G092200 in green. Glyma.05G216000 in red.
 
 ---
 
-background-image: url("../../mcarto/figs/GLYMA_05G092200_TDA_c00282_122.png")
-background-size: 800px
-background-position: 50% 85%
 
-# KDEs &amp;oplus; Sublevel sets &amp;oplus; Pers. images
+
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_00.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_01.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_02.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_03.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_04.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_05.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_06.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_07.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_08.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_09.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_10.png)
+
+---
+# TDA: Connected components and holes
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_11.png)
+
+
+---
+
+# Rotate 45&amp;deg; for ML
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_12.png)
+
+---
+
+# TDA: From patterns to numbers
+
+![](../../mcarto/figs/GLYMA_05G092200_TDA_c02352_13.png)
+
+---
+
+
+# TDA with 900 nodule cells and 2 genes
+
+&lt;img src="../../mcarto/figs/molecular_cartography_2x4.png" alt="" width="500" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="../../mcarto/figs/persistence_images_2x4.png" alt="" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -221,14 +550,33 @@ background-position: 50% 1%
 
 ---
 
-# Gerrymandering tears and battlefields
+# Summary
+
+**Biologically speaking**
+
+- Senescent cells exhibit a distinct transcriptomic spatial pattern compared to the rest of population.
+- Loss of mRNA localization may be a lesser known contributor to cell senescence.
+- *How does the morphospace of patterns change if we take into account more genes, more cell types, more tissues, and more mutants?*
+
+**Mathematically speaking**
+
+- Topological Data Analysis offers a robust way to encode the shape of patterns.
+- Robust to differences in scale, underlying boundaries, or orientation.
+- The framework is open to any number of cells, genes, and dimensions.
+
+&lt;img src="../../mcarto/figs/D2_GLYMA_05G092200_z_kde_pd_suplevel_by_both_00512.jpg" alt="" width="550" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+# Patterns in pavement and battlefields
 
 .pull-left[
 
-&lt;img src="../../tda/figs/025-imperial.png" alt="" width="220" style="display: block; margin: auto;" /&gt;&lt;img src="../../tda/figs/107-tulare.png" alt="" width="220" style="display: block; margin: auto;" /&gt;&lt;img src="../../psd/figs/pavement_plasma.jpg" alt="" width="220" style="display: block; margin: auto;" /&gt;
+&lt;img src="../../psd/figs/adjacency_filtration_WT2.png" alt="" width="280" style="display: block; margin: auto;" /&gt;
 
 
-(w/Colin Nichols and Tyler Mitts)
+Giant cells in pavement cells. 
 
 ]
 
@@ -251,6 +599,25 @@ class: inverse, middle, center
 
 &lt;img src="../../nasrin/figs/amezquita_etal_2023.png" alt="" width="750" style="display: block; margin: auto;" /&gt;
 
+
+---
+
+# The Central Dogma and Gene Expression
+
+.pull-left[
+
+![](https://images.squarespace-cdn.com/content/v1/52668d02e4b0f593739ec2b6/1533240020250-N1ISWHD91G3VPFJAN7YP/1.png)
+&lt;p style="font-size: 10px; text-align: right; color: Grey;"&gt;Credits: &lt;a href="https://doi.org/10.1242/bio.017178"&gt;Xu &lt;em&gt;et al.&lt;/em&gt; (2016)&lt;/a&gt;&lt;/p&gt;
+]
+
+.pull-right[
+
+- Every cell in an organism has the same* DNA.
+- But cells will only express a subset of genes depending on their type. 
+- By knowing which genes are over/under-expressed, we can gather what makes each cell type unique and what are their exact functions.
+
+![](https://www.researchgate.net/publication/303559263/figure/fig3/AS:366370148634637@1464360858751/A-heat-map-showing-SmARF-gene-expression-patterns-in-different-organs-The-red-color.png)
+]
 
 ---
 
@@ -278,6 +645,7 @@ background-position: 10% 90%
 - What is the biological characterization of such continua?
 
 ]
+
 
 ---
 
@@ -331,6 +699,32 @@ background-position: 50% 99%
 
 ---
 
+# Summary
+
+.pull-left[
+- Data visualization to inspire new research.
+
+- Mapper finds novel sub-clusters that reveal important nuances.
+
+- Agnostic to any kind of -omics data
+
+- Mapper remains underused and there is plenty of untapped potential in plant genomics
+
+![](https://www.pnas.org/cms/10.1073/pnas.1102826108/asset/43af8964-ab82-4cbb-bbcb-68f5db437862/assets/graphic/pnas.1102826108fig03.jpeg)
+]
+
+.pull-right[
+
+![](../../tda/figs/tissue_leaf_lens.png)
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fnbt.3854/MediaObjects/41587_2017_Article_BFnbt3854_Fig3_HTML.jpg?as=webp)
+
+]
+
+
+---
+
+
 background-image: url("../../nasrin/figs/rice_mapper_2025-11-20.png")
 background-size: 905px
 background-position: 50% 90%
@@ -338,29 +732,42 @@ background-position: 50% 90%
 # Leading the Resistance with mapper
 
 - RNASeq data from rice samples: control and bacterial infection
-- w/ Olivia Fisk and Gloria Asare
+- Look for differentially expressed genes to understand disease resistance
 
+
+---
+
+background-image: url("https://plantsandpython.github.io/PlantsAndPython/_images/plants_python_logo.jpg")
+background-size: 180px
+background-position: 99% 1%
+
+class: inverse, center, middle
+
+# Shaping the next generation of interdisciplinary scientists
+
+## Large amounts of data require large amounts of people
+
+&lt;p style="font-size: 2.25em; text-align: center; color: Blue;"&gt;ejamezquita.github.io/plnt_sci2500&lt;/p&gt;
+
+---
+
+
+## PLNT_SCI 2500
+
+&lt;p align="center"&gt;
+&lt;iframe width="800" height="550" src="https://ejamezquita.github.io/plnt_sci2500/" title="PLNT SCI 2500"&gt;
+&lt;/iframe&gt;
+&lt;/p&gt;
 
 ---
 
 class: inverse, center, middle
 
-# Other related research interests
+# Shameless plug
 
-.pull-left[
-![](../../tutorials/figs/knehansIPG.jpg)
-**Studying the people that study plants**
-w/ Sophia Knehans and Roberto Herrera
-]
+## This Fall I will teach PLNT_SCI 8001: Computational Models for Life Sciences (standalone, one time)
 
-.pull-right[
-**The landscape of data science education in biology programs**
-![](../../tutorials/figs/Catalog_Freq_data.png)
-
-
-
-]
-
+### Then next year it will be PLNT_SCI 9001, a follow-up of this course.
 
 ---
 
