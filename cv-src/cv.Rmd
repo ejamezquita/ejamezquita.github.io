@@ -163,7 +163,7 @@ Work submitted for peer-review {data-icon=newspaper}
 CV %<>% print_section('preprint')
 ```
 
-Students Mentored {data-icon=glasses}
+Research Students Mentored {data-icon=glasses}
 --------------------------------------------------------------------------------
 
 ```{r}
